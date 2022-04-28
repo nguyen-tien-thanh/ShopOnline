@@ -1,0 +1,35 @@
+{
+  "name": "bardpod",
+  "version": "1.0.0",
+  "description": "pod, bard pod, bard, bardpod, rodeo, nasty, balmy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect index.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0703086663/bardpod.git"
+  },
+  "keywords": [
+    "bard",
+    "pod",
+    "bard",
+    "pod",
+    "rodeo",
+    "balmy",
+    "nasty"
+  ],
+  "author": "Bard Pod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0703086663/bardpod/issues"
+  },
+  "homepage": "https://github.com/0703086663/bardpod#readme",
+  "dependencies": {
+    "express": "^4.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
