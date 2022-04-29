@@ -1,4 +1,3 @@
-
 // ================== Main definition for page =======================
 $maincolor: rgb(208,1,9);
 @import url(//db.onlinewebfonts.com/c/1fed4454352f201d52b65ca5480afb2d?family=Playlist);
@@ -297,6 +296,10 @@ section {
 	width: 40%;
 }
 
+.footer-distributed .footer-left a{
+  cursor: pointer;
+}
+
 /* The company logo */
 
 .footer-distributed h3{
@@ -427,7 +430,7 @@ section {
 	margin-top: 25px;
 }
 
-.footer-distributed .footer-icons a{
+.footer-distributed .footer-icons .social-icons{
 	display: inline-block;
 	width: 35px;
 	height: 35px;
@@ -449,19 +452,23 @@ section {
   color: #38A1F2;
 }
 .footer-distributed .footer-icons .fa-instagram {
+  color: transparent;
+  background: -webkit-radial-gradient(30% 107%, circle, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -o-radial-gradient(30% 107%, circle, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
   -webkit-background-clip: text;
-          /* Also define standard property for compatibility */
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 .footer-distributed .footer-icons .fa-tiktok {
   color: black;
 }
 
-.footer-distributed .footer-icons a i:hover{
+.footer-distributed .footer-icons .social-icons i:hover{
   color: $maincolor;
 }
+
+
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
@@ -488,4 +495,79 @@ section {
 		margin-left: 0;
 	}
 
+}
+
+// ============== MODAL OF   THE FOOTER =================
+/* The Modal (background) */
+.delivery-modal,
+.payment-modal,
+.return-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.delivery-modal-content,
+.payment-modal-content,
+.return-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  // padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 15px;
+}
+
+.modal-header{
+  background-color: var(--clr4);
+  color:white;
+  border-radius: 15px;
+  border: 3px var(--clr4);
+}
+.fa-shipping-fast,
+.fa-credit-card,
+.fa-exchange-alt{
+  font-size:30px
+}
+
+/* The Close Button */
+.delivery-close, 
+.payment-close, 
+.return-close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.delivery-close:hover,
+.delivery-close:focus,
+.payment-close:hover,
+.payment-close:focus,
+.return-close:hover,
+.return-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// ============== ICON FOR PAYMENT COPY TEXT =============================
+.copy-payment-btn:active,
+.copy-payment-btn:focus {
+  color:red
+}
+
+.copy-payment-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }

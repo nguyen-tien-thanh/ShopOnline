@@ -17,11 +17,11 @@
         <p class="footer-links">
             <a href="/" class="link-1">Trang chủ</a>
             
-            <a href="#">Vận chuyển</a>
+            <a id="delivery-btn">Vận chuyển</a>
         
-            <a href="#">Thanh toán</a>
+            <a id="payment-btn">Thanh toán</a>
             
-            <a href="#">Chính sách đổi trả</a>
+            <a id="return-btn">Chính sách đổi trả</a>
             
         </p>
 
@@ -34,18 +34,16 @@
             <p><a href="https://www.google.com/maps/place/%C4%90%C6%B0%E1%BB%9Dng+s%E1%BB%91+9,+ph%C6%B0%E1%BB%9Dng+4,+Qu%E1%BA%ADn+8,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7424124,106.6678977,17z/data=!3m1!4b1!4m5!3m4!1s0x31752e56a427603d:0xafd2371d7539c0c7!8m2!3d10.7424071!4d106.6700917">
                 <span>Đường số 9</span> Phường 4, Quận 8</a></p>
         </div>
-
         <div>
             <ion-icon name="call-outline"></ion-icon>
             <p><a href="tell:0865663278">0865.663.278 (Hotline)</a></p>
         </div>
-
+<br><br>
         <div>
             <ion-icon name="location-outline"></ion-icon>
             <p><a href="https://www.google.com/maps/place/H%E1%BA%BBm+822+H%C6%B0%C6%A1ng+l%E1%BB%99+2,+B%C3%ACnh+Tr%E1%BB%8B+%C4%90%C3%B4ng+A,+B%C3%ACnh+T%C3%A2n,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7636304,106.6062857,14z/data=!4m5!3m4!1s0x31752c4183703231:0x40defbf7bc18153e!8m2!3d10.7700841!4d106.6002452">
                 <span>Hương Lộ 2</span> Bình Trị Đông, Bình Tân</a></p>
         </div>
-
         <div>
             <ion-icon name="call-outline"></ion-icon>
             <p><a href="tel:0703086663">07.03.08.6663</a></p>
@@ -65,10 +63,10 @@
             </p>
 
         <div class="footer-icons">
-            <a href="https://www.facebook.com/bardauth.pod"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/bard_storeee/"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a class="social-icons" href="https://www.facebook.com/bardauth.pod"><i class="fab fa-facebook"></i></a>
+            <a class="social-icons" href="https://www.instagram.com/bard_storeee/"><i class="fab fa-instagram"></i></a>
+            <a class="social-icons" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="social-icons" href="#"><i class="fab fa-tiktok"></i></a>
 
         </div>
 
@@ -76,31 +74,166 @@
 
 </footer>
 
+
+<!-- The Delivery Modal -->
+  <div id="delivery-modal" class="delivery-modal">
+    <!-- Delivery Modal content -->
+    <div class="delivery-modal-content">
+      <div class="modal-header">
+        <i class="fas fa-shipping-fast"></i>
+        <h3>Phương thức vận chuyển</h3>
+        <span class="delivery-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p> Gồm 3 phương thức vận chuyển chính: Hỏa Tốc, Tiết Kiệm, Nhanh.</p>
+        <p>Đối tượng áp dụng: Nhóm Người bán nhất định. Vui lòng theo dõi thông báo xác nhận từ BardPod trong thời gian tới</p>
+        <p>Kênh thông báo: BardPod sẽ gửi thông báo xác nhận đến Người bán qua: mục Thông báo > Cập nhật người bán trên ứng dụng BardPod, Email, Kênh Thông Tin Người Bán trên Zalo & Kênh Người Bán.</p>
+        <p>Thời gian áp dụng: Bắt đầu từ ngày 12/05/2021</p>
+      </div>
+      {{!-- <div class="modal-footer">
+        
+      </div> --}}
+    </div>
+  </div>
+
+  <!-- The Payment Modal -->
+  <div id="payment-modal" class="payment-modal">
+    <!-- Payment Modal content -->
+    <div class="payment-modal-content">
+      <div class="modal-header">
+        <i class="fa fa-credit-card" aria-hidden="true"></i>
+        <h3>Phương thức thanh toán</h3>
+        <span class="payment-close">&times;</span>
+      </div>
+
+      <div class="modal-body">
+        <p>Chấp nhận thanh toán <strong>trực tiếp</strong> và <strong>chuyển khoản</strong></p>
+        <p>Chuyển khoản thông qua <strong>MB Bank</strong> (ngân hàng quân đội)</p>
+        <p>Chủ tài khoản: <strong>Vũ Thị Hồng Nhung</strong></p>
+
+        <p>Số tài khoản: <b id="payment-number">99929896666</b>
+        <button class="copy-payment-btn" onclick="CopyToClipboard('payment-number');return false;"><i class="fas fa-copy"></i></button>
+          </p>
+      </div>
+      {{!-- <div class="modal-footer">
+        
+      </div> --}}
+    </div>
+  </div>
+
+    <!-- The Return Modal -->
+  <div id="return-modal" class="return-modal">
+    <!-- Return Modal content -->
+    <div class="return-modal-content">
+      <div class="modal-header">
+        <i class="fas fa-exchange-alt"></i>
+        <h3>Chính sách đổi trả</h3>
+        <span class="return-close">&times;</span>
+      </div>
+      <div class="modal-body">
+          <p>
+            <strong>1. Điều kiện áp dụng</strong><br>
+            Theo các điều khoản và điều kiện được quy định trong Chính sách Trả hàng và Hoàn tiền này và tạo thành một phần của Điều khoản dịch vụ, BardPod đảm bảo quyền lợi của Người mua bằng cách cho phép gửi yêu cầu hoàn trả sản phẩm và/hoặc hoàn tiền trước khi hết hạn. Thời hạn BardPod Đảm Bảo đã được quy định trong Điều khoản Dịch vụ.<br><br>
+            BardPod Đảm bảo thực hiện bởi BardPod, theo yêu cầu của Người dùng, để hỗ trợ Người dùng trong việc giải quyết các xung đột có thể phát sinh trong quá trình giao dịch. Người dùng có thể liên hệ với nhau để thỏa thuận về việc giải quyết tranh chấp của họ hoặc báo cáo lên BardPod hoặc cơ quan nhà nước có thẩm quyền để được hỗ trợ trong việc giải quyết bất kỳ tranh chấp xảy ra trước, trong hoặc sau khi sử dụng BardPod Đảm bảo.<br><br>
+            Chính Sách trả hàng và/hoặc hoàn tiền cho sản phẩm thuộc BardPod được quy định tại Điều Khoản Dịch Vụ BardPod.<br><br><br>
+            <strong>2. Điều kiện yêu cầu trả hàng/hoàn tiền</strong><br>
+            Người mua đồng ý rằng chỉ có thể yêu cầu trả hàng/hoàn tiền trong các trường hợp sau:<br>
+              <ul>
+                <li>Người mua đã thanh toán nhưng <strong>không nhận được sản phẩm</strong> đã đặt, hoặc nhận được sản phẩm là <strong>hàng giả, hàng nhái</strong></li>
+                <li>Sản phẩm bị <strong>lỗi</strong> hoặc bị <strong>hư hại</strong> trong quá trình vận chuyển</li>
+                <li>Sản phẩm bị <strong>lỗi do nhà sản xuất</strong> (ví dụ: chảy tinh dầu, không ra khói, ...)</li>
+                <li>Người bán giao <strong>sai sản phẩm</strong> cho người mua (ví dụ: sai kích cỡ, sai màu sắc, ...)</li>
+                <li>Sản phẩm người mua nhận được <strong>sai thông tin</strong> mà Người bán cung cấp trong mục mô tả sản phẩm</li>
+                <li><strong>Không đổi trả đối với các trường hợp: không có clip, làm rơi pod, làm vô nước, hút 1-2 ngày ngon lành rồi đòi đổi, đổi mùi pod do không ưng,..</strong></li>
+              </ul>
+            Người mua có thể gửi yêu cầu <strong>trả hàng/hoàn tiền trong vòng <b style="color: red;">12 giờ</b></strong> kể từ lúc đơn hàng được giao thành công.<br><br>
+            Tất cả các yêu cầu trả hàng-hoàn tiền phải được thực hiện thông tin <a href="https://www.facebook.com/bardauth.pod">Facebook</a>, <a href="https://www.instagram.com/bard_storeee/">Instagram</a> hoặc Tin nhắn (0865663278).<br><br>
+            BardPod luôn xem xét cẩn thận các yêu cầu trả hàng/hoàn tiền của Người mua và có quyền đưa ra quyết định cuối cùng đối với yêu cầu đó dựa trên các quy định nêu trên và theo Điều khoản Dịch vụ của BardPod.<br>
+          </p>
+      </div>
+      {{!-- <div class="modal-footer">
+        
+      </div> --}}
+    </div>
+  </div>
+
 <script>
+  //=================== ARROW IN INDEX =============================
     $(document).ready(function($) {
+      $(window).on('scroll', function() {
+        //ADD .TIGHT
+        if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
+          $('body').addClass('tight');
+          $('.arrow').hide();
+        } else {
+          $('body').removeClass('tight');
+          $('.arrow').show();
+        }
+      });
 
-  $(window).on('scroll', function() {
+      //BACK TO PRESENTATION MODE
+      $("html").on("click", "body.tight .wrapper", function() {
+        $('html, body').animate({
+          scrollTop: $('.wrapper').outerHeight() - $(window).height()
+        }, 500);
+      });
+    });
 
-    //ADD .TIGHT
-    if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
-      $('body').addClass('tight');
-      $('.arrow').hide();
-    } else {
-      $('body').removeClass('tight');
-      $('.arrow').show();
+    $('.arrow').click(function(){
+      $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 1200);
+    });
+
+  //==================== MODAL OF Delivery ===========================
+  var deliveryModal = document.getElementById("delivery-modal");
+  var deliveryBtn = document.getElementById("delivery-btn");
+  var deliverySpan = document.getElementsByClassName("delivery-close")[0];
+  deliveryBtn.onclick = function() {
+    deliveryModal.style.display = "block";
+  }
+  deliverySpan.onclick = function() {
+    deliveryModal.style.display = "none";
+  }
+
+  //==================== MODAL OF Payment ===========================
+  var paymentModal = document.getElementById("payment-modal");
+  var paymentBtn = document.getElementById("payment-btn");
+  var paymentSpan = document.getElementsByClassName("payment-close")[0];
+  paymentBtn.onclick = function() {
+    paymentModal.style.display = "block";
+  }
+  paymentSpan.onclick = function() {
+    paymentModal.style.display = "none";
+  }
+
+  //==================== MODAL OF RETURN ===========================
+  var returnModal = document.getElementById("return-modal");
+  var returnBtn = document.getElementById("return-btn");
+  var returnSpan = document.getElementsByClassName("return-close")[0];
+  returnBtn.onclick = function() {
+    returnModal.style.display = "block";
+  }
+
+  returnSpan.onclick = function() {
+    returnModal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == paymentModal || event.target == deliveryModal || event.target == returnModal) {
+      paymentModal.style.display = "none";
+      deliveryModal.style.display = "none";
+      returnModal.style.display = "none";
     }
-  });
+  }
 
-  //BACK TO PRESENTATION MODE
-  $("html").on("click", "body.tight .wrapper", function() {
-    $('html, body').animate({
-      scrollTop: $('.wrapper').outerHeight() - $(window).height()
-    }, 500);
-  });
+  //==================== COPY PAYMENT NUMBER ID =================
+  function CopyToClipboard(id){
+    var r = document.createRange();
+    r.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+  }
 
-});
 
-$('.arrow').click(function(){
-   $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 1200);
-});
 </script>
