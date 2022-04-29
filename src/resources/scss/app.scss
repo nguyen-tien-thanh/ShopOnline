@@ -19,6 +19,10 @@ $maincolor: rgb(208,1,9);
     font-size:30px;
 }
 
+a{
+  color:inherit
+}
+
 
 :root {
     --clr1: #ddd;
@@ -322,6 +326,10 @@ section {
 	color:  inherit;
 }
 
+.footer-distributed .footer-links a:hover{
+  text-decoration: underline;
+}
+
 .footer-distributed .footer-company-name{
 	color:  rgb(105, 104, 104);
 	font-size: 14px;
@@ -424,18 +432,35 @@ section {
 	width: 35px;
 	height: 35px;
 	cursor: pointer;
-	// background-color:  #33383b;
-    background-color: black;
-	border-radius: 2px;
-
-	font-size: 20px;
-	// color: #ffffff;
-    color:$maincolor;
+    background-color: #92999f;
+	border-radius: 50%;
+	font-size: 25px;
+  // color: inherit;
 	text-align: center;
 	line-height: 35px;
-
 	margin-right: 3px;
 	margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons .fa-facebook {
+  color: #4267B2;
+}
+.footer-distributed .footer-icons .fa-twitter {
+  color: #38A1F2;
+}
+.footer-distributed .footer-icons .fa-instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  -webkit-background-clip: text;
+          /* Also define standard property for compatibility */
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.footer-distributed .footer-icons .fa-tiktok {
+  color: black;
+}
+
+.footer-distributed .footer-icons a i:hover{
+  color: $maincolor;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */

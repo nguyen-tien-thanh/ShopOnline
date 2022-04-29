@@ -10,6 +10,9 @@
   font-family: 'Playlist';
   font-size: 30px; }
 
+a {
+  color: inherit; }
+
 :root {
   --clr1: #ddd;
   --clr2: #efefef;
@@ -313,6 +316,9 @@ section {
   text-decoration: none;
   color: inherit; }
 
+.footer-distributed .footer-links a:hover {
+  text-decoration: underline; }
+
 .footer-distributed .footer-company-name {
   color: #696868;
   font-size: 14px;
@@ -397,14 +403,32 @@ section {
   width: 35px;
   height: 35px;
   cursor: pointer;
-  background-color: black;
-  border-radius: 2px;
-  font-size: 20px;
-  color: #d00109;
+  background-color: #92999f;
+  border-radius: 50%;
+  font-size: 25px;
   text-align: center;
   line-height: 35px;
   margin-right: 3px;
   margin-bottom: 5px; }
+
+.footer-distributed .footer-icons .fa-facebook {
+  color: #4267B2; }
+
+.footer-distributed .footer-icons .fa-twitter {
+  color: #38A1F2; }
+
+.footer-distributed .footer-icons .fa-instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  -webkit-background-clip: text;
+  /* Also define standard property for compatibility */
+  background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
+.footer-distributed .footer-icons .fa-tiktok {
+  color: black; }
+
+.footer-distributed .footer-icons a i:hover {
+  color: #d00109; }
 
 /* If you don't want the footer to be responsive, remove these media queries */
 @media (max-width: 880px) {
