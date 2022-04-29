@@ -4,7 +4,9 @@ class SiteController {
     
     // [GET] /index -- Home page
     index(req, res, next){
-        res.render('index')
+        res.render('index', {
+            title: 'Home page'
+        })
         // if (req.isAuthenticated()) {
         //     User.findOne({username: req.user.username})
         //     .then (user =>{

@@ -1,14 +1,23 @@
+@import url(//db.onlinewebfonts.com/c/1fed4454352f201d52b65ca5480afb2d?family=Playlist);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
-h1 {
-  color: #d00109; }
+@font-face {
+  font-family: "Playlist";
+  src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot");
+  src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff") format("woff"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.svg#Playlist") format("svg"); }
+
+#logo-index {
+  color: #d00109;
+  font-family: 'Playlist';
+  font-size: 30px; }
 
 :root {
   --clr1: #ddd;
   --clr2: #efefef;
   --clr3: #333;
-  --clr4: rgb(170,4,3);
+  --clr4: rgb(100,4,3);
   --border-radius: 7px;
-  --text-radius: 50em; }
+  --text-radius: 50em;
+  --maincolor: @maincolor; }
 
 body {
   background: var(--clr1);
@@ -284,11 +293,12 @@ section {
 /* The company logo */
 .footer-distributed h3 {
   color: #ffffff;
-  font: normal 36px 'Open Sans', cursive;
-  margin: 0; }
+  font: normal 36px 'Playlist', cursive;
+  margin: 0;
+  color: white; }
 
 .footer-distributed h3 span {
-  color: lightseagreen; }
+  color: var(maincolor); }
 
 /* Footer links */
 .footer-distributed .footer-links {
