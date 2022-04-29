@@ -239,7 +239,7 @@ $maincolor: rgb(208,1,9);
     height: 20px;
     padding: 20px;
     z-index: 99;
-    background-color: var(--clr4);
+    background-color: $maincolor;
     border-radius: 50em;
     background-image: url("/images/chevron-down-outline.svg");
     background-size: 20px 15px;
@@ -271,7 +271,7 @@ section {
 }
 
 .footer-distributed{
-	background: #666;
+	background: black;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
@@ -297,13 +297,13 @@ section {
 
 .footer-distributed h3{
 	color:  #ffffff;
-	font: normal 36px 'Playlist', cursive;
+	font: normal 4rem 'Playlist', cursive;
 	margin: 0;
-  color:white;
+    color:white;
 }
 
 .footer-distributed h3 span{
-	color:  var(maincolor);
+	color:  $maincolor;
 }
 
 /* Footer links */
@@ -323,7 +323,7 @@ section {
 }
 
 .footer-distributed .footer-company-name{
-	color:  #222;
+	color:  rgb(105, 104, 104);
 	font-size: 14px;
 	font-weight: normal;
 	margin: 0;
@@ -336,12 +336,13 @@ section {
 }
 
 .footer-distributed .footer-center ion-icon{
-	background-color:  #33383b;
-	color: #ffffff;
+	background-color:  #000000;
+	// color: #ffffff;
+	color: $maincolor;
 	font-size: 25px;
 	width: 28px;
 	height: 28px;
-	border-radius: 50%;
+	border-radius: 0%;
 	text-align: center;
 	line-height: 42px;
 	margin: 10px 15px;
@@ -369,8 +370,13 @@ section {
 }
 
 .footer-distributed .footer-center p a{
-	color:  lightseagreen;
-	text-decoration: none;;
+	// color:  lightseagreen;
+    color: lightgrey;
+	text-decoration: none;
+}
+
+.footer-distributed .footer-center p a:hover{
+	text-decoration: underline;
 }
 
 .footer-distributed .footer-links a:before {
@@ -418,11 +424,13 @@ section {
 	width: 35px;
 	height: 35px;
 	cursor: pointer;
-	background-color:  #33383b;
+	// background-color:  #33383b;
+    background-color: black;
 	border-radius: 2px;
 
 	font-size: 20px;
-	color: #ffffff;
+	// color: #ffffff;
+    color:$maincolor;
 	text-align: center;
 	line-height: 35px;
 
@@ -446,6 +454,10 @@ section {
 		margin-bottom: 40px;
 		text-align: center;
 	}
+
+    .footer-distributed .footer-center{
+        text-align: left;
+    }
 
 	.footer-distributed .footer-center i{
 		margin-left: 0;
