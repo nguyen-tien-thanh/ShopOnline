@@ -1,6 +1,6 @@
 
 const productRouter = require('./product');
-const siteRouter = require('./site');
+const siteRouter = require('./site');;
 
 function route(app){
 

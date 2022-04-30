@@ -5,8 +5,14 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const exphbs = require('express-handlebars');
 const route = require('./routes');
+const helpers = require('handlebars-helpers')();
+const db = require('./config/db');
+const methodOverride = require('method-override');
 
-const hbs = exphbs.create({ 
+db.connect();
+
+const hbs = exphbs.create({  
+  helpers:require('./ulti/helpers'),
   extname: '.hbs'
 })
 
@@ -32,6 +38,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 //HTTP Loggers
 app.use(morgan('combined'));
 
+//Middleware to solve Body Form
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(methodOverride('_method'));
 
 //-----------------------------------
 // ROUTING tới các chức năng

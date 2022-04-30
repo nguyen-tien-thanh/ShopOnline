@@ -1,0 +1,55 @@
+
+<div class="wrapper">
+<div class="wrap">
+  
+  <div class="arrow animated bounce"></div>
+
+  <section class="create-product-box">
+      <form action="/product/{{product._id}}?_method=PUT" method="POST">
+        <h2>Sửa sản phẩm</h2>
+
+        <div class="form-group">
+                <label for="name">Tên</label>
+                <input type="text" class="form-control" value="{{product.name}}" id="name" name="name" placeholder="Enter name"> 
+            </div>
+            <div class="form-group">
+                <label for="description">Vị</label>
+                <textarea class="form-control" id="description" name="description" >{{product.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="buff">Số lần hút</label>
+                <input type="text" class="form-control" value="{{product.buff}}" id="buff" name="buff" placeholder="Enter buff"> 
+            </div>
+            <div class="form-group">
+                <label for="price">Giá</label>
+                <input type="text" class="form-control" value="{{product.price}}" id="price" name="price" placeholder="Enter price"> 
+            </div>
+            <div class="form-group">
+                <label for="stock">Số lượng</label>
+                <input type="text" class="form-control" value="{{product.stock}}" id="stock" name="stock" placeholder="Enter stock"> 
+            </div>
+            <div class="form-group">
+                <label for="image">Hình ảnh</label>
+                <input type="text" class="form-control" value="{{product.image}}" id="image" name="image" placeholder="Enter image"> 
+            </div>
+            <div class="form-group" hidden>
+                <label for="createdAt">Create at</label>
+
+                <input type="text" class="form-control" value="{{product.createdAt}}" id="createdAt" name="createdAt" placeholder="Enter createdAt"> 
+            </div>
+            <div class="form-group" hidden>
+                <label for="updatedAt">Updated at</label>
+                <input type="text" class="form-control" value="{{product.updatedAt}}" id="updatedAt" name="updatedAt" placeholder="Enter updatedAt"> 
+            </div> 
+            <div class="form-group">
+                <label for="slug">Slug</label>
+                <input type="text" class="form-control" value="{{product.slug}}" id="slug" name="slug" placeholder="Enter slug"> 
+            </div>
+        <input class="btn btn-secondary" type="submit" value="Edit">
+      </form>
+  </section>
+  
+</div>
+</div>
+  
+
