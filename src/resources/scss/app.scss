@@ -12,10 +12,15 @@ $maincolor: rgb(208,1,9);
 
 
 // ====================== MAIN PAGE ===========================================
-#logo-index{
-    color:$maincolor;
+#logo-header{
     font-family: 'Playlist';
-    font-size:30px;
+    font-size:40px;
+}
+
+#logo-header span{
+  color:$maincolor;
+  font-family: 'Playlist';
+  font-size:40px;
 }
 
 a{
@@ -57,7 +62,7 @@ a{
   
   header {
     background: var(--clr2);
-    padding: 50px;
+    padding: 30px;
     width: 100%;
     border-radius: var(--border-radius);
     position: relative;
@@ -87,13 +92,13 @@ a{
     right: 0;
     top: 50%;
     transform: translate(-50px, -50%); }
-    header nav ul li {
-      display: inline-block;
-      list-style: none;
-      width: 60px;
-      height: 10px;
-      background: var(--clr1);
-      border-radius: var(--text-radius); }
+    // header nav ul li {
+    //   display: inline-block;
+    //   list-style: none;
+    //   width: 60px;
+    //   height: 10px;
+    //   background: var(--clr1);
+    //   border-radius: var(--text-radius); }
   
   section {
     background: var(--clr2);
@@ -580,7 +585,7 @@ section {
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
-  padding: 10px 50px;
+  padding: 10px 10px;
 }
 .create-product-box h2{
   font-size:50px;
@@ -642,4 +647,19 @@ section {
 .product-detail-page{
   padding: 20px;
   font-weight: bold;
+}
+
+//================ /product =================
+#href-product-detail{
+  text-decoration: none;
+}
+
+.card-product-list{
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+
+.card-product-item{
+  margin-top:10px;
+  margin-bottom: 10px;
 }

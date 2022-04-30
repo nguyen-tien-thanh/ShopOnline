@@ -79,7 +79,7 @@ class ProductController {
     //[PUT] /product/:id
     update(req,res,next) {
         Product.updateOne({_id: req.params.id}, req.body)
-            .then(product => res.redirect('/product'))
+            .then(product => res.redirect('/product/manage'))
             .catch(next);
     }
 
@@ -134,32 +134,17 @@ class ProductController {
 
     // [GET] /product
     index(req, res, next){
-        res.render('product')
-        // if (req.isAuthenticated()) {
-        //     Promise.all([Product.find({}), User.findOne({username: req.user.username})])
-        //     .then(([product, userLogin]) => 
-        //     res.render('product', {
-        //         title: 'Product',
-        //         product: multipleMongooseToObject(product),
-        //         userLogin: mongooseToObject(userLogin),
-        //         })
-        //     )
-        //     .catch(next)
-        // }
-        // else{
-        //     Product.find({})
-        //     .then(product => {
-        //         // product = product.map(cat => cat.toObject())
-        //         res.render('product', {
-        //             title: 'Product',
-        //             product: multipleMongooseToObject(product)
-        //         })
-        //     })
-        //     .catch(err=>next(err));
-        //     }
+        Product.find({})
+        .then(product => {
+            // product = product.map(cat => cat.toObject())
+            res.render('product', {
+                title: 'Product',
+                product: multipleMongooseToObject(product)
+            })
+        })
+        .catch(err=>next(err));
+        }
     }
-
- }
 
 module.exports = new ProductController;
 

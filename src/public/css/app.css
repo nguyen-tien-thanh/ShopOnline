@@ -5,10 +5,14 @@
   src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot");
   src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff") format("woff"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.svg#Playlist") format("svg"); }
 
-#logo-index {
+#logo-header {
+  font-family: 'Playlist';
+  font-size: 40px; }
+
+#logo-header span {
   color: #d00109;
   font-family: 'Playlist';
-  font-size: 30px; }
+  font-size: 40px; }
 
 a {
   color: inherit; }
@@ -48,7 +52,7 @@ body *, body :after, body :before {
 
 header {
   background: var(--clr2);
-  padding: 50px;
+  padding: 30px;
   width: 100%;
   border-radius: var(--border-radius);
   position: relative;
@@ -78,14 +82,6 @@ header nav {
   right: 0;
   top: 50%;
   transform: translate(-50px, -50%); }
-
-header nav ul li {
-  display: inline-block;
-  list-style: none;
-  width: 60px;
-  height: 10px;
-  background: var(--clr1);
-  border-radius: var(--text-radius); }
 
 section {
   background: var(--clr2);
@@ -531,7 +527,7 @@ section {
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
-  padding: 10px 50px; }
+  padding: 10px 10px; }
 
 .create-product-box h2 {
   font-size: 50px;
@@ -581,3 +577,14 @@ section {
 .product-detail-page {
   padding: 20px;
   font-weight: bold; }
+
+#href-product-detail {
+  text-decoration: none; }
+
+.card-product-list {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.card-product-item {
+  margin-top: 10px;
+  margin-bottom: 10px; }
