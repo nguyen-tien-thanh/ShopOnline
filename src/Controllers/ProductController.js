@@ -1,7 +1,7 @@
 // const News = require('../models/News');
 // const User = require('../models/User');
-// const { multipleMongooseToObject } = require('../ulti/mongoose')
-// const { mongooseToObject } = require('../ulti/mongoose')
+const { multipleMongooseToObject } = require('../ulti/mongoose')
+const { mongooseToObject } = require('../ulti/mongoose')
 
 class ProductController {
     
@@ -36,20 +36,21 @@ class ProductController {
 //         .catch(next)
 //     }
 
-//     //[GET] /news/manage 
-//     manage(req,res,next) {
-//         Promise.all([News.find({}), News.countDeleted(), News.count(), User.findOne({username: req.user.username})])
-//             .then(([news, deletedCount, storedCount, userLogin]) => 
-//             res.render('news/manage', {
-//                 title: 'Manage News',
-//                 deletedCount,
-//                 storedCount,
-//                 news: multipleMongooseToObject(news),
-//                 userLogin: mongooseToObject(userLogin),
-//                 })
-//             )
-//             .catch(next)
-//     }
+    //[GET] /product/manage 
+    manage(req,res,next) {
+        // Promise.all([Product.find({}), Product.countDeleted(), Product.count(), User.findOne({username: req.user.username})])
+        //     .then(([product, deletedCount, storedCount, userLogin]) => 
+        //     res.render('product/manage', {
+        //         title: 'Manage Product',
+        //         deletedCount,
+        //         storedCount,
+        //         product: multipleMongooseToObject(product),
+        //         userLogin: mongooseToObject(userLogin),
+        //         })
+        //     )
+        //     .catch(next)
+        res.render('product/manage');
+    }
     
 //     //[POST] /news/handle-form-actions
 //     handleFormActions(req,res,next) {

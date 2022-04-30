@@ -12,8 +12,8 @@ const productController = require('../Controllers/ProductController');
 // // [GET] /product/trash product
 // router.use('/trash', productController.trash)
 
-// // [GET] /product/create product
-// router.use('/manage', productController.manage)
+// [GET] /product/create product
+router.use('/manage', productController.manage)
 
 // // [GET] /product/:id/edit product
 // router.get('/:id/edit', productController.edit)
