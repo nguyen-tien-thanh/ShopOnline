@@ -1,11 +1,12 @@
 
 <div class="container-fluid content-row">   
     <div class="row card-product-list">
-
+        
+    <h1 class="text-center text-white">Tất cả sản phẩm</h1>
         {{#each product}}
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 d-flex align-items-stretch card-product-item">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 d-flex align-items-stretch column-card-product-item">
             <a id="href-product-detail" href="/product/{{this.slug}}">
-            <div class="card text-black">
+            <div class="card text-black h-100 card-product-item">
             
             <h3 id="logo-product-detail">Bard<span>Pod</span></h3>
             <img id="image-product-detail" src="{{this.image}}"

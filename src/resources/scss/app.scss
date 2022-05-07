@@ -23,8 +23,13 @@ $maincolor: rgb(208,1,9);
   font-size:40px;
 }
 
-a{
-  color:inherit
+a, b, th, td{
+  color:inherit;
+  text-decoration: none;
+}
+
+a:hover{
+  color: inherit;
 }
 
 
@@ -275,7 +280,7 @@ section {
   text-align: center;
   font-size: 22px;
   font-weight: 700;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 
 .footer-distributed{
@@ -330,7 +335,7 @@ section {
 	display:inline-block;
 	line-height: 1.8;
   font-weight:400;
-	text-decoration: none;
+	
 	color:  inherit;
 }
 
@@ -388,7 +393,7 @@ section {
 .footer-distributed .footer-center p a{
 	// color:  lightseagreen;
     color: lightgrey;
-	text-decoration: none;
+	
 }
 
 .footer-distributed .footer-center p a:hover{
@@ -509,7 +514,7 @@ section {
 .return-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -517,6 +522,10 @@ section {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.return-modal a:hover {
+  text-decoration: underline;
 }
 
 /* Modal Content/Box */
@@ -559,7 +568,7 @@ section {
 .return-close:hover,
 .return-close:focus {
   color: black;
-  text-decoration: none;
+  
   cursor: pointer;
 }
 
@@ -584,13 +593,13 @@ section {
   text-align: left;
   font-size: 18px;
   font-weight: 700;
-  text-decoration: none;
+  
   padding: 10px 10px;
 }
 .create-product-box h2{
   font-size:50px;
   color: white;
-  text-decoration: none;
+  
   padding-bottom: 20px;
   text-align: center;
 }
@@ -637,7 +646,7 @@ section {
   padding-top:10px;
   padding-left: 10px;
   margin-bottom: -2rem;
-  z-index: 2;
+  z-index: 1;
 }
 
 #logo-product-detail span{
@@ -649,10 +658,23 @@ section {
   font-weight: bold;
 }
 
-//================ /product =================
-#href-product-detail{
-  text-decoration: none;
+//================ Zalo icon =================
+.zalo-icon{
+  height: 20px;
+  margin-bottom:5px;
+  background-color: white;
+  border-radius: 20%;
 }
+
+.zalo-icon:hover{
+  // filter: invert(100%);
+  // filter: invert(1);
+  // or to blue
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+}
+
+
+//================ /product =================
 
 .card-product-list{
   margin-top:20px;
@@ -660,6 +682,33 @@ section {
 }
 
 .card-product-item{
+  transition: transform .2s;
+  border: 0px solid;
+  box-shadow: 4px 5px  rgb(131, 128, 128);
+}
+
+.card-product-item:hover{
+  opacity: 1;
+  -ms-transform: scale(1.08); /* IE 9 */
+  -webkit-transform: scale(1.08); /* Safari 3-8 */
+  transform: scale(1.08);
+  border: 3px solid black;
+  box-shadow: 0px 0px;
+}
+
+.column-card-product-item{
   margin-top:10px;
   margin-bottom: 10px;
 }
+
+.card-img-top {
+  width: 100%;
+  height: 30vh;
+  object-fit: contain;
+  }
+
+  @media only screen and (max-width: 600px) {
+   .card-img-top{
+     height: 50vh
+   } 
+  }
