@@ -7,7 +7,7 @@ const siteController = require('../Controllers/SiteController');
 router.use('/login', siteController.login)
 
 // [POST] /store
-// router.post('/store', siteController.store)
+router.post('/store', siteController.store)
 
 // [GET] /error/:slug
 router.use('/:slug', siteController.error)
