@@ -619,3 +619,14 @@ section {
 @media only screen and (max-width: 600px) {
   .card-img-top {
     height: 50vh; } }
+
+.img-edit-page {
+  display: block;
+  text-align: center;
+  justify-content: center;
+  top: 0;
+  transform: translate(0px, 47px);
+  padding: 0; }
+
+.img-edit-page img {
+  max-width: 100%; }

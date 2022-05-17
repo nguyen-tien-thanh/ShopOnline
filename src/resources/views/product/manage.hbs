@@ -6,7 +6,7 @@
     <section class="create-product-box manage-product-box">
         <h2><B>Quản lý</B></h2>
         <i class="fa fa-arrow-left btn btn-danger" aria-hidden="true" onclick="Back()"></i><br>
-        <a href="/product/trash">Thùng rác</a>(Total: {{deletedCount}})<br>
+        <a href="/product/trash"><i class="fa fa-trash p-3"></i></a> (Total: {{deletedCount}})<br>
 
         <form name="container-form" action="/product/handle-form-actions" method="POST">
             {{!-- <div class="mt-4 d-flex align-items-center">
