@@ -125,22 +125,25 @@ class AdminController {
     //     });
     // }
 
-    // // [GET] /:slug
-    // // Show 404 not found error
-    // error(req,res,next){
-    //     if (req.isAuthenticated()) {
-    //         User.findOne({username: req.user.username})
-    //         .then (user =>{
-    //             res.render('partials/error', { 
-    //                 title: 'Not Found',
-    //                 userLogin: mongooseToObject(user)
-    //             });
-    //         })
-    //     }
-    //     else{
-    //         res.render('partials/error', {title: 'Not Found'});
-    //     }
-    // }
+    // [GET] /:slug
+    // Show 404 not found error
+    error(req,res,next){
+        // if (req.isAuthenticated()) {
+        //     User.findOne({username: req.user.username})
+        //     .then (user =>{
+        //         res.render('partials/error', { 
+        //             title: 'Not Found',
+        //             userLogin: mongooseToObject(user)
+        //         });
+        //     })
+        // }
+        // else{
+            res.render('partials/error', {
+                title: 'Not Found',
+                layout: null
+            });
+        // }
+    }
 
     // termsandconditions(req, res, next){
     //     if (req.isAuthenticated()) {

@@ -52,5 +52,5 @@ const Router = express.Router();
 route(app);
 
 app.listen(xPORT, () => {
-  console.log(`Bardpod is listening on: http://localhost:${xPORT}`)
+  console.log(`Online shop is listening on: http://localhost:${xPORT}`)
 })

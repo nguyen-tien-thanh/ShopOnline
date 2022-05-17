@@ -3,7 +3,13 @@ const router = express.Router();
 
 const siteController = require('../Controllers/SiteController');
 
-// /product/index - product.hbs
+// [GET] /login/
+router.use('/login', siteController.login)
+
+// [GET] /error/:slug
+router.use('/:slug', siteController.error)
+
+// Index
 router.use('/', siteController.index)
 
 

@@ -85,11 +85,11 @@ class SiteController {
     //     });
     // }
 
-    // login(req, res, next){
-    //     res.render('login', {
-    //         title:'Login',
-    //         layout: 'intropage'});
-    // }
+    login(req, res, next){
+        res.render('login', {
+            title:'Login',
+            layout: 'loginLayout'});
+    }
 
     // //[POST] /validation User
     // validation(req,res,next) {
@@ -124,9 +124,9 @@ class SiteController {
     //     });
     // }
 
-    // // [GET] /:slug
-    // // Show 404 not found error
-    // error(req,res,next){
+    // [GET] /:slug
+    // Show 404 not found error
+    error(req,res,next){
     //     if (req.isAuthenticated()) {
     //         User.findOne({username: req.user.username})
     //         .then (user =>{
@@ -137,9 +137,12 @@ class SiteController {
     //         })
     //     }
     //     else{
-    //         res.render('partials/error', {title: 'Not Found'});
+            res.render('partials/error', {
+                title: 'Not Found',
+                layout: null
+            });
     //     }
-    // }
+    }
 
     // termsandconditions(req, res, next){
     //     if (req.isAuthenticated()) {

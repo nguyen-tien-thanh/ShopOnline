@@ -3,7 +3,12 @@ const router = express.Router();
 
 const adminController = require('../Controllers/AdminController');
 
-// /product/index - product.hbs
+
+
+// [GET] /admin/:slug - partials/error.hbs
+router.use('/:slug', adminController.error)
+
+// /admin/index - admin.hbs
 router.use('/', adminController.index)
 
 
