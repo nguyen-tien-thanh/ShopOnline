@@ -1,6 +1,42 @@
 
   //=================== ARROW IN INDEX =============================
     $(document).ready(function($) {
+      
+      $('.login-section').hide();
+      $('#move-to-login-section').click(function(){
+          $('.register-sidenav').animate({
+              left: '0',
+          });
+          $('.register-section').animate({
+              opacity: 0,
+              height: 'hide'
+          })
+          $('.login-sidenav').animate({
+              right: '0',
+          });
+          $('.login-section').animate({
+              height: 'show',
+              opacity: 1,
+          });
+      })
+  
+      $('#move-to-register-section').click(function(){
+          $('.login-sidenav').animate({
+              left: '0',
+          });
+          $('.login-section').animate({
+              opacity: 0,
+              height: 'hide'
+          })
+          $('.register-sidenav').animate({
+              left: '60%',
+          });
+          $('.register-section').animate({
+              height: 'show',
+              opacity: 1,
+          });
+      })
+
       $(window).on('scroll', function() {
         //ADD .TIGHT
         if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
