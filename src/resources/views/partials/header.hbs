@@ -1,12 +1,19 @@
-  <header>   
-      <a href="/"><div id="logo-header">Bard<span>Pod</span></div></a>
-    {{!-- <div class="logo"></div> --}}
+  <header class="main-header" id="main-header">   
+      <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a>
     <nav>
-      <ul class="nav navbar-nav">
+      <ul class="">
+        {{!-- more than 6 is not beautiful --}}
         <a href="/product"><li>Sản phẩm</li></a>
         <a href="/product/manage"><li>Quản lý</li></a>
-        <li>Về BardPod</li>
-        <li>Liên hệ</li>
+        <a href="/admin"><li>Admin</li></a>
+        <a href="/login"><li>Login</li></a>
+        <a href="#"><li>Về BardPod</li></a>
+        <a href="#"><li>Lien he</li></a>
+
+        <a href="javascript:void(0);" class="icon logo-icon-header" onclick="openNavResponsive()">
+          <i class="fa fa-bars"></i>
+        </a>
+
       </ul>
     </nav>
   </header>

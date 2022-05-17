@@ -97,13 +97,57 @@ a:hover{
     right: 0;
     top: 50%;
     transform: translate(-50px, -50%); }
-    // header nav ul li {
-    //   display: inline-block;
-    //   list-style: none;
-    //   width: 60px;
-    //   height: 10px;
-    //   background: var(--clr1);
-    //   border-radius: var(--text-radius); }
+    header nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    header nav ul li {
+      display: inline-block;
+      list-style: none;
+      padding: 15px;
+      margin: 10px;
+      font-size: 20px;
+    }
+    header nav ul li:hover {
+      font-size: 22px;
+      text-decoration: underline;
+      font-style: bold;
+      color: $maincolor;
+      cursor: pointer;
+    }
+    .main-header .icon{
+      display:none;
+      font-size:30px; 
+    }
+
+    @media screen and (max-width: 1000px) {
+      .responsive nav {
+        background: var(--clr2);
+        padding: 0px;
+        width: 100%;
+        border-radius: var(--border-radius);
+        position: relative;
+        z-index: 99;
+      }
+      .main-header .active {padding: 500px 0 0 0;}
+      .main-header a:not(.logo-icon-header) {display: none;}
+      .main-header a.icon {
+        float: right;
+        display: block;
+      }
+      .main-header.responsive {position: relative;}
+      .main-header.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      .main-header.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    }
   
   section {
     background: var(--clr2);
