@@ -6,11 +6,10 @@ const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
 const { checkUserExist, makePassword } = require('../ulti/register')
 const bcrypt = require('bcrypt');
-const passport = require('passport');
 // const nodemailer = require('nodemailer');
 // const jwt = require('jsonwebtoken');
 class SiteController {
-    
+
     // [GET] /index -- Home page
     index(req, res, next){
         res.render('index', {
@@ -60,105 +59,54 @@ class SiteController {
 
     //[POST] /store User
     store(req,res,next) {
-        // // random username
-        // const phone = req.body.phone
-        // const email = req.body.email
-        // User.findOne({
-        //     $or: [
-        //         { email: req.body.email },
-        //         { phone: req.body.phone }
-        //     ]
-        // }).then(data => {
-        //     console.log(data);
-        //     if(data!=null) {
-        //         return res.render('login', {
-        //             success: false,
-        //             msgRegister: `Sdt da ton tai`
-        //         })
-        //     }else{
-        //         let username = Math.random() * (9999999999 - 1000000000) + 1000000000;
-        //         while (checkUserExist(username)) {
-        //             username = Math.random() * (9999999999 - 1000000000) + 1000000000;
-        //         }
-        //         username = parseInt(username)
-        //         //Tạo password ngẫu nhiên
-        //         let temp = makePassword()
-        //         bcrypt.hash(temp, 10, function (err, hash) {
-        //             const user = new User({
-        //                 roles: 'user',
-        //                 username: username,
-        //                 email: req.body.email,
-        //                 password: hash,
-        //             })
-        //             user.save((error, userResult) => {
-        //                 if (error) {
-        //                     console.log(error)
-        //                     return res.json({ msgRegister: 'Đăng ký thất bai', success: false })
-        //                 }
-    
-        //                 // //send username and password to user
-        //                 // var transporter = nodemailer.createTransport({
-        //                 //     service: 'gmail',
-        //                 //     auth: {
-        //                 //         user: "ts29032001@gmail.com",
-        //                 //         pass: "123456son"
-        //                 //     }
-        //                 // });
-    
-        //                 // var mailOptions = {
-        //                 //     from: process.env.GMAIL,
-        //                 //     to: req.body.email,
-        //                 //     subject: 'Final-web - This is your account',
-        //                 //     text: `information about this:
-        //                 //         username: ${username}
-        //                 //         password: ${temp}
-        //                 //     `
-        //                 // };
-    
-        //                 // transporter.sendMail(mailOptions, function (error, info) {
-        //                 //     if (error) {
-        //                 //         console.log(error);
-        //                 //     } else {
-        //                 //         console.log('Email sent: ' + info.response);
-    
-        //                 //     }
-        //                 // });
-        //                 return res.render('login')
-        //             });
-    
-        //         });
-        //     }
-        // }).catch(err => {
-        //     console.log(err)
-        // })
-
-        var email = req.body.email
-        var password = req.body.password
-        User.register(new User({ email: email }),
-                req.body.password, function (err, user) {
-            if (err) {
-                console.log(err);
+        User.findOne({
+            $or: [
+                {email: req.body.email}, 
+                {phone: req.body.phone}
+            ]
+        }).then(data => {
+            if(data != null){
                 return res.render('login', {
-                    title: 'Register again',
+                    title: 'Login',
                     layout: 'loginLayout',
-                    failRegister: "This email had been created"
+                    msgReg: 'Email or phone is already registered',
+                    success: false
                 })
             }
-    
-            passport.authenticate("local")(
-                req, res, function () {
-                    User.findOne({email: req.user.email})
-                        .then (user =>{
-                            res.render('index', { 
-                                title: 'Homepage',
-                                layout: 'intropage',
-                                userLogin: mongooseToObject(user),
-                                successRegister: "Welcome to fearOG !"
-                            });
+            else{
+                var temp = makePassword()
+                bcrypt.hash(temp, 10, function(err, hash) {
+                    const user = new User({
+                        role: 'Customer',
+                        password: hash,
+                        email: req.body.email,
+                        phone: req.body.phone,
+                        avatar: 'https://duytan.thinkingschool.vn/wp-content/uploads/2019/01/avatar.png'
+                    })
+                    console.log(user)
+                    user.save(err, result =>{
+                        if(err) {
+                            console.log('err: ' + err)
+                            return res.render('login', {
+                                title: 'Login',
+                                layout: 'loginLayout',
+                                msgReg: 'Failed to register',
+                                success: false
+                            })
+                        }
+                        return res.render('login', {
+                            title: 'Login',
+                            layout: 'loginLayout',
+                            msgReg: 'Register Successfully',
+                            success: true
                         })
-            });
-            
-        });
+                    })
+                })
+            }
+        })
+        .catch(err => console.log(err))
+
+       
     }
 
     login(req, res, next){

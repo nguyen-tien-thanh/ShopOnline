@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 async function connect(){
     
-    mongoose.connect("mongodb+srv://admin:UNz6MherXwHysUEP@shoponlinecluster.9ihhk.mongodb.net/?retryWrites=true&w=majority",{
+    mongoose.connect("mongodb+srv://admin:admin@phongstore.offjo.mongodb.net/?retryWrites=true&w=majority",{
     // mongoose.connect("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false",{
     useNewUrlParser: true,
     useUnifiedTopology: true
