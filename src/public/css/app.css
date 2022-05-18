@@ -882,4 +882,9 @@ section {
   font-size: 15px; }
 
 .login-form a {
-  color: blue; }
+  color: lightgray;
+  font-weight: bold; }
+
+.login-form a:hover {
+  color: white;
+  text-decoration: underline; }

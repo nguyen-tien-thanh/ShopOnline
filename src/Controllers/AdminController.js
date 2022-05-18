@@ -1,28 +1,30 @@
 
+const jwt = require('jsonwebtoken')
 
 class AdminController {
     
     // [GET] /index -- Home page
     index(req, res, next){
-        res.render('admin', {
-            title: 'Admin Dashboard',
-            layout: 'adminLayout'
-        })
-        // if (req.isAuthenticated()) {
-        //     User.findOne({username: req.user.username})
-        //     .then (user =>{
-        //         res.render('index', {
-        //             layout: 'intropage', 
-        //             userLogin: mongooseToObject(user)
-        //         });
-        //     })
-        // }
-        // else{
-            
-        // res.render('index', {
-        //     title:'Homepage',
-        //     layout: 'intropage'});
-        // }
+        try{  
+            var token = req.params.token
+            console.log(token)
+            var result = jwt.verify(token, 'password')
+            if (result){
+                next()
+            }
+        }
+        catch (error){
+            console.log(error)
+            return res.render('login',{
+                layout: 'loginLayout',
+                title: 'Login',
+                msgLog: 'You need to login first'
+            })
+        }
+        // res.render('admin', {
+        //     title: 'Admin Dashboard',
+        //     layout: 'adminLayout'
+        // })
     }
 
     // // [GET] /logout --> Home page

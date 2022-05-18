@@ -17,6 +17,7 @@ const User = new Schema({
     avatar: {type: String, maxLength: 255},
     permission: { type: Boolean, default: false},
     countlogin: { type: Number, default:0 },
+    countFailed: { type: Number, default:0 },
     deletedAt: {},
     // createdAt: {type: Date, default : Date.Now},
     // updateAt: {type: Date, default : Date.Now}
