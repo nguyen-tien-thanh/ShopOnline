@@ -74,7 +74,7 @@ class SiteController {
                 })
             }
             else{
-                var temp = makePassword()
+                var temp = req.body.password
                 bcrypt.hash(temp, 10, function(err, hash) {
                     const user = new User({
                         role: 'Customer',
