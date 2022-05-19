@@ -25,7 +25,11 @@
                                     <th>Is Available</th>
                                     <th>Is BestSeller</th>
                                     <th>Created date</th>
-                                    <th>Action</th>
+                                    <th>Action
+                                        <a href="/product/create">
+                                            <button class="btn btn-success">Create</button>
+                                        </a>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,13 +45,13 @@
                                     <td>{{this.bestseller}}</td>
                                     <td>{{moment this.createdAt format = "HH:mm - DD/MM/yyyy"}}</td>
                                     <td>
-                                        <a href="#">
-                                            <button class="btn btn-success">Edit</button>
+                                        <a href="/product/{{this._id}}/edit">
+                                            <button class="btn btn-dark">Edit</button>
                                         </a>
-                                        <a href="#">
+                                        <a href="/product/{{this.slug}}">
                                             <button class="btn btn-info">Detail</button>
                                         </a>
-                                        <a href="#">
+                                        <a href="" data-toggle="modal" data-target="#delete-product" data-id="{{this._id}}">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
                                     </td>
@@ -61,3 +65,27 @@
         </div>
     </main>
 </div>
+
+    {{!-- Delete form hidden --}}
+    <form name="delete-product-form" method="post"></form>
+
+        {{!-- Confirm delete code --}}
+        <div class="modal fade" id="delete-product" tabindex="-1" role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-header-confirm-delete">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="delete-categoryLabel"><b>Delete Product</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">Are you sure to delete this product?</div>
+                    
+                    <div class="modal-footer">
+                        <button id="btn-delete-product" type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>

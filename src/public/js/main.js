@@ -171,3 +171,27 @@ function logout() {
       console.log(err)
   })
 }
+
+
+//=================== /admin/product-table ================================
+//WHEN HTML DOM is loaded, Delete confirm shows
+  document.addEventListener('DOMContentLoaded', function(){
+      var productId;
+      var deleteForm = document.forms['delete-product-form'];
+
+      $('#delete-product').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          productId = button.data('id')
+      })
+
+      //When delete product btn clicked
+      var btnDeleteCategory = document.getElementById('btn-delete-product')
+      btnDeleteCategory.onclick = function(){
+          deleteForm.action = '/product/' + productId + '?_method=DELETE';
+          deleteForm.submit();
+      }
+  })
+  function Back()
+  {
+      history.back();
+  }
