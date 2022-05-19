@@ -1,21 +1,23 @@
 const express = require('express');
 const router = express.Router();
+
+const User = require('../models/User')
+const {isLoggined} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
-const {isLoggined} = require('../ulti/login')
-
 const adminController = require('../Controllers/AdminController');
 
-const User = require('../models/User')
 
 
+// [GET] /admin/user-table - ./admin/user-table
+router.use('/user-table', adminController.userTable)
 
 // [GET] /admin/:slug - partials/error.hbs
 router.use('/:slug', adminController.error)
 
 // /admin/index - admin.hbs
-router.use('/',isLoggined, adminController.index)
+router.use('/', isLoggined, adminController.index)
 
 
 module.exports = router;

@@ -27,7 +27,7 @@ router.post('/store', siteController.store)
 router.use('/:slug', siteController.error)
 
 // Index
-router.use('/', isLoggined, siteController.index)
+router.use('/', siteController.index)
 
 
 module.exports = router;

@@ -1054,3 +1054,16 @@ section {
   color: white;
   text-decoration: underline
 }
+
+// ================ /admin/user-table =================
+.img-user-table{
+  max-width: 1.8rem;
+}
+
+tr:nth-child(even) {
+  background: rgb(235, 235, 235);
+}
+
+// tr td:empty {
+//   background:rgb(240, 239, 239) !important;
+// }

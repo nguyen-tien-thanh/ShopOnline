@@ -8,20 +8,21 @@ function isLoggined(req, res, next) {
     try {
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({
-            _id: decodeToken
-        }).then(data => {
+        User.findOne({_id: decodeToken})
+        .then(data => {
             if (data) {
                 req.data = data
                 // console.log(data)
                 next()
             }
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err)
+            res.redirect('/')
         })
     } catch (error) {
         console.log(error)
-        return res.redirect('/login')
+        return res.redirect('/authonize')
     }
 }
 

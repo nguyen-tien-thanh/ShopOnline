@@ -16,9 +16,12 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css" type="text/css">
 
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <!-- Custom styles for this template-->
     <link href="/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,11 +34,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-tasks"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">PhongStore<sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Phong<sup>Store</sup></div>
             </a>
 
             <!-- Divider -->
@@ -45,7 +48,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Admin Dashboard</span></a>
             </li>
 
             <!-- Divider -->
@@ -60,14 +63,15 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <i class="fas fa-fw fa-table"></i>
+                    {{!-- <i class="fas fa-fw fa-cog"></i> --}}
+                    <span>Tables</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Management</h6>
+                        <a class="collapse-item" href="/admin/user-table">User</a>
+                        <a class="collapse-item" href="/admin/product">Product</a>
                     </div>
                 </div>
             </li>
@@ -325,7 +329,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.name}}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="/assets/admin/img/undraw_profile.svg">
+                                    src="{{user.avatar}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -396,31 +400,42 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Select "Logout" below if you want to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <div class="btn btn-primary" onclick="logout()">Logout</input>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></scrip >
+        <script src="/js/scripts.js"></s>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/demo/chart-area-demo.js"></script>
+    <script src="/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="/js/datatables-simple-demo.js"></script>
+
+       
     <script src="/assets/admin/vendor/jquery/jquery.min.js"></script>
     <script src="/assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
+ 
     <script src="/assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
+  
     <script src="/assets/admin/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/assets/admin/vendor/chart.js/Chart.min.js"></script>
+  
+    <script src="/assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/assets/admin/js/demo/chart-area-demo.js"></script>
-    <script src="/assets/admin/js/demo/chart-pie-demo.js"></script>
+   
+    <script src="/assets/admin/js/demo/datatables-demo.js"></script>
+
+    <script src="/js/main.js"></script>
 
 </body>
 

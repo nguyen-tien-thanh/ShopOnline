@@ -52,5 +52,6 @@ const Router = express.Router();
 route(app);
 
 app.listen(xPORT, () => {
-  console.log(`Online shop is listening on: http://localhost:${xPORT}`)
+  console.log(``)
+  console.log(`Shop online is available on http://localhost:${xPORT}`)
 })

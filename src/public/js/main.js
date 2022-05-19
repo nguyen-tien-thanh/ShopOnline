@@ -138,23 +138,36 @@ function setCookie(cname, cvalue, exdays) {
 
 function login(){
   $.ajax({
-    url: '/login',
-    type: 'post',
-    data: {
-        username: $('#username').val(),
-        password: $('#password').val(),
-    },
-    msg: ''
-}
-).then(data => {
-    if (data.success) {
-        setCookie('token', data.token, 1);
-        window.location.href = "/admin"
-    } else {
-        window.location.href = "/login"
-    }
+      url: '/login',
+      type: 'post',
+      data: {
+          username: $('#username').val(),
+          password: $('#password').val(),
+      },
+      msg: ''
+  }
+  ).then(data => {
+      if (data.success) {
+          setCookie('token', data.token, 1);
+          window.location.href = "/admin"
+      } else {
+          window.location.href = "/login"
+      }
 
-}).catch(err => {
-    console.log(err)
-})
+  }).catch(err => {
+      console.log(err)
+  })
+}
+
+function logout() {
+  $.ajax({
+      url: '/logout',
+      type: 'post',
+  }
+  ).then(data => {
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "/login"
+  }).catch(err => {
+      console.log(err)
+  })
 }

@@ -888,3 +888,9 @@ section {
 .login-form a:hover {
   color: white;
   text-decoration: underline; }
+
+.img-user-table {
+  max-width: 1.8rem; }
+
+tr:nth-child(even) {
+  background: #ebebeb; }
