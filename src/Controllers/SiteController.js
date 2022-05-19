@@ -70,6 +70,9 @@ class SiteController {
                         password: hash,
                         email: req.body.email,
                         phone: req.body.phone,
+                        name: req.body.name,
+                        birthday: req.body.birthday,
+                        address: req.body.address,
                         avatar: 'https://duytan.thinkingschool.vn/wp-content/uploads/2019/01/avatar.png'
                     })
                     console.log(user)
