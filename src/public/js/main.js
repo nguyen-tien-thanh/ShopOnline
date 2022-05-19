@@ -138,18 +138,23 @@ function setCookie(cname, cvalue, exdays) {
 
 function login(){
   $.ajax({
-    url:'/validation',
-    type:'POST',
-    data:{
-        username:$('#username').val(),
-        password:$('#password').val()
+    url: '/login',
+    type: 'post',
+    data: {
+        username: $('#username').val(),
+        password: $('#password').val(),
+    },
+    msg: ''
+}
+).then(data => {
+    if (data.success) {
+        setCookie('token', data.token, 1);
+        window.location.href = "/admin"
+    } else {
+        window.location.href = "/login"
     }
-    })
-    .then(data=>{
-      setCookie('token',data.token,1)
-      console.log(data)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
+
+}).catch(err => {
+    console.log(err)
+})
 }

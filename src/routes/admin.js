@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
+var cookieParser = require('cookie-parser')
+router.use(cookieParser())
+
+const {isLoggined} = require('../ulti/login')
 
 const adminController = require('../Controllers/AdminController');
+
+const User = require('../models/User')
 
 
 
@@ -9,7 +15,7 @@ const adminController = require('../Controllers/AdminController');
 router.use('/:slug', adminController.error)
 
 // /admin/index - admin.hbs
-router.use('/', adminController.index)
+router.use('/',isLoggined, adminController.index)
 
 
 module.exports = router;

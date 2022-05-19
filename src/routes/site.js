@@ -3,8 +3,13 @@ const router = express.Router();
 
 const siteController = require('../Controllers/SiteController');
 
+const {isLoggined} = require('../ulti/login')
+var cookieParser = require('cookie-parser')
+router.use(cookieParser())
+
+
 // [GET] /login/
-router.use('/login', siteController.login)
+router.get('/login', siteController.login)
 
 // [GET] /register/
 router.use('/register', siteController.register)
@@ -12,17 +17,17 @@ router.use('/register', siteController.register)
 // [GET] /authonize/
 router.use('/authonize', siteController.authonize)
 
+// [POST] /validation
+router.post('/login', siteController.validation)
+
 // [POST] /store
 router.post('/store', siteController.store)
-
-// [POST] /validation
-router.post('/validation', siteController.validation)
 
 // [GET] /error/:slug
 router.use('/:slug', siteController.error)
 
 // Index
-router.use('/', siteController.index)
+router.use('/', isLoggined, siteController.index)
 
 
 module.exports = router;

@@ -8,6 +8,8 @@ const { checkUserExist, makePassword } = require('../ulti/register')
 const bcrypt = require('bcrypt');
 // const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+
+
 class SiteController {
 
     // [GET] /index -- Home page
@@ -140,19 +142,19 @@ class SiteController {
             }
             bcrypt.compare(password, user.password, function (err, result) {
                 if (result) {
-                    var token = jwt.sign({ _id: user._id }, 'tokenPassword', { expiresIn: '60m' })
+                    var token = jwt.sign({ _id: user._id }, 'secretpasstoken', { expiresIn: '30m' })
                     User.updateOne({ username: username }, { $set: { countFailed: 0 } }, (err, status) => {
                         if (err) {
                             console.log(err)
                         }
-                        
-                        // console.log('token: ' + token)
                     })
-                    return res.render('admin',{
-                        token: token,
-                        layout: 'adminLayout',
-                        msg: 'Login success'
-                    })
+                    return res.json({token: token, success: true})
+                    // return res.render('admin',{
+                    //     token: token,
+                    //     layout: 'adminLayout',
+                    //     msg: 'Login success',
+                    //     success: true
+                    // })
                 }
                 const failed = user.countFailed
                 if (failed == 2) {
