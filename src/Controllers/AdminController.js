@@ -1,6 +1,7 @@
 
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
+const Product = require('../models/Product')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 
@@ -59,6 +60,34 @@ class AdminController {
                         userList: multipleMongooseToObject(userList),
                         layout: 'adminLayout',
                         title: 'User Management'
+                    })
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.redirect('/login')
+        })
+        // res.render('admin/user-table', {
+        //     title: 'User Table',
+        //     layout: 'adminLayout'
+        // });
+    }
+
+    // [GET] /admin/user-table
+    productTable(req,res,next){
+        
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([Product.find(), User.findOne({_id:decodeToken})])
+        .then(([productList, data]) => {
+            if (data) {
+                req.data = data
+                return res.render('admin/product-table',
+                    {
+                        user: mongooseToObject(data),
+                        productList: multipleMongooseToObject(productList),
+                        layout: 'adminLayout',
+                        title: 'Product Management'
                     })
             }
         })

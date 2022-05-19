@@ -13,7 +13,7 @@ const Product = new Schema({
     stock: {type: Number, minLength:1, default:0},
     price: {type: Number, minLength:1, default: 0},
     image: {type : String, minLength : 1},
-    avaiable: {type: Boolean, default: true},
+    available: {type: Boolean, default: true},
     bestseller: {type: Boolean, default: false},
     slug: {type : String, slug : 'name', unique: true},
     deletedAt: {},

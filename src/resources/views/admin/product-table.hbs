@@ -1,0 +1,63 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">{{title}} Tables</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Tables</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Product Database
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Buff</th>
+                                    <th>Stock</th>
+                                    <th>Is Available</th>
+                                    <th>Is BestSeller</th>
+                                    <th>Created date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each productList}}
+                                <tr>
+                                    <td><img class="img-user-table" src="{{this.avatar}}" alt="{{this.name}}"></td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.description}}</td>
+                                    <td>{{this.category}}</td>
+                                    <td>{{this.buff}} buffs</td>
+                                    <td>{{this.stock}} pcs</td>
+                                    <td>{{this.available}}</td>
+                                    <td>{{this.bestseller}}</td>
+                                    <td>{{moment this.createdAt format = "HH:mm - DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="#">
+                                            <button class="btn btn-success">Edit</button>
+                                        </a>
+                                        <a href="#">
+                                            <button class="btn btn-info">Detail</button>
+                                        </a>
+                                        <a href="#">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

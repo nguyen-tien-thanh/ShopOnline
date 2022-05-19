@@ -9,6 +9,8 @@ router.use(cookieParser())
 const adminController = require('../Controllers/AdminController');
 
 
+// [GET] /admin/product-table - ./admin/product-table
+router.use('/product-table', adminController.productTable)
 
 // [GET] /admin/user-table - ./admin/user-table
 router.use('/user-table', adminController.userTable)
