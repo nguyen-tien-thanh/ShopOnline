@@ -25,10 +25,18 @@
 			<div class="notfound-404">
 				<h1>:(</h1>
 			</div>
+
 			<h2>404 - Page not found</h2>
-			<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+			{{#if roleNofitication}}
+				<p>{{roleNofitication}}</p>
+			{{else}}
+				<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+			{{/if}}
+
 			<a href="/">home page</a>
-            <a href="/admin">admin dashboard</a>
+			{{#ifeq user.data.role 'Admin'}}
+            	<a href="/admin">admin dashboard</a>
+			{{/ifeq}}
 		</div>
 	</div>
 
