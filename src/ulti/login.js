@@ -24,7 +24,11 @@ function isLoggined(req, res, next) {
         })
     } catch (error) {
         console.log(error)
-        return res.redirect('/authonize')
+        return res.render('login',{
+            msgLog: 'You need to login first',
+            layout: 'loginLayout',
+            title: 'Login'
+        })
     }
 }
 

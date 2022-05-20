@@ -145,7 +145,7 @@ class SiteController {
             }
             bcrypt.compare(password, user.password, function (err, result) {
                 if (result) {
-                    var token = jwt.sign({ _id: user._id }, 'secretpasstoken', { expiresIn: '30m' })
+                    var token = jwt.sign({ _id: user._id }, 'secretpasstoken', {})
                     User.updateOne({ username: username }, { $set: { countFailed: 0 } }, (err, status) => {
                         if (err) {
                             console.log(err)
