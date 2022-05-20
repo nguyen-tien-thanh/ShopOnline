@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/User')
-const {isLoggined, isAdmin} = require('../ulti/login')
+const {isLoggined, isAdmin, isStaff} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
@@ -16,7 +16,7 @@ router.use('/product-table', adminController.productTable)
 router.use('/user-table', adminController.userTable)
 
 // [GET] /admin/:slug - partials/error.hbs
-router.use('/:slug', adminController.error)
+router.use('/:slug', isLoggined, isAdmin, adminController.error)
 
 // /admin/index - admin.hbs
 router.use('/', isLoggined, isAdmin, adminController.index)

@@ -178,6 +178,7 @@ function logout() {
   document.addEventListener('DOMContentLoaded', function(){
       var productId;
       var deleteForm = document.forms['delete-product-form'];
+      var restoreForm = document.forms['restore-product-form'];
 
       $('#delete-product').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget)
@@ -190,8 +191,25 @@ function logout() {
           deleteForm.action = '/product/' + productId + '?_method=DELETE';
           deleteForm.submit();
       }
+
+      //When button delete clicked
+      $('#delete-product').on('show.bs.modal', function (product) {
+        var button = $(product.relatedTarget)
+        productId = button.data('id')
+        })
+        var btnDeleteProduct = document.getElementById('btn-delete-product')
+        btnDeleteProduct.onclick = function(){
+            deleteForm.action = '/product/' + productId + '/force?_method=DELETE';
+            deleteForm.submit();
+        }
+        //When button restore clicked
+        $('#restore-product').on('show.bs.modal', function (product) {
+        var button = $(product.relatedTarget)
+        productId = button.data('id')
+        })
+        var btnRestoreProduct = document.getElementById('btn-restore-product')
+        btnRestoreProduct.onclick = function(){
+            restoreForm.action = '/product/' + productId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        }
   })
-  function Back()
-  {
-      history.back();
-  }

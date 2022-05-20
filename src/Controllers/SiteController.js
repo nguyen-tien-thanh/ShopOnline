@@ -55,8 +55,8 @@ class SiteController {
             ]
         }).then(data => {
             if(data != null){
-                return res.render('login', {
-                    title: 'Login',
+                return res.render('register', {
+                    title: 'Register',
                     layout: 'loginLayout',
                     msgReg: 'Email or phone is already registered',
                     success: false
@@ -79,14 +79,14 @@ class SiteController {
                     user.save(err, result =>{
                         if(err) {
                             console.log('err: ' + err)
-                            return res.render('login', {
+                            return res.render('register', {
                                 title: 'Login',
                                 layout: 'loginLayout',
                                 msgReg: 'Failed to register',
                                 success: false
                             })
                         }
-                        return res.render('login', {
+                        return res.render('register', {
                             title: 'Login',
                             layout: 'loginLayout',
                             msgReg: 'Register Successfully',
@@ -212,41 +212,11 @@ class SiteController {
     // [GET] /:slug
     // Show 404 not found error
     error(req,res,next){
-            res.render('partials/error', {
-                title: 'Not Found',
-                layout: null
-            });
+        res.render('partials/error', {
+            title: 'Not Found',
+            layout: null
+        });
     }
-
-    // termsandconditions(req, res, next){
-    //     if (req.isAuthenticated()) {
-    //         User.findOne({username: req.user.username})
-    //         .then (user =>{
-    //             res.render('termsandconditions', { 
-    //                 title: 'Terms',
-    //                 userLogin: mongooseToObject(user)
-    //             });
-    //         })
-    //     }
-    //     else{
-    //         res.render('termsandconditions', {title: 'Terms' })
-    //     }
-    // }
-
-    // secret(req,res,next){
-    //     if (req.isAuthenticated()) {
-    //         User.findOne({username: req.user.username})
-    //         .then (user =>{
-    //             res.render('secret', { 
-    //                 title: 'secret',
-    //                 userLogin: mongooseToObject(user)
-    //             });
-    //         })
-    //     }
-    //     else{
-    //         res.render('secret', {title: 'Secret' })
-    //     }
-    // }
 
 }
 

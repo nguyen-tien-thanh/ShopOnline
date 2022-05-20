@@ -34,7 +34,7 @@
 			{{/if}}
 
 			<a href="/">home page</a>
-			{{#ifeq user.data.role 'Admin'}}
+			{{#ifeq user.role 'Admin'}}
             	<a href="/admin">admin dashboard</a>
 			{{/ifeq}}
 		</div>

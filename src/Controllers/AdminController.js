@@ -39,10 +39,25 @@ class AdminController {
     // [GET] /:slug
     // Show 404 not found error
     error(req,res,next){
-        res.render('partials/error', {
-            title: 'Not Found',
-            layout: null
-        });
+        // res.render('partials/error', {
+        //     title: 'Not Found',
+        //     layout: null
+        // });
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        User.findOne({ _id: decodeToken})
+        .then(data => {
+            if (data) {
+                req.data = data
+                return res.render('partials/error',
+                    {
+                        user: mongooseToObject(data),
+                        title: 'Not Found',
+                        layout: null
+                    })
+                next()
+            }
+        })
     }
 
     // [GET] /admin/user-table
@@ -95,10 +110,6 @@ class AdminController {
             console.error(error);
             res.redirect('/login')
         })
-        // res.render('admin/user-table', {
-        //     title: 'User Table',
-        //     layout: 'adminLayout'
-        // });
     }
 }
 
