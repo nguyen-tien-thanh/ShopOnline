@@ -137,29 +137,29 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function login(){
-  $.ajax({
-      url: '/login',
-      type: 'post',
-      data: {
-          username: $('#username').val(),
-          password: $('#password').val(),
-      },
-      msg: ''
-  })
-  .then(data => {
-      if (data.success) {
-          setCookie('token', data.token, 1);
-          console.log(data)
-          window.location.href = "/"
-      } else {
-          window.location.href = "/login"
-      }
-
-  }).catch(err => {
-      console.log(err)
-  })
-}
+// function login(){
+//   $.ajax({
+//       url: '/login',
+//       type: 'post',
+//       data: {
+//           username: $('#username').val(),
+//           password: $('#password').val(),
+//       },
+//       msg: ''
+//   })
+//   .then(data => {
+//       if (data.success) {
+//           setCookie('token', data.token, 1);
+//           window.location.href = "/"
+//       } else {
+//           // alert('ajax error:' + data.msg)
+//           window.location.href = "/login"
+//       }
+//   })
+//   .catch(err => {
+//       console.log(err)
+//   })
+// }
 
 function logout() {
   $.ajax({
@@ -189,9 +189,11 @@ function logout() {
 
       //When delete product btn clicked
       var btnDeleteCategory = document.getElementById('btn-delete-product')
-      btnDeleteCategory.onclick = function(){
+      if(btnDeleteCategory){
+        btnDeleteCategory.onclick = function(){
           deleteForm.action = '/product/' + productId + '?_method=DELETE';
           deleteForm.submit();
+        }
       }
 
       //When button delete clicked
@@ -200,9 +202,11 @@ function logout() {
         productId = button.data('id')
         })
         var btnDeleteProduct = document.getElementById('btn-delete-product')
-        btnDeleteProduct.onclick = function(){
+        if (btnDeleteProduct){
+          btnDeleteProduct.onclick = function(){
             deleteForm.action = '/product/' + productId + '/force?_method=DELETE';
             deleteForm.submit();
+          }
         }
         //When button restore clicked
         $('#restore-product').on('show.bs.modal', function (product) {
@@ -210,8 +214,10 @@ function logout() {
         productId = button.data('id')
         })
         var btnRestoreProduct = document.getElementById('btn-restore-product')
-        btnRestoreProduct.onclick = function(){
+        if (btnRestoreProduct){
+          btnRestoreProduct.onclick = function(){
             restoreForm.action = '/product/' + productId + '/restore?_method=PATCH';
             restoreForm.submit();
+          }
         }
   })

@@ -32,12 +32,12 @@ class SiteController {
             layout: 'loginLayout'});
     }
 
-    //[GET] /validation User
-    validation(req, res, next){
-        res.render('validation', {
-            title:'Validation',
-            layout: 'loginLayout'});
-    }
+    // //[GET] /validation User
+    // validation(req, res, next){
+    //     res.render('validation', {
+    //         title:'Validation',
+    //         layout: 'loginLayout'});
+    // }
 
     //[GET] /register User
     register(req, res, next){
@@ -122,6 +122,11 @@ class SiteController {
                 return console.log(err)
             }
             if (!user) {
+                // return res.render('login', {
+                //     success: false,
+                //     layout: 'loginLayout',
+                //     msgLog: `Sai tài khoản hoặc mật khẩu`
+                // })
                 return res.render('login', {
                     success: false,
                     layout: 'loginLayout',
@@ -152,13 +157,14 @@ class SiteController {
                             console.log(err)
                         }
                     })
-                    return res.json({token: token, success: true, msgLog:'123'})
-                    // return res.render('admin',{
-                    //     token: token,
-                    //     layout: 'adminLayout',
-                    //     msg: 'Login success',
-                    //     success: true
-                    // })
+                    // return res.json({token: token, success: true, msgLog:'Login Successful'})
+                    res.cookie('token',token, { maxAge: 900000, httpOnly: true });
+                    return res.render('admin',{
+                        layout: 'adminLayout',
+                        msg: 'Login success',
+                        success: true,
+                        user: mongooseToObject(user)
+                    })
                 }
                 const failed = user.countFailed
                 if (failed == 2) {

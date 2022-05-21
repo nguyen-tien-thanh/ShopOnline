@@ -18,7 +18,7 @@ router.use('/register', siteController.register)
 router.use('/authonize', siteController.authonize)
 
 // [POST] /validation
-router.post('/login', siteController.validation)
+router.post('/validation', siteController.validation)
 
 // [POST] /store
 router.post('/store', siteController.store)
