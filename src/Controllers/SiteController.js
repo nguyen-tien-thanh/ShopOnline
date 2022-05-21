@@ -116,7 +116,8 @@ class SiteController {
             $or: [
                 {email: username}, 
                 {phone: username}
-            ]}, (err, user) => {
+            ]
+        }, (err, user) => {
             if (err) {
                 return console.log(err)
             }
@@ -151,7 +152,7 @@ class SiteController {
                             console.log(err)
                         }
                     })
-                    return res.json({token: token, success: true})
+                    return res.json({token: token, success: true, msgLog:'123'})
                     // return res.render('admin',{
                     //     token: token,
                     //     layout: 'adminLayout',

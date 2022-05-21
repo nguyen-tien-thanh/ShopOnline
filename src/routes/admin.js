@@ -10,10 +10,10 @@ const adminController = require('../Controllers/AdminController');
 
 
 // [GET] /admin/product-table - ./admin/product-table
-router.use('/product-table', adminController.productTable)
+router.use('/product-table', isLoggined, isAdmin, adminController.productTable)
 
 // [GET] /admin/user-table - ./admin/user-table
-router.use('/user-table', adminController.userTable)
+router.use('/user-table', isLoggined, isAdmin, adminController.userTable)
 
 // [GET] /admin/:slug - partials/error.hbs
 router.use('/:slug', isLoggined, isAdmin, adminController.error)

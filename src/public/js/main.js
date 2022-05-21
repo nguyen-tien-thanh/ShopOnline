@@ -1,4 +1,4 @@
-const res = require("express/lib/response");
+
 
 //=================== ARROW IN INDEX =============================
   $(document).ready(function($) {
@@ -151,9 +151,9 @@ function login(){
       if (data.success) {
           setCookie('token', data.token, 1);
           console.log(data)
-            window.location.href = "/"
+          window.location.href = "/"
       } else {
-           window.location.href = "/login"
+          window.location.href = "/login"
       }
 
   }).catch(err => {
