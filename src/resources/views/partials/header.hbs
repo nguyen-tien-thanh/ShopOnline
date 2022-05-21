@@ -1,3 +1,32 @@
+<div class="sub-header">
+    <nav class="sub-nav">
+        <ul id="sub-nav-left">
+
+            {{#if user}}
+                <li>
+                    <a class="active" href="#">Welcome <b>{{user.name}}</b>!</a>
+                    <div class="subnav-dropdown">
+                      <br>
+                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-address-card"></i> My Account</a>
+                      <hr>
+                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i> My purchase</a>
+                      <hr>
+                      <a class="subnav-dropdown-items" href="#"><i class='fas fa-sign-out-alt'></i> Log out</>
+                      <br><br>
+                    </div>
+                </li>
+            {{else}}
+                <li>
+                    <a class="active" href="/login">Login</a>
+                </li>
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+            {{/if}}
+
+        </ul>
+    </nav>
+</div>
 
   <header class="main-header" id="main-header">   
       <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a>

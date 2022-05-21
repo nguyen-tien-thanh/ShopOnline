@@ -38,6 +38,53 @@ body {
 body *, body :after, body :before {
   box-sizing: border-box; }
 
+.sub-header {
+  position: relative; }
+
+.sub-nav {
+  bottom: 0;
+  left: 0; }
+
+#sub-nav-left {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding: 2px;
+  overflow: hidden;
+  background-color: transparent; }
+
+#sub-nav-left li {
+  float: right; }
+
+#sub-nav-left li a {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px; }
+
+#sub-nav-left li .subnav-dropdown-items {
+  padding: 0 10px 16px 14px;
+  color: black !important; }
+
+#sub-nav-left li .subnav-dropdown-items:hover {
+  color: #d00109 !important; }
+
+#sub-nav-left li a:hover {
+  text-decoration: underline; }
+
+.subnav-dropdown {
+  position: absolute;
+  right: 10px;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 100;
+  display: none; }
+
+.sub-nav ul li:hover .subnav-dropdown {
+  display: block; }
+
 .transparent {
   background: transparent !important; }
 

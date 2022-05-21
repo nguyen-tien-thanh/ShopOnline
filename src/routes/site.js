@@ -8,6 +8,9 @@ var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
 
+// [GET] /logout/
+router.get('/logout', siteController.logout)
+
 // [GET] /login/
 router.get('/login', siteController.login)
 

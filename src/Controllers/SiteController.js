@@ -14,16 +14,43 @@ class SiteController {
 
     // [GET] /index -- Home page
     index(req, res, next){
-        res.render('index', {
-            title: 'Home page'
-        })
+        if(req.cookies.token){
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            User.findOne({
+                _id: decodeToken
+            }).then(data => {
+                if (data) {
+                    req.data = data
+                    console.log(data)
+                    return res.render('index',
+                        {
+                            user: mongooseToObject(data),
+                            title: 'Home page'
+                        })
+                    next()
+                }
+            })
+        }
+        else{
+            res.render('index', {
+                title: 'Home page',
+            })
+        }
     }
 
-    // // [GET] /logout --> Home page
-    // logout (req, res) {
-    //     req.logout();
-    //     res.redirect('login');
-    // }
+    // [GET] /logout --> Home page
+    logout (req, res) {
+        // req.logout();
+        // delete req.session;
+        // return res.render('login',{
+        //     msgLog: 'You need to login first',
+        //     layout: 'loginLayout',
+        //     title: 'Login'
+        // })
+            req.session = null
+            res.json({ logout: true })
+    }
 
     //[GET] /authonize User
     authonize(req, res, next){
@@ -159,8 +186,8 @@ class SiteController {
                     })
                     // return res.json({token: token, success: true, msgLog:'Login Successful'})
                     res.cookie('token',token, { maxAge: 900000, httpOnly: true });
-                    return res.render('admin',{
-                        layout: 'adminLayout',
+                    return res.render('index',{
+                        // layout: 'adminLayout',
                         msg: 'Login success',
                         success: true,
                         user: mongooseToObject(user)
