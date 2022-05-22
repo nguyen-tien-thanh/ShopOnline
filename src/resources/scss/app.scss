@@ -49,7 +49,9 @@ a:hover{
     margin: 0 10px; }
     body *, body :after, body :before {
       box-sizing: border-box; }
-  
+      
+  // =================================================================
+  // =============== SUBNAV ================
   .sub-header {
       position: relative;
   }
@@ -75,7 +77,7 @@ a:hover{
   #sub-nav-left li a {
       color: white;
       text-align: center;
-      // padding: 0 10px 16px 14px;
+      padding: 0 10px 16px 14px;
       text-decoration: none;
       font-size: 18px;
   }
@@ -108,6 +110,8 @@ a:hover{
     display: block;
   }
 
+  // =================================================================
+  // =============== HEADER ================
   .transparent {
     background: transparent !important; }
   
@@ -367,6 +371,7 @@ a:hover{
     animation: bounce 2s infinite; }
   
 
+// =================================================================
 // ============== FOOTER ======================
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
@@ -609,6 +614,7 @@ section {
 
 }
 
+// =================================================================
 // ============== MODAL OF   THE FOOTER =================
 /* The Modal (background) */
 .delivery-modal,
@@ -616,7 +622,7 @@ section {
 .return-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 2; /* Sit on top */
+  z-index: 101; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -641,10 +647,14 @@ section {
   border-radius: 15px;
 }
 
+.return-modal-content{
+  margin: 1% auto
+}
+
 .modal-header{
   background-color: var(--clr4);
   color:white;
-  border-radius: 13px;
+  border-radius: 13px 13px 0 0;
   border: 3px var(--clr4);
 }
 .fa-shipping-fast,
@@ -669,8 +679,7 @@ section {
 .payment-close:focus,
 .return-close:hover,
 .return-close:focus {
-  color: black;
-  
+  color: gray;
   cursor: pointer;
 }
 
@@ -689,6 +698,7 @@ section {
 }
 
 
+// =================================================================
 // ============== PRODUCT =============================
 // ======= CREATE ======= 
 .create-product-box {
@@ -816,6 +826,7 @@ section {
   }
 
 
+  // =================================================================
   // EDIT PRODUCT PAGE
   .img-edit-page{
     display: block;
@@ -830,16 +841,8 @@ section {
     max-width: 100%;
   }
 
+// =================================================================
 // ============== ERROR PAGE ================
-// * {
-//   -webkit-box-sizing: border-box;
-//           box-sizing: border-box;
-// }
-
-// body {
-//   padding: 0;
-//   margin: 0;
-// }
 
 #notfound {
   position: relative;
@@ -941,6 +944,7 @@ section {
   }
 }
 
+// =================================================================
 // ===================== LOGIN PAGE ===========================
 .login-sidenav {
   height: 100%;
@@ -1006,6 +1010,8 @@ section {
 
 // ================ End LOGIN =============================
 
+
+// =================================================================
 // ================ REGISTER =============================
 
 .register-sidenav {
@@ -1113,6 +1119,7 @@ section {
   text-decoration: underline
 }
 
+// =================================================================
 // ================ /admin/user-table =================
 .img-user-table{
   max-width: 3.5rem;

@@ -59,6 +59,7 @@ body *, body :after, body :before {
 #sub-nav-left li a {
   color: white;
   text-align: center;
+  padding: 0 10px 16px 14px;
   text-decoration: none;
   font-size: 18px; }
 
@@ -552,7 +553,7 @@ section {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 2;
+  z-index: 101;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -581,10 +582,13 @@ section {
   /* Could be more or less, depending on screen size */
   border-radius: 15px; }
 
+.return-modal-content {
+  margin: 1% auto; }
+
 .modal-header {
   background-color: var(--clr4);
   color: white;
-  border-radius: 13px;
+  border-radius: 13px 13px 0 0;
   border: 3px var(--clr4); }
 
 .fa-shipping-fast,
@@ -607,7 +611,7 @@ section {
 .payment-close:focus,
 .return-close:hover,
 .return-close:focus {
-  color: black;
+  color: gray;
   cursor: pointer; }
 
 .copy-payment-btn:active,
