@@ -194,6 +194,7 @@ class SiteController {
                     })
                 }
                 const failed = user.countFailed
+                console.log(failed)
                 if (failed == 2) {
                     //Khoá tạm thời set count = 10
                     User.updateOne({ username: username }, { $set: { countFailed: 10 } }, (err, status) => {
