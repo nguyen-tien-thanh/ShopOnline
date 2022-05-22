@@ -20,10 +20,10 @@
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Gender</th>
+                                    <th>Status</th>
                                     <th>Birthday</th>
                                     <th>Created Time</th>
-                                    <th>Address</th>
+                                    {{!-- <th>Address</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,10 +34,16 @@
                                     <td>{{this.phone}}</td>
                                     <td>{{this.email}}</td>
                                     <td>{{this.role}}</td>
-                                    <td>{{this.gender}}</td>
+
+                                    {{#ifeq this.countFailed 6}}
+                                        <td style="color:red">Banned</td>
+                                    {{else}}
+                                        <td>Normal</td>
+                                    {{/ifeq}}
+
                                     <td>{{moment this.birthday format = "DD/MM/yyyy"}}</td>
                                     <td>{{moment this.createdAt format = "HH:mm - DD/MM/yyyy"}}</td>
-                                    <td>{{this.address}}</td>
+                                    {{!-- <td>{{this.address}}</td> --}}
                                     <td>
                                         <a href="#">
                                             <button class="btn btn-success">Edit</button>
