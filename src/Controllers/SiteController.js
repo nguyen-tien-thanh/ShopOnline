@@ -48,8 +48,8 @@ class SiteController {
         //     layout: 'loginLayout',
         //     title: 'Login'
         // })
-            req.session = null
-            res.json({ logout: true })
+            res.clearCookie('token');
+            return res.json({ logout: true , msgLog: 'Log out successfully'})
     }
 
     //[GET] /authonize User
