@@ -1,6 +1,7 @@
 
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
+const Brand = require('../models/Brand')
 const Product = require('../models/Product')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
@@ -88,9 +89,8 @@ class AdminController {
         // });
     }
 
-    // [GET] /admin/user-table
-    productTable(req,res,next){
-        
+    // [GET] /admin/product-table
+    productTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
         Promise.all([Product.find(), User.findOne({_id:decodeToken})])
@@ -103,6 +103,29 @@ class AdminController {
                         productList: multipleMongooseToObject(productList),
                         layout: 'adminLayout',
                         title: 'Product Management'
+                    })
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.redirect('/login')
+        })
+    }
+
+    // [GET] /admin/brand-table
+    brandTable(req,res,next){      
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([Brand.find(), User.findOne({_id:decodeToken})])
+        .then(([brandList, data]) => {
+            if (data) {
+                req.data = data
+                return res.render('admin/brand-table',
+                    {
+                        user: mongooseToObject(data),
+                        brandList: multipleMongooseToObject(brandList),
+                        layout: 'adminLayout',
+                        title: 'Brand Management'
                     })
             }
         })

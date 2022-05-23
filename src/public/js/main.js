@@ -176,10 +176,10 @@ function logout() {
 
 
 //=================== /admin/product-table ================================
-//WHEN HTML DOM is loaded, Delete confirm shows
+//WHEN HTML DOM is loaded, Delete product confirm shows
   document.addEventListener('DOMContentLoaded', function(){
       var productId;
-      var deleteForm = document.forms['delete-product-form'];
+      var deleteProductForm = document.forms['delete-product-form'];
       var restoreForm = document.forms['restore-product-form'];
 
       $('#delete-product').on('show.bs.modal', function (event) {
@@ -191,8 +191,8 @@ function logout() {
       var btnDeleteCategory = document.getElementById('btn-delete-product')
       if(btnDeleteCategory){
         btnDeleteCategory.onclick = function(){
-          deleteForm.action = '/product/' + productId + '?_method=DELETE';
-          deleteForm.submit();
+          deleteProductForm.action = '/product/' + productId + '?_method=DELETE';
+          deleteProductForm.submit();
         }
       }
 
@@ -204,8 +204,8 @@ function logout() {
         var btnDeleteProduct = document.getElementById('btn-delete-product')
         if (btnDeleteProduct){
           btnDeleteProduct.onclick = function(){
-            deleteForm.action = '/product/' + productId + '/force?_method=DELETE';
-            deleteForm.submit();
+            deleteProductForm.action = '/product/' + productId + '/force?_method=DELETE';
+            deleteProductForm.submit();
           }
         }
         //When button restore clicked
@@ -220,6 +220,26 @@ function logout() {
             restoreForm.submit();
           }
         }
+
+        //=================== /admin/brand-table ================================
+        //Delete brand
+        var brandId;
+        var deleteBrandForm = document.forms['delete-brand-form'];
+
+        $('#delete-brand').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          brandId = button.data('id')
+        })
+
+        //When delete brand btn clicked
+        var btnDeleteCategory = document.getElementById('btn-delete-brand')
+        if(btnDeleteCategory){
+          btnDeleteCategory.onclick = function(){
+            deleteBrandForm.action = '/brand/' + brandId + '?_method=DELETE';
+            deleteBrandForm.submit();
+          }
+        }
+
   })
 
 // ====================== CHANGE LANGUAGE =====================
