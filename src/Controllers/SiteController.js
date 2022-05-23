@@ -193,6 +193,7 @@ class SiteController {
                     return res.render('index',{
                         // layout: 'adminLayout',
                         msg: 'Login success',
+                        title:'Home',
                         success: true,
                         user: mongooseToObject(user)
                     })

@@ -134,6 +134,29 @@ class AdminController {
             res.redirect('/login')
         })
     }
+
+    // [GET] /admin/brand-deleted-table
+    brandDeletedTable(req,res,next){      
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([Brand.findDeleted({}), User.findOne({_id:decodeToken})])
+        .then(([brandDeletedList, data]) => {
+            if (data) {
+                req.data = data
+                return res.render('admin/brand-deleted-table',
+                    {
+                        user: mongooseToObject(data),
+                        brandDeletedList: multipleMongooseToObject(brandDeletedList),
+                        layout: 'adminLayout',
+                        title: 'Brand Deleted Management'
+                    })
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.redirect('/login')
+        })
+    }
 }
 
 module.exports = new AdminController;

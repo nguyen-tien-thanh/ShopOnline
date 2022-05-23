@@ -240,6 +240,46 @@ function logout() {
           }
         }
 
+        // Get ID of brand to modal for editing
+        $(document).on("click", ".open-modal-edit-brand", function () {
+        var brandId = $(this).data('id');
+        var btnEditBrand = document.getElementById('btn-edit-brand')
+        var editBrandForm = document.forms['edit-brand-form'];
+        btnEditBrand.onclick = function(){
+            editBrandForm.action = '/brand/' + brandId + '?_method=PUT';
+            editBrandForm.submit();
+        }
+      });
+        
+        //================== /admin/brand-deleted-table ==========================
+        //Restore brand
+        var brandDeletedId;
+        var restoreBrandForm = document.forms['restore-brand-form']
+        $('#restore-brand').on('show.bs.modal', function (brand) {
+          var button = $(brand.relatedTarget)
+          brandDeletedId = button.data('id')
+          })
+          var btnRestoreBrand = document.getElementById('btn-restore-brand')
+          if (btnRestoreBrand){
+            btnRestoreBrand.onclick = function(){
+              restoreBrandForm.action = '/brand/' + brandDeletedId + '/restore?_method=PATCH';
+              restoreBrandForm.submit();
+            }
+          }
+          
+          //Permently delete brand
+          var forceDeleteBrandForm = document.forms['permantly-delete-brand-form']
+          $('#force-delete-brand').on('show.bs.modal', function (brand) {
+            var button = $(brand.relatedTarget)
+            brandDeletedId = button.data('id')
+            })
+            var btnForceDeleteBrand = document.getElementById('btn-force-delete-brand')
+            if (btnForceDeleteBrand){
+              btnForceDeleteBrand.onclick = function(){
+                forceDeleteBrandForm.action = '/brand/' + brandDeletedId + '/force?_method=DELETE';
+                forceDeleteBrandForm.submit();
+              }
+            }
   })
 
 // ====================== CHANGE LANGUAGE =====================

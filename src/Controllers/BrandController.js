@@ -31,7 +31,7 @@ class ProductController {
     //[PUT] /brand/:id
     update(req,res,next) {
         Brand.updateOne({_id: req.params.id}, req.body)
-            .then(brand => res.redirect('/brand/manage'))
+            .then(brand => res.redirect('back'))
             .catch(next);
     }
 
@@ -54,7 +54,7 @@ class ProductController {
     //[RESTORE] /brand/:id/store
     restore(req,res,next) {
         Brand.restore({_id: req.params.id})
-            .then(() => res.redirect('/brand/manage'))
+            .then(() => res.redirect('back'))
             .catch(next);
         
     }

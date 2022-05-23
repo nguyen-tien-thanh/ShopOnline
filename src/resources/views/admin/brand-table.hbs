@@ -12,7 +12,10 @@
                     Brand Database
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-info mb-2" data-toggle="modal" data-target="#create-brand">Create new brand</button>
+                    <button class="btn btn-info mb-2" data-toggle="modal" data-target="#create-brand"><i class="fa fa-plus"></i> Create new brand</button>
+                    <a href="/admin/brand-deleted-table">
+                        <button class="btn btn-info mb-2"><i class="fa fa-trash"></i> Deleted Brands</button>
+                    </a>
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -32,7 +35,7 @@
                                     <td>{{this.desc}}</td>
                                     <td>{{moment this.createdAt format = "DD/MM/yyyy"}}</td>
                                     <td>
-                                        <a href="/brand/{{this._id}}/edit">
+                                        <a href="" class="open-modal-edit-brand" data-toggle="modal" data-target="#edit-brand" data-id="{{this._id}}">
                                             <button class="btn btn-dark">Edit</button>
                                         </a>
                                         <a href="" data-toggle="modal" data-target="#delete-brand" data-id="{{this._id}}">
@@ -52,6 +55,7 @@
 
     {{!-- Delete form hidden --}}
     <form name="delete-brand-form" method="post"></form>
+    {{!-- <form name="edit-brand-form" method="post"></form> --}}
 
     {{!-- Confirm delete code --}}
     <div class="modal fade" id="delete-brand" tabindex="-1" role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
@@ -75,7 +79,6 @@
     </div>
 
     {{!-- Create new brand modal --}}
-    <!-- Modal -->
     <div class="modal fade" id="create-brand" tabindex="-1" role="dialog" aria-labelledby="createBrandLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -103,6 +106,40 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-info">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Edit brand modal --}}
+    <div class="modal fade" id="edit-brand" tabindex="-1" role="dialog" aria-labelledby="editBrandLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editBrandLabel">Edit brand</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="edit-brand-form" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="brand-name" class="col-form-label">Brand name:</label>
+                            <input type="text" class="form-control" id="brand-name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="brand-description" class="col-form-label">Description:</label>
+                            <textarea type="text" class="form-control" id="brand-description" name="desc"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand-image" class="col-form-label">Image:</label>
+                            <input type="text" class="form-control" id="brand-image" name="image">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info" id="btn-edit-brand">Edit</button>
                     </div>
                 </form>
             </div>
