@@ -1,3 +1,4 @@
+
 <div class="sub-header">
     <nav class="sub-nav">
         <ul id="sub-nav-left">
@@ -11,7 +12,17 @@
                       <hr>
                       <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i> My purchase</a>
                       <hr>
-                      <a class="subnav-dropdown-items" href="#"><i class='fas fa-sign-out-alt'></i> Log out</>
+                      <a class="subnav-dropdown-items" href="#"><i class='fas fa-sign-out-alt'></i> Log out</a>
+                      <br><br>
+                    </div>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-globe"></i> Change languages <i class="fa fa-chevron-down"></i></a>
+                    <div class="subnav-dropdown subnav-lang-dropdown">
+                      <br>
+                      <a class="subnav-dropdown-items" href="#">Tiếng Việt</a>
+                      <hr>
+                      <a class="subnav-dropdown-items" href="#">English</a>
                       <br><br>
                     </div>
                 </li>
@@ -22,28 +33,37 @@
                 <li>
                     <a href="/register">Register</a>
                 </li>
+                <li>
+                  <a href="#"><i class="fa fa-globe"></i> Change languages <i class="fa fa-chevron-down"></i></a>
+                  <div class="subnav-dropdown subnav-lang-dropdown" style="right: 12%">
+                    <br>
+                    <a class="subnav-dropdown-items" href="#">Tiếng Việt</a>
+                    <hr>
+                    <a class="subnav-dropdown-items" href="#">English</a>
+                    <br><br>
+                  </div>
+                </li>
             {{/if}}
 
         </ul>
     </nav>
 </div>
+<header class="main-header" id="main-header">   
+    <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a>
+  <nav>
+    <ul class="">
+      {{!-- more than 6 is not beautiful --}}
+      <a href="/product"><li>Products</li></a>
+      <a href="/product/manage"><li>Manage</li></a>
+      <a href="/admin"><li>Admin</li></a>
+      <a href="/login"><li>Login</li></a>
+      <a href="#"><li>About BardPod</li></a>
 
-  <header class="main-header" id="main-header">   
-      <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a>
-    <nav>
-      <ul class="">
-        {{!-- more than 6 is not beautiful --}}
-        <a href="/product"><li>Sản phẩm</li></a>
-        <a href="/product/manage"><li>Quản lý</li></a>
-        <a href="/admin"><li>Admin</li></a>
-        <a href="/login"><li>Login</li></a>
-        <a href="#"><li>Về BardPod</li></a>
-        <a href="#"><li>Lien he</li></a>
+      <a href="javascript:void(0);" class="icon logo-icon-header" onclick="openNavResponsive()">
+        <i class="fa fa-bars"></i>
+      </a>
 
-        <a href="javascript:void(0);" class="icon logo-icon-header" onclick="openNavResponsive()">
-          <i class="fa fa-bars"></i>
-        </a>
+    </ul>
+  </nav>
+</header>
 
-      </ul>
-    </nav>
-  </header>

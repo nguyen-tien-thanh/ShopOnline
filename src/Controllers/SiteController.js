@@ -138,6 +138,7 @@ class SiteController {
     validation(req,res,next) {
         let username = req.body.username
         let password = req.body.password
+        console.log(username + ' ' + password)
 
         User.findOne({
             $or: [
@@ -157,6 +158,7 @@ class SiteController {
                 return res.render('login', {
                     success: false,
                     layout: 'loginLayout',
+                    title: 'Login again',
                     msgLog: `Sai tài khoản hoặc mật khẩu`
                 })
             }
@@ -165,6 +167,7 @@ class SiteController {
                 return res.render('login', {
                     success: false,
                     layout: 'loginLayout',
+                    title: 'Login again',
                     msgLog: `Tài khoản hiện đang bị tạm khóa, vui lòng thử lại sau 1 phút`
                 })
             }
@@ -173,6 +176,7 @@ class SiteController {
                 return res.render('login', {
                     success: false,
                     layout: 'loginLayout',
+                    title: 'Login again',
                     msgLog: `Tài khoản đã bị khoá vĩnh viễn! Bạn đã nhập sai mật khẩu quá nhiều lần! Liên hệ admin để mở lại tài khoản`
                 })
             }
@@ -214,6 +218,7 @@ class SiteController {
                     }, 60000);
                     return res.render('login', {
                         success: false,
+                        title: 'Login again',
                         layout: 'loginLayout',
                         msgLog: `Tài khoản đã bị khoá trong 1 phút! Nếu bạn tiếp tục nhập sai thêm 3 lần nữa sẽ bị khoá vĩnh viễn!`
                     })
@@ -225,6 +230,7 @@ class SiteController {
                     })
                     return res.render('login', {
                         success: false,
+                        title: 'Login again',
                         layout: 'loginLayout',
                         msgLog: 'Tài khoản đã bị khoá vĩnh viễn! Bạn đã nhập sai mật khẩu quá nhiều lần! Liên hệ admin để mở lại tài khoản'
                     })
@@ -236,6 +242,7 @@ class SiteController {
                     })
                     return res.render('login', {
                         success: false,
+                        title: 'Login again',
                         layout: 'loginLayout',
                         msgLog: `Bạn đã nhập sai mật khẩu ${failed + 1} lần!!!`
                     })
@@ -247,10 +254,31 @@ class SiteController {
     // [GET] /:slug
     // Show 404 not found error
     error(req,res,next){
-        res.render('partials/error', {
-            title: 'Not Found',
-            layout: null
-        });
+        if(req.cookies.token){
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            User.findOne({
+                _id: decodeToken
+            }).then(data => {
+                if (data) {
+                    req.data = data
+                    console.log(data)
+                    return res.render('partials/error',
+                        {
+                            user: mongooseToObject(data),
+                            title: 'Not Found',
+                            layout: null
+                        })
+                    next()
+                }
+            })
+        }
+        else{  
+            res.render('partials/error', {
+                title: 'Not Found',
+                layout: null
+            });
+        }
     }
 
 }

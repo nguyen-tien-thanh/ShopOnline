@@ -51,6 +51,14 @@ a:hover{
       box-sizing: border-box; }
       
   // =================================================================
+  // =============== CHANGE LANGUAGE ================
+  body.en :lang(vi) {
+    display: none;
+  }
+  body.vi :lang(en){
+    display: none;
+  }
+
   // =============== SUBNAV ================
   .sub-header {
       position: relative;
@@ -82,12 +90,14 @@ a:hover{
       font-size: 18px;
   }
 
-  #sub-nav-left li .subnav-dropdown-items {
+  #sub-nav-left li .subnav-dropdown-items,
+  #sub-nav-left li .subnav-lang-dropdown-items {
     padding: 0 10px 16px 14px;
     color:black !important;
   }
 
-  #sub-nav-left li .subnav-dropdown-items:hover {
+  #sub-nav-left li .subnav-dropdown-items:hover,
+  #sub-nav-left li .subnav-lang-dropdown-items:hover {
     color:$maincolor !important;
   }
   
@@ -106,8 +116,14 @@ a:hover{
     display: none;
   }
 
-  .sub-nav ul li:hover .subnav-dropdown{
+  .sub-nav ul li:hover .subnav-dropdown,
+  .sub-nav ul li:hover .subnav-lang-dropdown{
     display: block;
+  }
+
+  .subnav-lang-dropdown {
+    right:18%;
+    min-width: 150px;
   }
 
   // =================================================================
