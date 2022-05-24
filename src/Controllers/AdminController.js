@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const Brand = require('../models/Brand')
+const Shoetype = require('../models/Shoetype')
 const Product = require('../models/Product')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
@@ -149,6 +150,31 @@ class AdminController {
                         brandDeletedList: multipleMongooseToObject(brandDeletedList),
                         layout: 'adminLayout',
                         title: 'Brand Deleted Management'
+                    })
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.redirect('/login')
+        })
+    }
+
+    // [GET] /admin/shoetype-table
+    shoetypeTable(req,res,next){      
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([Shoetype.find(), Shoetype.findDeleted(), User.findOne({_id:decodeToken})])
+        .then(([shoetypeList, shoetypeDeleted, data]) => {
+            if (data) {
+                req.data = data
+                return res.render('admin/shoetype-table',
+                    {
+                        user: mongooseToObject(data),
+                        shoetypeList: multipleMongooseToObject(shoetypeList),
+                        shoetypeDeleted: multipleMongooseToObject(shoetypeDeleted),
+                        layout: 'adminLayout',
+                        title: 'Shoe Type',
+                        deletedTitle: 'Deleted Types'
                     })
             }
         })

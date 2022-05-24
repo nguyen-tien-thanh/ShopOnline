@@ -1,0 +1,232 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">{{title}} Tables</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">{{title}} Tables</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Shoe Type Database
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-shoetype"><i class="fa fa-plus"></i> Create new Type</button>
+                    <a href="#deleted-shoetype-table">
+                        <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Deleted Types</button>
+                    </a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Type Name</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each shoetypeList}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="{{this.image}}" alt="{{this.name}}"></td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" class="open-modal-edit-shoetype" data-toggle="modal" data-target="#edit-shoetype" data-id="{{this._id}}">
+                                            <button class="btn btn-dark">Edit</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#delete-shoetype" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Deleted Shoe Type Table --}}
+
+            {{!-- End deleted table --}}
+        </div>
+
+
+        {{!-- Start Deleted Shoe Type Table --}}
+        <div class="container-fluid px-4" id="deleted-shoetype-table">
+            <h1 class="mt-4">{{deletedTitle}} Tables</h1>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Database
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Type Name</th>
+                                    <th>Deleted date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each shoetypeDeleted}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="{{this.image}}" alt="{{this.name}}"></td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#restore-shoetype" data-id="{{this._id}}">
+                                            <button class="btn btn-info">Restore</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#force-delete-shoetype" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Permantly Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- End deleted table --}}
+    </main>
+</div>
+
+    {{!-- Forms hidden --}}
+    <form name="delete-shoetype-form" method="post"></form>
+    <form name="permantly-delete-shoetype-form" method="post"></form>
+    <form name="restore-shoetype-form" method="post"></form>
+
+    {{!-- Confirm delete code --}}
+    <div class="modal fade" id="delete-shoetype" tabindex="-1" role="dialog" aria-labelledby="delete-shoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-shoetypeLabel"><b>Delete Type</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to delete this type?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-delete-shoetype" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Create new shoetype modal --}}
+    <div class="modal fade" id="create-shoetype" tabindex="-1" role="dialog" aria-labelledby="createShoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createShoetypeLabel">Create new Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form action="/shoetype/store" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="shoetype-name" class="col-form-label">Type name:</label>
+                            <input type="text" class="form-control" id="shoetype-name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoetype-image" class="col-form-label">Example Image:</label>
+                            <input type="text" class="form-control" id="shoetype-image" name="image">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Edit shoetype modal --}}
+    <div class="modal fade" id="edit-shoetype" tabindex="-1" role="dialog" aria-labelledby="editShoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editShoetypeLabel">Edit this Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form id="edit-shoetype-form" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="edit-shoetype-name" class="col-form-label">Type name</label>
+                            <input type="text" class="form-control" id="edit-shoetype-name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-shoetype-image" class="col-form-label">Example Image</label>
+                            <input type="text" class="form-control" id="edit-shoetype-image" name="image" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info" id="btn-edit-shoetype">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Confirm permantly delete code --}}
+    <div class="modal fade" id="force-delete-shoetype" tabindex="-1" role="dialog" aria-labelledby="delete-shoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-shoetypeLabel"><b>Permantly Delete shoetype</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to <strong>Permantly</strong> delete this shoetype?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-force-delete-shoetype" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       {{!-- Confirm restore code --}}
+    <div class="modal fade" id="restore-shoetype" tabindex="-1" role="dialog" aria-labelledby="restore-shoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-restore">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restore-shoetypeLabel"><b>Restore shoetype</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to <strong>Restore</strong>  this shoetype?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-restore-shoetype" type="button" class="btn btn-danger">Restore</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

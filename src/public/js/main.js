@@ -222,7 +222,7 @@ function logout() {
           }
         }
 
-        //=================== /admin/brand-table ================================
+//=================== /admin/brand-table ================================
         //Delete brand
         var brandId;
         var deleteBrandForm = document.forms['delete-brand-form'];
@@ -261,7 +261,7 @@ function logout() {
         }
       });
         
-        //================== /admin/brand-deleted-table ==========================
+//================== /admin/brand-deleted-table ==========================
         //Restore brand
         var brandDeletedId;
         var restoreBrandForm = document.forms['restore-brand-form']
@@ -290,11 +290,77 @@ function logout() {
                 forceDeleteBrandForm.submit();
               }
             }
-  })
+  
 
-// ====================== CHANGE LANGUAGE =====================
-// $(function() {
-//   $('#toggle-event').change(function() {
-//     document.body.className = $(this).data($(this).prop("checked").toString());
-//   });   
-// });
+// ====================== CRUD /admin/shoetype-table =====================
+    //Delete shoetype
+    var shoetypeId;
+    var deleteShoetypeForm = document.forms['delete-shoetype-form'];
+
+    $('#delete-shoetype').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      shoetypeId = button.data('id')
+    })
+
+    //When delete shoetype btn clicked
+    var btnDeleteCategory = document.getElementById('btn-delete-shoetype')
+    if(btnDeleteCategory){
+      btnDeleteCategory.onclick = function(){
+        deleteShoetypeForm.action = '/shoetype/' + shoetypeId + '?_method=DELETE';
+        deleteShoetypeForm.submit();
+      }
+    }
+
+    // Get ID of shoetype to modal for editing
+    $(document).on("click", ".open-modal-edit-shoetype", function () {
+    var shoetypeId = $(this).data('id');
+    var shoetypeName = $('#' + shoetypeId + '-name').text();
+    var shoetypeImage = document.getElementById(shoetypeId + '-image').getAttribute('src')
+
+    $('#edit-shoetype-name').attr('value', shoetypeName);
+    document.getElementById('editShoetypeLabel').innerHTML = 'Edit shoetype <b> '+shoetypeName+'</b>';
+    document.getElementById('edit-shoetype-image').value = shoetypeImage;
+
+    var btnEditShoetype = document.getElementById('btn-edit-shoetype')
+    var editShoetypeForm = document.forms['edit-shoetype-form'];
+    btnEditShoetype.onclick = function(){
+        editShoetypeForm.action = '/shoetype/' + shoetypeId + '?_method=PUT';
+        editShoetypeForm.submit();
+    }
+  });
+    
+//================== /admin/shoetype-deleted-table ==========================
+    //Restore shoetype
+    var shoetypeDeletedId;
+    var restoreShoetypeForm = document.forms['restore-shoetype-form']
+    $('#restore-shoetype').on('show.bs.modal', function (shoetype) {
+      var button = $(shoetype.relatedTarget)
+      shoetypeDeletedId = button.data('id')
+      })
+      var btnRestoreShoetype = document.getElementById('btn-restore-shoetype')
+      if (btnRestoreShoetype){
+        btnRestoreShoetype.onclick = function(){
+          restoreShoetypeForm.action = '/shoetype/' + shoetypeDeletedId + '/restore?_method=PATCH';
+          restoreShoetypeForm.submit();
+        }
+      }
+      
+      //Permently delete shoetype
+      var forceDeleteShoetypeForm = document.forms['permantly-delete-shoetype-form']
+      $('#force-delete-shoetype').on('show.bs.modal', function (shoetype) {
+        var button = $(shoetype.relatedTarget)
+        shoetypeDeletedId = button.data('id')
+        })
+        var btnForceDeleteShoetype = document.getElementById('btn-force-delete-shoetype')
+        if (btnForceDeleteShoetype){
+          btnForceDeleteShoetype.onclick = function(){
+            forceDeleteShoetypeForm.action = '/shoetype/' + shoetypeDeletedId + '/force?_method=DELETE';
+            forceDeleteShoetypeForm.submit();
+          }
+        }
+
+
+
+
+
+})
