@@ -22,7 +22,7 @@ class SiteController {
             }).then(data => {
                 if (data) {
                     req.data = data
-                    console.log(data)
+                    // console.log(data)
                     return res.render('index',
                         {
                             user: mongooseToObject(data),
@@ -102,7 +102,7 @@ class SiteController {
                         address: req.body.address,
                         avatar: 'https://duytan.thinkingschool.vn/wp-content/uploads/2019/01/avatar.png'
                     })
-                    console.log(user)
+                    // console.log(user)
                     user.save(err, result =>{
                         if(err) {
                             console.log('err: ' + err)
@@ -138,7 +138,7 @@ class SiteController {
     validation(req,res,next) {
         let username = req.body.username
         let password = req.body.password
-        console.log(username + ' ' + password)
+        // console.log(username + ' ' + password)
 
         User.findOne({
             $or: [
@@ -263,7 +263,7 @@ class SiteController {
             }).then(data => {
                 if (data) {
                     req.data = data
-                    console.log(data)
+                    // console.log(data)
                     return res.render('partials/error',
                         {
                             user: mongooseToObject(data),

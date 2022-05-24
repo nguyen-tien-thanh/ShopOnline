@@ -14,7 +14,7 @@ function isLoggined(req, res, next) {
         .then(data => {
             if (data) {
                 req.data = data
-                console.log(data)
+                // console.log(data)
                 next()
             }
         })

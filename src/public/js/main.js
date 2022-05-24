@@ -244,6 +244,15 @@ function logout() {
         // Get ID of brand to modal for editing
         $(document).on("click", ".open-modal-edit-brand", function () {
         var brandId = $(this).data('id');
+        var brandName = $('#' + brandId + '-name').text();
+        var brandDesc = $('#' + brandId + '-desc').text();
+        var brandImage = document.getElementById(brandId + '-image').getAttribute('src')
+
+        $('#edit-brand-name').attr('value', brandName);
+        document.getElementById('edit-brand-desc').value = brandDesc;
+        document.getElementById('editBrandLabel').innerHTML = 'Edit brand <b> '+brandName+'</b>';
+        document.getElementById('edit-brand-image').value = brandImage;
+
         var btnEditBrand = document.getElementById('btn-edit-brand')
         var editBrandForm = document.forms['edit-brand-form'];
         btnEditBrand.onclick = function(){
