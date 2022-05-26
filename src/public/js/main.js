@@ -246,13 +246,13 @@ function logout() {
         var brandId = $(this).data('id');
         var brandName = $('#' + brandId + '-name').text();
         var brandDesc = $('#' + brandId + '-desc').text();
-        var brandImage = document.getElementById(brandId + '-image').getAttribute('src')
+        // var brandImage = document.getElementById(brandId + '-image').getAttribute('alt')
 
         $('#edit-brand-name').attr('value', brandName);
         document.getElementById('edit-brand-desc').value = brandDesc;
         document.getElementById('editBrandLabel').innerHTML = 'Edit brand <b> '+brandName+'</b>';
-        document.getElementById('edit-brand-image').value = brandImage;
-
+        // document.getElementById('edit-brand-image').value = brandImage;
+          
         var btnEditBrand = document.getElementById('btn-edit-brand')
         var editBrandForm = document.forms['edit-brand-form'];
         btnEditBrand.onclick = function(){
@@ -315,11 +315,11 @@ function logout() {
     $(document).on("click", ".open-modal-edit-shoetype", function () {
     var shoetypeId = $(this).data('id');
     var shoetypeName = $('#' + shoetypeId + '-name').text();
-    var shoetypeImage = document.getElementById(shoetypeId + '-image').getAttribute('src')
+    // var shoetypeImage = document.getElementById(shoetypeId + '-image').getAttribute('src')
 
     $('#edit-shoetype-name').attr('value', shoetypeName);
     document.getElementById('editShoetypeLabel').innerHTML = 'Edit shoetype <b> '+shoetypeName+'</b>';
-    document.getElementById('edit-shoetype-image').value = shoetypeImage;
+    // document.getElementById('edit-shoetype-image').value = shoetypeImage;
 
     var btnEditShoetype = document.getElementById('btn-edit-shoetype')
     var editShoetypeForm = document.forms['edit-shoetype-form'];

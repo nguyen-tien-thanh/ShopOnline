@@ -5,13 +5,16 @@ const adminRouter = require('./admin');
 const brandRouter = require('./brand');
 const shoetypeRouter = require('./shoetype');
 
+const {upload} = require('../ulti/storage');
+//File uploads 
+const multer=require('multer');
 
 function route(app){
 
 
-    app.use('/shoetype', shoetypeRouter);
+    app.use('/shoetype', upload.single('image'), shoetypeRouter);
 
-    app.use('/brand', brandRouter);
+    app.use('/brand', upload.single('image'), brandRouter);
 
     app.use('/admin', adminRouter);
 

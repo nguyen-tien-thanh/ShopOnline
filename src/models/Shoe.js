@@ -5,14 +5,21 @@ const mongooseDelete = require('mongoose-delete');
 
 const Schema = mongoose.Schema;
 
-const Product = new Schema({
+const Shoe = new Schema({
+    brand: {type: mongoose.Schema.Types.ObjectId, ref:'Brand'},
+    type: {type: mongoose.Schema.Types.ObjectId, ref: 'Shoetype'},
+
     name: {type: String, minLength: 1, maxLength: 255},
-    description: {type: String, maxLength: 600},
-    category: {type: String, maxLength: 600},
-    buff: {type: Number, minLength:1, maxLength: 4, default:0},
-    stock: {type: Number, minLength:1, default:0},
+    desc: {type: String, maxLength: 600},
     price: {type: Number, minLength:1, default: 0},
+    // size: {type: Number, minLength:1, maxlength:2, default: 2},
+    size: [{
+        number: {type: Number, minLength:1, maxLength:2 },
+        stock: {type: Number}
+    }],
     image: {type : String, minLength : 1},
+    rate: {type: Number, minLength:1, default:0},
+    quantity: {type: Number, minLength:1, default:0},
     available: {type: Boolean, default: true},
     bestseller: {type: Boolean, default: false},
     slug: {type : String, slug : 'name', unique: true},
@@ -24,10 +31,10 @@ const Product = new Schema({
 });
 
 //Add plugin
-Product.plugin(mongooseDelete, {
+Shoe.plugin(mongooseDelete, {
     overrideMethods: 'all',
     deletedAt: true
 });
 mongoose.plugin(slug);
 
-module.exports = mongoose.model('Product', Product);
+module.exports = mongoose.model('Shoe', Shoe);

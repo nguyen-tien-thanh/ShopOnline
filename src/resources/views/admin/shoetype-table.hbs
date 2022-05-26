@@ -137,15 +137,15 @@
                     <span aria-hidden="true" class="payment-close">&times;</span>
                     </button>
                 </div>
-                <form action="/shoetype/store" method="POST">
+                <form action="/shoetype/store" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="shoetype-name" class="col-form-label">Type name:</label>
                             <input type="text" class="form-control" id="shoetype-name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="shoetype-image" class="col-form-label">Example Image:</label>
-                            <input type="text" class="form-control" id="shoetype-image" name="image">
+                            <input type="file" class="form-control" id="" name="image"
+                                accept="image/*">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -173,10 +173,10 @@
                             <label for="edit-shoetype-name" class="col-form-label">Type name</label>
                             <input type="text" class="form-control" id="edit-shoetype-name" name="name">
                         </div>
-                        <div class="form-group">
+                        {{!-- <div class="form-group">
                             <label for="edit-shoetype-image" class="col-form-label">Example Image</label>
                             <input type="text" class="form-control" id="edit-shoetype-image" name="image" required>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>

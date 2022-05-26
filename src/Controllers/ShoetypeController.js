@@ -38,7 +38,12 @@ class ShoetypeController {
 
     //[POST] /store shoetype
     store(req,res,next) {
-        const shoetype = new Shoetype(req.body);
+        const shoetype = new Shoetype({
+            name: req.body.name,
+            desc: req.body.desc,
+            image: req.file.filename
+        });
+        // const shoetype = new Shoetype(req.body);
         shoetype.save()
             .then(() => res.redirect('/admin/shoetype-table'))
             .catch(error => {

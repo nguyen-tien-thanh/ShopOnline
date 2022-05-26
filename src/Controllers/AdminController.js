@@ -117,13 +117,18 @@ class AdminController {
     brandTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([Brand.find(), User.findOne({_id:decodeToken})])
-        .then(([brandList, data]) => {
+        Promise.all([Brand.find({}).sort({'createdAt': -1}), 
+            Brand.findDeleted({}).sort({'createdAt': -1}),
+            User.findOne({_id:decodeToken})])
+        .then(([brandList, 
+            brandDeletedList,
+            data]) => {
             if (data) {
                 req.data = data
                 return res.render('admin/brand-table',
                     {
                         user: mongooseToObject(data),
+                        brandDeletedList: multipleMongooseToObject(brandDeletedList),
                         brandList: multipleMongooseToObject(brandList),
                         layout: 'adminLayout',
                         title: 'Brand Management'
@@ -136,28 +141,6 @@ class AdminController {
         })
     }
 
-    // [GET] /admin/brand-deleted-table
-    brandDeletedTable(req,res,next){      
-        var token = req.cookies.token;
-        var decodeToken = jwt.verify(token, secret)
-        Promise.all([Brand.findDeleted({}), User.findOne({_id:decodeToken})])
-        .then(([brandDeletedList, data]) => {
-            if (data) {
-                req.data = data
-                return res.render('admin/brand-deleted-table',
-                    {
-                        user: mongooseToObject(data),
-                        brandDeletedList: multipleMongooseToObject(brandDeletedList),
-                        layout: 'adminLayout',
-                        title: 'Brand Deleted Management'
-                    })
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.redirect('/login')
-        })
-    }
 
     // [GET] /admin/shoetype-table
     shoetypeTable(req,res,next){      
