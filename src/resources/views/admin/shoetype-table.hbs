@@ -30,7 +30,7 @@
                             <tbody>
                                 {{#each shoetypeList}}
                                 <tr>
-                                    <td><img class="img-user-table" id="{{this._id}}-image" src="{{this.image}}" alt="{{this.name}}"></td>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
                                     <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td id="{{this._id}}-createdAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
@@ -78,7 +78,7 @@
                             <tbody>
                                 {{#each shoetypeDeleted}}
                                 <tr>
-                                    <td><img class="img-user-table" id="{{this._id}}-image" src="{{this.image}}" alt="{{this.name}}"></td>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
                                     <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td>

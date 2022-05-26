@@ -8,6 +8,9 @@ router.use(cookieParser())
 
 const adminController = require('../Controllers/AdminController');
 
+// [GET] /admin/shoe-table - ./admin/shoe-table
+router.use('/shoe-table', isLoggined, isAdmin, adminController.shoeTable)
+
 // [GET] /admin/shoetype-table - ./admin/shoetype-table
 router.use('/shoetype-table', isLoggined, isAdmin, adminController.shoetypeTable)
 

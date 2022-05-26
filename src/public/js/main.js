@@ -359,8 +359,98 @@ function logout() {
           }
         }
 
+// ====================== CRUD /admin/shoe-table =====================
+    //Delete shoe
+    var shoeId;
+    var deleteShoeForm = document.forms['delete-shoe-form'];
 
+    $('#delete-shoe').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      shoeId = button.data('id')
+    })
 
+    //When delete shoe btn clicked
+    var btnDeleteCategory = document.getElementById('btn-delete-shoe')
+    if(btnDeleteCategory){
+      btnDeleteCategory.onclick = function(){
+        deleteShoeForm.action = '/shoe/' + shoeId + '?_method=DELETE';
+        deleteShoeForm.submit();
+      }
+    }
+
+    // Get ID of shoe to modal for editing
+    $(document).on("click", ".open-modal-edit-shoe", function () {
+    var shoeId = $(this).data('id');
+    var shoeName = $('#' + shoeId + '-name').text();
+    // var shoeImage = document.getElementById(shoeId + '-image').getAttribute('src')
+
+    $('#edit-shoe-name').attr('value', shoeName);
+    document.getElementById('editShoeLabel').innerHTML = 'Edit shoe <b> '+shoeName+'</b>';
+    // document.getElementById('edit-shoe-image').value = shoeImage;
+
+    var btnEditShoe = document.getElementById('btn-edit-shoe')
+    var editShoeForm = document.forms['edit-shoe-form'];
+    btnEditShoe.onclick = function(){
+        editShoeForm.action = '/shoe/' + shoeId + '?_method=PUT';
+        editShoeForm.submit();
+    }
+  });
+    
+//================== /admin/shoe-deleted-table ==========================
+    //Restore shoe
+    var shoeDeletedId;
+    var restoreShoeForm = document.forms['restore-shoe-form']
+
+    $('#restore-shoe').on('show.bs.modal', function (shoe) {
+      var button = $(shoe.relatedTarget)
+      shoeDeletedId = button.data('id')
+    })
+    var btnRestoreShoe = document.getElementById('btn-restore-shoe')
+    if (btnRestoreShoe){
+      btnRestoreShoe.onclick = function(){
+        restoreShoeForm.action = '/shoe/' + shoeDeletedId + '/restore?_method=PATCH';
+        restoreShoeForm.submit();
+      }
+    }
+      
+    //Permently delete shoe
+    var forceDeleteShoeForm = document.forms['permantly-delete-shoe-form']
+    $('#force-delete-shoe').on('show.bs.modal', function (shoe) {
+      var button = $(shoe.relatedTarget)
+      shoeDeletedId = button.data('id')
+    })
+    var btnForceDeleteShoe = document.getElementById('btn-force-delete-shoe')
+    if (btnForceDeleteShoe){
+      btnForceDeleteShoe.onclick = function(){
+        forceDeleteShoeForm.action = '/shoe/' + shoeDeletedId + '/force?_method=DELETE';
+        forceDeleteShoeForm.submit();
+      }
+    }
+    
+
+    ////================== Add a row for input size and stock for shoe ==================
+    // $(function()
+    // {
+    //     $(document).on('click', '.btn-add', function(e)
+    //     {
+    //       e.preventDefault();
+  
+    //       var controlForm = $('.controls:first'),
+    //           currentEntry = $(this).parents('.entry:first'),
+    //           newEntry = $(currentEntry.clone()).appendTo(controlForm);
+    //       newEntry.find('input').val('');
+    //       controlForm.find('.entry:not(:last) .btn-add')
+    //           .removeClass('btn-add').addClass('btn-remove')
+    //           .removeClass('btn-success').addClass('btn-danger')
+    //           .html('<span class="fa fa-minus"></span>');
+    //     }).on('click', '.btn-remove', function(e)
+    //     {
+    //     $(this).parents('.entry:first').remove();
+    
+    //     e.preventDefault();
+    //     return false;
+    //   });
+    // });
 
 
 })

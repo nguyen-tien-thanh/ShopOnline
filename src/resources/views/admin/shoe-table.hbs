@@ -1,0 +1,321 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">{{title}} Tables</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">{{title}} Tables</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Shoe Shoe Database
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-shoe"><i class="fa fa-plus"></i> Create new Shoe</button>
+                    <a href="#deleted-shoe-table">
+                        <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Deleted Shoes</button>
+                    </a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Brand</th>
+                                    <th>Type</th>
+                                    <th>Shoe Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>Available</th>
+                                    <th>Bestseller</th>
+                                    <th>Sale</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each shoeList}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
+                                    <td>{{this.brand}}</td>
+                                    <td>{{this.type}}</td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td>{{this.desc}}</td>
+                                    <td>{{this.price}}</td>
+                                    <td>{{this.size}}</td>
+                                    <td>{{this.quantity}}</td>
+                                    <td>{{this.available}}</td>
+                                    <td>{{this.bestseller}}</td>
+                                    <td>{{this.sale}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" class="open-modal-edit-shoe" data-toggle="modal" data-target="#edit-shoe" data-id="{{this._id}}">
+                                            <button class="btn btn-dark">Edit</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#delete-shoe" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Deleted Shoe Shoe Table --}}
+
+            {{!-- End deleted table --}}
+        </div>
+
+
+        {{!-- Start Deleted Shoe Shoe Table --}}
+        <div class="container-fluid px-4" id="deleted-shoe-table">
+            <h1 class="mt-4">{{deletedTitle}} Tables</h1>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Database
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Brand</th>
+                                    <th>Type</th>
+                                    <th>Shoe Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>Available</th>
+                                    <th>Bestseller</th>
+                                    <th>Sale</th>
+                                    <th>Deleted at</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each shoeDeleted}}
+                                <tr>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
+                                    <td>{{this.brand}}</td>
+                                    <td>{{this.type}}</td>
+                                    <td id="{{this._id}}-name">{{this.name}}</td>
+                                    <td>{{this.desc}}</td>
+                                    <td>{{this.price}}</td>
+                                    <td>{{this.size}}</td>
+                                    <td>{{this.quantity}}</td>
+                                    <td>{{this.available}}</td>
+                                    <td>{{this.bestseller}}</td>
+                                    <td>{{this.sale}}</td>
+                                    <td></td>
+                                    <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#restore-shoe" data-id="{{this._id}}">
+                                            <button class="btn btn-info">Restore</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#force-delete-shoe" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Permantly Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- End deleted table --}}
+    </main>
+</div>
+
+    {{!-- Forms hidden --}}
+    <form name="delete-shoe-form" method="post"></form>
+    <form name="permantly-delete-shoe-form" method="post"></form>
+    <form name="restore-shoe-form" method="post"></form>
+
+    {{!-- Confirm delete code --}}
+    <div class="modal fade" id="delete-shoe" tabindex="-1" role="dialog" aria-labelledby="delete-shoeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-shoeLabel"><b>Delete Shoe</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to delete this type?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-delete-shoe" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Create new shoe modal --}}
+    <div class="modal fade" id="create-shoe" tabindex="-1" role="dialog" aria-labelledby="createShoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createShoetypeLabel">Create new Shoe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form action="/shoe/store" method="POST" enctype="multipart/form-data" id="create-shoe-form">
+                    <div class="modal-body">
+                        {{!-- <div class="form-group">
+                            <label for="shoe-brand" class="col-form-label">Brand:</label>
+                            <input type="text" class="form-control" id="shoe-brand" name="brand">
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="shoe-brand" class="col-form-label">Brand:</label>
+                            <select name="brand" id="brand-select" class="form-control">
+                                {{#each brandList}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-type" class="col-form-label">Type:</label>
+                            {{!-- <input type="text" class="form-control" id="shoe-type" name="type"> --}}
+                            <select name="type" id="type-select" class="form-control">
+                                {{#each shoetypeList}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="shoe-name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-desc" class="col-form-label">Description:</label>
+                            <input type="text" class="form-control" id="shoe-desc" name="desc">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="shoe-price" name="price">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-quantity" class="col-form-label">Total Quantity:</label>
+                            <input type="number" class="form-control" id="shoe-quantity" name="quantity">
+                        </div>
+                        {{!-- <div class="form-group">
+                            <label for="shoe-size" class="col-form-label">Size:</label>
+                            <input type="text" class="form-control" id="shoe-size" name="size">
+                        </div> --}}
+                        <div class="form-group">
+                            <div class="controls"> 
+                                <div class="entry input-group col-xs-3">
+                                    <input class="form-control" name="size[0][number]" type="text" placeholder="Type size number" />
+                                    <input class="form-control" name="size[0][stock]" type="text" placeholder="Type stock of this size" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success btn-add" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            <small>Press <i class="fa fa-plus gs"></i></span> to add another size</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="" name="image"
+                                accept="image/*">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Edit shoe modal --}}
+    <div class="modal fade" id="edit-shoe" tabindex="-1" role="dialog" aria-labelledby="editShoetypeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editShoetypeLabel">Edit this Shoe</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="payment-close">&times;</span>
+                    </button>
+                </div>
+                <form id="edit-shoe-form" method="POST">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="edit-shoe-name" class="col-form-label">Shoe name</label>
+                            <input type="text" class="form-control" id="edit-shoe-name" name="name">
+                        </div>
+                        {{!-- <div class="form-group">
+                            <label for="edit-shoe-image" class="col-form-label">Example Image</label>
+                            <input type="text" class="form-control" id="edit-shoe-image" name="image" required>
+                        </div> --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info" id="btn-edit-shoe">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Confirm permantly delete code --}}
+    <div class="modal fade" id="force-delete-shoe" tabindex="-1" role="dialog" aria-labelledby="delete-shoeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-shoeLabel"><b>Permantly Delete shoe</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to <strong>Permantly</strong> delete this shoe?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-force-delete-shoe" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       {{!-- Confirm restore code --}}
+    <div class="modal fade" id="restore-shoe" tabindex="-1" role="dialog" aria-labelledby="restore-shoeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-restore">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restore-shoeLabel"><b>Restore shoe</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to <strong>Restore</strong>  this shoe?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-restore-shoe" type="button" class="btn btn-danger">Restore</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    

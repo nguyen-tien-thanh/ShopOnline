@@ -22,6 +22,7 @@ const Shoe = new Schema({
     quantity: {type: Number, minLength:1, default:0},
     available: {type: Boolean, default: true},
     bestseller: {type: Boolean, default: false},
+    sale: {type: Number, default: 0},
     slug: {type : String, slug : 'name', unique: true},
     deletedAt: {},
     // createdAt: {type: Date, default : Date.Now},
