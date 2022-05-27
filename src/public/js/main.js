@@ -2,12 +2,13 @@
 
  $(document).ready(function($) {
 
+  // ====================== Add input field in /admin/shoe-table ============================
   var i = 1;
-  $(".addSizeBtn").click(function() {
-    $("#sizeFields").append('<div valign="top" class="input-group col-xs-3"><input type="text" class="form-control" id="paramSizeNumber' + i + '" name="size[' + i + '][number]" placeholder="Size number" /><input type="text" class="form-control" id="paramSizeStock' + i + '" name="size[' + i + '][stock]" value="" placeholder="Stock" /><a href="javascript:void(0);" class="removeSizeBtn btn btn-danger"><i class="fa fa-minus"></i></a></div>');
+  $(".add-size-btn").click(function() {
+    $("#size-fields").append('<div valign="top" class="input-group col-xs-3"><input type="number" class="form-control" id="param-size-number' + i + '" name="size[' + i + '][number]" placeholder="Size number" /><input type="number" class="form-control input-stock-size" id="param-size-stock' + i + '" name="size[' + i + '][stock]" value="" placeholder="Stock" onkeyup="getTotalStockOfSize()"/><a href="javascript:void(0);" class="removeSizeBtn btn btn-danger"><i class="fa fa-minus"></i></a></div>');
     i++;
   });
-  $("#sizeFields").on('click', '.removeSizeBtn', function() {
+  $("#size-fields").on('click', '.removeSizeBtn', function() {
     $(this).parent().remove();
   });
 
@@ -185,6 +186,17 @@ function logout() {
   })
 }
 
+
+// Show the total quantity from stocks /admin/shoe-table
+function getTotalStockOfSize(){
+  var arr = document.getElementsByClassName('input-stock-size');
+    var total=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            total += parseInt(arr[i].value);
+    }
+    $('#size-input').html('<label for="shoe-quantity" class="col-form-label">Total Quantity Of Shoe: <b id="total">'+total+'</b></label><input hidden name="quantity" value="'+total+'">')
+}
 
 //=================== /admin/product-table ================================
 //WHEN HTML DOM is loaded, Delete product confirm shows
@@ -438,7 +450,6 @@ function logout() {
     }
     
 
-    
 
 
 })

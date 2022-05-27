@@ -176,10 +176,6 @@
                 </div>
                 <form action="/shoe/store" method="POST" enctype="multipart/form-data" id="create-shoe-form">
                     <div class="modal-body">
-                        {{!-- <div class="form-group">
-                            <label for="shoe-brand" class="col-form-label">Brand:</label>
-                            <input type="text" class="form-control" id="shoe-brand" name="brand">
-                        </div> --}}
                         <div class="form-group">
                             <label for="shoe-brand" class="col-form-label">Brand:</label>
                             <select name="brand" id="brand-select" class="form-control">
@@ -190,7 +186,6 @@
                         </div>
                         <div class="form-group">
                             <label for="shoe-type" class="col-form-label">Type:</label>
-                            {{!-- <input type="text" class="form-control" id="shoe-type" name="type"> --}}
                             <select name="type" id="type-select" class="form-control">
                                 {{#each shoetypeList}}
                                     <option value="{{this._id}}">{{this.name}}</option>
@@ -207,26 +202,33 @@
                         </div>
                         <div class="form-group">
                             <label for="shoe-price" class="col-form-label">Price:</label>
-                            <input type="number" class="form-control" id="shoe-price" name="price">
+                            <input type="text" class="form-control" id="shoe-price" name="price" 
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
                         </div>
                         <div class="form-group">
-                            <label for="shoe-quantity" class="col-form-label">Total Quantity:</label>
-                            <input type="number" class="form-control" id="shoe-quantity" name="quantity">
-                        </div>
-                        <div class="form-group">
-                            <div id="sizeFields" class="p-1">
-                                <div><label for="paramSizeNumber">Size</label></div>
+                            <div id="size-fields" class="p-1">
+                                <div><label for="param-size-number">Size</label></div>
                                 <div valign="top" class="input-group col-xs-3">
-                                        <input type="text" class="form-control" id="paramSizeNumber" name="size[0][number]" placeholder="Size number" /> &nbsp;
-                                        <input type="text" class="form-control" id="paramSizeStock" name="size[0][stock]" value="" placeholder="Stock" /> &nbsp;
-                                    <a href="javascript:void(0);" class="addSizeBtn btn btn-success"><i class="fa fa-plus"></i></a>
+                                        <input type="text" class="form-control" id="param-size-number" name="size[0][number]" placeholder="Size number" 
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"/>
+
+                                        <input type="text" class="form-control input-stock-size" id="param-size-stock" 
+                                        name="size[0][stock]" placeholder="Stock" 
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+                                        onkeyup="getTotalStockOfSize()"/>
+                                    
+                                    <a href="javascript:void(0);" class="add-size-btn btn btn-success" ><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="form-group" id="size-input">
+                            {{!-- <label for="shoe-quantity" class="col-form-label" hidden>Total Quantity Of Shoe: <b id="total"></b></label> --}}
+                            {{!-- <input type="number" class="form-control" id="shoe-quantity" name="quantity"> --}}
+                        </div>
                         <div class="form-group">
-                            <input type="file" class="form-control" id="" name="image"
-                                accept="image/*">
+                            <input type="file" class="form-control p-1" name="image"
+                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                            <img id="preview-image" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
                         </div>
                     </div>
                     <div class="modal-footer">
