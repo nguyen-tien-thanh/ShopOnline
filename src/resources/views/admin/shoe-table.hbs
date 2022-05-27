@@ -213,22 +213,14 @@
                             <label for="shoe-quantity" class="col-form-label">Total Quantity:</label>
                             <input type="number" class="form-control" id="shoe-quantity" name="quantity">
                         </div>
-                        {{!-- <div class="form-group">
-                            <label for="shoe-size" class="col-form-label">Size:</label>
-                            <input type="text" class="form-control" id="shoe-size" name="size">
-                        </div> --}}
                         <div class="form-group">
-                            <div class="controls"> 
-                                <div class="entry input-group col-xs-3">
-                                    <input class="form-control" name="size[0][number]" type="text" placeholder="Type size number" />
-                                    <input class="form-control" name="size[0][stock]" type="text" placeholder="Type stock of this size" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success btn-add" type="button">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </span>
+                            <div id="sizeFields" class="p-1">
+                                <div><label for="paramSizeNumber">Size</label></div>
+                                <div valign="top" class="input-group col-xs-3">
+                                        <input type="text" class="form-control" id="paramSizeNumber" name="size[0][number]" placeholder="Size number" /> &nbsp;
+                                        <input type="text" class="form-control" id="paramSizeStock" name="size[0][stock]" value="" placeholder="Stock" /> &nbsp;
+                                    <a href="javascript:void(0);" class="addSizeBtn btn btn-success"><i class="fa fa-plus"></i></a>
                                 </div>
-                            <small>Press <i class="fa fa-plus gs"></i></span> to add another size</small>
                             </div>
                         </div>
                         

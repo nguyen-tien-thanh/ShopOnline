@@ -1,8 +1,18 @@
 
 
-//=================== ARROW IN INDEX =============================
-  $(document).ready(function($) {
-    
+ $(document).ready(function($) {
+
+  var i = 1;
+  $(".addSizeBtn").click(function() {
+    $("#sizeFields").append('<div valign="top" class="input-group col-xs-3"><input type="text" class="form-control" id="paramSizeNumber' + i + '" name="size[' + i + '][number]" placeholder="Size number" /><input type="text" class="form-control" id="paramSizeStock' + i + '" name="size[' + i + '][stock]" value="" placeholder="Stock" /><a href="javascript:void(0);" class="removeSizeBtn btn btn-danger"><i class="fa fa-minus"></i></a></div>');
+    i++;
+  });
+  $("#sizeFields").on('click', '.removeSizeBtn', function() {
+    $(this).parent().remove();
+  });
+
+  //=================== ARROW IN INDEX =============================
+ 
     $('.login-section').hide();
     $('#move-to-login-section').click(function(){
         $('.register-sidenav').animate({
@@ -428,29 +438,7 @@ function logout() {
     }
     
 
-    ////================== Add a row for input size and stock for shoe ==================
-    // $(function()
-    // {
-    //     $(document).on('click', '.btn-add', function(e)
-    //     {
-    //       e.preventDefault();
-  
-    //       var controlForm = $('.controls:first'),
-    //           currentEntry = $(this).parents('.entry:first'),
-    //           newEntry = $(currentEntry.clone()).appendTo(controlForm);
-    //       newEntry.find('input').val('');
-    //       controlForm.find('.entry:not(:last) .btn-add')
-    //           .removeClass('btn-add').addClass('btn-remove')
-    //           .removeClass('btn-success').addClass('btn-danger')
-    //           .html('<span class="fa fa-minus"></span>');
-    //     }).on('click', '.btn-remove', function(e)
-    //     {
-    //     $(this).parents('.entry:first').remove();
     
-    //     e.preventDefault();
-    //     return false;
-    //   });
-    // });
 
 
 })
