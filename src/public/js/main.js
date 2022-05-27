@@ -195,7 +195,7 @@ function getTotalStockOfSize(){
         if(parseInt(arr[i].value))
             total += parseInt(arr[i].value);
     }
-    $('#size-input').html('<label for="shoe-quantity" class="col-form-label">Total Quantity Of Shoe: <b id="total">'+total+'</b></label><input hidden name="quantity" value="'+total+'">')
+    $('#size-input').html('<label for="shoe-quantity" class="col-form-label">Total Quantity Of Shoe: <b id="total">'+total+'</b></label><input hidden id="edit-shoe-quantity" name="quantity" value="'+total+'">')
 }
 
 //=================== /admin/product-table ================================
@@ -403,11 +403,25 @@ function getTotalStockOfSize(){
     // Get ID of shoe to modal for editing
     $(document).on("click", ".open-modal-edit-shoe", function () {
     var shoeId = $(this).data('id');
-    var shoeName = $('#' + shoeId + '-name').text();
+    var shoeBrandName = $('#' + shoeId + '-brand-name').text(),
+        shoeTypeName = $('#' + shoeId + '-type-name').text(),
+        shoeName = $('#' + shoeId + '-name').text(),
+        shoeDesc = $('#' + shoeId + '-desc').text(),
+        shoePrice = $('#' + shoeId + '-price').text(),
+        shoeQuantity = $('#' + shoeId + '-quantity').text(),
+        shoeAvailable = $('#' + shoeId + '-available').text(),
+        shoeBestseller = $('#' + shoeId + '-bestseller').text(),
+        shoeSale = $('#' + shoeId + '-sale').text();
     // var shoeImage = document.getElementById(shoeId + '-image').getAttribute('src')
-
-    $('#edit-shoe-name').attr('value', shoeName);
+      console.log("shoeName")
     document.getElementById('editShoeLabel').innerHTML = 'Edit shoe <b> '+shoeName+'</b>';
+    $('#edit-shoe-desc').attr('value', shoeDesc);
+    $('#shoe-name').attr('value', shoeName);
+    $('#edit-shoe-price').attr('value', shoePrice);
+    // document.getElementById('edit-shoe-quantity').value = shoeQuantity;
+    // document.getElementById('edit-shoe-image').value = shoeImage;
+    // document.getElementById('edit-shoe-image').value = shoeImage;
+    // document.getElementById('edit-shoe-image').value = shoeImage;
     // document.getElementById('edit-shoe-image').value = shoeImage;
 
     var btnEditShoe = document.getElementById('btn-edit-shoe')

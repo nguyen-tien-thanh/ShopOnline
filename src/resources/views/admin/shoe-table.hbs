@@ -40,18 +40,22 @@
                                 {{#each shoeList}}
                                 <tr>
                                     <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
-                                    <td>{{this.brand}}</td>
-                                    <td>{{this.type}}</td>
+                                    <td id="{{this._id}}-brand-name">{{this.brand.name}}</td>
+                                    <td id="{{this._id}}-type-name">{{this.type.name}}</td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
-                                    <td>{{this.desc}}</td>
-                                    <td>{{this.price}}</td>
-                                    <td>{{this.size}}</td>
-                                    <td>{{this.quantity}}</td>
-                                    <td>{{this.available}}</td>
-                                    <td>{{this.bestseller}}</td>
-                                    <td>{{this.sale}}</td>
+                                    <td id="{{this._id}}-desc">{{this.desc}}</td>
+                                    <td id="{{this._id}}-price">{{this.price}}</td>
+                                    <td>
+                                        {{#size}}
+                                            <span class="btn-dark mt-1">{{this.number}}</span>
+                                        {{/size}}
+                                    </td>
+                                    <td id="{{this._id}}-quantity">{{this.quantity}}</td>
+                                    <td id="{{this._id}}-available">{{this.available}}</td>
+                                    <td id="{{this._id}}-bestseller">{{this.bestseller}}</td>
+                                    <td id="{{this._id}}-sale">{{this.sale}}</td>
                                     <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
-                                    <td id="{{this._id}}-createdAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
+                                    <td id="{{this._id}}-updatedAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td>
                                         <a href="" class="open-modal-edit-shoe" data-toggle="modal" data-target="#edit-shoe" data-id="{{this._id}}">
                                             <button class="btn btn-dark">Edit</button>
@@ -91,13 +95,13 @@
                                     <th>Brand</th>
                                     <th>Type</th>
                                     <th>Shoe Name</th>
-                                    <th>Description</th>
+                                    {{!-- <th>Description</th>
                                     <th>Price</th>
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>Available</th>
                                     <th>Bestseller</th>
-                                    <th>Sale</th>
+                                    <th>Sale</th> --}}
                                     <th>Deleted at</th>
                                     <th>Action</th>
                                 </tr>
@@ -106,17 +110,20 @@
                                 {{#each shoeDeleted}}
                                 <tr>
                                     <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
-                                    <td>{{this.brand}}</td>
-                                    <td>{{this.type}}</td>
+                                    <td>{{this.brand.name}}</td>
+                                    <td>{{this.type.name}}</td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
-                                    <td>{{this.desc}}</td>
+                                    {{!-- <td>{{this.desc}}</td>
                                     <td>{{this.price}}</td>
-                                    <td>{{this.size}}</td>
+                                    <td>
+                                        {{#size}}
+                                            <span class="btn-dark mt-1">{{this.number}}</span>
+                                        {{/size}}
+                                    </td>
                                     <td>{{this.quantity}}</td>
                                     <td>{{this.available}}</td>
                                     <td>{{this.bestseller}}</td>
-                                    <td>{{this.sale}}</td>
-                                    <td></td>
+                                    <td>{{this.sale}}</td> --}}
                                     <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td>
                                         <a href="" data-toggle="modal" data-target="#restore-shoe" data-id="{{this._id}}">
@@ -125,6 +132,13 @@
                                         <a href="" data-toggle="modal" data-target="#force-delete-shoe" data-id="{{this._id}}">
                                             <button class="btn btn-danger">Permantly Delete</button>
                                         </a>
+                                    </td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="13" class="text-center">
+                                        No shoes have been deleted.
+                                        <a href="#layoutSidenav_content">Available shoes</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -245,21 +259,69 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editShoetypeLabel">Edit this Shoe</h5>
+                    <h5 class="modal-title" id="editShoeLabel">Edit this Shoe</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="payment-close">&times;</span>
                     </button>
                 </div>
                 <form id="edit-shoe-form" method="POST">
                     <div class="modal-body">
+                        <div class="modal-body">
                         <div class="form-group">
-                            <label for="edit-shoe-name" class="col-form-label">Shoe name</label>
-                            <input type="text" class="form-control" id="edit-shoe-name" name="name">
+                            <label for="shoe-brand" class="col-form-label">Brand:</label>
+                            <select name="brand" id="brand-select" class="form-control">
+                                {{#each brandList}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
                         </div>
-                        {{!-- <div class="form-group">
-                            <label for="edit-shoe-image" class="col-form-label">Example Image</label>
-                            <input type="text" class="form-control" id="edit-shoe-image" name="image" required>
-                        </div> --}}
+                        <div class="form-group">
+                            <label for="shoe-type" class="col-form-label">Type:</label>
+                            <select name="type" id="type-select" class="form-control">
+                                {{#each shoetypeList}}
+                                    <option value="{{this._id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="shoe-name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-desc" class="col-form-label">Description:</label>
+                            <input type="text" class="form-control" id="shoe-desc" name="desc">
+                        </div>
+                        <div class="form-group">
+                            <label for="shoe-price" class="col-form-label">Price:</label>
+                            <input type="text" class="form-control" id="shoe-price" name="price" 
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                        </div>
+                        <div class="form-group">
+                            <div id="size-fields" class="p-1">
+                                <div><label for="param-size-number">Size</label></div>
+                                <div valign="top" class="input-group col-xs-3">
+                                        <input type="text" class="form-control" id="param-size-number" name="size[0][number]" placeholder="Size number" 
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"/>
+
+                                        <input type="text" class="form-control input-stock-size" id="param-size-stock" 
+                                        name="size[0][stock]" placeholder="Stock" 
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');"
+                                        onkeyup="getTotalStockOfSize()"/>
+                                    
+                                    <a href="javascript:void(0);" class="add-size-btn btn btn-success" ><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="size-input">
+                            {{!-- <label for="shoe-quantity" class="col-form-label" hidden>Total Quantity Of Shoe: <b id="total"></b></label> --}}
+                            {{!-- <input type="number" class="form-control" id="shoe-quantity" name="quantity"> --}}
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control p-1" name="image"
+                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                            <img id="preview-image" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
+                        </div>
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>

@@ -174,8 +174,8 @@ class AdminController {
         var decodeToken = jwt.verify(token, secret)
         Promise.all([
             User.findOne({_id:decodeToken}),
-            Shoe.find(), 
-            Shoe.findDeleted(), 
+            Shoe.find().populate('brand').populate('type'), 
+            Shoe.findDeleted().populate('brand').populate('type'), 
             Brand.find({}),
             Shoetype.find({})
         ])
