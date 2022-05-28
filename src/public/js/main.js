@@ -403,7 +403,8 @@ function getTotalStockOfSize(){
     // Get ID of shoe to modal for editing
     $(document).on("click", ".open-modal-edit-shoe", function () {
     var shoeId = $(this).data('id');
-    var shoeBrandName = $('#' + shoeId + '-brand-name').text(),
+    var shoeImage = $('#' + shoeId + '-image')
+        shoeBrandName = $('#' + shoeId + '-brand-name').text(),
         shoeTypeName = $('#' + shoeId + '-type-name').text(),
         shoeName = $('#' + shoeId + '-name').text(),
         shoeDesc = $('#' + shoeId + '-desc').text(),
@@ -413,12 +414,12 @@ function getTotalStockOfSize(){
         shoeBestseller = $('#' + shoeId + '-bestseller').text(),
         shoeSale = $('#' + shoeId + '-sale').text();
     // var shoeImage = document.getElementById(shoeId + '-image').getAttribute('src')
-      console.log("shoeName")
+
     document.getElementById('editShoeLabel').innerHTML = 'Edit shoe <b> '+shoeName+'</b>';
+    $('#edit-shoe-name').attr('value', shoeName);
     $('#edit-shoe-desc').attr('value', shoeDesc);
-    $('#shoe-name').attr('value', shoeName);
     $('#edit-shoe-price').attr('value', shoePrice);
-    // document.getElementById('edit-shoe-quantity').value = shoeQuantity;
+    document.getElementById('total').innerHTML = shoeQuantity;
     // document.getElementById('edit-shoe-image').value = shoeImage;
     // document.getElementById('edit-shoe-image').value = shoeImage;
     // document.getElementById('edit-shoe-image').value = shoeImage;

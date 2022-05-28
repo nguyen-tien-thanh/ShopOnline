@@ -285,16 +285,20 @@
                         </div>
                         <div class="form-group">
                             <label for="shoe-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="shoe-name" name="name">
+                            <input type="text" class="form-control" id="edit-shoe-name" name="name">
                         </div>
                         <div class="form-group">
                             <label for="shoe-desc" class="col-form-label">Description:</label>
-                            <input type="text" class="form-control" id="shoe-desc" name="desc">
+                            <input type="text" class="form-control" id="edit-shoe-desc" name="desc">
                         </div>
                         <div class="form-group">
                             <label for="shoe-price" class="col-form-label">Price:</label>
-                            <input type="text" class="form-control" id="shoe-price" name="price" 
+                            <input type="text" class="form-control" id="edit-shoe-price" name="price" 
                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                        </div>
+                        <div class="form-group" id="size-input">
+                            <label for="shoe-quantity" class="col-form-label">Total amount Of Shoes: <b id="total"></b></label>
+                            {{!-- <input type="number" class="form-control" id="shoe-quantity" name="quantity"> --}}
                         </div>
                         <div class="form-group">
                             <div id="size-fields" class="p-1">
@@ -312,14 +316,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" id="size-input">
-                            {{!-- <label for="shoe-quantity" class="col-form-label" hidden>Total Quantity Of Shoe: <b id="total"></b></label> --}}
-                            {{!-- <input type="number" class="form-control" id="shoe-quantity" name="quantity"> --}}
+                        <div class="form-group">
+                            <div class="row p-3">
+                                <div class="col-5 p-0">
+                                    <label for="shoe-desc" class="col-form-label">Is Available:</label>
+                                    {{!-- <input type="text" class="form-control" id="edit-shoe-desc" name="desc"> --}}
+                                    <select name="available" id="edit-shoe-available" class="form-control">
+                                        <option value="true">Available</option>
+                                        <option value="false">Out of stock</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-2"></div>
+
+                                <div class="col-5 p-0">
+                                    <label for="shoe-desc" class="col-form-label">Is bestseller:</label>
+                                    {{!-- <input type="text" class="form-control" id="edit-shoe-desc" name="desc"> --}}
+                                    <select name="bestseller" id="edit-shoe-bestseller" class="form-control">
+                                        <option value="false">Not best seller</option>
+                                        <option value="true">Best seller</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control p-1" name="image"
-                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
-                            <img id="preview-image" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
+                                accept="image/*" onchange="document.getElementById('preview-image-edit').src = window.URL.createObjectURL(this.files[0])">
+                            <img id="preview-image-edit" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
                         </div>
                     </div>
                     </div>
