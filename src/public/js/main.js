@@ -402,35 +402,68 @@ function getTotalStockOfSize(){
 
     // Get ID of shoe to modal for editing
     $(document).on("click", ".open-modal-edit-shoe", function () {
-    var shoeId = $(this).data('id');
-    var shoeImage = $('#' + shoeId + '-image')
-        shoeBrandName = $('#' + shoeId + '-brand-name').text(),
-        shoeTypeName = $('#' + shoeId + '-type-name').text(),
-        shoeName = $('#' + shoeId + '-name').text(),
-        shoeDesc = $('#' + shoeId + '-desc').text(),
-        shoePrice = $('#' + shoeId + '-price').text(),
-        shoeQuantity = $('#' + shoeId + '-quantity').text(),
-        shoeAvailable = $('#' + shoeId + '-available').text(),
-        shoeBestseller = $('#' + shoeId + '-bestseller').text(),
-        shoeSale = $('#' + shoeId + '-sale').text();
-    // var shoeImage = document.getElementById(shoeId + '-image').getAttribute('src')
+      var shoeId = $(this).data('id');
+      var shoeImage = document.getElementById(shoeId + '-image').getAttribute('src')
+          shoeBrandName = $('#' + shoeId + '-brand-name').text(),
+          shoeTypeName = $('#' + shoeId + '-type-name').text(),
+          shoeName = $('#' + shoeId + '-name').text(),
+          shoeDesc = $('#' + shoeId + '-desc').text(),
+          shoePrice = $('#' + shoeId + '-price').text(),
+          shoeQuantity = $('#' + shoeId + '-quantity').text(),
+          shoeAvailable = $('#' + shoeId + '-available').text(),
+          shoeBestseller = $('#' + shoeId + '-bestseller').text(),
+          shoeSale = $('#' + shoeId + '-sale').text();
 
-    document.getElementById('editShoeLabel').innerHTML = 'Edit shoe <b> '+shoeName+'</b>';
-    $('#edit-shoe-name').attr('value', shoeName);
-    $('#edit-shoe-desc').attr('value', shoeDesc);
-    $('#edit-shoe-price').attr('value', shoePrice);
-    document.getElementById('total').innerHTML = shoeQuantity;
-    // document.getElementById('edit-shoe-image').value = shoeImage;
-    // document.getElementById('edit-shoe-image').value = shoeImage;
-    // document.getElementById('edit-shoe-image').value = shoeImage;
-    // document.getElementById('edit-shoe-image').value = shoeImage;
+      document.getElementById('editShoeLabel').innerHTML = 'Edit shoe <b> '+shoeName+'</b>';
+      $('#preview-image-edit').attr('src', shoeImage);
 
-    var btnEditShoe = document.getElementById('btn-edit-shoe')
-    var editShoeForm = document.forms['edit-shoe-form'];
-    btnEditShoe.onclick = function(){
-        editShoeForm.action = '/shoe/' + shoeId + '?_method=PUT';
-        editShoeForm.submit();
-    }
+      var editBrandOptions = document.getElementsByClassName('edit-brand-options');
+      for(var i=0; i<editBrandOptions.length; i++){
+        if(editBrandOptions[i].innerHTML == shoeBrandName){
+          var selectedOptions = editBrandOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      var editTypeOptions = document.getElementsByClassName('edit-type-options');
+      for(var i=0; i<editTypeOptions.length; i++){
+        if(editTypeOptions[i].innerHTML == shoeTypeName){
+          var selectedOptions = editTypeOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      $('#edit-shoe-name').attr('value', shoeName);
+      $('#edit-shoe-desc').attr('value', shoeDesc);
+      $('#edit-shoe-price').attr('value', shoePrice);
+      document.getElementById('total').innerHTML = shoeQuantity;
+      
+      var editAvailableOptions = document.getElementsByClassName('edit-available-options');
+      for(var i=0; i<editAvailableOptions.length; i++){
+        if(editAvailableOptions[i].value == shoeAvailable){
+          var selectedOptions = editAvailableOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+      
+      var editBestsellerOptions = document.getElementsByClassName('edit-bestseller-options');
+      for(var i=0; i<editBestsellerOptions.length; i++){
+        if(editBestsellerOptions[i].value == shoeBestseller){
+          var selectedOptions = editBestsellerOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      var btnEditShoe = document.getElementById('btn-edit-shoe')
+      var editShoeForm = document.forms['edit-shoe-form'];
+      btnEditShoe.onclick = function(){
+          editShoeForm.action = '/shoe/' + shoeId + '?_method=PUT';
+          editShoeForm.submit();
+      }
   });
     
 //================== /admin/shoe-deleted-table ==========================

@@ -180,7 +180,7 @@
 
     {{!-- Create new shoe modal --}}
     <div class="modal fade" id="create-shoe" tabindex="-1" role="dialog" aria-labelledby="createShoetypeLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createShoetypeLabel">Create new Shoe</h5>
@@ -242,7 +242,7 @@
                         <div class="form-group">
                             <input type="file" class="form-control p-1" name="image"
                                 accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
-                            <img id="preview-image" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
+                            <img id="preview-image" alt="x" width="100%" height="500vh" src="../images/example-shoe.png"/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -269,17 +269,17 @@
                         <div class="modal-body">
                         <div class="form-group">
                             <label for="shoe-brand" class="col-form-label">Brand:</label>
-                            <select name="brand" id="brand-select" class="form-control">
+                            <select name="brand" id="edit-shoe-brand" class="form-control">
                                 {{#each brandList}}
-                                    <option value="{{this._id}}">{{this.name}}</option>
+                                    <option value="{{this._id}}" class="edit-brand-options">{{this.name}}</option>
                                 {{/each}}
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="shoe-type" class="col-form-label">Type:</label>
-                            <select name="type" id="type-select" class="form-control">
+                            <select name="type" id="edit-type-brand" class="form-control">
                                 {{#each shoetypeList}}
-                                    <option value="{{this._id}}">{{this.name}}</option>
+                                    <option value="{{this._id}}" class="edit-type-options">{{this.name}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -296,11 +296,11 @@
                             <input type="text" class="form-control" id="edit-shoe-price" name="price" 
                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
                         </div>
-                        <div class="form-group" id="size-input">
+                        <div class="form-group mb-0" id="size-input">
                             <label for="shoe-quantity" class="col-form-label">Total amount Of Shoes: <b id="total"></b></label>
                             {{!-- <input type="number" class="form-control" id="shoe-quantity" name="quantity"> --}}
                         </div>
-                        <div class="form-group">
+                        {{!-- <div class="form-group">
                             <div id="size-fields" class="p-1">
                                 <div><label for="param-size-number">Size</label></div>
                                 <div valign="top" class="input-group col-xs-3">
@@ -315,15 +315,15 @@
                                     <a href="javascript:void(0);" class="add-size-btn btn btn-success" ><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <div class="row p-3">
                                 <div class="col-5 p-0">
                                     <label for="shoe-desc" class="col-form-label">Is Available:</label>
                                     {{!-- <input type="text" class="form-control" id="edit-shoe-desc" name="desc"> --}}
                                     <select name="available" id="edit-shoe-available" class="form-control">
-                                        <option value="true">Available</option>
-                                        <option value="false">Out of stock</option>
+                                        <option value="true" class="edit-available-options">Available</option>
+                                        <option value="false" class="edit-available-options">Out of stock</option>
                                     </select>
                                 </div>
 
@@ -333,16 +333,16 @@
                                     <label for="shoe-desc" class="col-form-label">Is bestseller:</label>
                                     {{!-- <input type="text" class="form-control" id="edit-shoe-desc" name="desc"> --}}
                                     <select name="bestseller" id="edit-shoe-bestseller" class="form-control">
-                                        <option value="false">Not best seller</option>
-                                        <option value="true">Best seller</option>
+                                        <option value="true" class="edit-bestseller-options">Best seller</option>
+                                        <option value="false" class="edit-bestseller-options">Not best seller</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="file" class="form-control p-1" name="image"
-                                accept="image/*" onchange="document.getElementById('preview-image-edit').src = window.URL.createObjectURL(this.files[0])">
-                            <img id="preview-image-edit" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
+                            {{!-- <input type="file" class="form-control p-1" name="image"
+                                accept="image/*" onchange="document.getElementById('preview-image-edit').src = window.URL.createObjectURL(this.files[0])"> --}}
+                            <img id="preview-image-edit" width="100%" height="400vh" src="../images/example-shoe.png"/>
                         </div>
                     </div>
                     </div>
