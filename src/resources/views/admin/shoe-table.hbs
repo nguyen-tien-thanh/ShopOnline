@@ -24,7 +24,7 @@
                                     <th>Brand</th>
                                     <th>Type</th>
                                     <th>Shoe Name</th>
-                                    <th>Description</th>
+                                    <th>Color</th>
                                     <th>Price</th>
                                     <th>Size</th>
                                     <th>Quantity</th>
@@ -43,7 +43,9 @@
                                     <td id="{{this._id}}-brand-name">{{this.brand.name}}</td>
                                     <td id="{{this._id}}-type-name">{{this.type.name}}</td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
-                                    <td id="{{this._id}}-desc">{{this.desc}}</td>
+                                    <td>
+                                        <div id="{{this._id}}-color" style="background-color:{{this.color}}">{{this.color}}</div>
+                                    </td>
                                     <td id="{{this._id}}-price">{{this.price}}</td>
                                     <td>
                                         {{#size}}
@@ -95,13 +97,6 @@
                                     <th>Brand</th>
                                     <th>Type</th>
                                     <th>Shoe Name</th>
-                                    {{!-- <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Size</th>
-                                    <th>Quantity</th>
-                                    <th>Available</th>
-                                    <th>Bestseller</th>
-                                    <th>Sale</th> --}}
                                     <th>Deleted at</th>
                                     <th>Action</th>
                                 </tr>
@@ -113,17 +108,6 @@
                                     <td>{{this.brand.name}}</td>
                                     <td>{{this.type.name}}</td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
-                                    {{!-- <td>{{this.desc}}</td>
-                                    <td>{{this.price}}</td>
-                                    <td>
-                                        {{#size}}
-                                            <span class="btn-dark mt-1">{{this.number}}</span>
-                                        {{/size}}
-                                    </td>
-                                    <td>{{this.quantity}}</td>
-                                    <td>{{this.available}}</td>
-                                    <td>{{this.bestseller}}</td>
-                                    <td>{{this.sale}}</td> --}}
                                     <td id="{{this._id}}-createdAt">{{moment this.deletedAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td>
                                         <a href="" data-toggle="modal" data-target="#restore-shoe" data-id="{{this._id}}">
@@ -211,8 +195,19 @@
                             <input type="text" class="form-control" id="shoe-name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="shoe-desc" class="col-form-label">Description:</label>
-                            <input type="text" class="form-control" id="shoe-desc" name="desc">
+                            <label for="shoe-color" class="col-form-label">Color:</label>
+                            {{!-- <input type="text" class="form-control" id="shoe-color" name="color"> --}}
+                            <select name="type" id="shoe-color" class="form-control" name="color">
+                                <option value="White">White</option>
+                                <option value="Black">Black</option>
+                                <option value="Red">Red</option>
+                                <option value="Green">Green</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Yellow">Yellow</option>
+                                <option value="Orange">Orange</option>
+                                <option value="Grey">Grey</option>
+                                <option value="Purple">Purple</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="shoe-price" class="col-form-label">Price:</label>
@@ -288,8 +283,19 @@
                             <input type="text" class="form-control" id="edit-shoe-name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="shoe-desc" class="col-form-label">Description:</label>
-                            <input type="text" class="form-control" id="edit-shoe-desc" name="desc">
+                            <label for="shoe-color" class="col-form-label">Color</label>
+                            {{!-- <input type="text" class="form-control" id="edit-shoe-color" name="color"> --}}
+                            <select id="edit-shoe-color" class="form-control" name="color">
+                                <option class="edit-color-options" value="White">White</option>
+                                <option class="edit-color-options" value="Black">Black</option>
+                                <option class="edit-color-options" value="Red">Red</option>
+                                <option class="edit-color-options" value="Green">Green</option>
+                                <option class="edit-color-options" value="Blue">Blue</option>
+                                <option class="edit-color-options" value="Yellow">Yellow</option>
+                                <option class="edit-color-options" value="Orange">Orange</option>
+                                <option class="edit-color-options" value="Grey">Grey</option>
+                                <option class="edit-color-options" value="Purple">Purple</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="shoe-price" class="col-form-label">Price:</label>
@@ -319,8 +325,7 @@
                         <div class="form-group">
                             <div class="row p-3">
                                 <div class="col-5 p-0">
-                                    <label for="shoe-desc" class="col-form-label">Is Available:</label>
-                                    {{!-- <input type="text" class="form-control" id="edit-shoe-desc" name="desc"> --}}
+                                    <label for="available" class="col-form-label">Is Available:</label>
                                     <select name="available" id="edit-shoe-available" class="form-control">
                                         <option value="true" class="edit-available-options">Available</option>
                                         <option value="false" class="edit-available-options">Out of stock</option>
@@ -330,8 +335,7 @@
                                 <div class="col-2"></div>
 
                                 <div class="col-5 p-0">
-                                    <label for="shoe-desc" class="col-form-label">Is bestseller:</label>
-                                    {{!-- <input type="text" class="form-control" id="edit-shoe-desc" name="desc"> --}}
+                                    <label for="bestseller" class="col-form-label">Is bestseller:</label>
                                     <select name="bestseller" id="edit-shoe-bestseller" class="form-control">
                                         <option value="true" class="edit-bestseller-options">Best seller</option>
                                         <option value="false" class="edit-bestseller-options">Not best seller</option>

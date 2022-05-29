@@ -10,7 +10,7 @@ const Shoe = new Schema({
     type: {type: mongoose.Schema.Types.ObjectId, ref: 'Shoetype'},
 
     name: {type: String, minLength: 1, maxLength: 255},
-    desc: {type: String, maxLength: 600},
+    color: {type: String},
     price: {type: Number, minLength:1, default: 0},
     // size: {type: Number, minLength:1, maxlength:2, default: 2},
     size: [{

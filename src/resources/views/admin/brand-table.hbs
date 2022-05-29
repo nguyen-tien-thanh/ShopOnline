@@ -168,8 +168,9 @@
                         <div class="form-group">
                             {{!-- <label for="brand-image" class="col-form-label">Image:</label>
                             <input type="text" class="form-control" id="brand-image" name="image"> --}}
-                            <input type="file" class="form-control" id="" name="image"
-                                    accept="image/*">
+                            <input type="file" class="form-control p-1" id="" name="image"
+                                    accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                            <img id="preview-image" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
                         </div>
                     </div>
                     <div class="modal-footer">
