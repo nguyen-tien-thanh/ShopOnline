@@ -141,12 +141,14 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="shoetype-name" class="col-form-label">Type name:</label>
-                            <input type="text" class="form-control" id="shoetype-name" name="name">
+                            <input type="text" class="form-control" id="shoetype-name" name="name" required>
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control p-1" id="" name="image"
                                 accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
-                            <img id="preview-image" alt="x" width="100%" height="400vh" src="../images/example-shoe.png"/>
+                            <div class="text-center">
+                                <img id="preview-image" alt="x" width="50%" height="50%" src="../images/example-shoe.png"/ required>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

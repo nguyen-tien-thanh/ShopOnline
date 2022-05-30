@@ -43,7 +43,7 @@ class ShoeController {
             brand: req.body.brand,
             type: req.body.type,
             name: req.body.name,
-            desc: req.body.desc,
+            color: req.body.color,
             price: req.body.price,
             size: req.body.size,
             quantity: req.body.quantity,

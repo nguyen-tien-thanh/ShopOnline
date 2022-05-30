@@ -5,7 +5,7 @@
   // ====================== Add input field in /admin/shoe-table ============================
   var i = 1;
   $(".add-size-btn").click(function() {
-    $("#size-fields").append('<div valign="top" class="input-group col-xs-3"><input type="number" class="form-control" id="param-size-number' + i + '" name="size[' + i + '][number]" placeholder="Size number" /><input type="number" class="form-control input-stock-size" id="param-size-stock' + i + '" name="size[' + i + '][stock]" value="" placeholder="Stock" onkeyup="getTotalStockOfSize()"/><a href="javascript:void(0);" class="removeSizeBtn btn btn-danger"><i class="fa fa-minus"></i></a></div>');
+    $("#size-fields").append('<div valign="top" class="input-group col-xs-3"><input type="number" class="form-control" id="param-size-number' + i + '" name="size[' + i + '][number]" placeholder="Size number" required /><input type="number" class="form-control input-stock-size" id="param-size-stock' + i + '" name="size[' + i + '][stock]" value="" placeholder="Stock" onkeyup="getTotalStockOfSize()" required/><a href="javascript:void(0);" class="removeSizeBtn btn btn-danger"><i class="fa fa-minus"></i></a></div>');
     i++;
   });
   $("#size-fields").on('click', '.removeSizeBtn', function() {
@@ -409,6 +409,7 @@ function getTotalStockOfSize(){
           shoeName = $('#' + shoeId + '-name').text(),
           shoeColor = $('#' + shoeId + '-color').text(),
           shoePrice = $('#' + shoeId + '-price').text(),
+          shoeSale = $('#' + shoeId + '-sale').text(),
           shoeQuantity = $('#' + shoeId + '-quantity').text(),
           shoeAvailable = $('#' + shoeId + '-available').text(),
           shoeBestseller = $('#' + shoeId + '-bestseller').text(),
@@ -436,6 +437,15 @@ function getTotalStockOfSize(){
       }
 
       $('#edit-shoe-name').attr('value', shoeName);
+      
+      var editSaleOptions = document.getElementsByClassName('edit-color-options');
+      for(var i=0; i<editSaleOptions.length; i++){
+        if(editSaleOptions[i].value == shoeColor){
+          var selectedOptions = editSaleOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
 
       var editColorOptions = document.getElementsByClassName('edit-color-options');
       for(var i=0; i<editColorOptions.length; i++){
@@ -449,9 +459,9 @@ function getTotalStockOfSize(){
       $('#edit-shoe-price').attr('value', shoePrice);
       document.getElementById('total').innerHTML = shoeQuantity;
       
-      var editAvailableOptions = document.getElementsByClassName('edit-available-options');
+      var editAvailableOptions = document.getElementsByClassName('edit-sale-options');
       for(var i=0; i<editAvailableOptions.length; i++){
-        if(editAvailableOptions[i].value == shoeAvailable){
+        if(editAvailableOptions[i].value == shoeSale){
           var selectedOptions = editAvailableOptions[i]
           selectedOptions.setAttribute('selected', 'selected')
           break;

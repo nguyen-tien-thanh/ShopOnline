@@ -10,34 +10,20 @@
     <div class="text"></div>
     <div class="button"></div>
   </section> 
+  
   <section class="cards">
-    <div class="card">
-      <img src="" alt="">
-      <div class="content">
-        <div class="headline"></div>
-        <div class="text"></div>
-        <div class="text"></div>
-        <div class="button"></div>
+    {{#each shoe}}
+      <div class="card">
+        <h3 id="logo-product-detail">Best<span>Seller</span></h3>
+        <img src="../uploads/{{this.image}}" alt="{{this.name}}">
+        <div class="content">
+          <span class="badge-text">{{this.brand.name}}</span>
+          <div class="badge-headline">{{this.name}}</div>
+          <span class="badge-text">{{this.type.name}}</span>
+          <div class="badge-price mb-4">{{this.price}} VND</div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img src="" alt="">
-      <div class="content">
-        <div class="headline"></div>
-        <div class="text"></div>
-        <div class="text"></div>
-        <div class="button"></div>
-      </div>
-    </div>
-    <div class="card">
-      <img src="" alt="">
-      <div class="content">
-        <div class="headline"></div>
-        <div class="text"></div>
-        <div class="text"></div>
-        <div class="button"></div>
-      </div>
-    </div>
+    {{/each}}
   </section>
   
   <section class="contentbox">

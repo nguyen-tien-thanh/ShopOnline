@@ -270,21 +270,37 @@ a:hover{
       background: transparent;
       display: table; }
       section.cards .card {
+        text-align: left;
         background: var(--clr2);
         width: calc(33.6% - 10px);
         margin: 0 5px;
-        border-radius: var(--border-radius);
+        border: 0px;
+        // border-radius: var(--border-radius);
         display: inline-block; }
         section.cards .card:first-child {
           margin: 0 5px 0 0; }
         section.cards .card:last-child {
           margin: 0 0 0 5px; }
-        section.cards .card .content {
-          padding: 40px; }
+        section.cards .card .badge-headline {
+          font-size:18px;
+          font-weight: bold;
+          padding: 2px; 
+          margin-left: 25px}
+        section.cards .card .badge-text {
+          font-size:12px;
+          font-weight: normal;
+          padding: 2px; 
+          margin-left: 25px}
+        section.cards .card .badge-price {
+          font-size:16px;
+          font-weight: normal;
+          padding: 2px 0 4px 0; 
+          margin-left: 25px}
         section.cards .card img {
           width: 100%;
           height: auto;
-          border-radius: var(--border-radius) var(--border-radius) 0px 0px; }
+          border-radius: var(--border-radius) var(--border-radius) 0px 0px; 
+        }
   
   footer {
     padding: 50px;
@@ -316,6 +332,8 @@ a:hover{
       display: block;
       margin: 10px 0 0 0 !important;
       padding: 0; }
+      section.cards .card .badge-price{
+        padding-bottom: 20px;}
     .wrapper {
       padding: 50px 10px 100px 10px !important; } }
   
@@ -772,9 +790,9 @@ section {
 #logo-product-detail{
 	font-family:'Playlist';
   opacity: 70%;
-  padding-top:10px;
   padding-left: 10px;
   margin-bottom: -2rem;
+  font-size:16px;
   z-index: 1;
 }
 

@@ -1,10 +1,14 @@
-
-
-   
+ 
 const User = require('../models/User')
+const Brand = require('../models/Brand')
+const Shoetype = require('../models/Shoetype')
+const Shoe = require('../models/Shoe')
+const Product = require('../models/Product')
+
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
 const { checkUserExist, makePassword } = require('../ulti/register')
+
 const bcrypt = require('bcrypt');
 // const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
@@ -17,26 +21,59 @@ class SiteController {
         if(req.cookies.token){
             var token = req.cookies.token;
             var decodeToken = jwt.verify(token, 'secretpasstoken')
-            User.findOne({
-                _id: decodeToken
-            }).then(data => {
+            Promise.all([
+                User.findOne({_id: decodeToken}),
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1})
+                    .limit(3)
+            ])
+            .then(([
+                data,
+                brandList,
+                shoeType,
+                shoe
+            ]) => {
                 if (data) {
                     req.data = data
-                    // console.log(data)
                     return res.render('index',
                         {
                             user: mongooseToObject(data),
+                            brandList: multipleMongooseToObject(brandList),
+                            shoeType: multipleMongooseToObject(shoeType),
+                            shoe: multipleMongooseToObject(shoe),
                             title: 'Home page'
                         })
                     next()
                 }
             })
         }
-        else{
-            res.render('index', {
-                title: 'Home page',
-            })
-        }
+        else {
+            Promise.all([
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({bestseller: true})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1})
+                    .limit(3)
+            ])
+            .then(([
+                brandList,
+                shoeType,
+                shoe
+            ]) => {
+                res.render('index', {
+                    brandList: multipleMongooseToObject(brandList),
+                    shoeType: multipleMongooseToObject(shoeType),
+                    shoe: multipleMongooseToObject(shoe),
+                    title: 'Home page'
+                })
+            }
+            )}
     }
 
     // [GET] /logout --> Home page

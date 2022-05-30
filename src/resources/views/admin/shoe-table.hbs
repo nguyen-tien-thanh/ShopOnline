@@ -43,9 +43,7 @@
                                     <td id="{{this._id}}-brand-name">{{this.brand.name}}</td>
                                     <td id="{{this._id}}-type-name">{{this.type.name}}</td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
-                                    <td>
-                                        <div id="{{this._id}}-color" style="background-color:{{this.color}}">{{this.color}}</div>
-                                    </td>
+                                    <td>{{this.color}}</td>
                                     <td id="{{this._id}}-price">{{this.price}}</td>
                                     <td>
                                         {{#size}}
@@ -55,7 +53,7 @@
                                     <td id="{{this._id}}-quantity">{{this.quantity}}</td>
                                     <td id="{{this._id}}-available">{{this.available}}</td>
                                     <td id="{{this._id}}-bestseller">{{this.bestseller}}</td>
-                                    <td id="{{this._id}}-sale">{{this.sale}}</td>
+                                    <td id="{{this._id}}-sale">{{this.sale}}%</td>
                                     <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td id="{{this._id}}-updatedAt">{{moment this.updatedAt format = "HH:mm on DD/MM/yyyy"}}</td>
                                     <td>
@@ -176,7 +174,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="shoe-brand" class="col-form-label">Brand:</label>
-                            <select name="brand" id="brand-select" class="form-control">
+                            <select name="brand" id="brand-select" class="form-control" required>
                                 {{#each brandList}}
                                     <option value="{{this._id}}">{{this.name}}</option>
                                 {{/each}}
@@ -184,7 +182,7 @@
                         </div>
                         <div class="form-group">
                             <label for="shoe-type" class="col-form-label">Type:</label>
-                            <select name="type" id="type-select" class="form-control">
+                            <select name="type" id="type-select" class="form-control" required>
                                 {{#each shoetypeList}}
                                     <option value="{{this._id}}">{{this.name}}</option>
                                 {{/each}}
@@ -192,12 +190,12 @@
                         </div>
                         <div class="form-group">
                             <label for="shoe-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="shoe-name" name="name">
+                            <input type="text" class="form-control" id="shoe-name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="shoe-color" class="col-form-label">Color:</label>
                             {{!-- <input type="text" class="form-control" id="shoe-color" name="color"> --}}
-                            <select name="type" id="shoe-color" class="form-control" name="color">
+                            <select name="color" id="shoe-color" class="form-control" required>
                                 <option value="White">White</option>
                                 <option value="Black">Black</option>
                                 <option value="Red">Red</option>
@@ -212,7 +210,7 @@
                         <div class="form-group">
                             <label for="shoe-price" class="col-form-label">Price:</label>
                             <input type="text" class="form-control" id="shoe-price" name="price" 
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" required>
                         </div>
                         <div class="form-group">
                             <div id="size-fields" class="p-1">
@@ -236,8 +234,10 @@
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control p-1" name="image"
-                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
-                            <img id="preview-image" alt="x" width="100%" height="500vh" src="../images/example-shoe.png"/>
+                                accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])" required>
+                            <div class="text-center">
+                                <img class="mt-2" id="preview-image" alt="x" width="50%" height="50%" src="../images/example-shoe.png"/>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -302,6 +302,30 @@
                             <input type="text" class="form-control" id="edit-shoe-price" name="price" 
                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');">
                         </div>
+                        <div class="form-group">
+                            <label for="shoe-sale" class="col-form-label">Sale (%):</label>
+                            <select name="sale" id="edit-shoe-available" class="form-control">
+                                <option value="0" class="edit-sale-options">0%</option>
+                                <option value="5" class="edit-sale-options">5%</option>
+                                <option value="10" class="edit-sale-options">10%</option>
+                                <option value="15" class="edit-sale-options">15%</option>
+                                <option value="20" class="edit-sale-options">20%</option>
+                                <option value="25" class="edit-sale-options">25%</option>
+                                <option value="30" class="edit-sale-options">30%</option>
+                                <option value="35" class="edit-sale-options">35%</option>
+                                <option value="40" class="edit-sale-options">40%</option>
+                                <option value="45" class="edit-sale-options">45%</option>
+                                <option value="50" class="edit-sale-options">50%</option>
+                                <option value="55" class="edit-sale-options">55%</option>
+                                <option value="60" class="edit-sale-options">60%</option>
+                                <option value="65" class="edit-sale-options">65%</option>
+                                <option value="70" class="edit-sale-options">70%</option>
+                                <option value="75" class="edit-sale-options">75%</option>
+                                <option value="80" class="edit-sale-options">80%</option>
+                                <option value="85" class="edit-sale-options">85%</option>
+                                <option value="90" class="edit-sale-options">90%</option>
+                            </select>
+                        </div>
                         <div class="form-group mb-0" id="size-input">
                             <label for="shoe-quantity" class="col-form-label">Total amount Of Shoes: <b id="total"></b></label>
                             {{!-- <input type="number" class="form-control" id="shoe-quantity" name="quantity"> --}}
@@ -346,7 +370,9 @@
                         <div class="form-group">
                             {{!-- <input type="file" class="form-control p-1" name="image"
                                 accept="image/*" onchange="document.getElementById('preview-image-edit').src = window.URL.createObjectURL(this.files[0])"> --}}
-                            <img id="preview-image-edit" width="100%" height="400vh" src="../images/example-shoe.png"/>
+                            <div class="text-center">
+                                <img class="mt-2" id="preview-image-edit" alt="x" width="50%" height="50%" src="../images/example-shoe.png"/>
+                            </div>
                         </div>
                     </div>
                     </div>
