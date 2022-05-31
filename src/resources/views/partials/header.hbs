@@ -48,19 +48,35 @@
         </ul>
     </nav>
 </div>
+
+
 <header class="main-header" id="main-header">   
-    <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a>
-  <nav>
-    <ul class="">
+  {{!-- <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a> --}}
+  <div class="row">
+    <div class="col-lg-11 col-md-9 col-sm-6 col-9">
+      <a href="/" class="logo-icon-header">
+        <div id="logo-header">Phong<span>Store</span></div>
+      </a>
+    </div>
+
+    <div class="col-lg-1 col-md-3 col-sm-6 col-3">
+      <a class="icon logo-icon-header icon-responsive">
+      <i class="fa fa-bars"></i>
+    </a>
+    </div>
+  </div>
+  
+  <nav class="navbar-dropdown-items" id="navbar-dropdown-items">
+    <ul>
       {{!-- more than 6 is not beautiful --}}
       <a href="/product"><li>Products</li></a>
       <a href="/product/manage"><li>Manage</li></a>
       <a href="/admin"><li>Admin</li></a>
-      <a href="#"><li>About BardPod</li></a>
+      <a href="javascript:;" class="btn-info-scroll"><li>About Store</li></a>
 
-      <a href="javascript:void(0);" class="icon logo-icon-header" onclick="openNavResponsive()">
+      {{!-- <a href="javascript:void(0);" class="icon logo-icon-header" onclick="openNavResponsive()">
         <i class="fa fa-bars"></i>
-      </a>
+      </a> --}}
 
     </ul>
   </nav>

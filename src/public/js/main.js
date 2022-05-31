@@ -13,7 +13,6 @@
   });
 
   //=================== ARROW IN INDEX =============================
- 
     $('.login-section').hide();
     $('#move-to-login-section').click(function(){
         $('.register-sidenav').animate({
@@ -69,7 +68,11 @@
   });
 
   $('.arrow').click(function(){
-    $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 1200);
+    $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 200);
+  });
+
+  $('.btn-info-scroll').click(function(){
+    $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 200);
   });
 
 //==================== MODAL OF Delivery ===========================
@@ -517,6 +520,9 @@ function getTotalStockOfSize(){
     }
     
 
+})
 
-
+//==================== DISPLAY ICON FOR NAVBAR RESPONSIVE =================
+$('.icon-responsive').on('click', function() {
+  $('#navbar-dropdown-items').attr('style', 'display: block');
 })

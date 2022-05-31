@@ -117,6 +117,8 @@ body.vi :lang(en) {
   max-width: 100% !important; }
 
 header {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
   background: var(--clr2);
   padding: 30px;
   width: 100%;
@@ -150,9 +152,7 @@ header nav {
   transform: translate(-50px, -50%); }
 
 header nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
+  margin: 0; }
 
 header nav ul li {
   display: inline-block;
@@ -173,20 +173,23 @@ header nav ul li:hover {
   font-size: 30px; }
 
 @media screen and (max-width: 1000px) {
-  .responsive nav {
-    background: var(--clr2);
+  .navbar-dropdown-items {
+    background: white;
     padding: 0px;
-    width: 100%;
+    width: 30%;
     border-radius: var(--border-radius);
-    position: relative;
-    z-index: 99; }
+    position: absolute;
+    z-index: 100; }
+  header nav ul li {
+    margin: 0px; }
+  .icon-responsive {
+    margin-left: 100px !important; }
   .main-header .active {
     padding: 500px 0 0 0; }
   .main-header a:not(.logo-icon-header) {
-    display: none; }
-  .main-header a.icon {
-    float: right;
     display: block; }
+  .main-header a.icon {
+    float: right; }
   .main-header.responsive {
     position: relative; }
   .main-header.responsive a.icon {
@@ -196,7 +199,28 @@ header nav ul li:hover {
   .main-header.responsive a {
     float: none;
     display: block;
-    text-align: left; } }
+    text-align: left; }
+  .navbar-dropdown-items {
+    display: none;
+    right: -40px; }
+  header nav {
+    position: absolute;
+    right: 10px;
+    top: 160%;
+    border: 2px solid black; }
+  header nav ul {
+    list-style-type: none;
+    margin: 0; }
+  header nav ul li {
+    display: inline-block;
+    list-style: none;
+    font-size: 20px; }
+  .main-header .icon {
+    display: block; } }
+
+@media (max-width: 700px) {
+  .navbar-dropdown-items {
+    width: 50%; } }
 
 section {
   background: var(--clr2);
@@ -248,6 +272,7 @@ section.cards {
   display: table; }
 
 section.cards .card {
+  font-family: 'Courier New', Courier, monospace;
   text-align: left;
   background: var(--clr2);
   width: calc(33.6% - 10px);
@@ -262,27 +287,50 @@ section.cards .card:last-child {
   margin: 0 0 0 5px; }
 
 section.cards .card .badge-headline {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   padding: 2px;
   margin-left: 25px; }
 
 section.cards .card .badge-text {
-  font-size: 12px;
-  font-weight: normal;
+  font-size: 16px;
   padding: 2px;
   margin-left: 25px; }
 
 section.cards .card .badge-price {
-  font-size: 16px;
-  font-weight: normal;
+  font-size: 18px;
   padding: 2px 0 4px 0;
-  margin-left: 25px; }
+  margin-left: 27px; }
 
 section.cards .card img {
   width: 100%;
   height: auto;
   border-radius: var(--border-radius) var(--border-radius) 0px 0px; }
+
+.img-container {
+  position: relative; }
+
+.img-container a img {
+  display: block;
+  width: 100%;
+  height: auto; }
+
+.img-container a .overlay {
+  position: absolute;
+  bottom: 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center; }
+
+.img-container:hover .overlay {
+  opacity: 1; }
 
 footer {
   padding: 50px;
@@ -701,7 +749,7 @@ section {
   opacity: 70%;
   padding-left: 10px;
   margin-bottom: -2rem;
-  font-size: 16px;
+  font-size: 22px;
   z-index: 1; }
 
 #logo-product-detail span {

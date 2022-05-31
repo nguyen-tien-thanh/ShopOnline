@@ -3,6 +3,13 @@ const router = express.Router();
 
 const shoeController = require('../Controllers/ShoeController');
 
+const {isLoggined} = require('../ulti/login')
+var cookieParser = require('cookie-parser')
+router.use(cookieParser())
+
+// [GET] /shoe/:id/ shoe
+router.get('/:id', shoeController.show)
+
 // [PUT] /shoe/:id/update shoe
 router.put('/:id', shoeController.update)
 

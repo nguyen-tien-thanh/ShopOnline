@@ -1,9 +1,79 @@
 
-const Shoe = require('../models/Shoe');
+ 
+const User = require('../models/User')
+const Brand = require('../models/Brand')
+const Shoetype = require('../models/Shoetype')
+const Shoe = require('../models/Shoe')
+
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
+const { checkUserExist, makePassword } = require('../ulti/register')
+
+const bcrypt = require('bcrypt');
+// const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 class ShoeController {
+
+    //[GET] /shoe/:id
+    show(req,res,next) {
+        if(!req.cookies.token){
+            Promise.all([
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({bestseller: true})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1})
+                    .limit(3)
+            ])
+            .then(([
+                brandList,
+                shoeType,
+                shoe
+            ]) => {
+                res.render('shoe/show', {
+                    brandList: multipleMongooseToObject(brandList),
+                    shoeType: multipleMongooseToObject(shoeType),
+                    shoe: multipleMongooseToObject(shoe),
+                    title: 'Home page'
+                })
+            }
+            )}
+        else {
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            Promise.all([
+                User.findOne({_id: decodeToken}),
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1})
+                    .limit(3)
+            ])
+            .then(([
+                data,
+                brandList,
+                shoeType,
+                shoe
+            ]) => {
+                if (data) {
+                    req.data = data
+                    return res.render('shoe/show',
+                        {
+                            user: mongooseToObject(data),
+                            brandList: multipleMongooseToObject(brandList),
+                            shoeType: multipleMongooseToObject(shoeType),
+                            shoe: multipleMongooseToObject(shoe),
+                            title: 'Home page'
+                        })
+                    next()
+                }
+            })
+        }
+    }
 
     //[PUT] /shoe/:id
     update(req,res,next) {

@@ -73,7 +73,8 @@ class SiteController {
                     title: 'Home page'
                 })
             }
-            )}
+            )
+        }
     }
 
     // [GET] /logout --> Home page
@@ -225,10 +226,8 @@ class SiteController {
                             console.log(err)
                         }
                     })
-                    // return res.json({token: token, success: true, msgLog:'Login Successful'})
                     res.cookie('token',token, { maxAge: 900000, httpOnly: true });
                     return res.render('index',{
-                        // layout: 'adminLayout',
                         msg: 'Login success',
                         title:'Home',
                         success: true,

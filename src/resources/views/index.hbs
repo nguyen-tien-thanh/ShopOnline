@@ -13,16 +13,21 @@
   
   <section class="cards">
     {{#each shoe}}
-      <div class="card">
-        <h3 id="logo-product-detail">Best<span>Seller</span></h3>
-        <img src="../uploads/{{this.image}}" alt="{{this.name}}">
-        <div class="content">
-          <span class="badge-text">{{this.brand.name}}</span>
-          <div class="badge-headline">{{this.name}}</div>
-          <span class="badge-text">{{this.type.name}}</span>
-          <div class="badge-price mb-4">{{this.price}} VND</div>
+        <div class="card">
+          <h3 id="logo-product-detail">Best<span>Seller</span></h3>
+          <div class="img-container">
+            <a href="/shoe/{{this._id}}">
+              <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
+              <div class="overlay">See detail</div>
+            </a>
+          </div>
+          <div class="content">
+            <span class="badge-text">{{this.brand.name}}</span>
+            <div class="badge-headline">{{this.name}}</div>
+            <span class="badge-text">{{this.type.name}}</span>
+            <div class="badge-price mb-4">{{this.price}} VND</div>
+          </div>
         </div>
-      </div>
     {{/each}}
   </section>
   
