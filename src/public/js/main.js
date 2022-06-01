@@ -75,6 +75,18 @@
     $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 200);
   });
 
+  // ======================== Button to change section ==========================
+  $('[data-switch]').on('click', function (e) {
+    var $page = $('#shoe-sections-index'),
+        blockToShow = e.currentTarget.getAttribute('data-switch');
+    $('[data-switch]').attr('class','')
+    e.currentTarget.setAttribute('class','active');
+    // Hide all children.
+    $page.children().hide();
+    // And show the requested component.
+    $page.children(blockToShow).show();
+  });
+
 //==================== MODAL OF Delivery ===========================
 var deliveryModal = document.getElementById("delivery-modal");
 var deliveryBtn = document.getElementById("delivery-btn");

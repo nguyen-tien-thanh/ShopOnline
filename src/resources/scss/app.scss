@@ -141,6 +141,7 @@ a:hover{
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    border-radius: 1em;
   }
 
   .hero-text {
@@ -325,9 +326,9 @@ a:hover{
       display: block;
       margin: 0 auto;
       list-style: none;
-      max-width: 260px;
+      max-width: 360px;
       height: 30px;
-      background: var(--clr1);
+      // background: var(--clr1);
       border-radius: var(--text-radius); }
     section .text {
       display: block;
@@ -362,7 +363,7 @@ a:hover{
         width: calc(33.6% - 10px);
         margin: 0 5px;
         border: 0px;
-        // border-radius: var(--border-radius);
+        border-radius: var(--border-radius);
         display: inline-block; }
         section.cards .card:first-child {
           margin: 0 5px 0 0; }
@@ -388,35 +389,81 @@ a:hover{
           border-radius: var(--border-radius) var(--border-radius) 0px 0px; 
         }
 
-      // ============= Hover in image in index =============
-        .img-container {
-          position: relative;
-        }
+  .shoe-sections{
+    padding: 20px 0 10px 0;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
 
-        .img-container a img {
-          display: block;
-          width: 100%;
-          height: auto;
-        }
+  .shoe-sections button{
+    font-size: 22px;
+    background-color: #333;
+    color: white;
+    border: none;
+    transition-duration: 0.2s;
+    opacity: 0.5;
+  }
 
-        .img-container a .overlay {
-          position: absolute;
-          bottom: 0;
-          background: rgb(0, 0, 0);
-          background: rgba(0, 0, 0, 0.5);
-          color: #f1f1f1;
-          width: 100%;
-          transition: .5s ease;
-          opacity:0;
-          color: white;
-          font-size: 20px;
-          padding: 20px;
-          text-align: center;
-        }
+  .shoe-sections button:hover{
+    text-decoration: underline;
+    opacity: 1;
+  }
 
-        .img-container:hover .overlay {
-          opacity: 1;
-        }
+  .shoe-sections .active{
+    text-decoration: underline;
+    opacity: 1;
+  }
+
+
+// ============= Hover in image in index =============
+  .img-container {
+    position: relative;
+    overflow: hidden;   
+  }
+
+  .img-container a img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .img-container a .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .img-container a .overlay-sm {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .img-container:hover img{
+    transform: scale(1.1);
+    transform-origin: 50% 50%;
+  }
+
+  .img-container:hover .overlay {
+    opacity: 1;
+  }
   
   footer {
     padding: 50px;
@@ -465,6 +512,7 @@ a:hover{
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
+      border-radius: 1em;
     }
   
     .hero-text {
@@ -1162,6 +1210,12 @@ section {
   }
 }
 
+@media screen and (max-width: 768px){
+  .img-container a .overlay-sm {
+    opacity:0.5;
+  }
+}
+
 @media screen and (min-width: 768px){
   .login-main{
       margin-left: 40%; 
@@ -1331,3 +1385,8 @@ tr:nth-child(even) {
 //   background:rgb(240, 239, 239) !important;
 // }
 
+#shoe-sections-index,
+#shoe-available{
+  border: 0;
+  padding: 0;
+}

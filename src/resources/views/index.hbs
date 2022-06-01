@@ -1,56 +1,87 @@
 
 
 <div class="wrapper">
-<div class="wrap-image">
-  
-  <div class="arrow animated bounce"></div>
+  <div class="wrap-image">
+    
+    <div class="arrow animated bounce"></div>
 
-  {{!-- <section class="transparent">
-    <div class="headline">Welcome to PhongStore</div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="button"></div>
-  </section>  --}}
-  <div class="hero-text">
-    <h1>Good<br><span>shoes</span><br> take you<br>good places</h1>
-    {{!-- <h3>And I'm a Photographer</h3> --}}
-    <a href="#">
-      <button class="btn btn-outline-dark">Shop now!</button>
-    </a>
+    {{!-- <section class="transparent">
+      <div class="headline">Welcome to PhongStore</div>
+      <div class="text"></div>
+      <div class="text"></div>
+      <div class="button"></div>
+    </section>  --}}
+    <div class="hero-text">
+      <h1>Good<br><span>shoes</span><br> take you<br>good places</h1>
+      <a href="#">
+        <button class="btn btn-outline-dark">Shop now!</button>
+      </a>
+    </div>
   </div>
-</div>
 
-<div class="wrap">
-  
-  <section class="cards">
-    {{#each shoe}}
-        <div class="card">
-          <h3 id="logo-product-detail">Best<span>Seller</span></h3>
-          <div class="img-container">
-            <a href="/shoe/{{this._id}}">
-              <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
-              <div class="overlay">See detail</div>
-            </a>
-          </div>
-          <div class="content">
-            <span class="badge-text">{{this.brand.name}}</span>
-            <div class="badge-headline">{{this.name}}</div>
-            <span class="badge-text">{{this.type.name}}</span>
-            <div class="badge-price mb-4">{{this.price}} VND</div>
-          </div>
-        </div>
-    {{/each}}
-  </section>
-  
-  <section class="contentbox">
-    <div class="headline"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="text"></div>
-    <div class="button"></div>
-  </section>
-  
-</div>
+  <div class="wrap">
+      <div class="shoe-sections">
+        <button class="active" data-switch="#shoe-best-seller">Best sellers</button>
+        <button data-switch="#shoe-available">New arrivals</button>
+      </div>
+
+    <div id="shoe-sections-index">  
+      <div id="shoe-best-seller">
+        <section class="cards">
+          {{#each shoeBestseller}}
+            <div class="card">
+              <h3 id="logo-product-detail">Best<span>Seller</span></h3>
+              <div class="img-container">
+                <a href="/shoe/{{this._id}}">
+                  <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
+                  <div class="overlay">See detail</div>
+                  <div class="overlay-sm">Click to see detail</div>
+                </a>
+              </div>
+              <div class="content">
+                <span class="badge-text">{{this.brand.name}}</span>
+                <div class="badge-headline">{{this.name}}</div>
+                <span class="badge-text">{{this.type.name}}</span>
+                <div class="badge-price mb-4">{{this.price}} VND</div>
+              </div>
+            </div>
+          {{/each}}
+        </section>
+      </div> 
+
+      <div id="shoe-available" style="display:none">
+        <section class="cards">
+          {{#each shoeAvailable}}
+            <div class="card">
+              <h3 id="logo-product-detail">Best<span>Seller</span></h3>
+              <div class="img-container">
+                <a href="/shoe/{{this._id}}">
+                  <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
+                  <div class="overlay">See detail</div>
+                  <div class="overlay-sm">Click to see detail</div>
+                </a>
+              </div>
+              <div class="content">
+                <span class="badge-text">{{this.brand.name}}</span>
+                <div class="badge-headline">{{this.name}}</div>
+                <span class="badge-text">{{this.type.name}}</span>
+                <div class="badge-price mb-4">{{this.price}} VND</div>
+              </div>
+            </div>
+          {{/each}}
+        </section>
+      </div>
+    </div>
+    
+    <section class="contentbox">
+      <div class="headline"></div>
+      <div class="text"></div>
+      <div class="text"></div>
+      <div class="text"></div>
+      <div class="button"></div>
+    </section>
+    
+  </div>
 </div>
   
 

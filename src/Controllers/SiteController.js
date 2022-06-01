@@ -25,17 +25,23 @@ class SiteController {
                 User.findOne({_id: decodeToken}),
                 Brand.find({}),
                 Shoetype.find({}),
-                Shoe.find({})
+                Shoe.find({bestseller: true})
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1})
-                    .limit(3)
+                    .limit(3),
+                Shoe.find({available: true})
+                .populate('brand')
+                .populate('type')
+                .sort({createdAt: 1})
+                .limit(3)
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoeBestseller,
+                shoeAvailable
             ]) => {
                 if (data) {
                     req.data = data
@@ -44,7 +50,8 @@ class SiteController {
                             user: mongooseToObject(data),
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
-                            shoe: multipleMongooseToObject(shoe),
+                            shoeBestseller: multipleMongooseToObject(shoeBestseller),
+                            shoeAvailable: multipleMongooseToObject(shoeAvailable),
                             title: 'Home page'
                         })
                     next()
@@ -59,17 +66,25 @@ class SiteController {
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1})
-                    .limit(3)
+                    .limit(3),
+                Shoe.find({available: true})
+                .populate('brand')
+                .populate('type')
+                .sort({createdAt: 1})
+                .limit(3)
+                
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe
+                shoeBestseller,
+                shoeAvailable
             ]) => {
                 res.render('index', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
-                    shoe: multipleMongooseToObject(shoe),
+                    shoeBestseller: multipleMongooseToObject(shoeBestseller),
+                    shoeAvailable: multipleMongooseToObject(shoeAvailable),
                     title: 'Home page'
                 })
             }

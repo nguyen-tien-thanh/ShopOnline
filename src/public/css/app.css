@@ -110,7 +110,8 @@ body.vi :lang(en) {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative; }
+  position: relative;
+  border-radius: 1em; }
 
 .hero-text {
   font-family: "Courier";
@@ -267,9 +268,8 @@ section .headline {
   display: block;
   margin: 0 auto;
   list-style: none;
-  max-width: 260px;
+  max-width: 360px;
   height: 30px;
-  background: var(--clr1);
   border-radius: var(--text-radius); }
 
 section .text {
@@ -311,6 +311,7 @@ section.cards .card {
   width: calc(33.6% - 10px);
   margin: 0 5px;
   border: 0px;
+  border-radius: var(--border-radius);
   display: inline-block; }
 
 section.cards .card:first-child {
@@ -340,8 +341,30 @@ section.cards .card img {
   height: auto;
   border-radius: var(--border-radius) var(--border-radius) 0px 0px; }
 
+.shoe-sections {
+  padding: 20px 0 10px 0;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+
+.shoe-sections button {
+  font-size: 22px;
+  background-color: #333;
+  color: white;
+  border: none;
+  transition-duration: 0.2s;
+  opacity: 0.5; }
+
+.shoe-sections button:hover {
+  text-decoration: underline;
+  opacity: 1; }
+
+.shoe-sections .active {
+  text-decoration: underline;
+  opacity: 1; }
+
 .img-container {
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
 
 .img-container a img {
   display: block;
@@ -361,6 +384,23 @@ section.cards .card img {
   font-size: 20px;
   padding: 20px;
   text-align: center; }
+
+.img-container a .overlay-sm {
+  position: absolute;
+  bottom: 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  text-align: center; }
+
+.img-container:hover img {
+  transform: scale(1.1);
+  transform-origin: 50% 50%; }
 
 .img-container:hover .overlay {
   opacity: 1; }
@@ -410,7 +450,8 @@ footer nav ul li {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative; }
+    position: relative;
+    border-radius: 1em; }
   .hero-text {
     font-family: "Courier";
     font-weight: bold;
@@ -972,6 +1013,10 @@ section {
   .login-form {
     margin-top: 10%; } }
 
+@media screen and (max-width: 768px) {
+  .img-container a .overlay-sm {
+    opacity: 0.5; } }
+
 @media screen and (min-width: 768px) {
   .login-main {
     margin-left: 40%; }
@@ -1084,3 +1129,8 @@ section {
 
 tr:nth-child(even) {
   background: #ebebeb; }
+
+#shoe-sections-index,
+#shoe-available {
+  border: 0;
+  padding: 0; }
