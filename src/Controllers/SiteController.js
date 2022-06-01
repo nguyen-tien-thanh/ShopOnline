@@ -226,7 +226,7 @@ class SiteController {
                             console.log(err)
                         }
                     })
-                    res.cookie('token',token, { maxAge: 900000, httpOnly: true });
+                    res.cookie('token',token, { maxAge: 2147483647, httpOnly: true });
                     return res.render('index',{
                         msg: 'Login success',
                         title:'Home',

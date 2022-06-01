@@ -5,6 +5,10 @@
   src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot");
   src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff") format("woff"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.svg#Playlist") format("svg"); }
 
+@font-face {
+  font-family: 'GroovedPersonalUseRegular';
+  src: url("/fonts/GroovedPersonalUseRegular/GROOVEDPERSONALUSE.ttf") format("truetype"); }
+
 #logo-header {
   font-family: 'Playlist';
   font-size: 40px; }
@@ -100,6 +104,36 @@ body.vi :lang(en) {
   right: 18%;
   min-width: 150px; }
 
+.wrap-image {
+  background-image: url("/images/banner-index.png");
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; }
+
+.hero-text {
+  font-family: "Courier";
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-style: italic; }
+
+.hero-text span {
+  font-family: "GroovedPersonalUseRegular";
+  font-size: 70px;
+  color: white;
+  background-color: black; }
+
+.hero-text button:hover {
+  background-color: black; }
+
 .transparent {
   background: transparent !important; }
 
@@ -159,7 +193,7 @@ header nav ul li {
   list-style: none;
   padding: 15px;
   margin: 10px;
-  font-size: 20px; }
+  font-size: 24px; }
 
 header nav ul li:hover {
   font-size: 22px;
@@ -218,9 +252,8 @@ header nav ul li:hover {
   .main-header .icon {
     display: block; } }
 
-@media (max-width: 700px) {
-  .navbar-dropdown-items {
-    width: 50%; } }
+#logo-header {
+  font-weight: normal; }
 
 section {
   background: var(--clr2);
@@ -368,7 +401,35 @@ footer nav ul li {
   section.cards .card .badge-price {
     padding-bottom: 20px; }
   .wrapper {
-    padding: 50px 10px 100px 10px !important; } }
+    padding: 0px 0px 100px 0px !important; }
+  .navbar-dropdown-items {
+    width: 50%; }
+  .wrap-image {
+    background-image: url("/images/banner-index-sm.png");
+    height: 80vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; }
+  .hero-text {
+    font-family: "Courier";
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: left;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-style: italic; }
+  .hero-text span {
+    font-family: "GroovedPersonalUseRegular";
+    font-size: 70px;
+    color: white;
+    background-color: black; }
+  .hero-text button:hover {
+    background-color: black; } }
 
 body, html {
   max-width: 100%;
@@ -386,7 +447,7 @@ body {
   transition: all 0.5s ease 0s;
   box-shadow: 0px 22px 54px rgba(0, 0, 0, 0.5);
   background: var(--clr3);
-  padding: 50px 50px 100px 50px; }
+  padding: 0px 0px 100px 0px; }
 
 body.tight .wrapper {
   transform: translateY(-60px) scale(0.9);
@@ -439,7 +500,7 @@ body.tight .wrapper {
   animation: bounce 2s infinite; }
 
 footer {
-  font-family: Open Sans; }
+  font-family: 'Calibri'; }
 
 section {
   width: 100%;
@@ -907,10 +968,6 @@ section {
 .login-main {
   padding: 0px 10px; }
 
-@media screen and (max-height: 450px) {
-  .login-sidenav {
-    padding-top: 15px; } }
-
 @media screen and (max-width: 450px) {
   .login-form {
     margin-top: 10%; } }
@@ -925,10 +982,12 @@ section {
     top: 0;
     left: 0; }
   .login-form {
-    margin-top: 40%; } }
+    margin-top: 40%; }
+  .login-form form a {
+    font-size: 14px; } }
 
 .login-main-text {
-  margin-top: 20%;
+  margin-top: 50%;
   padding: 60px;
   color: #fff; }
 
@@ -978,7 +1037,7 @@ section {
     margin-top: 15%; } }
 
 .register-main-text {
-  margin-top: 20%;
+  margin-top: 50%;
   padding: 60px;
   color: #fff; }
 

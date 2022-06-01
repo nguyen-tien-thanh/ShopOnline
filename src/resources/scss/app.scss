@@ -10,6 +10,11 @@ $maincolor: rgb(208,1,9);
   url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.svg#Playlist") format("svg"); 
 }
 
+@font-face {
+  font-family: 'GroovedPersonalUseRegular';
+  src: url('/fonts/GroovedPersonalUseRegular/GROOVEDPERSONALUSE.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
 
 // ====================== MAIN PAGE ===========================================
 #logo-header{
@@ -129,8 +134,45 @@ a:hover{
 
   // =================================================================
   // =============== HEADER ================
+  .wrap-image{
+    background-image: url("/images/banner-index.png");
+    height: 80vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .hero-text {
+    font-family: "Courier";
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-style: italic;
+  }
+
+  .hero-text span{
+    font-family: "GroovedPersonalUseRegular";
+    font-size: 70px;
+    color: white;
+    background-color: black;
+  }
+
+  .hero-text button:hover{
+    background-color: black;
+    
+  }
+
   .transparent {
-    background: transparent !important; }
+    // background-image: url("/images/banner-index.jpg");
+    background: transparent !important; 
+  }
   
   .wrap {
     max-width: 960px;
@@ -144,6 +186,7 @@ a:hover{
   .fluid .wrap {
     max-width: 100% !important; }
   
+    
   header {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -186,7 +229,7 @@ a:hover{
       list-style: none;
       padding: 15px;
       margin: 10px;
-      font-size: 20px;
+      font-size: 24px;
     }
     header nav ul li:hover {
       font-size: 22px;
@@ -266,13 +309,10 @@ a:hover{
         display:block;
       }
     }
-  
 
-    @media (max-width: 700px) {
-      .navbar-dropdown-items {
-        width: 50%;
-      }
-    }
+  #logo-header{
+    font-weight: normal;
+  }
   
   section {
     background: var(--clr2);
@@ -409,9 +449,50 @@ a:hover{
       margin: 10px 0 0 0 !important;
       padding: 0; }
       section.cards .card .badge-price{
-        padding-bottom: 20px;}
+        padding-bottom: 20px;
+      }
     .wrapper {
-      padding: 50px 10px 100px 10px !important; } }
+      padding: 0px 0px 100px 0px !important; 
+    }
+    
+    .navbar-dropdown-items {
+      width: 50%;
+    }
+    .wrap-image{
+      background-image: url("/images/banner-index-sm.png");
+      height: 80vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  
+    .hero-text {
+      font-family: "Courier";
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-align: left;
+      position: absolute;
+      top: 30%;
+      left: 35%;
+      transform: translate(-50%, -50%);
+      color: black;
+      font-style: italic;
+    }
+  
+    .hero-text span{
+      font-family: "GroovedPersonalUseRegular";
+      font-size: 70px;
+      color: white;
+      background-color: black;
+    }
+  
+    .hero-text button:hover{
+      background-color: black;
+      
+    }
+  }
   
   body, html {
     max-width: 100%;
@@ -429,7 +510,9 @@ a:hover{
     transition: all 0.5s ease 0s;
     box-shadow: 0px 22px 54px rgba(0, 0, 0, 0.5);
     background: var(--clr3);
-    padding: 50px 50px 100px 50px; }
+    // padding: 50px 50px 100px 50px; 
+    padding: 0px 0px 100px 0px; 
+  }
   
   body.tight .wrapper {
     transform: translateY(-60px) scale(0.9);
@@ -487,7 +570,7 @@ a:hover{
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
 footer {
-  font-family: Open Sans;
+  font-family: 'Calibri';
 }
 
 section {
@@ -1069,9 +1152,9 @@ section {
   padding: 0px 10px;
 }
 
-@media screen and (max-height: 450px) {
-  .login-sidenav {padding-top: 15px;}
-}
+// @media screen and (max-height: 450px) {
+//   .login-sidenav {padding-top: 15px;}
+// }
 
 @media screen and (max-width: 450px) {
   .login-form{
@@ -1095,11 +1178,15 @@ section {
   .login-form{
       margin-top: 40%;
   }
+
+  .login-form form a {
+    font-size: 14px;
+  }
 }
 
 
 .login-main-text{
-  margin-top: 20%;
+  margin-top: 50%;
   padding: 60px;
   color: #fff;
 }
@@ -1174,7 +1261,7 @@ section {
 
 
 .register-main-text{
-  margin-top: 20%;
+  margin-top: 50%;
   padding: 60px;
   color: #fff;
 }
