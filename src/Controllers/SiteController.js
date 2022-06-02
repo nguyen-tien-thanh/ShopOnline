@@ -242,12 +242,13 @@ class SiteController {
                         }
                     })
                     res.cookie('token',token, { maxAge: 2147483647, httpOnly: true });
-                    return res.render('index',{
-                        msg: 'Login success',
-                        title:'Home',
-                        success: true,
-                        user: mongooseToObject(user)
-                    })
+                    // return res.render('index',{
+                    //     msg: 'Login success',
+                    //     title:'Home',
+                    //     success: true,
+                    //     user: mongooseToObject(user)
+                    // })
+                    return res.redirect('/')
                 }
                 const failed = user.countFailed
                 console.log(failed)
