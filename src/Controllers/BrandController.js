@@ -61,11 +61,16 @@ class ProductController {
 
     //[POST] /store brand
     store(req,res,next) {
-        const brand = new Brand(req.body);
+        const brand = new Brand({
+            name: req.body.name,
+            desc: req.body.desc,
+            image: req.file.filename
+        });
         brand.save()
             .then(() => res.redirect('/admin/brand-table'))
             .catch(error => {
-                console.log(error)
+                console.log(error);
+                return res.redirect('/partials/error')
             })
     }
 

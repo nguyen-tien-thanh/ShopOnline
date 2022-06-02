@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <button class="btn btn-success mb-2" data-toggle="modal" data-target="#create-brand"><i class="fa fa-plus"></i> Create new brand</button>
-                    <a href="/admin/brand-deleted-table">
+                    <a href="#deleted-brand-table">
                         <button class="btn btn-danger mb-2"><i class="fa fa-trash"></i> Deleted Brands</button>
                     </a>
                     <div class="table-responsive">
@@ -30,7 +30,7 @@
                             <tbody>
                                 {{#each brandList}}
                                 <tr>
-                                    <td><img class="img-user-table" id="{{this._id}}-image" src="{{this.image}}" alt="{{this.name}}"></td>
+                                    <td><img class="img-user-table" id="{{this._id}}-image" src="../uploads/{{this.image}}" alt="{{this.name}}"></td>
                                     <td id="{{this._id}}-name">{{this.name}}</td>
                                     <td id="{{this._id}}-desc">{{this.desc}}</td>
                                     <td id="{{this._id}}-createdAt">{{moment this.createdAt format = "DD/MM/yyyy"}}</td>
@@ -41,6 +41,72 @@
                                         <a href="" data-toggle="modal" data-target="#delete-brand" data-id="{{this._id}}">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
+                                    </td>
+                                </tr>
+                                {{else}}
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        There are no brands have been created.
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{!-- Deleted brand table --}}
+        <div class="container-fluid px-4" id="deleted-brand-table">
+            <h1 class="mt-4">{{title}} Tables</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">Tables</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Brand Database
+                </div>
+                <div class="card-body">
+                    <a href="/admin/brand-table">
+                        <button class="btn btn-info mb-2"><i class="fa fa-cloud"></i> Available Brands</button>
+                    </a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Created date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each brandDeletedList}}
+                                <tr>
+                                    <td><img class="img-user-table" src="{{this.image}}" alt="{{this.name}}"></td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.desc}}</td>
+                                    <td>{{moment this.createdAt format = "DD/MM/yyyy"}}</td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#restore-brand" data-id="{{this._id}}">
+                                            <button class="btn btn-info">Restore</button>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#force-delete-brand" data-id="{{this._id}}">
+                                            <button class="btn btn-danger">Permantly Delete</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                                {{else}}
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        No brands have been deleted.
+                                        <a href="#layoutSidenav_content">Available Brands</a>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -55,7 +121,8 @@
 
     {{!-- Delete form hidden --}}
     <form name="delete-brand-form" method="post"></form>
-    {{!-- <form name="edit-brand-form" method="post"></form> --}}
+    <form name="permantly-delete-brand-form" method="post"></form>
+    <form name="restore-brand-form" method="post"></form>
 
     {{!-- Confirm delete code --}}
     <div class="modal fade" id="delete-brand" tabindex="-1" role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
@@ -88,19 +155,24 @@
                     <span aria-hidden="true" class="payment-close">&times;</span>
                     </button>
                 </div>
-                <form action="/brand/store" method="POST">
+                <form action="/brand/store" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="brand-name" class="col-form-label">Brand name:</label>
-                            <input type="text" class="form-control" id="brand-name" name="name">
+                            <input type="text" class="form-control" id="brand-name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="brand-description" class="col-form-label">Description:</label>
-                            <textarea type="text" class="form-control" id="brand-description" name="desc"></textarea>
+                            <textarea type="text" class="form-control" id="brand-description" name="desc" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="brand-image" class="col-form-label">Image:</label>
-                            <input type="text" class="form-control" id="brand-image" name="image">
+                            {{!-- <label for="brand-image" class="col-form-label">Image:</label>
+                            <input type="text" class="form-control" id="brand-image" name="image"> --}}
+                            <input type="file" class="form-control p-1" id="" name="image"
+                                    accept="image/*" onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                            <div class="text-center">
+                                <img id="preview-image" alt="x" width="50%" height="50%" src="../images/example-shoe.png"/ required>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -132,16 +204,61 @@
                             <label for="edit-brand-desc" class="col-form-label">Description</label>
                             <textarea type="text" class="form-control" id="edit-brand-desc" name="desc" rows="5"></textarea>
                         </div>
-                        <div class="form-group">
+                        {{!-- <div class="form-group">
                             <label for="edit-brand-image" class="col-form-label">Image</label>
                             <input type="text" class="form-control" id="edit-brand-image" name="image" required>
-                        </div>
+                        </div> --}}
+                        
+                        {{!-- <input type="file" class="form-control" id="" name="image"
+                                accept="image/*"> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-info" id="btn-edit-brand">Save changes</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Confirm delete code --}}
+    <div class="modal fade" id="force-delete-brand" tabindex="-1" role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-categoryLabel"><b>Permantly Delete brand</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to <strong>Permantly</strong> delete this brand?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-force-delete-brand" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       {{!-- Confirm restore code --}}
+    <div class="modal fade" id="restore-brand" tabindex="-1" role="dialog" aria-labelledby="restore-categoryLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-header-confirm-restore">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="restore-categoryLabel"><b>Restore brand</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">Are you sure to <strong>Restore</strong>  this brand?</div>
+                
+                <div class="modal-footer">
+                    <button id="btn-restore-brand" type="button" class="btn btn-danger">Restore</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
             </div>
         </div>
     </div>

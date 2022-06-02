@@ -1,10 +1,14 @@
-
-
-   
+ 
 const User = require('../models/User')
+const Brand = require('../models/Brand')
+const Shoetype = require('../models/Shoetype')
+const Shoe = require('../models/Shoe')
+const Product = require('../models/Product')
+
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
 const { checkUserExist, makePassword } = require('../ulti/register')
+
 const bcrypt = require('bcrypt');
 // const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
@@ -17,25 +21,74 @@ class SiteController {
         if(req.cookies.token){
             var token = req.cookies.token;
             var decodeToken = jwt.verify(token, 'secretpasstoken')
-            User.findOne({
-                _id: decodeToken
-            }).then(data => {
+            Promise.all([
+                User.findOne({_id: decodeToken}),
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({bestseller: true})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1})
+                    .limit(3),
+                Shoe.find({available: true})
+                .populate('brand')
+                .populate('type')
+                .sort({createdAt: 1})
+                .limit(3)
+            ])
+            .then(([
+                data,
+                brandList,
+                shoeType,
+                shoeBestseller,
+                shoeAvailable
+            ]) => {
                 if (data) {
                     req.data = data
-                    // console.log(data)
                     return res.render('index',
                         {
                             user: mongooseToObject(data),
+                            brandList: multipleMongooseToObject(brandList),
+                            shoeType: multipleMongooseToObject(shoeType),
+                            shoeBestseller: multipleMongooseToObject(shoeBestseller),
+                            shoeAvailable: multipleMongooseToObject(shoeAvailable),
                             title: 'Home page'
                         })
                     next()
                 }
             })
         }
-        else{
-            res.render('index', {
-                title: 'Home page',
-            })
+        else {
+            Promise.all([
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({bestseller: true})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1})
+                    .limit(3),
+                Shoe.find({available: true})
+                .populate('brand')
+                .populate('type')
+                .sort({createdAt: 1})
+                .limit(3)
+                
+            ])
+            .then(([
+                brandList,
+                shoeType,
+                shoeBestseller,
+                shoeAvailable
+            ]) => {
+                res.render('index', {
+                    brandList: multipleMongooseToObject(brandList),
+                    shoeType: multipleMongooseToObject(shoeType),
+                    shoeBestseller: multipleMongooseToObject(shoeBestseller),
+                    shoeAvailable: multipleMongooseToObject(shoeAvailable),
+                    title: 'Home page'
+                })
+            }
+            )
         }
     }
 
@@ -188,10 +241,8 @@ class SiteController {
                             console.log(err)
                         }
                     })
-                    // return res.json({token: token, success: true, msgLog:'Login Successful'})
-                    res.cookie('token',token, { maxAge: 900000, httpOnly: true });
+                    res.cookie('token',token, { maxAge: 2147483647, httpOnly: true });
                     return res.render('index',{
-                        // layout: 'adminLayout',
                         msg: 'Login success',
                         title:'Home',
                         success: true,

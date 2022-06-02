@@ -1,8 +1,18 @@
 
 
-//=================== ARROW IN INDEX =============================
-  $(document).ready(function($) {
-    
+ $(document).ready(function($) {
+
+  // ====================== Add input field in /admin/shoe-table ============================
+  var i = 1;
+  $(".add-size-btn").click(function() {
+    $("#size-fields").append('<div valign="top" class="input-group col-xs-3"><input type="number" class="form-control" id="param-size-number' + i + '" name="size[' + i + '][number]" placeholder="Size number" required /><input type="number" class="form-control input-stock-size" id="param-size-stock' + i + '" name="size[' + i + '][stock]" value="" placeholder="Stock" onkeyup="getTotalStockOfSize()" required/><a href="javascript:void(0);" class="removeSizeBtn btn btn-danger"><i class="fa fa-minus"></i></a></div>');
+    i++;
+  });
+  $("#size-fields").on('click', '.removeSizeBtn', function() {
+    $(this).parent().remove();
+  });
+
+  //=================== ARROW IN INDEX =============================
     $('.login-section').hide();
     $('#move-to-login-section').click(function(){
         $('.register-sidenav').animate({
@@ -58,7 +68,23 @@
   });
 
   $('.arrow').click(function(){
-    $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 1200);
+    $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 200);
+  });
+
+  $('.btn-info-scroll').click(function(){
+    $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 200);
+  });
+
+  // ======================== Button to change section ==========================
+  $('[data-switch]').on('click', function (e) {
+    var $page = $('#shoe-sections-index'),
+        blockToShow = e.currentTarget.getAttribute('data-switch');
+    $('[data-switch]').attr('class','')
+    e.currentTarget.setAttribute('class','active');
+    // Hide all children.
+    $page.children().hide();
+    // And show the requested component.
+    $page.children(blockToShow).show();
   });
 
 //==================== MODAL OF Delivery ===========================
@@ -176,6 +202,17 @@ function logout() {
 }
 
 
+// Show the total quantity from stocks /admin/shoe-table
+function getTotalStockOfSize(){
+  var arr = document.getElementsByClassName('input-stock-size');
+    var total=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            total += parseInt(arr[i].value);
+    }
+    $('#size-input').html('<label for="shoe-quantity" class="col-form-label">Total Quantity Of Shoe: <b id="total">'+total+'</b></label><input hidden id="edit-shoe-quantity" name="quantity" value="'+total+'">')
+}
+
 //=================== /admin/product-table ================================
 //WHEN HTML DOM is loaded, Delete product confirm shows
   document.addEventListener('DOMContentLoaded', function(){
@@ -222,7 +259,7 @@ function logout() {
           }
         }
 
-        //=================== /admin/brand-table ================================
+//=================== /admin/brand-table ================================
         //Delete brand
         var brandId;
         var deleteBrandForm = document.forms['delete-brand-form'];
@@ -246,13 +283,13 @@ function logout() {
         var brandId = $(this).data('id');
         var brandName = $('#' + brandId + '-name').text();
         var brandDesc = $('#' + brandId + '-desc').text();
-        var brandImage = document.getElementById(brandId + '-image').getAttribute('src')
+        // var brandImage = document.getElementById(brandId + '-image').getAttribute('alt')
 
         $('#edit-brand-name').attr('value', brandName);
         document.getElementById('edit-brand-desc').value = brandDesc;
         document.getElementById('editBrandLabel').innerHTML = 'Edit brand <b> '+brandName+'</b>';
-        document.getElementById('edit-brand-image').value = brandImage;
-
+        // document.getElementById('edit-brand-image').value = brandImage;
+          
         var btnEditBrand = document.getElementById('btn-edit-brand')
         var editBrandForm = document.forms['edit-brand-form'];
         btnEditBrand.onclick = function(){
@@ -261,7 +298,7 @@ function logout() {
         }
       });
         
-        //================== /admin/brand-deleted-table ==========================
+//================== /admin/brand-deleted-table ==========================
         //Restore brand
         var brandDeletedId;
         var restoreBrandForm = document.forms['restore-brand-form']
@@ -290,11 +327,238 @@ function logout() {
                 forceDeleteBrandForm.submit();
               }
             }
-  })
+  
 
-// ====================== CHANGE LANGUAGE =====================
-// $(function() {
-//   $('#toggle-event').change(function() {
-//     document.body.className = $(this).data($(this).prop("checked").toString());
-//   });   
-// });
+// ====================== CRUD /admin/shoetype-table =====================
+    //Delete shoetype
+    var shoetypeId;
+    var deleteShoetypeForm = document.forms['delete-shoetype-form'];
+
+    $('#delete-shoetype').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      shoetypeId = button.data('id')
+    })
+
+    //When delete shoetype btn clicked
+    var btnDeleteCategory = document.getElementById('btn-delete-shoetype')
+    if(btnDeleteCategory){
+      btnDeleteCategory.onclick = function(){
+        deleteShoetypeForm.action = '/shoetype/' + shoetypeId + '?_method=DELETE';
+        deleteShoetypeForm.submit();
+      }
+    }
+
+    // Get ID of shoetype to modal for editing
+    $(document).on("click", ".open-modal-edit-shoetype", function () {
+    var shoetypeId = $(this).data('id');
+    var shoetypeName = $('#' + shoetypeId + '-name').text();
+    // var shoetypeImage = document.getElementById(shoetypeId + '-image').getAttribute('src')
+
+    $('#edit-shoetype-name').attr('value', shoetypeName);
+    document.getElementById('editShoetypeLabel').innerHTML = 'Edit shoetype <b> '+shoetypeName+'</b>';
+    // document.getElementById('edit-shoetype-image').value = shoetypeImage;
+
+    var btnEditShoetype = document.getElementById('btn-edit-shoetype')
+    var editShoetypeForm = document.forms['edit-shoetype-form'];
+    btnEditShoetype.onclick = function(){
+        editShoetypeForm.action = '/shoetype/' + shoetypeId + '?_method=PUT';
+        editShoetypeForm.submit();
+    }
+  });
+    
+//================== /admin/shoetype-deleted-table ==========================
+    //Restore shoetype
+    var shoetypeDeletedId;
+    var restoreShoetypeForm = document.forms['restore-shoetype-form']
+    $('#restore-shoetype').on('show.bs.modal', function (shoetype) {
+      var button = $(shoetype.relatedTarget)
+      shoetypeDeletedId = button.data('id')
+      })
+      var btnRestoreShoetype = document.getElementById('btn-restore-shoetype')
+      if (btnRestoreShoetype){
+        btnRestoreShoetype.onclick = function(){
+          restoreShoetypeForm.action = '/shoetype/' + shoetypeDeletedId + '/restore?_method=PATCH';
+          restoreShoetypeForm.submit();
+        }
+      }
+      
+      //Permently delete shoetype
+      var forceDeleteShoetypeForm = document.forms['permantly-delete-shoetype-form']
+      $('#force-delete-shoetype').on('show.bs.modal', function (shoetype) {
+        var button = $(shoetype.relatedTarget)
+        shoetypeDeletedId = button.data('id')
+        })
+        var btnForceDeleteShoetype = document.getElementById('btn-force-delete-shoetype')
+        if (btnForceDeleteShoetype){
+          btnForceDeleteShoetype.onclick = function(){
+            forceDeleteShoetypeForm.action = '/shoetype/' + shoetypeDeletedId + '/force?_method=DELETE';
+            forceDeleteShoetypeForm.submit();
+          }
+        }
+
+// ====================== CRUD /admin/shoe-table =====================
+    //Delete shoe
+    var shoeId;
+    var deleteShoeForm = document.forms['delete-shoe-form'];
+
+    $('#delete-shoe').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      shoeId = button.data('id')
+    })
+
+    //When delete shoe btn clicked
+    var btnDeleteCategory = document.getElementById('btn-delete-shoe')
+    if(btnDeleteCategory){
+      btnDeleteCategory.onclick = function(){
+        deleteShoeForm.action = '/shoe/' + shoeId + '?_method=DELETE';
+        deleteShoeForm.submit();
+      }
+    }
+
+    // Get ID of shoe to modal for editing
+    $(document).on("click", ".open-modal-edit-shoe", function () {
+      var shoeId = $(this).data('id');
+      var shoeImage = document.getElementById(shoeId + '-image').getAttribute('src')
+          shoeBrandName = $('#' + shoeId + '-brand-name').text(),
+          shoeTypeName = $('#' + shoeId + '-type-name').text(),
+          shoeName = $('#' + shoeId + '-name').text(),
+          shoeColor = $('#' + shoeId + '-color').text(),
+          shoePrice = $('#' + shoeId + '-price').text(),
+          shoeSale = $('#' + shoeId + '-sale').text(),
+          shoeQuantity = $('#' + shoeId + '-quantity').text(),
+          shoeAvailable = $('#' + shoeId + '-available').text(),
+          shoeBestseller = $('#' + shoeId + '-bestseller').text(),
+          shoeSale = $('#' + shoeId + '-sale').text();
+
+      document.getElementById('editShoeLabel').innerHTML = 'Edit shoe <b> '+shoeName+'</b>';
+      $('#preview-image-edit').attr('src', shoeImage);
+
+      var editBrandOptions = document.getElementsByClassName('edit-brand-options');
+      for(var i=0; i<editBrandOptions.length; i++){
+        if(editBrandOptions[i].innerHTML == shoeBrandName){
+          var selectedOptions = editBrandOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      var editTypeOptions = document.getElementsByClassName('edit-type-options');
+      for(var i=0; i<editTypeOptions.length; i++){
+        if(editTypeOptions[i].innerHTML == shoeTypeName){
+          var selectedOptions = editTypeOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      $('#edit-shoe-name').attr('value', shoeName);
+      
+      var editSaleOptions = document.getElementsByClassName('edit-color-options');
+      for(var i=0; i<editSaleOptions.length; i++){
+        if(editSaleOptions[i].value == shoeColor){
+          var selectedOptions = editSaleOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      var editColorOptions = document.getElementsByClassName('edit-color-options');
+      for(var i=0; i<editColorOptions.length; i++){
+        if(editColorOptions[i].value == shoeColor){
+          var selectedOptions = editColorOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      $('#edit-shoe-price').attr('value', shoePrice);
+      document.getElementById('total').innerHTML = shoeQuantity;
+      
+      var editAvailableOptions = document.getElementsByClassName('edit-sale-options');
+      for(var i=0; i<editAvailableOptions.length; i++){
+        if(editAvailableOptions[i].value == shoeSale){
+          var selectedOptions = editAvailableOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+      
+      var editBestsellerOptions = document.getElementsByClassName('edit-bestseller-options');
+      for(var i=0; i<editBestsellerOptions.length; i++){
+        if(editBestsellerOptions[i].value == shoeBestseller){
+          var selectedOptions = editBestsellerOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      var btnEditShoe = document.getElementById('btn-edit-shoe')
+      var editShoeForm = document.forms['edit-shoe-form'];
+      btnEditShoe.onclick = function(){
+          editShoeForm.action = '/shoe/' + shoeId + '?_method=PUT';
+          editShoeForm.submit();
+      }
+  });
+    
+//================== /admin/shoe-deleted-table ==========================
+    //Restore shoe
+    var shoeDeletedId;
+    var restoreShoeForm = document.forms['restore-shoe-form']
+
+    $('#restore-shoe').on('show.bs.modal', function (shoe) {
+      var button = $(shoe.relatedTarget)
+      shoeDeletedId = button.data('id')
+    })
+    var btnRestoreShoe = document.getElementById('btn-restore-shoe')
+    if (btnRestoreShoe){
+      btnRestoreShoe.onclick = function(){
+        restoreShoeForm.action = '/shoe/' + shoeDeletedId + '/restore?_method=PATCH';
+        restoreShoeForm.submit();
+      }
+    }
+      
+    //Permently delete shoe
+    var forceDeleteShoeForm = document.forms['permantly-delete-shoe-form']
+    $('#force-delete-shoe').on('show.bs.modal', function (shoe) {
+      var button = $(shoe.relatedTarget)
+      shoeDeletedId = button.data('id')
+    })
+    var btnForceDeleteShoe = document.getElementById('btn-force-delete-shoe')
+    if (btnForceDeleteShoe){
+      btnForceDeleteShoe.onclick = function(){
+        forceDeleteShoeForm.action = '/shoe/' + shoeDeletedId + '/force?_method=DELETE';
+        forceDeleteShoeForm.submit();
+      }
+    }
+    
+
+})
+
+//==================== DISPLAY ICON FOR NAVBAR RESPONSIVE =================
+$('.icon-responsive').on('click', function() {
+  if(document.getElementById('navbar-dropdown-items').getAttribute('style'))
+  {
+    document.getElementById('navbar-dropdown-items').removeAttribute('style')
+  }
+  else{
+    $('#navbar-dropdown-items').attr('style', 'display: block');
+  }
+})
+
+
+//==================== HEADER SCROLL DOWN =================
+$(window).scroll(function() {    
+  var scroll = $(window).scrollTop();
+  if (scroll >= 5) {
+      $(".main-header").addClass("header-sticky");
+  }
+  else {
+    $(".main-header").removeClass("header-sticky");
+  }
+});
+
+$(".main-header").hover(function(){
+  $(this).attr('style','background: var(--clr2);box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);');
+  }, function(){
+  $(this).attr('style','')
+});

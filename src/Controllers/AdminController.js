@@ -2,6 +2,8 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const Brand = require('../models/Brand')
+const Shoetype = require('../models/Shoetype')
+const Shoe = require('../models/Shoe')
 const Product = require('../models/Product')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
@@ -116,13 +118,18 @@ class AdminController {
     brandTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([Brand.find(), User.findOne({_id:decodeToken})])
-        .then(([brandList, data]) => {
+        Promise.all([Brand.find({}).sort({'createdAt': -1}), 
+            Brand.findDeleted({}).sort({'createdAt': -1}),
+            User.findOne({_id:decodeToken})])
+        .then(([brandList, 
+            brandDeletedList,
+            data]) => {
             if (data) {
                 req.data = data
                 return res.render('admin/brand-table',
                     {
                         user: mongooseToObject(data),
+                        brandDeletedList: multipleMongooseToObject(brandDeletedList),
                         brandList: multipleMongooseToObject(brandList),
                         layout: 'adminLayout',
                         title: 'Brand Management'
@@ -135,20 +142,62 @@ class AdminController {
         })
     }
 
-    // [GET] /admin/brand-deleted-table
-    brandDeletedTable(req,res,next){      
+
+    // [GET] /admin/shoetype-table
+    shoetypeTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([Brand.findDeleted({}), User.findOne({_id:decodeToken})])
-        .then(([brandDeletedList, data]) => {
+        Promise.all([Shoetype.find(), Shoetype.findDeleted(), User.findOne({_id:decodeToken})])
+        .then(([shoetypeList, shoetypeDeleted, data]) => {
             if (data) {
                 req.data = data
-                return res.render('admin/brand-deleted-table',
+                return res.render('admin/shoetype-table',
                     {
                         user: mongooseToObject(data),
-                        brandDeletedList: multipleMongooseToObject(brandDeletedList),
+                        shoetypeList: multipleMongooseToObject(shoetypeList),
+                        shoetypeDeleted: multipleMongooseToObject(shoetypeDeleted),
                         layout: 'adminLayout',
-                        title: 'Brand Deleted Management'
+                        title: 'Shoe Type',
+                        deletedTitle: 'Deleted Types'
+                    })
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            res.redirect('/login')
+        })
+    }
+
+    // [GET] /admin/shoe-table
+    shoeTable(req,res,next){      
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([
+            User.findOne({_id:decodeToken}),
+            Shoe.find().populate('brand').populate('type'), 
+            Shoe.findDeleted().populate('brand').populate('type'), 
+            Brand.find({}),
+            Shoetype.find({})
+        ])
+        .then(([
+            data,
+            shoeList, 
+            shoeDeleted, 
+            brandList,
+            shoetypeList
+        ]) => {
+            if (data) {
+                req.data = data
+                return res.render('admin/shoe-table',
+                    {
+                        user: mongooseToObject(data),
+                        shoeList: multipleMongooseToObject(shoeList),
+                        shoeDeleted: multipleMongooseToObject(shoeDeleted),
+                        brandList: multipleMongooseToObject(brandList),
+                        shoetypeList: multipleMongooseToObject(shoetypeList),
+                        layout: 'adminLayout',
+                        title: 'Shoe',
+                        deletedTitle: 'Deleted Shoe'
                     })
             }
         })
