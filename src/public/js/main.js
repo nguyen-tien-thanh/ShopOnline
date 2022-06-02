@@ -536,5 +536,29 @@ function getTotalStockOfSize(){
 
 //==================== DISPLAY ICON FOR NAVBAR RESPONSIVE =================
 $('.icon-responsive').on('click', function() {
-  $('#navbar-dropdown-items').attr('style', 'display: block');
+  if(document.getElementById('navbar-dropdown-items').getAttribute('style'))
+  {
+    document.getElementById('navbar-dropdown-items').removeAttribute('style')
+  }
+  else{
+    $('#navbar-dropdown-items').attr('style', 'display: block');
+  }
 })
+
+
+//==================== HEADER SCROLL DOWN =================
+$(window).scroll(function() {    
+  var scroll = $(window).scrollTop();
+  if (scroll >= 5) {
+      $(".main-header").addClass("header-sticky");
+  }
+  else {
+    $(".main-header").removeClass("header-sticky");
+  }
+});
+
+$(".main-header").hover(function(){
+  $(this).attr('style','background: var(--clr2);box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);');
+  }, function(){
+  $(this).attr('style','')
+});

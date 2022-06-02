@@ -22,7 +22,7 @@ const app = express();
 //-----------------------------------
 // Cấu hình thư viện + Data
 //-----------------------------------
-xPORT = process.env.PORT || 3000;
+xPORT = process.env.PORT || 5000;
 
 
 // Cấu hình MVC + Engine - View
