@@ -21,22 +21,25 @@ class ShoeController {
             Promise.all([
                 Brand.find({}),
                 Shoetype.find({}),
-                Shoe.find({bestseller: true})
+                Shoe.find({})
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1})
-                    .limit(3)
+                    .limit(4),
+                Shoe.findOne({_id: req.params.id})
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                shoeDetail
             ]) => {
                 res.render('shoe/show', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Home page'
+                    shoeDetail: mongooseToObject(shoeDetail),
+                    title: 'Detail'
                 })
             }
             )}
@@ -51,13 +54,15 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1})
-                    .limit(3)
+                    .limit(),
+                Shoe.findOne({_id: req.params.id})
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                shoeDetail
             ]) => {
                 if (data) {
                     req.data = data
@@ -67,7 +72,8 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Home page'
+                            shoeDetail: mongooseToObject(shoeDetail),
+                            title: 'Detail'
                         })
                     next()
                 }

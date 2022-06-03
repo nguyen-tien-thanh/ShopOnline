@@ -536,12 +536,13 @@ function getTotalStockOfSize(){
 
 //==================== DISPLAY ICON FOR NAVBAR RESPONSIVE =================
 $('.icon-responsive').on('click', function() {
-  if(document.getElementById('navbar-dropdown-items').getAttribute('style'))
-  {
-    document.getElementById('navbar-dropdown-items').removeAttribute('style')
+  if(document.getElementById('navbar-dropdown-items').getAttribute('style')){
+    document.getElementById('navbar-dropdown-items').removeAttribute('style');
+    document.getElementById('icon-nav-responsive').setAttribute('class', 'fa fa-bars')
   }
   else{
     $('#navbar-dropdown-items').attr('style', 'display: block');
+    document.getElementById('icon-nav-responsive').setAttribute('class', 'fa fa-times')
   }
 })
 

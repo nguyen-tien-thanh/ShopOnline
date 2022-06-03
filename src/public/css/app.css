@@ -13,6 +13,10 @@
   font-family: 'GroovedPersonalUseRegular';
   src: url("/fonts/GroovedPersonalUseRegular/GROOVEDPERSONALUSE.ttf") format("truetype"); }
 
+@font-face {
+  font-family: 'Sofia';
+  src: url("/fonts/sofia/Sofia Pro Regular.ttf") format("truetype"); }
+
 #logo-header {
   font-family: 'Playlist';
   font-size: 40px; }
@@ -1027,7 +1031,7 @@ section {
     top: 0;
     left: 0; }
   .login-form {
-    margin-top: 40%; }
+    margin-top: 80%; }
   .login-form form a {
     font-size: 14px; } }
 
@@ -1079,7 +1083,7 @@ section {
     bottom: 0;
     right: 0; }
   .register-form {
-    margin-top: 15%; } }
+    margin-top: 35%; } }
 
 .register-main-text {
   margin-top: 50%;
@@ -1134,3 +1138,34 @@ tr:nth-child(even) {
 #shoe-available {
   border: 0;
   padding: 0; }
+
+.detail-shoe-container {
+  margin-top: 10px;
+  color: white;
+  font-family: 'Sofia'; }
+
+.detail-shoe-container #shoe-detail {
+  padding-left: 0; }
+
+.detail-shoe-container #shoe-detail img {
+  height: 100vh;
+  width: 70vw; }
+
+.detail-shoe-container section {
+  text-align: left;
+  height: 100vh; }
+
+.detail-shoe-container #shoe-detail span {
+  color: #c6c5c5;
+  font-size: 18px;
+  text-transform: uppercase; }
+
+.detail-shoe-container #shoe-detail h1 {
+  font-size: 24px;
+  text-transform: uppercase; }
+
+.detail-shoe-container #shoe-detail h3 {
+  font-size: 16px; }
+
+.detail-shoe-container #shoe-detail #size-options a {
+  font-size: 18px; }
