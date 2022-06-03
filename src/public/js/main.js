@@ -117,10 +117,8 @@ if(paymentBtn){
 var returnModal = document.getElementById("return-modal");
 var returnBtn = document.getElementById("return-btn");
 var returnSpan = document.getElementsByClassName("return-close")[0];
+
 if(returnBtn){
-  document.getElementById("href-a-shoe-detail").onclick = function() {
-    returnModal.style.display = "block";
-  }
   returnBtn.onclick = function() {
     returnModal.style.display = "block";
   }
@@ -572,7 +570,8 @@ var money = document.getElementById('money-dot').innerHTML
 var moneyDots = money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
 $('.money-dot-anywhere').text(moneyDots + ' VND');
 
-// ================= OPEN UL LI SHOE DETAIL =============================
+// ================= /shoe/:id =============================
+  // ================= OPEN UL LI SHOE DETAIL =========
 $('.nav-list-items').on('click', function() {
   $('.nav-list-items').not(this).find('div').hide();
   $('.nav-list-items').not(this).find('i').attr('class', 'fa fa-plus');
@@ -580,3 +579,12 @@ $('.nav-list-items').on('click', function() {
     $(this).parent().find('i').toggleClass('fa-minus fa-plus');
   });
 });
+
+  //================= OPEN RETURN POLICY BY ELEMENT 'a' =================
+  var hrefAShoeDetail = document.getElementById("href-a-shoe-detail")
+  if(hrefAShoeDetail){
+    hrefAShoeDetail.onclick = function() {
+      returnModal.style.display = "block";
+    }
+  }
+
