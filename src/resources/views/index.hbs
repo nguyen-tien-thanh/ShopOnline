@@ -65,9 +65,8 @@
         <section class="cards">
           {{#each shoeBestseller}}
             <div class="card">
-              <h3 id="logo-product-detail">Best<span>Seller</span></h3>
               <div class="img-container">
-                <a href="/shoe/{{this._id}}">
+                <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller">
                   <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
                   <div class="overlay">See detail</div>
                 </a>
@@ -76,7 +75,7 @@
                 <span class="badge-text">{{this.brand.name}}</span>
                 <div class="badge-headline">{{this.name}}</div>
                 <span class="badge-text">{{this.type.name}}</span>
-                <div class="badge-price mb-4">{{this.price}} VND</div>
+                <div class="badge-price mb-4 money-dot-anywhere" id="money-dot">{{this.price}}</div>
               </div>
             </div>
           {{/each}}
@@ -87,9 +86,8 @@
         <section class="cards">
           {{#each shoeAvailable}}
             <div class="card">
-              <h3 id="logo-product-detail">Best<span>Seller</span></h3>
               <div class="img-container">
-                <a href="/shoe/{{this._id}}">
+                <a href="/shoe/{{this._id}}?shoeDetailTitle=New%20Arrival">
                   <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
                   <div class="overlay">See detail</div>
                 </a>
@@ -98,7 +96,7 @@
                 <span class="badge-text">{{this.brand.name}}</span>
                 <div class="badge-headline">{{this.name}}</div>
                 <span class="badge-text">{{this.type.name}}</span>
-                <div class="badge-price mb-4">{{this.price}} VND</div>
+                <div class="badge-price mb-4 money-dot-anywhere" id="money-dot">{{this.price}}</div>
               </div>
             </div>
           {{/each}}

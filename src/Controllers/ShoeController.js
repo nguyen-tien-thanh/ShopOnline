@@ -24,9 +24,11 @@ class ShoeController {
                 Shoe.find({})
                     .populate('brand')
                     .populate('type')
-                    .sort({createdAt: 1})
                     .limit(4),
                 Shoe.findOne({_id: req.params.id})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
             ])
             .then(([
                 brandList,
@@ -39,7 +41,8 @@ class ShoeController {
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
                     shoeDetail: mongooseToObject(shoeDetail),
-                    title: 'Detail'
+                    title: 'Detail',
+                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -53,9 +56,11 @@ class ShoeController {
                 Shoe.find({})
                     .populate('brand')
                     .populate('type')
-                    .sort({createdAt: 1})
                     .limit(),
                 Shoe.findOne({_id: req.params.id})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
             ])
             .then(([
                 data,
@@ -73,7 +78,8 @@ class ShoeController {
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
                             shoeDetail: mongooseToObject(shoeDetail),
-                            title: 'Detail'
+                            title: 'Detail',
+                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }

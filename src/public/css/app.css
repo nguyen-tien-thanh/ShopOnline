@@ -1141,8 +1141,8 @@ tr:nth-child(even) {
 
 .detail-shoe-container {
   margin-top: 10px;
-  color: white;
-  font-family: 'Sofia'; }
+  font-family: 'Sofia';
+  background: white; }
 
 .detail-shoe-container #shoe-detail {
   padding-left: 0; }
@@ -1153,19 +1153,66 @@ tr:nth-child(even) {
 
 .detail-shoe-container section {
   text-align: left;
-  height: 100vh; }
+  height: 100vh;
+  background-color: white; }
 
 .detail-shoe-container #shoe-detail span {
-  color: #c6c5c5;
-  font-size: 18px;
-  text-transform: uppercase; }
+  color: #9b9898;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 100; }
 
 .detail-shoe-container #shoe-detail h1 {
-  font-size: 24px;
-  text-transform: uppercase; }
+  font-size: 21px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; }
 
-.detail-shoe-container #shoe-detail h3 {
-  font-size: 16px; }
+.detail-shoe-container #shoe-detail h2 {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; }
+
+.detail-shoe-container #shoe-detail ul {
+  list-style: none; }
+
+.detail-shoe-container #shoe-detail li > div {
+  display: none; }
+
+.detail-shoe-container #shoe-detail .text-muted {
+  text-decoration: underline; }
+
+.detail-shoe-container #shoe-detail ul li ul li::before {
+  content: "\2022";
+  color: #797878;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  vertical-align: left; }
+
+.detail-shoe-container #shoe-detail h3,
+.detail-shoe-container #shoe-detail a,
+.detail-shoe-container #shoe-detail ul li {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 23px; }
 
 .detail-shoe-container #shoe-detail #size-options a {
-  font-size: 18px; }
+  font-size: 15px; }
+
+.detail-shoe-container #shoe-detail #size-guide-btn {
+  margin-top: 15px;
+  margin-left: 13px;
+  padding-left: 24px;
+  background: url("/images/size-icon.png") transparent no-repeat left;
+  background-size: 18px;
+  color: #9b9899; }
+
+.detail-shoe-container #shoe-detail button {
+  margin-left: 13px;
+  text-transform: uppercase; }
+
+.detail-shoe-container #shoe-detail .fa-plus,
+.detail-shoe-container #shoe-detail .fa-minus {
+  color: #797878;
+  cursor: pointer; }
