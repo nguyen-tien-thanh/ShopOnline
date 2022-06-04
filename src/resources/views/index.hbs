@@ -66,7 +66,7 @@
           {{#each shoeBestseller}}
             <div class="card">
               <div class="img-container">
-                <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller">
+                <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
                   <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
                   <div class="overlay">See detail</div>
                 </a>
@@ -87,7 +87,7 @@
           {{#each shoeAvailable}}
             <div class="card">
               <div class="img-container">
-                <a href="/shoe/{{this._id}}?shoeDetailTitle=New%20Arrival">
+                <a href="/shoe/{{this._id}}?shoeDetailTitle=New%20Arrival&brandid={{this.brand._id}}">
                   <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
                   <div class="overlay">See detail</div>
                 </a>

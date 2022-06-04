@@ -21,9 +21,10 @@ class ShoeController {
             Promise.all([
                 Brand.find({}),
                 Shoetype.find({}),
-                Shoe.find({})
+                Shoe.find({brand: req.query.brandid})
                     .populate('brand')
                     .populate('type')
+                    .sort({createdAt: 1})
                     .limit(4),
                 Shoe.findOne({_id: req.params.id})
                     .populate('brand')
@@ -53,10 +54,11 @@ class ShoeController {
                 User.findOne({_id: decodeToken}),
                 Brand.find({}),
                 Shoetype.find({}),
-                Shoe.find({})
+                Shoe.find({brand: req.query.brandid})
                     .populate('brand')
                     .populate('type')
-                    .limit(),
+                    .sort({createdAt: 1})
+                    .limit(4),
                 Shoe.findOne({_id: req.params.id})
                     .populate('brand')
                     .populate('type')

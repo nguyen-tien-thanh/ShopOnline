@@ -580,11 +580,18 @@ $('.nav-list-items').on('click', function() {
   });
 });
 
-  //================= OPEN RETURN POLICY BY ELEMENT 'a' =================
+  //================= OPEN MODAL BY ELEMENT 'a' /shoe/:id=================
   var hrefAShoeDetail = document.getElementById("href-a-shoe-detail")
   if(hrefAShoeDetail){
     hrefAShoeDetail.onclick = function() {
       returnModal.style.display = "block";
+    }
+  }
+
+  var moreDetail = document.getElementById("more-detail")
+  if(moreDetail){
+    moreDetail.onclick = function() {
+      deliveryModal.style.display = "block";
     }
   }
 

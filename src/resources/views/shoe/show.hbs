@@ -1,11 +1,11 @@
 <div class="wrapper detail-shoe-container">
     <section id="shoe-detail">
         <div class="row">
-            <div class="col-9">
+            <div class="col-sm-12 col-md-7 col-lg-9">
                 <img src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">
             </div>
 
-            <div class="col-3">
+            <div class="col-sm-12 col-md-5 col-lg-3 p-4">
                 <span>{{shoeDetailTitle}}</span>
                 <h1>{{shoeDetail.name}}</h1>
                 <h2 id="money-dot" class="money-dot-anywhere">{{shoeDetail.price}}</h2>
@@ -15,29 +15,29 @@
                 </h3>
 
                 <div class="row mt-3">
-                    <div class="col-8">
+                    <div class="col-8 col-md-9">
                         <span>size</span>
                         {{!-- <option name="size">
-                            <select selected>36</select>
-                            <select>37</select>
-                            <select>38</select>
-                            <select>39</select>
-                            <select>40</select>
+                            <select value="1" selected>36</select>
+                            <select value="1">37</select>
+                            <select value="1">38</select>
+                            <select value="1">39</select>
+                            <select value="1">40</select>
                         </option> --}}
                         <div id="size-options">
-                            <a href="#" class="active">36</a>
-                            <a href="#" class="disabled">37</a>
+                            <a href="#">36</a>
+                            <a href="#">37</a>
                             <a href="#">38</a>
                             <a href="#">39</a>
                             <a href="#">40</a>
                         </div>
                     </div>
 
-                    <div class="col-4 row">
+                    <div class="col-4 col-md-3 row">
                         <div class="col-12">  
                             <span>colour</span>
                         </div>
-                        <i class="fa fa-circle" style="color: {{shoeDetail.color}}"></i>
+                        <i class="fa fa-color-circle" style="background: {{shoeDetail.color}};"></i>
                     </div>
 
                     <a href="#" id="size-guide-btn"> SIZE GUIDE</a>
@@ -46,7 +46,7 @@
 
                     <h3 class="mt-4">
                         *All pre-orders will take 30 working days for preparation. Once your pre-orders are ready, you will receive an email for confirmation with tracking information. 
-                        More detail <a href="#" class="text-muted">click here</a>.
+                        More detail <a href="#" class="text-muted" id="more-detail">click here</a>.
                     </h3>
 
                     <ul class="mt-4">
@@ -89,8 +89,30 @@
             </div>
         </div>
     </section>
-
+    <hr>
     <section id="another-shoe-detail">
-
+        <div class="row">
+            <div class="col-12">
+                <h1>you may also like</h1>
+            </div>
+            <div class="col-12 row">
+                {{#each shoe}}
+                    <div class="col-6 col-lg-3 mt-2">
+                        <div class="card">
+                            <div class="img-container">
+                                <a href="/shoe/{{this._id}}?&brandid={{this.brand._id}}">
+                                <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
+                                <div class="overlay">See detail</div>
+                                </a>
+                            </div>
+                            <div class="content">
+                                <div>{{this.name}}</div>
+                                <div class="mb-4 text-muted money-dot-anywhere" id="money-dot">{{this.price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
     </section>
 </div>
