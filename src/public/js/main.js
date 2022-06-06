@@ -87,6 +87,17 @@
     $page.children(blockToShow).show();
   });
 
+  // ======================== Button to change section SIZE GUIDE /shoe/:id ==========================
+  $('[data-switch]').on('click', function (e) {
+    var $page = $('#shoe-size-pages'),
+        blockToShow = e.currentTarget.getAttribute('data-switch');
+    $('[data-switch]').attr('class','')
+    e.currentTarget.setAttribute('class','active');
+    $page.children().hide();
+    $page.children(blockToShow).show();
+  });
+
+
 //==================== MODAL OF Delivery ===========================
 var deliveryModal = document.getElementById("delivery-modal");
 var deliveryBtn = document.getElementById("delivery-btn");
@@ -128,11 +139,29 @@ if(returnBtn){
   }
 }
 
+
+// ============== MODAL OF SIZE GUIDE ==================================
+var sizeGuideModal = document.getElementById('size-guide-modal');
+var sizeGuideBtn = document.getElementById('size-guide-btn');
+var sizeGuideSpan = document.getElementsByClassName("size-guide-close")[0];
+
+if(sizeGuideModal){
+  sizeGuideBtn.onclick = function() {
+    sizeGuideModal.style.display = "block";
+  }
+  sizeGuideSpan.onclick = function() {
+    sizeGuideModal.style.display = "none";
+    $('.modal-backdrop').remove();
+  }
+}
+
 window.onclick = function(event) {
-  if (event.target == paymentModal || event.target == deliveryModal || event.target == returnModal) {
+  if (event.target == paymentModal || event.target == deliveryModal || 
+      event.target == returnModal || event.target == sizeGuideModal) {
     paymentModal.style.display = "none";
     deliveryModal.style.display = "none";
     returnModal.style.display = "none";
+    sizeGuideModal.style.display = "none";
   }
 }
 
@@ -533,6 +562,38 @@ function getTotalStockOfSize(){
     }
     
 
+// ================= ADD DOT TO MONEY============================
+var money = document.getElementById('money-dot')
+if(money){
+  money = money.innerHTML;
+  var moneyDots = money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+  $('.money-dot-anywhere').text(moneyDots + ' VND');
+}
+
+// ================= /shoe/:id =============================
+  // ================= OPEN UL LI SHOE DETAIL =========
+  $('.nav-list-items').on('click', function() {
+    $('.nav-list-items').not(this).find('div').hide();
+    $('.nav-list-items').not(this).find('i').attr('class', 'fa fa-plus');
+    $(this).find('div').slideToggle('normal', function() {
+      $(this).parent().find('i').toggleClass('fa-minus fa-plus');
+    });
+  });
+
+    //================= OPEN MODAL BY ELEMENT 'a' /shoe/:id=================
+    var hrefAShoeDetail = document.getElementById("href-a-shoe-detail")
+    if(hrefAShoeDetail){
+      hrefAShoeDetail.onclick = function() {
+        returnModal.style.display = "block";
+      }
+    }
+
+    var moreDetail = document.getElementById("more-detail")
+    if(moreDetail){
+      moreDetail.onclick = function() {
+        deliveryModal.style.display = "block";
+      }
+    }
 })
 
 //==================== DISPLAY ICON FOR NAVBAR RESPONSIVE =================
@@ -565,33 +626,4 @@ $(".main-header").hover(function(){
   $(this).attr('style','')
 });
 
-// ================= ADD DOT TO MONEY============================
-var money = document.getElementById('money-dot').innerHTML
-var moneyDots = money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-$('.money-dot-anywhere').text(moneyDots + ' VND');
-
-// ================= /shoe/:id =============================
-  // ================= OPEN UL LI SHOE DETAIL =========
-$('.nav-list-items').on('click', function() {
-  $('.nav-list-items').not(this).find('div').hide();
-  $('.nav-list-items').not(this).find('i').attr('class', 'fa fa-plus');
-  $(this).find('div').slideToggle('normal', function() {
-    $(this).parent().find('i').toggleClass('fa-minus fa-plus');
-  });
-});
-
-  //================= OPEN MODAL BY ELEMENT 'a' /shoe/:id=================
-  var hrefAShoeDetail = document.getElementById("href-a-shoe-detail")
-  if(hrefAShoeDetail){
-    hrefAShoeDetail.onclick = function() {
-      returnModal.style.display = "block";
-    }
-  }
-
-  var moreDetail = document.getElementById("more-detail")
-  if(moreDetail){
-    moreDetail.onclick = function() {
-      deliveryModal.style.display = "block";
-    }
-  }
 

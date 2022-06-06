@@ -40,7 +40,7 @@
                         <i class="fa fa-color-circle" style="background: {{shoeDetail.color}};"></i>
                     </div>
 
-                    <a href="#" id="size-guide-btn"> SIZE GUIDE</a>
+                    <a href="" id="size-guide-btn" data-toggle="modal" data-target=".bd-example-modal-lg"> SIZE GUIDE</a>
 
                     <button class="btn btn-outline-dark mt-5">pre-order</button>
 
@@ -89,7 +89,9 @@
             </div>
         </div>
     </section>
+
     <hr>
+
     <section id="another-shoe-detail">
         <div class="row">
             <div class="col-12">
@@ -105,7 +107,7 @@
                                 <div class="overlay">See detail</div>
                                 </a>
                             </div>
-                            <div class="content">
+                            <div class="p-2">
                                 <div>{{this.name}}</div>
                                 <div class="mb-4 text-muted money-dot-anywhere" id="money-dot">{{this.price}}</div>
                             </div>
@@ -115,4 +117,282 @@
             </div>
         </div>
     </section>
+
+
+    {{!-- SIZE GUIDE MODAL --}}
+    <div id="size-guide-modal" class="size-guide-modal">
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg text-center">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Size Guide</h3>
+                    <span class="size-guide-close">&times;</span>
+                    </div>
+                <div class="modal-body">
+                    <h6 class="container-fluid">If your measurements are not consistent with a single column, use your waist measurement to determine your ideal size.</h6>
+                    
+                    <div class="shoe-sections">
+                        <button class="active" data-switch="#shoe-men-size">Men</button>
+                        <button data-switch="#shoe-women-size">Women</button>
+                    </div>
+
+                    <div id="shoe-size-pages">
+                        <div id="shoe-men-size">
+                            <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                <th scope="col">Our Size</th>
+                                <th scope="col">US</th>
+                                <th scope="col">UK</th>
+                                <th scope="col">Inches</th>
+                                <th scope="col">Centimet</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">39</th>
+                                <td>6</td>
+                                <td>5.5</td>
+                                <td>9.25"</td>
+                                <td>23.5</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">39-40</th>
+                                <td>6.5</td>
+                                <td>6</td>
+                                <td>9.5"</td>
+                                <td>24.1</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">40</th>
+                                <td>7</td>
+                                <td>6.5</td>
+                                <td>9.625"</td>
+                                <td>24.4</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">40-41</th>
+                                <td>7.5</td>
+                                <td>7</td>
+                                <td>9.75"</td>
+                                <td>24.8</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">41</th>
+                                <td>8</td>
+                                <td>7.5</td>
+                                <td>9.9375"</td>
+                                <td>25.4</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">41-42</th>
+                                <td>8.5</td>
+                                <td>8</td>
+                                <td>10.125"</td>
+                                <td>25.7</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">42</th>
+                                <td>9</td>
+                                <td>8.5</td>
+                                <td>10.25"</td>
+                                <td>26</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">42-43</th>
+                                <td>9.5</td>
+                                <td>9</td>
+                                <td>10.4375"</td>
+                                <td>26.7</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">43</th>
+                                <td>10</td>
+                                <td>9.5</td>
+                                <td>10.5625"</td>
+                                <td>27</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">43-44</th>
+                                <td>10.5</td>
+                                <td>10</td>
+                                <td>10.75"</td>
+                                <td>27.3</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">44</th>
+                                <td>11</td>
+                                <td>10.5</td>
+                                <td>10.9375"</td>
+                                <td>27.9</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">44-45</th>
+                                <td>11.5</td>
+                                <td>11</td>
+                                <td>11.125"</td>
+                                <td>28.3</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">45</th>
+                                <td>12</td>
+                                <td>11.5</td>
+                                <td>11.25"</td>
+                                <td>28.6</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">46</th>
+                                <td>13</td>
+                                <td>12.5</td>
+                                <td>11.5625"</td>
+                                <td>29.4</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+
+                        <div id="shoe-women-size">
+                            <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                <th scope="col">Our Size</th>
+                                <th scope="col">US</th>
+                                <th scope="col">UK</th>
+                                <th scope="col">Inches</th>
+                                <th scope="col">Centimet</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">34-35</th>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>8.1875"</td>
+                                <td>20.8</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">35</th>
+                                <td>4.5</td>
+                                <td>2.5</td>
+                                <td>8.375"</td>
+                                <td>21.3</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">35-36</th>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>8.5"</td>
+                                <td>21.6</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">36</th>
+                                <td>5.5</td>
+                                <td>3.5</td>
+                                <td>8.75"</td>
+                                <td>22.2</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">36-37</th>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>8.8075"</td>
+                                <td>22.5</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">37</th>
+                                <td>6.5</td>
+                                <td>4.5</td>
+                                <td>9.0625"</td>
+                                <td>33</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">37-38</th>
+                                <td>7</td>
+                                <td>5</td>
+                                <td>9.25"</td>
+                                <td>23.5</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">38</th>
+                                <td>7.5</td>
+                                <td>5.5</td>
+                                <td>9.375"</td>
+                                <td>23.8</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">38-39</th>
+                                <td>8</td>
+                                <td>6</td>
+                                <td>9.5"</td>
+                                <td>24.1</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">39</th>
+                                <td>8.5</td>
+                                <td>6.5</td>
+                                <td>9.6875"</td>
+                                <td>24.6</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">39-40</th>
+                                <td>9</td>
+                                <td>7</td>
+                                <td>9.875"</td>
+                                <td>25.1</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">40</th>
+                                <td>9.5</td>
+                                <td>7.5</td>
+                                <td>10"</td>
+                                <td>25.4</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">40-41</th>
+                                <td>10</td>
+                                <td>8</td>
+                                <td>10.1875"</td>
+                                <td>25.9</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">41</th>
+                                <td>10.5</td>
+                                <td>8.5</td>
+                                <td>10.3125"</td>
+                                <td>26.2</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">41-42</th>
+                                <td>11</td>
+                                <td>0</td>
+                                <td>10.5"</td>
+                                <td>26.7</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">42</th>
+                                <td>11.5</td>
+                                <td>9.5</td>
+                                <td>10.6875"</td>
+                                <td>27.1</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">42-43</th>
+                                <td>12</td>
+                                <td>10</td>
+                                <td>10.875"</td>
+                                <td>27.6</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+    
+    
+

@@ -403,8 +403,8 @@ a:hover{
           margin-left: 27px;}
         section.cards .card img {
           width: 100%;
-          height: auto;
-          // padding-top: 5px;
+          height: 40vh;
+          object-fit: cover;
           border-radius: var(--border-radius) var(--border-radius) 0px 0px; 
         }
 
@@ -431,6 +431,10 @@ a:hover{
   .shoe-sections .active{
     text-decoration: underline;
     opacity: 1;
+  }
+
+  @media screen and (max-width: 768px){
+    .shoe-sections button{font-size: 30px;}
   }
 
 
@@ -509,6 +513,8 @@ a:hover{
     
     .navbar-dropdown-items {
       width: 50%;
+      right: -20px;
+      top: 170%;
     }
     .wrap-image{
       background-image: url("/images/banner-index-sm.png");
@@ -552,6 +558,7 @@ a:hover{
     width: 100%;
     height: 95vh;
     opacity: 0.4;
+    object-fit: cover;
   }
 
   .slide-text{
@@ -575,6 +582,11 @@ a:hover{
     text-shadow: 0.5px 1px 1px #000000;
   }
 
+  @media screen and (max-width: 768px) {
+    .slide-text h3{font-size: 28px;}
+    .slide-text h1{font-size: 58px;}
+  }
+
   //END SLIDE
   
   body, html {
@@ -595,6 +607,7 @@ a:hover{
     background: var(--clr3);
     // padding: 50px 50px 100px 50px; 
     padding: 0px 0px 50px 0px; 
+    border-radius: var(--border-radius);
   }
   
   body.tight .wrapper {
@@ -955,7 +968,8 @@ section {
 .payment-close:hover,
 .payment-close:focus,
 .return-close:hover,
-.return-close:focus {
+.return-close:focus,
+.size-guide-close:hover {
   color: gray;
   cursor: pointer;
 }
@@ -1411,6 +1425,9 @@ tr:nth-child(even) {
   background: rgb(235, 235, 235);
 }
 
+tbody tr:hover{
+  color: $maincolor;
+}
 // tr td:empty {
 //   background:rgb(240, 239, 239) !important;
 // }
@@ -1433,8 +1450,8 @@ tr:nth-child(even) {
   }
     .detail-shoe-container #shoe-detail img{
       height: 80vh;
-      width: 75vw;
-      object-fit:scale-down;
+      width: 70vw;
+      object-fit:cover;
     }
 
 
@@ -1516,6 +1533,20 @@ tr:nth-child(even) {
       text-align: center;
       margin-left: 10px;
   }
+
+  .detail-shoe-container .modal .modal-header,
+  .detail-shoe-container .modal .modal-content{
+    border-radius: var(--border-radius);
+    border: var(--clr4)
+  }
+  #size-guide-modal button{
+    background: inherit;
+    color: black;
+    font-size: 30px;
+  }
+    #shoe-women-size{
+      display: none;
+    }
   
 #another-shoe-detail {
   height: fit-content;
@@ -1533,29 +1564,31 @@ tr:nth-child(even) {
       color: rgb(18, 18, 18);
     }
     #another-shoe-detail .img-container img{
-      max-height: 35vh;
+      max-height: 40vh;
+      min-height: 40vh;
       height: fit-content;
-      object-fit:scale-down;
+      object-fit: scale-down;
     }
 
   @media screen and (min-width: 768px) and (max-width: 1024px){
     .detail-shoe-container #shoe-detail img {
       height: 50vh;
       width: 55vw;
-      object-fit: scale-down;}
-    .detail-shoe-container #another-shoe-detail img {
-      max-height: 30vh;}
+      object-fit: cover;}
+    // .detail-shoe-container #another-shoe-detail img {
+      // max-height: 30vh;
+    // }
   }
 
   @media screen and (max-width: 540px){
     .detail-shoe-container #shoe-detail img{
       height: fit-content;
       width: 100vw;
-      object-fit: scale-down;}
+      object-fit: cover;}
     .detail-shoe-container #another-shoe-detail img{
       max-height: 15vh;
       height: fit-content;
-      object-fit: scale-down;
-    }
+      object-fit: cover; }
+    .detail-shoe-container #another-shoe-detail h1{ font-size:28px;}
   }
   
