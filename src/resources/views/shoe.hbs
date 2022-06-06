@@ -71,15 +71,27 @@
             <div class="col-9 row shoe-list">
                 {{#each shoe}}
                     <div class="col-6">
-                        <div class="shoe-list-items">
-                            <img src="./uploads/{{this.image}}" alt="{{this.name}}">
-                            <div class="overlay">{{this.name}}</div>
+                        <div class="img-container">
+                            <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                                <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
+                                <div class="overlay overlay-shoe-list"><i class="fa fa-plus"></i> See detail</div>
+                            </a>
+                        </div>
+                        <div class="shoe-list-detail">
+                            <h1>{{this.name}}</h1>
+                            <h2 id="money-dot" class="money-dot-anywhere">{{this.price}}</h2>
+                            {{#ifeq this.bestseller true}}
+                                <h3>Best seller</h3>
+                            {{/ifeq}}
+
+                            {{#ifeq this.available true}}
+                                <h3>Available</h3>
+                            {{else}}
+                                <h3>Out of stock</h3>
+                            {{/ifeq}}
                         </div>
                     </div>
                 {{/each}}
-                {{!-- <div class="col-6">
-                    <h1>Hinh 2</h1>
-                </div> --}}
             </div>
         </div>
     </section>

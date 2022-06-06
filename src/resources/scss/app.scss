@@ -1686,45 +1686,52 @@ tbody tr:hover{
         cursor: pointer;
         color: $maincolor;
       }
-    .shoe-index .left-list h2{
-      font-size: 1rem;
-      color:rgb(131, 128, 128);
-      cursor: default;
-    }
-    .shoe-index .shoe-list{
-
-    }
+      .shoe-index .left-list h2{
+        font-size: 1rem;
+        color:rgb(131, 128, 128);
+        cursor: default;
+      }
       .shoe-index .shoe-list img{
-        height: 50vh;
+        height: 65vh;
         width: 100%;
         object-fit: scale-down;
+        padding-bottom: 30px;
       }
-      // .shoe-index .shoe-list:hover img{
-      //   transform: scale(1.1);
-      //   transform-origin: 50% 50%;
-      // }
-        .shoe-index .shoe-list .overlay {
-          position: absolute;
-          bottom: 0;
-          background: rgb(0, 0, 0);
-          background: rgba(0, 0, 0, 0.5);
-          color: #f1f1f1;
-          width: 100%;
-          transition: .5s ease;
-          // opacity:0;
-          color: white;
-          font-size: 20px;
-          padding: 20px;
-          text-align: center;
+      .shoe-index .shoe-list .overlay-shoe-list{
+        text-align: left;
+        background-color: inherit;
+        color: black;
+        font-size: 14px;
+        font-weight: 100;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+        .shoe-index .shoe-list .overlay-shoe-list .fa{
+          -webkit-text-stroke: 0.8px white;
+
         }
 
-  // .img-container:hover img{
-  //   transform: scale(1.1);
-  //   transform-origin: 50% 50%;
-  // }
-
-  // .img-container:hover .overlay {
-  //   opacity: 1;
-  // }
+      .shoe-list-detail h1{
+        font-size: 1em;
+        float: left;
+        left: 0;
+        width: 70%;
+      }
+      .shoe-list-detail h2{
+        font-size: 1em;
+        float: right;
+        right: 0;
+        color:rgb(32, 32, 32);
+        width: 30%;
+      }
+      .shoe-list-detail h3{
+        font-size: 0.7em;
+        color:rgb(90, 89, 89)
+      }
+        .shoe-list-detail h1:hover{
+          color: $maincolor;
+          text-decoration: underline;
+          cursor: pointer;
+        }
 
 // =============== END /shoe INDEX

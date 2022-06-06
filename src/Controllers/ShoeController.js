@@ -43,7 +43,7 @@ class ShoeController {
                     shoe: multipleMongooseToObject(shoe),
                     shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
+                    shoeDetailTitle: req.query.shoeDetailTitle,
                 })
             }
             )}
