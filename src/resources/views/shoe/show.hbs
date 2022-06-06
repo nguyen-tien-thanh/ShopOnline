@@ -42,7 +42,7 @@
 
                     <a href="" id="size-guide-btn" data-toggle="modal" data-target=".bd-example-modal-lg"> SIZE GUIDE</a>
 
-                    <button class="btn btn-outline-dark mt-5">pre-order</button>
+                    <button type="button" class="btn btn-outline-dark mt-5" data-toggle="modal" data-target="#pre-order-modal">pre-order</button>
 
                     <h3 class="mt-4">
                         *All pre-orders will take 30 working days for preparation. Once your pre-orders are ready, you will receive an email for confirmation with tracking information. 
@@ -392,7 +392,40 @@
             </div>
         </div>
     </div>
+
 </div>
+
+
+    {{!-- Modal pre-order (Cart) --}}
+	<div class="modal right fade" id="pre-order-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel2">My Cart</h4>
+					<button type="button" class="close btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+
+				<div class="modal-body row">
+                    <div class="col-6">
+                        <h1>{{shoeDetail.name}}</h1>
+                        <h2>Size: 38</h2>
+                        <h3>Color: <span style="color:{{shoeDetail.color}}">Red</span></h3>
+                        <h1 id="money-dot" class="money-dot-anywhere">{{shoeDetail.price}}</h1>
+                    </div>
+                    <div class="col-6">
+                        <img src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">
+                    </div>
+				</div>
+                {{!-- <hr> --}}
+
+                <div class="modal-footer">
+                    <button class="btn btn-outline-dark">View Cart</button>
+                    <button class="btn btn-dark">Check out</button>
+                </div>
+			</div>
+		</div>
+	</div>
     
     
 

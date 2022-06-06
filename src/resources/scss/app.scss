@@ -956,7 +956,8 @@ section {
 /* The Close Button */
 .delivery-close, 
 .payment-close, 
-.return-close {
+.return-close,
+.modal-header button span {
   color: white;
   float: right;
   font-size: 28px;
@@ -969,7 +970,8 @@ section {
 .payment-close:focus,
 .return-close:hover,
 .return-close:focus,
-.size-guide-close:hover {
+.size-guide-close:hover,
+.modal-header button span:hover  {
   color: gray;
   cursor: pointer;
 }
@@ -1537,8 +1539,17 @@ tbody tr:hover{
   .detail-shoe-container .modal .modal-header,
   .detail-shoe-container .modal .modal-content{
     border-radius: var(--border-radius);
-    border: var(--clr4)
+    border: var(--clr4);
   }
+
+  #pre-order-modal .modal-content{
+    border-radius: 15px 0 0 15px;
+  }
+    #pre-order-modal .modal-header {
+      border-radius: 13px 0 0 13px;
+    }
+    
+
   #size-guide-modal button{
     background: inherit;
     color: black;
@@ -1547,6 +1558,63 @@ tbody tr:hover{
     #shoe-women-size{
       display: none;
     }
+  // ==================== Modal Right pre-order ================================
+	.modal.right .modal-dialog {
+		position: fixed;
+		margin: auto;
+    //No set width for full screen mobile
+		// width: 320px;
+		height: 100%;
+		-webkit-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		     -o-transform: translate3d(0%, 0, 0);
+		        transform: translate3d(0%, 0, 0);
+	}
+
+	.modal.right .modal-content {
+		height: 100%;
+		overflow-y: auto;
+	}
+	
+	.modal.right .modal-body {
+		padding: 15px 15px 10px;
+	}
+
+/*Right*/
+	.modal.right.fade .modal-dialog {
+		right: 0px;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		        transition: opacity 0.3s linear, right 0.3s ease-out;
+	}
+	
+	.modal.right.fade.in .modal-dialog {
+		left: 0;
+	}
+  #pre-order-modal{
+    font-family: 'Sofia';
+  }
+    #pre-order-modal h1{
+      font-size: 1.2em;
+    }
+    #pre-order-modal h2{
+      font-size: 1.0em;
+      color:rgb(131, 128, 128)
+    }
+    #pre-order-modal h3{
+      font-size: 0.8em;
+      color:rgb(131, 128, 128)
+    }
+    #pre-order-modal button{
+      width: 47%;
+    }
+    #pre-order-modal img{
+      height: fit-content;
+      width: 100%;
+      object-fit: scale-down;
+    }
+
   
 #another-shoe-detail {
   height: fit-content;
