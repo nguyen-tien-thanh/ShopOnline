@@ -569,7 +569,6 @@ section {
   width: 100%;
   display: inline-block;
   background: #333;
-  height: 50vh;
   text-align: center;
   font-size: 22px;
   font-weight: 700; }
@@ -1353,6 +1352,53 @@ tbody tr:hover {
   .detail-shoe-container #another-shoe-detail img {
     max-height: 15vh;
     height: fit-content;
-    object-fit: cover; }
+    object-fit: scale-down; }
   .detail-shoe-container #another-shoe-detail h1 {
     font-size: 28px; } }
+
+.wrapper.shoe-index {
+  margin-top: 10px;
+  font-family: 'Sofia';
+  background: white; }
+
+.wrapper.shoe-index section {
+  background: white;
+  text-align: left;
+  padding-top: 120px; }
+
+.shoe-index .left-list {
+  text-transform: uppercase; }
+
+.shoe-index .left-list ul li {
+  border: 0;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.06rem; }
+
+.shoe-index .left-list ul li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #d00109; }
+
+.shoe-index .left-list h2 {
+  font-size: 1rem;
+  color: #838080;
+  cursor: default; }
+
+.shoe-index .shoe-list img {
+  height: 50vh;
+  width: 100%;
+  object-fit: scale-down; }
+
+.shoe-index .shoe-list .overlay {
+  position: absolute;
+  bottom: 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center; }

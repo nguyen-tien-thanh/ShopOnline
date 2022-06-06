@@ -20,8 +20,10 @@ router.patch('/:id/restore', shoeController.restore)
 router.delete('/:id', shoeController.delete)
 router.delete('/:id/force', shoeController.force)
 
-// // [POST] /shoe/store shoe
+// [POST] /shoe/store shoe
 router.post('/store', shoeController.store)
 
+// [GET] /shoe INDEX
+router.get('/', shoeController.index)
 
 module.exports = router;

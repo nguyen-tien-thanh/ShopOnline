@@ -1,0 +1,86 @@
+<div class="wrapper shoe-index">
+    <section>
+        <div class="row">
+            <div class="col-3 left-list">
+                <h2>Categories</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                </ul>
+
+
+
+                <h2 class="mt-5">Brands</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                </ul>
+
+
+
+                <div class="row mt-5">
+                    <div class="col-3">
+                        <h2 class="">Filter:</h2>
+                    </div>
+                    <div class="col-9">
+                        <h2><i class="fa fa-minus">  color</i></h2>
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">A fourth item</li>
+                            <li class="list-group-item">And a fifth one</li>
+                        </ul>
+
+                        <h2 class="mt-4"><i class="fa fa-minus">  size</i></h2>
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">A fourth item</li>
+                            <li class="list-group-item">And a fifth one</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-5">
+                    <div class="col-3 pt-2">
+                        <h2>Sort: </h2>
+                    </div>
+
+                    <div class="col-9">
+                        <ul class="list-group">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">A fourth item</li>
+                            <li class="list-group-item">And a fifth one</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-9 row shoe-list">
+                {{#each shoe}}
+                    <div class="col-6">
+                        <div class="shoe-list-items">
+                            <img src="./uploads/{{this.image}}" alt="{{this.name}}">
+                            <div class="overlay">{{this.name}}</div>
+                        </div>
+                    </div>
+                {{/each}}
+                {{!-- <div class="col-6">
+                    <h1>Hinh 2</h1>
+                </div> --}}
+            </div>
+        </div>
+    </section>
+</div>

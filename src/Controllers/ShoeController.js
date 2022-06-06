@@ -142,6 +142,77 @@ class ShoeController {
             })
     }
 
+    //[GET] /shoe INDEX
+    index(req,res,next) {
+        if(!req.cookies.token){
+            Promise.all([
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1}),
+                Shoe.findOne({_id: req.params.id})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
+            ])
+            .then(([
+                brandList,
+                shoeType,
+                shoe,
+                shoeDetail
+            ]) => {
+                res.render('shoe', {
+                    brandList: multipleMongooseToObject(brandList),
+                    shoeType: multipleMongooseToObject(shoeType),
+                    shoe: multipleMongooseToObject(shoe),
+                    shoeDetail: mongooseToObject(shoeDetail),
+                    title: 'Detail',
+                    shoeDetailTitle: req.query.shoeDetailTitle
+                })
+            }
+            )}
+        else {
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            Promise.all([
+                User.findOne({_id: decodeToken}),
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({})
+                    .populate('brand')
+                    .populate('type')
+                    .sort({createdAt: 1}),
+                Shoe.findOne({_id: req.params.id})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
+            ])
+            .then(([
+                data,
+                brandList,
+                shoeType,
+                shoe,
+                shoeDetail
+            ]) => {
+                if (data) {
+                    req.data = data
+                    return res.render('shoe',
+                        {
+                            user: mongooseToObject(data),
+                            brandList: multipleMongooseToObject(brandList),
+                            shoeType: multipleMongooseToObject(shoeType),
+                            shoe: multipleMongooseToObject(shoe),
+                            shoeDetail: mongooseToObject(shoeDetail),
+                            title: 'Detail',
+                            shoeDetailTitle: req.query.shoeDetailTitle
+                        })
+                    next()
+                }
+            })
+        }
+    }
 }
 
 module.exports = new ShoeController;

@@ -13,6 +13,10 @@
                       <hr>
                       <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i> My purchase</a>
                       <hr>
+                      {{#ifeq user.role 'Admin'}}
+                        <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i> Management</a>
+                        <hr>
+                      {{/ifeq}}
                       <a class="subnav-dropdown-items" onclick="logout()"><i class='fas fa-sign-out-alt'></i> Log out</a>
                       <br><br>
                     </div>
@@ -70,9 +74,11 @@
   <nav class="navbar-dropdown-items" id="navbar-dropdown-items">
     <ul>
       {{!-- more than 4 is not beautiful --}}
-      <a href="/product"><li>Products</li></a>
+      {{!-- <a href="/product"><li>Products</li></a>
       <a href="/product/manage"><li>Manage</li></a>
-      <a href="/admin"><li>Admin</li></a>
+      <a href="/admin"><li>Admin</li></a> --}}
+      <li><a href="">Products</a></li>
+      <li><a href="">Shopping Bag</a></li>
       <a href="javascript:;" class="btn-info-scroll"><li>About Store</li></a>
     </ul>
   </nav>
