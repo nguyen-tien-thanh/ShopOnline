@@ -630,9 +630,13 @@ $(".main-header").hover(function(){
   $('.filter-shoe-btn').on('click', function() {
     $(this).parent().find('ul').slideToggle('normal', function() {
       $(this).parent().find('i').toggleClass('fa-minus fa-plus');
-      console.log($(this).parent())
     });
     $('.filter-shoe-btn').not(this).find('ul').hide();
+  });
+
+  // Responsive UL LI filter
+  $("[select-item]").click(function () {
+    $("#" + $(this).attr("select-item")).slideToggle('normal').toggleClass("selected");
   });
 
 

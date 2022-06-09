@@ -1709,9 +1709,10 @@ tbody tr:hover{
         text-transform: uppercase;
         letter-spacing: 1.5px;
       }
-        .shoe-index .shoe-list .overlay-shoe-list .fa{
+        .shoe-index .shoe-list .overlay-shoe-list .fa
+        // .responsive-left-list .fa
+        {
           -webkit-text-stroke: 0.8px white;
-
         }
       .shoe-list-detail h1{
         font-size: 1em;
@@ -1748,15 +1749,28 @@ tbody tr:hover{
         font-weight: 100;
         font-size: 1.2rem;
       }
-        .responsive-left-list li a {
+        .responsive-left-list li {
           display: block;
-          text-align: center;
+          text-align: left;
           padding: 14px 16px;
           text-decoration: none;
         }
-    .responsive-left-list .responsive-left-list-items{
-      position:relative;
+        .responsive-left-list .selected {
+          display: block;
+        }
+    .responsive-items{
+      position: relative;
+      width: 100%;
+      display: none;
     }
+      .responsive-items h2{
+        font-size: 1rem;
+      }
+        .responsive-items ul li{
+          float: none;
+          font-size: 0.8rem;
+          border: none;
+        }
         
 @media screen and (max-width: 1440px) {
   .shoe-index .shoe-list img{

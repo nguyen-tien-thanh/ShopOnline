@@ -4,22 +4,18 @@
             <div class="col-3 left-list">
                 <h2>Categories</h2>
                 <ul class="list-group">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                    {{#each shoeType}}
+                        <li class="list-group-item"><a href="/shoe?shoeType={{this._id}}">{{this.name}}</a></li>
+                    {{/each}}
                 </ul>
 
 
 
                 <h2 class="mt-5">Brands</h2>
                 <ul class="list-group">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                    {{#each brandList}}
+                        <li class="list-group-item">{{this.name}}</li>
+                    {{/each}}
                 </ul>
 
 
@@ -32,21 +28,33 @@
                         <div class="filter-color">
                             <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
                             <ul class="filter-group">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
+                                <li class="list-group-item">White</li>
+                                <li class="list-group-item">Black</li>
+                                <li class="list-group-item">Red</li>
+                                <li class="list-group-item">Green</li>
+                                <li class="list-group-item">Blue</li>
+                                <li class="list-group-item">Yellow</li>
+                                <li class="list-group-item">Orange</li>
+                                <li class="list-group-item">Grey</li>
+                                <li class="list-group-item">Purple</li>
                             </ul>
                         </div>
                         <div class="filter-size">
                             <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
                             <ul class="filter-group">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                                <li class="list-group-item">A fourth item</li>
-                                <li class="list-group-item">And a fifth one</li>
+                                <li class="list-group-item">34-35</li>
+                                {{!-- <li class="list-group-item">35</li> --}}
+                                <li class="list-group-item">36-37</li>
+                                {{!-- <li class="list-group-item">37</li> --}}
+                                <li class="list-group-item">38-39</li>
+                                {{!-- <li class="list-group-item">39</li> --}}
+                                <li class="list-group-item">40-41</li>
+                                {{!-- <li class="list-group-item">41</li> --}}
+                                <li class="list-group-item">42-43</li>
+                                {{!-- <li class="list-group-item">43</li> --}}
+                                <li class="list-group-item">44-45</li>
+                                {{!-- <li class="list-group-item">45</li> --}}
+                                <li class="list-group-item">46</li>
                             </ul>
                         </div>
                     </div>
@@ -61,11 +69,11 @@
 
                     <div class="col-9">
                         <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                            <li class="list-group-item">A fourth item</li>
-                            <li class="list-group-item">And a fifth one</li>
+                            <li class="list-group-item">New Arrivals</li>
+                            <li class="list-group-item">Cheaper</li>
+                            <li class="list-group-item">Expensive</li>
+                            <li class="list-group-item">Best Seller</li>
+                            <li class="list-group-item">Available</li>
                         </ul>
                     </div>
                 </div>
@@ -74,33 +82,58 @@
             {{!-- Responsive of left list filter for table, mobile --}}
             <div class="responsive-left-list">
                 <ul>
-                    <li><a class="active" href="#">sort</a></li>
-
-                    <li><a href="#">Filters</a></li>
-                        <div class="responsive-left-list-items">
-                            <div class="filter-color">
-                                <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
-                                <ul class="filter-group">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A fourth item</li>
-                                    <li class="list-group-item">And a fifth one</li>
-                                </ul>
-                            </div>
-                            <div class="filter-size">
-                                <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
-                                <ul class="filter-group">
-                                    <li class="list-group-item">An item</li>
-                                    <li class="list-group-item">A second item</li>
-                                    <li class="list-group-item">A third item</li>
-                                    <li class="list-group-item">A fourth item</li>
-                                    <li class="list-group-item">And a fifth one</li>
-                                </ul>
-                            </div>
-                        </div>
-
+                    <li select-item="responsive-sort-items"><i class="fa fa-plus"></i>  sort</li>
+                
+                    <li select-item="responsive-filter-items"><i class="fa fa-plus"></i>  Filters</li>
                 </ul>
+
+                <div class="responsive-items" id="responsive-filter-items">
+                    <div class="filter-color">
+                        <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
+                        <ul class="filter-group">
+                                <li class="list-group-item">White</li>
+                                <li class="list-group-item">Black</li>
+                                <li class="list-group-item">Red</li>
+                                <li class="list-group-item">Green</li>
+                                <li class="list-group-item">Blue</li>
+                                <li class="list-group-item">Yellow</li>
+                                <li class="list-group-item">Orange</li>
+                                <li class="list-group-item">Grey</li>
+                                <li class="list-group-item">Purple</li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="filter-size">
+                        <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
+                        <ul class="filter-group">
+                                <li class="list-group-item">34-35</li>
+                                {{!-- <li class="list-group-item">35</li> --}}
+                                <li class="list-group-item">36-37</li>
+                                {{!-- <li class="list-group-item">37</li> --}}
+                                <li class="list-group-item">38-39</li>
+                                {{!-- <li class="list-group-item">39</li> --}}
+                                <li class="list-group-item">40-41</li>
+                                {{!-- <li class="list-group-item">41</li> --}}
+                                <li class="list-group-item">42-43</li>
+                                {{!-- <li class="list-group-item">43</li> --}}
+                                <li class="list-group-item">44-45</li>
+                                {{!-- <li class="list-group-item">45</li> --}}
+                                <li class="list-group-item">46</li>
+                        </ul>
+                    </div>
+                    <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
+                </div>
+
+                <div class="responsive-items" id="responsive-sort-items">
+                    <ul class="list-group">
+                            <li class="list-group-item">New Arrivals</li>
+                            <li class="list-group-item">Cheaper</li>
+                            <li class="list-group-item">Expensive</li>
+                            <li class="list-group-item">Best Seller</li>
+                            <li class="list-group-item">Available</li>
+                    </ul>
+                    <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
+                </div>
             </div>
 
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 row shoe-list">
