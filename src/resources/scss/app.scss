@@ -1754,6 +1754,9 @@ tbody tr:hover{
           padding: 14px 16px;
           text-decoration: none;
         }
+    .responsive-left-list .responsive-left-list-items{
+      position:relative;
+    }
         
 @media screen and (max-width: 1440px) {
   .shoe-index .shoe-list img{
