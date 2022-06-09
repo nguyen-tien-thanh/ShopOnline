@@ -68,11 +68,11 @@
 
                     <div class="col-9">
                         <ul class="list-group">
-                            <li class="list-group-item">New Arrivals</li>
-                            <li class="list-group-item">Cheaper</li>
-                            <li class="list-group-item">Expensive</li>
-                            <li class="list-group-item">Best Seller</li>
-                            <li class="list-group-item">Available</li>
+                            <li class="list-group-item"><a href="/shoe/newarrival">New Arrivals</a></li>
+                            <li class="list-group-item"><a href="/shoe/cheapshoe">Cheaper</a></li>
+                            <li class="list-group-item"><a href="/shoe/expensiveshoe">Expensive</a></li>
+                            <li class="list-group-item"><a href="/shoe/bestseller">Bestseller</a></li>
+                            <li class="list-group-item"><a href="/shoe/available">Available</a></li>
                         </ul>
                     </div>
                 </div>
@@ -125,41 +125,45 @@
 
                 <div class="responsive-items" id="responsive-sort-items">
                     <ul class="list-group">
-                            <li class="list-group-item">New Arrivals</li>
-                            <li class="list-group-item">Cheaper</li>
-                            <li class="list-group-item">Expensive</li>
-                            <li class="list-group-item">Best Seller</li>
-                            <li class="list-group-item">Available</li>
+                            <li class="list-group-item"><a href="/shoe/newarrival">New Arrivals</a></li>
+                            <li class="list-group-item"><a href="/shoe/cheapshoe">Cheaper</a></li>
+                            <li class="list-group-item"><a href="/shoe/expensiveshoe">Expensive</a></li>
+                            <li class="list-group-item"><a href="/shoe/bestseller">Bestseller</a></li>
+                            <li class="list-group-item"><a href="/shoe/available">Available</a></li>
                     </ul>
                     <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 row shoe-list">
-                {{#each shoe}}
-                    <div class="col-sm-6 col-md-6 col-lg-4">
-                        <div class="img-container">
-                            <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
-                                <img src="../uploads/{{this.image}}" alt="{{this.name}}">
-                                <div class="overlay overlay-shoe-list"><i class="fa fa-plus"></i> See detail</div>
-                            </a>
-                        </div>
-                        <div class="shoe-list-detail row">
-                            <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
-                                <h1>{{this.name}}</h1>
-                            </a>
-                            <h2 id="money-dot" class="money-dot-anywhere">{{this.price}}</h2>
+                {{#if shoe}}
+                    {{#each shoe}}
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="img-container">
+                                <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                                    <img src="../uploads/{{this.image}}" alt="{{this.name}}">
+                                    <div class="overlay overlay-shoe-list"><i class="fa fa-plus"></i> See detail</div>
+                                </a>
+                            </div>
+                            <div class="shoe-list-detail row">
+                                <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                                    <h1>{{this.name}}</h1>
+                                </a>
+                                <h2 id="money-dot" class="money-dot-anywhere">{{this.price}}</h2>
 
-                            {{#ifeq this.available false}}
-                                <h3>Out of stock</h3>
-                            {{else}}
-                                {{#ifeq this.bestseller true}}
-                                    <h3>Best seller</h3>
+                                {{#ifeq this.available false}}
+                                    <h3>Out of stock</h3>
+                                {{else}}
+                                    {{#ifeq this.bestseller true}}
+                                        <h3>Best seller</h3>
+                                    {{/ifeq}}
                                 {{/ifeq}}
-                            {{/ifeq}}
+                            </div>
                         </div>
-                    </div>
-                {{/each}}
+                    {{/each}}
+                {{else}}
+                    <h1>There is no shoe available</h1>
+                {{/if}}
             </div>
         </div>
     </section>

@@ -7,6 +7,21 @@ const {isLoggined} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
+// [GET] /shoe/newarrival shoe
+router.get('/newarrival', shoeController.newarrival)
+
+// [GET] /shoe/cheapshoe shoe
+router.get('/cheapshoe', shoeController.cheapshoe)
+
+// [GET] /shoe/expensiveshoe shoe
+router.get('/expensiveshoe', shoeController.expensiveshoe)
+
+// [GET] /shoe/bestseller shoe
+router.get('/bestseller', shoeController.bestseller)
+
+// [GET] /shoe/available shoe
+router.get('/available', shoeController.available)
+
 // [GET] /shoe/finding shoe
 router.get('/finding', shoeController.finding)
 
