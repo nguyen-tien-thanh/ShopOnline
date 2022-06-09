@@ -142,6 +142,89 @@ class ShoeController {
             })
     }
 
+    //[GET] /shoe/finding-type
+    finding(req,res,next){
+        console.log(req.query.type)
+        if(!req.cookies.token){
+            Promise.all([
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({ $or: [
+                        {type: req.query.type}, 
+                        {brand: req.query.brand},
+                        {color: req.query.color},
+                        {size: {$elemMatch: {number: req.query.size1}}},
+                        {size: {$elemMatch: {number: req.query.size2}}},
+                    ]})
+                    .populate('brand')
+                    .populate('type'),
+                Shoe.findOne({_id: req.params.id})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
+            ])
+            .then(([
+                brandList,
+                shoeType,
+                shoe,
+                shoeDetail
+            ]) => {
+                res.render('shoe', {
+                    brandList: multipleMongooseToObject(brandList),
+                    shoeType: multipleMongooseToObject(shoeType),
+                    shoe: multipleMongooseToObject(shoe),
+                    shoeDetail: mongooseToObject(shoeDetail),
+                    title: 'Detail',
+                    shoeDetailTitle: req.query.shoeDetailTitle
+                })
+            }
+            )}
+        else {
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            Promise.all([
+                User.findOne({_id: decodeToken}),
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({ $or: [
+                        {type: req.query.type}, 
+                        {brand: req.query.brand},
+                        {color: req.query.color},
+                        {size: {$elemMatch: {number: req.query.size1}}},
+                        {size: {$elemMatch: {number: req.query.size2}}},
+                    ]})
+                    .populate('brand')
+                    .populate('type'),
+                Shoe.findOne({_id: req.params.id})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
+            ])
+            .then(([
+                data,
+                brandList,
+                shoeType,
+                shoe,
+                shoeDetail
+            ]) => {
+                if (data) {
+                    req.data = data
+                    return res.render('shoe',
+                        {
+                            user: mongooseToObject(data),
+                            brandList: multipleMongooseToObject(brandList),
+                            shoeType: multipleMongooseToObject(shoeType),
+                            shoe: multipleMongooseToObject(shoe),
+                            shoeDetail: mongooseToObject(shoeDetail),
+                            title: 'Detail',
+                            shoeDetailTitle: req.query.shoeDetailTitle
+                        })
+                    next()
+                }
+            })
+        }
+    }
+
     //[GET] /shoe INDEX
     index(req,res,next) {
         if(!req.cookies.token){

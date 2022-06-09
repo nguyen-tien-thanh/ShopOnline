@@ -7,6 +7,9 @@ const {isLoggined} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
+// [GET] /shoe/finding shoe
+router.get('/finding', shoeController.finding)
+
 // [GET] /shoe/:id/ shoe
 router.get('/:id', shoeController.show)
 
