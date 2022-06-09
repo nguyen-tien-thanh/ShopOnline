@@ -1636,6 +1636,9 @@ tbody tr:hover{
       min-height: 40vh;
       height: fit-content;
       object-fit: scale-down;
+      -webkit-transition: width 0.2s linear;
+         -moz-transition: width 0.2s linear;
+              transition: width 0.2s linear;
     }
 
   @media screen and (min-width: 768px) and (max-width: 1024px){
@@ -1692,7 +1695,7 @@ tbody tr:hover{
         cursor: default;
       }
       .shoe-index .shoe-list img{
-        height: 65vh;
+        height: 45vh;
         width: 100%;
         object-fit: scale-down;
         padding-bottom: 30px;
@@ -1710,19 +1713,13 @@ tbody tr:hover{
           -webkit-text-stroke: 0.8px white;
 
         }
-
       .shoe-list-detail h1{
         font-size: 1em;
-        float: left;
-        left: 0;
-        width: 70%;
       }
       .shoe-list-detail h2{
-        font-size: 1em;
-        float: right;
-        right: 0;
+        font-size: 0.8em;
+        font-weight: 100;
         color:rgb(32, 32, 32);
-        width: 30%;
       }
       .shoe-list-detail h3{
         font-size: 0.7em;
@@ -1734,4 +1731,72 @@ tbody tr:hover{
           cursor: pointer;
         }
 
+  .responsive-left-list{
+    display: none;
+    padding-right: 2rem;
+    font-family: 'Sofia';
+    text-transform: uppercase;
+  }
+    .responsive-left-list ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+      .responsive-left-list ul li {
+        float: right;
+        font-weight: 100;
+        font-size: 1.2rem;
+      }
+        .responsive-left-list li a {
+          display: block;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+@media screen and (max-width: 1440px) {
+  .shoe-index .shoe-list img{
+    height: 35vh;
+    width: 100%;
+  }
+  
+  .shoe-list-detail{
+    padding-left: 1.2rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .responsive-left-list{
+    display: block;
+  }
+  .left-list{
+    display: none;
+  }
+  .shoe-index section{
+    padding-right: 0;
+    padding-left: 25px;
+  }
+  .shoe-index .shoe-list img{
+    height: 34vh;
+    width: 100%;
+  }
+  
+  .shoe-list-detail{
+    padding-left: 1rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .shoe-index .shoe-list img{
+    height: 30vh;
+    width: 100%;
+  }
+  
+  .shoe-list-detail{
+    padding-left: 1rem;
+  }
+  
+  .shoe-list{
+    text-align: center;
+  }
+}
 // =============== END /shoe INDEX

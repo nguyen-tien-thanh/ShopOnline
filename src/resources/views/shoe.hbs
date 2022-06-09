@@ -29,23 +29,26 @@
                         <h2 class="">Filter:</h2>
                     </div>
                     <div class="col-9">
-                        <h2><i class="fa fa-minus">  color</i></h2>
-                        <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                            <li class="list-group-item">A fourth item</li>
-                            <li class="list-group-item">And a fifth one</li>
-                        </ul>
-
-                        <h2 class="mt-4"><i class="fa fa-minus">  size</i></h2>
-                        <ul class="list-group">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
-                            <li class="list-group-item">A fourth item</li>
-                            <li class="list-group-item">And a fifth one</li>
-                        </ul>
+                        <div class="filter-color">
+                            <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
+                            <ul class="filter-group">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">A fourth item</li>
+                                <li class="list-group-item">And a fifth one</li>
+                            </ul>
+                        </div>
+                        <div class="filter-size">
+                            <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
+                            <ul class="filter-group">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">A fourth item</li>
+                                <li class="list-group-item">And a fifth one</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -68,26 +71,36 @@
                 </div>
             </div>
 
-            <div class="col-9 row shoe-list">
+            {{!-- Responsive of left list filter for table, mobile --}}
+            <div class="responsive-left-list">
+                <ul>
+                    <li><a class="active" href="#">sort</a></li>
+                    
+                    <li><a href="#">Filters</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 row shoe-list">
                 {{#each shoe}}
-                    <div class="col-6">
+                    <div class="col-sm-6 col-md-6 col-lg-4">
                         <div class="img-container">
                             <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
-                                <img src="../uploads/{{this.image}}" alt="{{this.name}}" class="images-index">
+                                <img src="../uploads/{{this.image}}" alt="{{this.name}}">
                                 <div class="overlay overlay-shoe-list"><i class="fa fa-plus"></i> See detail</div>
                             </a>
                         </div>
-                        <div class="shoe-list-detail">
-                            <h1>{{this.name}}</h1>
+                        <div class="shoe-list-detail row">
+                            <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
+                                <h1>{{this.name}}</h1>
+                            </a>
                             <h2 id="money-dot" class="money-dot-anywhere">{{this.price}}</h2>
-                            {{#ifeq this.bestseller true}}
-                                <h3>Best seller</h3>
-                            {{/ifeq}}
 
-                            {{#ifeq this.available true}}
-                                <h3>Available</h3>
-                            {{else}}
+                            {{#ifeq this.available false}}
                                 <h3>Out of stock</h3>
+                            {{else}}
+                                {{#ifeq this.bestseller true}}
+                                    <h3>Best seller</h3>
+                                {{/ifeq}}
                             {{/ifeq}}
                         </div>
                     </div>

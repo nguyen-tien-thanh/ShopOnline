@@ -626,4 +626,13 @@ $(".main-header").hover(function(){
   $(this).attr('style','')
 });
 
+// ================ OPEN UL LI SHOE FILTER =========
+  $('.filter-shoe-btn').on('click', function() {
+    $(this).parent().find('ul').slideToggle('normal', function() {
+      $(this).parent().find('i').toggleClass('fa-minus fa-plus');
+      console.log($(this).parent())
+    });
+    $('.filter-shoe-btn').not(this).find('ul').hide();
+  });
+
 
