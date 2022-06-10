@@ -8,7 +8,7 @@
             <div class="col-sm-12 col-md-5 col-lg-3 p-4">
                 <span>{{shoeDetailTitle}}</span>
                 <h1>{{shoeDetail.name}}</h1>
-                <h2 id="money-dot" class="money-dot-anywhere">{{shoeDetail.price}}</h2>
+                <h2>{{formatCurrency shoeDetail.price}} VND</h2>
                 <span>{{shoeDetail.brand.name}}</span>
                 <h3 class="mt-4">
                 Back in the sunshine with the shoe's leisurely yet sophisticated new styles. Solomon Midi Skirt from the Resort 2022 Collection.
@@ -109,7 +109,7 @@
                             </div>
                             <div class="p-2">
                                 <div>{{this.name}}</div>
-                                <div class="mb-4 text-muted money-dot-anywhere" id="money-dot">{{this.price}}</div>
+                                <div class="mb-4 text-muted">{{formatCurrency this.price}} VND</div>
                             </div>
                         </div>
                     </div>
@@ -411,7 +411,7 @@
                         <h1>{{shoeDetail.name}}</h1>
                         <h2>Size: 38</h2>
                         <h3>Color: <span style="color:{{shoeDetail.color}}">{{shoeDetail.color}}</span></h3>
-                        <h1 id="money-dot" class="money-dot-anywhere">{{shoeDetail.price}}</h1>
+                        <h1>{{formatCurrency shoeDetail.price}} VND</h1>
                     </div>
                     <div class="col-6">
                         <img src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">

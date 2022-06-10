@@ -152,24 +152,17 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1}),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -184,17 +177,12 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1}),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -204,9 +192,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }
@@ -224,24 +210,17 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({price: 1}),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -256,17 +235,12 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({price: 1}),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -276,9 +250,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }
@@ -296,24 +268,17 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({price: -1}),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -328,17 +293,12 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({price: -1}),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -348,9 +308,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }
@@ -367,24 +325,17 @@ class ShoeController {
                 Shoe.find({bestseller: true})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -398,17 +349,12 @@ class ShoeController {
                 Shoe.find({bestseller: true})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -418,9 +364,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }
@@ -437,24 +381,17 @@ class ShoeController {
                 Shoe.find({available: true})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -468,17 +405,12 @@ class ShoeController {
                 Shoe.find({available: true})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -488,9 +420,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }
@@ -500,7 +430,6 @@ class ShoeController {
 
     //[GET] /shoe/finding-type
     finding(req,res,next){
-        console.log(req.query.newarrival)
         if(!req.cookies.token){
             Promise.all([
                 Brand.find({}),
@@ -514,24 +443,17 @@ class ShoeController {
                     ]})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -551,17 +473,12 @@ class ShoeController {
                     ]})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -571,9 +488,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }
@@ -590,24 +505,17 @@ class ShoeController {
                 Shoe.find({})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 res.render('shoe', {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    shoeDetail: mongooseToObject(shoeDetail),
                     title: 'Detail',
-                    shoeDetailTitle: req.query.shoeDetailTitle
                 })
             }
             )}
@@ -621,17 +529,12 @@ class ShoeController {
                 Shoe.find({})
                     .populate('brand')
                     .populate('type'),
-                Shoe.findOne({_id: req.params.id})
-                    .populate('brand')
-                    .populate('type')
-                    .limit(4),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe,
-                shoeDetail
+                shoe
             ]) => {
                 if (data) {
                     req.data = data
@@ -641,9 +544,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            shoeDetail: mongooseToObject(shoeDetail),
                             title: 'Detail',
-                            shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
                 }

@@ -65,6 +65,9 @@ module.exports = {
             return (v1 || v2) ? options.fn(this) : options.inverse(this);
         default:
             return options.inverse(this);
-    }
+        }
+    },
+    formatCurrency: function(value) {
+        return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     }
   }

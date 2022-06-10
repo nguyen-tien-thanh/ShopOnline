@@ -561,15 +561,6 @@ function getTotalStockOfSize(){
       }
     }
     
-
-// ================= ADD DOT TO MONEY============================
-var money = document.getElementById('money-dot')
-if(money){
-  money = money.innerHTML;
-  var moneyDots = money.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
-  $('.money-dot-anywhere').text(moneyDots + ' VND');
-}
-
 // ================= /shoe/:id =============================
   // ================= OPEN UL LI SHOE DETAIL =========
   $('.nav-list-items').on('click', function() {

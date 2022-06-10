@@ -79,7 +79,7 @@
             </div>
 
             {{!-- Responsive of left list filter for table, mobile --}}
-            <div class="responsive-left-list">
+            <div class="col-12 responsive-left-list">
                 <ul>
                     <li select-item="responsive-sort-items"><i class="fa fa-plus"></i>  sort</li>
                 
@@ -138,7 +138,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 row shoe-list">
                 {{#if shoe}}
                     {{#each shoe}}
-                        <div class="col-sm-6 col-md-6 col-lg-4">
+                        <div class="col-6">
                             <div class="img-container">
                                 <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
                                     <img src="../uploads/{{this.image}}" alt="{{this.name}}">
@@ -149,7 +149,7 @@
                                 <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
                                     <h1>{{this.name}}</h1>
                                 </a>
-                                <h2 id="money-dot" class="money-dot-anywhere">{{this.price}}</h2>
+                                <h2>{{formatCurrency this.price}} VND</h2>
 
                                 {{#ifeq this.available false}}
                                     <h3>Out of stock</h3>

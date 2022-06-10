@@ -1695,7 +1695,7 @@ tbody tr:hover{
         cursor: default;
       }
       .shoe-index .shoe-list img{
-        height: 45vh;
+        height: 60vh;
         width: 100%;
         object-fit: scale-down;
         padding-bottom: 30px;
@@ -1772,16 +1772,16 @@ tbody tr:hover{
           border: none;
         }
         
-@media screen and (max-width: 1440px) {
-  .shoe-index .shoe-list img{
-    height: 35vh;
-    width: 100%;
-  }
+// @media screen and (max-width: 1440px) {
+//   .shoe-index .shoe-list img{
+//     height: 35vh;
+//     width: 100%;
+//   }
   
-  .shoe-list-detail{
-    padding-left: 1.2rem;
-  }
-}
+//   .shoe-list-detail{
+//     padding-left: 1.2rem;
+//   }
+// }
 @media screen and (max-width: 1024px) {
   .responsive-left-list{
     display: block;
