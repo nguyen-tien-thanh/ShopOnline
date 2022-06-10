@@ -1260,6 +1260,9 @@ tbody tr:hover {
 #pre-order-modal .modal-header {
   border-radius: 13px 0 0 13px; }
 
+#pre-order-modal .modal-footer {
+  display: block; }
+
 #size-guide-modal button {
   background: inherit;
   color: black;
@@ -1484,3 +1487,8 @@ tbody tr:hover {
     padding-left: 1rem; }
   .shoe-list {
     text-align: center; } }
+
+.img-checkout {
+  height: 20vh !important;
+  width: 30% !important;
+  object-fit: scale-down !important; }

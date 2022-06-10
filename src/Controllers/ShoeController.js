@@ -15,6 +15,74 @@ const jwt = require('jsonwebtoken');
 
 class ShoeController {
 
+    //[GET] /shoe/checkout
+    checkout(req, res, next){
+        if(!req.cookies.token){
+            Promise.all([
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({})
+                    .populate('brand')
+                    .populate('type'),
+                Shoe.findOne({_id: req.query.shoeid})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
+            ])
+            .then(([
+                brandList,
+                shoeType,
+                shoe,
+                shoeDetail
+            ]) => {
+                res.render('shoe/checkout', {
+                    brandList: multipleMongooseToObject(brandList),
+                    shoeType: multipleMongooseToObject(shoeType),
+                    shoe: multipleMongooseToObject(shoe),
+                    shoeDetail: mongooseToObject(shoeDetail),
+                    title: 'Checkout',
+                })
+            }
+            )}
+        else {
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            Promise.all([
+                User.findOne({_id: decodeToken}),
+                Brand.find({}),
+                Shoetype.find({}),
+                Shoe.find({})
+                    .populate('brand')
+                    .populate('type'),
+                Shoe.findOne({_id: req.query.shoeid})
+                    .populate('brand')
+                    .populate('type')
+                    .limit(4),
+            ])
+            .then(([
+                data,
+                brandList,
+                shoeType,
+                shoe,
+                shoeDetail
+            ]) => {
+                if (data) {
+                    req.data = data
+                    return res.render('shoe/checkout',
+                        {
+                            user: mongooseToObject(data),
+                            brandList: multipleMongooseToObject(brandList),
+                            shoeType: multipleMongooseToObject(shoeType),
+                            shoe: multipleMongooseToObject(shoe),
+                            shoeDetail: mongooseToObject(shoeDetail),
+                            title: 'Checkout',
+                        })
+                    next()
+                }
+            })
+        }
+    }
+
     //[GET] /shoe/:id
     show(req,res,next) {
         if(!req.cookies.token){

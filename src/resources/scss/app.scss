@@ -1548,7 +1548,9 @@ tbody tr:hover{
     #pre-order-modal .modal-header {
       border-radius: 13px 0 0 13px;
     }
-    
+    #pre-order-modal .modal-footer {
+      display: block;
+    }
 
   #size-guide-modal button{
     background: inherit;
@@ -1817,3 +1819,10 @@ tbody tr:hover{
   }
 }
 // =============== END /shoe INDEX
+
+// =============== /shoe/checkout =================
+.img-checkout{
+  height: 20vh !important;
+  width: 30% !important;
+  object-fit: scale-down !important;
+}
