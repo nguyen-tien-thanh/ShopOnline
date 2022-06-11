@@ -196,11 +196,16 @@ header nav ul li {
   font-size: 24px; }
 
 header nav ul li:hover {
-  font-size: 22px;
   text-decoration: underline;
   font-style: bold;
   color: #d00109;
   cursor: pointer; }
+
+header nav ul li span {
+  position: absolute;
+  top: 20px;
+  color: black;
+  font-size: 1rem; }
 
 .main-header .icon {
   display: none;
@@ -214,8 +219,9 @@ header nav ul li:hover {
     border-radius: var(--border-radius);
     position: absolute;
     z-index: 100; }
-  header nav ul li {
-    margin: 0px; }
+  header nav ul li span {
+    top: 6rem;
+    left: 6rem; }
   .icon-responsive {
     margin-left: 100px !important; }
   .main-header .active {

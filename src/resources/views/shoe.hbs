@@ -5,7 +5,7 @@
                 <h2>Categories</h2>
                 <ul class="list-group">
                     {{#each shoeType}}
-                        <li class="list-group-item"><a href="/shoe/finding?type={{this._id}}">{{this.name}}</a></li>
+                        <a href="/shoe/finding?type={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
                     {{/each}}
                 </ul>
 
@@ -14,7 +14,7 @@
                 <h2 class="mt-5">Brands</h2>
                 <ul class="list-group">
                     {{#each brandList}}
-                        <li class="list-group-item"><a href="/shoe/finding?brand={{this._id}}">{{this.name}}</a></li>
+                        <a href="/shoe/finding?brand={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
                     {{/each}}
                 </ul>
 
@@ -28,32 +28,26 @@
                         <div class="filter-color">
                             <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
                             <ul class="filter-group">
-                                <li class="list-group-item"><a href="/shoe/finding?color=White">White</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Black">Black</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Red">Red</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Green">Green</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Blue">Blue</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Yellow">Yellow</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Orange">Orange</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Grey">Grey</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Purple">Purple</a></li>
+                                <a href="/shoe/finding?color=White"><li class="list-group-item">White</li></a>
+                                <a href="/shoe/finding?color=Black"><li class="list-group-item">Black</li></a>
+                                <a href="/shoe/finding?color=Red"><li class="list-group-item">Red</li></a>
+                                <a href="/shoe/finding?color=Yellow"><li class="list-group-item">Yellow</li></a>
+                                <a href="/shoe/finding?color=Orange"><li class="list-group-item">Orange</li></a>
+                                <a href="/shoe/finding?color=Grey"><li class="list-group-item">Grey</li></a>
+                                <a href="/shoe/finding?color=Purple"><li class="list-group-item">Purple</li></a>
+                                <a href="/shoe/finding?color=Green"><li class="list-group-item">Green</li></a>
+                                <a href="/shoe/finding?color=Blue"><li class="list-group-item">Blue</li></a>
                         </div>
                         <div class="filter-size">
                             <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
                             <ul class="filter-group">
-                                <li class="list-group-item"><a href="/shoe/finding?size1=34&size2=35">34-35</a></li>
-                                {{!-- <li class="list-group-item">35</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=36&size2=37">36-37</a></li>
-                                {{!-- <li class="list-group-item">37</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=38&size2=39">38-39</a></li>
-                                {{!-- <li class="list-group-item">39</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=40&size2=41">40-41</a></li>
-                                {{!-- <li class="list-group-item">41</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=42&size2=43">42-43</a></li>
-                                {{!-- <li class="list-group-item">43</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=44&size2=45">34-45</a></li>
-                                {{!-- <li class="list-group-item">45</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=46">46</a></li>
+                                <a href="/shoe/finding?size1=34&size2=35"><li class="list-group-item">34-35</li></a>
+                                <a href="/shoe/finding?size1=36&size2=37"><li class="list-group-item">36-37</li></a>
+                                <a href="/shoe/finding?size1=38&size2=39"><li class="list-group-item">38-39</li></a>
+                                <a href="/shoe/finding?size1=40&size2=41"><li class="list-group-item">40-41</li></a>
+                                <a href="/shoe/finding?size1=42&size2=43"><li class="list-group-item">42-43</li></a>
+                                <a href="/shoe/finding?size1=44&size2=45"><li class="list-group-item">34-45</li></a>
+                                <a href="/shoe/finding?size1=46"><li class="list-group-item">46</li></a>
                             </ul>
                         </div>
                     </div>
@@ -68,11 +62,11 @@
 
                     <div class="col-9">
                         <ul class="list-group">
-                            <li class="list-group-item"><a href="/shoe/newarrival">New Arrivals</a></li>
-                            <li class="list-group-item"><a href="/shoe/cheapshoe">Cheaper</a></li>
-                            <li class="list-group-item"><a href="/shoe/expensiveshoe">Expensive</a></li>
-                            <li class="list-group-item"><a href="/shoe/bestseller">Bestseller</a></li>
-                            <li class="list-group-item"><a href="/shoe/available">Available</a></li>
+                            <a href="/shoe/newarrival"><li class="list-group-item">New Arrivals</li></a>
+                            <a href="/shoe/cheapshoe"><li class="list-group-item">Cheaper</li></a>
+                            <a href="/shoe/expensiveshoe"><li class="list-group-item">Expensive</li></a>
+                            <a href="/shoe/bestseller"><li class="list-group-item">Bestseller</li></a>
+                            <a href="/shoe/available"><li class="list-group-item">Available</li></a>
                         </ul>
                     </div>
                 </div>
@@ -90,34 +84,28 @@
                     <div class="filter-color">
                         <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
                         <ul class="filter-group">
-                                <li class="list-group-item"><a href="/shoe/finding?color=White">White</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Black">Black</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Red">Red</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Green">Green</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Blue">Blue</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Yellow">Yellow</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Orange">Orange</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Grey">Grey</a></li>
-                                <li class="list-group-item"><a href="/shoe/finding?color=Purple">Purple</a></li>
+                                <a href="/shoe/finding?color=White"><li class="list-group-item">White</li></a>
+                                <a href="/shoe/finding?color=Black"><li class="list-group-item">Black</li></a>
+                                <a href="/shoe/finding?color=Red"><li class="list-group-item">Red</li></a>
+                                <a href="/shoe/finding?color=Yellow"><li class="list-group-item">Yellow</li></a>
+                                <a href="/shoe/finding?color=Orange"><li class="list-group-item">Orange</li></a>
+                                <a href="/shoe/finding?color=Grey"><li class="list-group-item">Grey</li></a>
+                                <a href="/shoe/finding?color=Purple"><li class="list-group-item">Purple</li></a>
+                                <a href="/shoe/finding?color=Green"><li class="list-group-item">Green</li></a>
+                                <a href="/shoe/finding?color=Blue"><li class="list-group-item">Blue</li></a>
                         </ul>
                     </div>
                     <hr>
                     <div class="filter-size">
                         <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
                         <ul class="filter-group">
-                                <li class="list-group-item"><a href="/shoe/finding?size1=34&size2=35">34-35</a></li>
-                                {{!-- <li class="list-group-item">35</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=36&size2=37">36-37</a></li>
-                                {{!-- <li class="list-group-item">37</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=38&size2=39">38-39</a></li>
-                                {{!-- <li class="list-group-item">39</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=40&size2=41">40-41</a></li>
-                                {{!-- <li class="list-group-item">41</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=42&size2=43">42-43</a></li>
-                                {{!-- <li class="list-group-item">43</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=44&size2=45">34-45</a></li>
-                                {{!-- <li class="list-group-item">45</li> --}}
-                                <li class="list-group-item"><a href="/shoe/finding?size1=46">46</a></li>
+                                <a href="/shoe/finding?size1=34&size2=35"><li class="list-group-item">34-35</li></a>
+                                <a href="/shoe/finding?size1=36&size2=37"><li class="list-group-item">36-37</li></a>
+                                <a href="/shoe/finding?size1=38&size2=39"><li class="list-group-item">38-39</li></a>
+                                <a href="/shoe/finding?size1=40&size2=41"><li class="list-group-item">40-41</li></a>
+                                <a href="/shoe/finding?size1=42&size2=43"><li class="list-group-item">42-43</li></a>
+                                <a href="/shoe/finding?size1=44&size2=45"><li class="list-group-item">34-45</li></a>
+                                <a href="/shoe/finding?size1=46"><li class="list-group-item">46</li></a>
                         </ul>
                     </div>
                     <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
@@ -125,11 +113,11 @@
 
                 <div class="responsive-items" id="responsive-sort-items">
                     <ul class="list-group">
-                            <li class="list-group-item"><a href="/shoe/newarrival">New Arrivals</a></li>
-                            <li class="list-group-item"><a href="/shoe/cheapshoe">Cheaper</a></li>
-                            <li class="list-group-item"><a href="/shoe/expensiveshoe">Expensive</a></li>
-                            <li class="list-group-item"><a href="/shoe/bestseller">Bestseller</a></li>
-                            <li class="list-group-item"><a href="/shoe/available">Available</a></li>
+                            <a href="/shoe/newarrival"><li class="list-group-item">New Arrivals</li></a>
+                            <a href="/shoe/cheapshoe"><li class="list-group-item">Cheaper</li></a>
+                            <a href="/shoe/expensiveshoe"><li class="list-group-item">Expensive</li></a>
+                            <a href="/shoe/bestseller"><li class="list-group-item">Bestseller</li></a>
+                            <a href="/shoe/available"><li class="list-group-item">Available</li></a>
                     </ul>
                     <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
                 </div>
