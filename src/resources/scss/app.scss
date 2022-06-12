@@ -250,19 +250,33 @@ a:hover{
       margin: 10px;
       font-size: 24px;
     }
-    header nav ul li:hover {
+    header nav ul li:hover,
+    #add-one-href:hover {
       // font-size: 22px;
       text-decoration: underline;
       font-style: bold;
       color: $maincolor;
       cursor: pointer;
     }
-
-      header nav ul li span{
+      .sub-header nav ul li .badge{
+        color: white;
+        display: inline-block;
+        padding: 0.25em 0.4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.35rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+      .sub-header nav ul li .badge-counter{
         position: absolute;
-        top: 20px;
-        color: black;
-        font-size: 1rem;
+        transform: scale(0.9);
+        transform-origin: top right;
+        right: 0rem;
+        margin-top: -.25rem;
       }
 
     .main-header .icon{
@@ -1449,12 +1463,14 @@ tbody tr:hover{
 }
 
 // ==================== Detail shoe /shoe/:id ========================
-.detail-shoe-container{
+.detail-shoe-container,
+.cart-container{
   margin-top: 10px;
   font-family: 'Sofia';
   background: white;
 }
-  .detail-shoe-container #shoe-detail{
+  .detail-shoe-container #shoe-detail,
+  .cart-container section{
     padding-left: 0;
     padding-bottom: 0px;
   }
@@ -1465,7 +1481,13 @@ tbody tr:hover{
     }
 
 
-.detail-shoe-container section{
+.cart-container{padding: 0; font-family: 'Sofia'}
+  .cart-container section{
+    padding: 80px 0 0 0;
+  }
+
+.detail-shoe-container section,
+.cart-container section{
   text-align: left;
   height: fit-content;
   background-color: white;

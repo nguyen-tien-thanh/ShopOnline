@@ -36,6 +36,7 @@
                 </div>
 
                 <div class="col-12 col-lg-5 col-xl-5">
+                    {{#if session.cart}}
                     <div class="row">
                         <img class="img-checkout" src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">
                         <span>{{shoeDetail.name}}</span>
@@ -47,6 +48,9 @@
                     </div>
                     <hr>
                     <span>Total: {{formatCurrency shoeDetail.price}}</span>
+                    {{else}}
+                    <h1>There is no shoe available for check out</h1>
+                    {{/if}}
                 </div>
             </div>
         </form>

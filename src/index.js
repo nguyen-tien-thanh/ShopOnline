@@ -1,13 +1,15 @@
-const express = require("express");
-const expressSession = require("express-session");
-const path = require("path");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const route = require('./routes');
 const helpers = require('handlebars-helpers')();
 const db = require('./config/db');
 const methodOverride = require('method-override');
+const { default: mongoose } = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 
 db.connect();
 
@@ -30,6 +32,18 @@ app.engine('hbs', hbs.engine);
 app.set("view engine", "hbs"); //setting view engine as handlebars
 app.set("views", path.join(__dirname, 'resources/views'))
 
+// Session for cart
+app.use(session({
+  secret: 'foo',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  cookie: {maxAge: 180 * 60 * 1000}
+}));
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next()
+})
 
 // khai báo tới thư mục Static / Public
 // app.use(express.static('src/public')); 

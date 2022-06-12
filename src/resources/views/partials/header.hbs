@@ -6,6 +6,12 @@
 
             {{#if user}}
                 <li>
+                  <a href="/cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                  </a>
+                </li>
+                <li>
                     <a class="active" href="#">Welcome <b>{{user.name}}</b>!</a>
                     <div class="subnav-dropdown">
                       <br>
@@ -32,6 +38,12 @@
                     </div>
                 </li> --}}
             {{else}}
+                <li>
+                  <a href="/cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                  </a>
+                </li>
                 <li>
                     <a class="active" href="/login">Login</a>
                 </li>
@@ -78,10 +90,7 @@
       <a href="/product/manage"><li>Manage</li></a>
       <a href="/admin"><li>Admin</li></a> --}}
       <a href="/shoe"><li>Shoes</li></a>
-      <a href="">
-        <li>Cart
-        <span>0</span>
-        </li>
+      <a href="/cart"><li>Cart</li>
       </a>
       <a href="javascript:;" class="btn-info-scroll"><li>About Store</li></a>
     </ul>

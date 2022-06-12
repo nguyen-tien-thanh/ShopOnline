@@ -4,6 +4,8 @@ const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
 const Product = require('../models/Product')
+const Cart = require('../models/Cart')
+const Order = require('../models/Order')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -81,8 +83,6 @@ class SiteController {
                 shoeAvailable
             ]) => {
                 res.render('index', {
-                    brandList: multipleMongooseToObject(brandList),
-                    shoeType: multipleMongooseToObject(shoeType),
                     shoeBestseller: multipleMongooseToObject(shoeBestseller),
                     shoeAvailable: multipleMongooseToObject(shoeAvailable),
                     title: 'Home page'
@@ -334,6 +334,79 @@ class SiteController {
         }
     }
 
+    cart(req,res,next){
+        if(!req.cookies.token){
+            if(!req.session.cart) {
+                return res.render('cart', {
+                    title: 'Cart'
+                })
+            }
+            else{
+                var cart = new Cart(req.session.cart)
+                return res.render('cart',
+                    {
+                        shoe: cart.generateArrays(),
+                        totalPrice: cart.totalPrice,
+                        title: 'Cart',
+                    })
+            }
+        }
+        else {
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            if(req.session.cart){
+                Promise.all([
+                    User.findOne({_id: decodeToken}),
+                    Shoe.find({})
+                        .populate('brand')
+                        .populate('type')
+                ])
+                .then(([
+                    data,
+                    shoe,
+                ]) => {
+                    if (data) {
+                        req.data = data
+                        var cart = new Cart(req.session.cart)
+                        return res.render('cart',
+                            {
+                                user: mongooseToObject(data),
+                                shoe: cart.generateArrays(),
+                                totalPrice: cart.totalPrice,
+                                title: 'Cart',
+                            })
+                        next()
+                    }
+                })
+            }
+            else{
+                User.findOne({_id: decodeToken})
+                .then(() => res.render('cart',{
+                    title: 'Cart'
+                }))
+            }
+        }
+    }
+
+    //[POST] /checkout
+    checkout (req,res,next){
+        var order = new Order({
+            user: req.user,
+            cart: req.session.cart,
+            email: req.body.email,
+            address: req.body.address,
+            phone: req.body.phone,
+        })
+        order.save()
+        req.session.cart = null;
+
+        res.redirect('/')
+        // return res.json({msg: 'Successfully', body:order});
+        // return res.render('cart',{
+        //     title: 'Cart',
+        //     msg: 'Successfully order product'
+        // })
+    }
 }
 
 module.exports = new SiteController;

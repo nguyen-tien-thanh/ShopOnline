@@ -4,6 +4,7 @@ const User = require('../models/User')
 const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
+const Cart = require('../models/Cart')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -14,6 +15,21 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 class ShoeController {
+
+    // [GET] /shoe/add-to-cart:id
+    addToCart(req, res, next){
+        var shoeId = req.params.id;
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+        Shoe.findById(shoeId, function(err, shoe){
+            if(err){
+                return res.redirect('back');
+            }
+            cart.add(shoe, shoe._id);
+            req.session.cart = cart;
+            res.redirect('back');
+        })
+    }
 
     //[GET] /shoe/checkout
     checkout(req, res, next){

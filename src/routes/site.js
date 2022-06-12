@@ -7,6 +7,11 @@ const {isLoggined} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
+// [GET] /cart/
+router.get('/cart', siteController.cart)
+
+// [POST] /checkout/
+router.post('/checkout', isLoggined, siteController.checkout)
 
 // [POST] /logout/
 router.post('/logout', siteController.logout)
