@@ -566,6 +566,15 @@ function getTotalStockOfSize(){
     }
     
 // ================= /shoe/:id =============================
+    // GET SIZE WHEN ORDER, ADD TO CART
+    $('#size-options input').on('change', function() {
+      var sizeValue = $('input[name=size]:checked', '#size-options').val();
+      var addToCartHref = $('#add-to-cart-href')
+      $('#size-checkout-modal').html('Size: '+ sizeValue)
+      var shoeId = addToCartHref.data('id')
+      addToCartHref.attr('href', '/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue);
+    });
+
   // ================= OPEN UL LI SHOE DETAIL =========
   $('.nav-list-items').on('click', function() {
     $('.nav-list-items').not(this).find('div').hide();
@@ -654,5 +663,7 @@ $(".main-header").hover(function(){
   $("[select-item]").click(function () {
     $("#" + $(this).attr("select-item")).slideToggle('normal').toggleClass("selected");
   });
+
+  
 
 

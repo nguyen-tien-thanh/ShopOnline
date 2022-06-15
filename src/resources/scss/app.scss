@@ -1462,7 +1462,7 @@ tbody tr:hover{
   padding: 0;
 }
 
-// ==================== Detail shoe /shoe/:id ========================
+// ==================== Detail shoe /shoe/:id /shoe/show ========================
 .detail-shoe-container,
 .cart-container{
   margin-top: 10px;
@@ -1535,9 +1535,19 @@ tbody tr:hover{
     line-height: 23px;
     // text-transform: uppercase;
   }
-  .detail-shoe-container #shoe-detail #size-options a{
+  .detail-shoe-container #shoe-detail #size-options label{
     font-size: 15px;
+    cursor: pointer;
+    display: inline-block;
   }
+  .detail-shoe-container #shoe-detail #size-options input[type=radio]{
+    display: none;
+    
+  }
+    .detail-shoe-container #shoe-detail #size-options input[type=radio]:checked + .radio-checked {
+      color: $maincolor;
+      text-decoration: underline;
+    }
   .detail-shoe-container #shoe-detail #size-guide-btn {
     margin-top: 15px;
     margin-left: 13px;

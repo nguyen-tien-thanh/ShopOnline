@@ -19,13 +19,14 @@ class ShoeController {
     // [GET] /shoe/add-to-cart:id
     addToCart(req, res, next){
         var shoeId = req.params.id;
+        var shoeSize = req.query.size;
         var cart = new Cart(req.session.cart ? req.session.cart : {});
 
         Shoe.findById(shoeId, function(err, shoe){
             if(err){
                 return res.redirect('back');
             }
-            cart.add(shoe, shoe._id);
+            cart.add(shoe, shoe._id, shoeSize);
             req.session.cart = cart;
             res.redirect('back');
         })

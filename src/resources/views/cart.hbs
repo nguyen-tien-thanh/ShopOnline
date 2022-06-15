@@ -27,7 +27,10 @@
                                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                            <h6 class="text-muted">{{this.item.brand}}</h6>
+                                            {{!-- <h6 class="text-muted">{{this.item.brand}}</h6> --}}
+                                            {{#with size}}
+                                            <h6 class="text-muted mb-0">Size: {{this}}</h6>
+                                            {{/with}}
                                             <h6 class="text-black mb-0">{{this.item.name}}</h6>
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">

@@ -322,7 +322,6 @@ class SiteController {
                             title: 'Not Found',
                             layout: null
                         })
-                    next()
                 }
             })
         }
@@ -375,13 +374,13 @@ class SiteController {
                                 totalPrice: cart.totalPrice,
                                 title: 'Cart',
                             })
-                        next()
                     }
                 })
             }
             else{
                 User.findOne({_id: decodeToken})
-                .then(() => res.render('cart',{
+                .then((user) => res.render('cart',{
+                    user: mongooseToObject(user),
                     title: 'Cart'
                 }))
             }

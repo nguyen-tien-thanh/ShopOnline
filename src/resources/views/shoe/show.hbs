@@ -17,19 +17,15 @@
                 <div class="row mt-3">
                     <div class="col-8 col-md-9">
                         <span>size</span>
-                        {{!-- <option name="size">
-                            <select value="1" selected>36</select>
-                            <select value="1">37</select>
-                            <select value="1">38</select>
-                            <select value="1">39</select>
-                            <select value="1">40</select>
-                        </option> --}}
                         <div id="size-options">
-                            <a href="#">36</a>
-                            <a href="#">37</a>
-                            <a href="#">38</a>
-                            <a href="#">39</a>
-                            <a href="#">40</a>
+                            {{#each shoeDetail.size}}
+                                {{#ifeq stock 0}}
+                                    <span disabled>{{number}}</span>
+                                {{else}}
+                                    <input type="radio" class="checked" id="{{number}}" name="size" value="{{number}}" required>
+                                    <label for="{{number}}" class="radio-checked">{{number}}</label>
+                                {{/ifeq}}
+                            {{/each}}
                         </div>
                     </div>
 
@@ -408,8 +404,9 @@
 
 				<div class="modal-body row">
                     <div class="col-6">
+                        <h2>From {{shoeDetail.brand.name}}</h2>
                         <h1>{{shoeDetail.name}}</h1>
-                        <h2>Size: 38</h2>
+                        <h2 id="size-checkout-modal"></h2>
                         <h3>Color: <span style="color:{{shoeDetail.color}}">{{shoeDetail.color}}</span></h3>
                         <h1>{{formatCurrency shoeDetail.price}} VND</h1>
                     </div>
@@ -420,7 +417,7 @@
                 {{!-- <hr> --}}
 
                 <div class="modal-footer">
-                    <a href="/shoe/add-to-cart/{{shoeDetail._id}}"><button class="btn btn-outline-dark">Add to Cart</button></a>
+                    <a id="add-to-cart-href" data-id="{{shoeDetail._id}}" href="/shoe/add-to-cart/{{shoeDetail._id}}?size="><button class="btn btn-outline-dark">Add to Cart</button></a>
                     <a href="/cart"><button class="btn btn-dark">Check out</button></a>
                 </div>
 			</div>
