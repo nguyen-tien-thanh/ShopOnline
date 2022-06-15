@@ -75,14 +75,40 @@
             {{!-- Responsive of left list filter for table, mobile --}}
             <div class="col-12 responsive-left-list">
                 <ul>
+                    <li select-item="responsive-finding-items" style="float:left"><i class="fa fa-search"></i></li>
+
                     <li select-item="responsive-sort-items"><i class="fa fa-plus"></i>  sort</li>
                 
                     <li select-item="responsive-filter-items"><i class="fa fa-plus"></i>  Filters</li>
                 </ul>
 
+
+                <div class="responsive-items" id="responsive-finding-items">
+                    <div class="search-items">
+                        <div class="category-finding-items">
+                            <h2 class="category-shoe-btn"><i class="fa fa-plus">  category</i></h2>
+                            <ul>
+                            {{#each shoeType}}
+                                <a href="/shoe/finding?type={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
+                            {{/each}}
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="brand-finding-items">
+                            <h2 class="brand-shoe-btn"><i class="fa fa-plus">  brands</i></h2>
+                            <ul>
+                            {{#each brandList}}
+                                <a href="/shoe/finding?brand={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
+                            {{/each}}
+                            </ul>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
                 <div class="responsive-items" id="responsive-filter-items">
                     <div class="filter-color">
-                        <h2 class="filter-shoe-btn"><i class="fa fa-minus">  color</i></h2>
+                        <h2 class="filter-shoe-btn"><i class="fa fa-plus">  color</i></h2>
                         <ul class="filter-group">
                                 <a href="/shoe/finding?color=White"><li class="list-group-item">White</li></a>
                                 <a href="/shoe/finding?color=Black"><li class="list-group-item">Black</li></a>
@@ -97,7 +123,7 @@
                     </div>
                     <hr>
                     <div class="filter-size">
-                        <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-minus">  size</i></h2>
+                        <h2 class="mt-4 filter-shoe-btn"><i class="fa fa-plus">  size</i></h2>
                         <ul class="filter-group">
                                 <a href="/shoe/finding?size1=34&size2=35"><li class="list-group-item">34-35</li></a>
                                 <a href="/shoe/finding?size1=36&size2=37"><li class="list-group-item">36-37</li></a>
@@ -108,10 +134,12 @@
                                 <a href="/shoe/finding?size1=46"><li class="list-group-item">46</li></a>
                         </ul>
                     </div>
-                    <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
+                    <hr>
+                    {{!-- <button class="form-control btn btn-outline-dark mb-4">APPLY</button> --}}
                 </div>
 
                 <div class="responsive-items" id="responsive-sort-items">
+                    <h2 class="mt-4 sort-shoe-btn"><i class="fa fa-plus">  sort</i></h2>
                     <ul class="list-group">
                             <a href="/shoe/newarrival"><li class="list-group-item">New Arrivals</li></a>
                             <a href="/shoe/cheapshoe"><li class="list-group-item">Cheaper</li></a>
@@ -119,8 +147,9 @@
                             <a href="/shoe/bestseller"><li class="list-group-item">Bestseller</li></a>
                             <a href="/shoe/available"><li class="list-group-item">Available</li></a>
                     </ul>
-                    <button class="form-control btn btn-outline-dark mb-4">APPLY</button>
+                    {{!-- <button class="form-control btn btn-outline-dark mb-4">APPLY</button> --}}
                 </div>
+                <hr>
             </div>
 
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 row shoe-list">

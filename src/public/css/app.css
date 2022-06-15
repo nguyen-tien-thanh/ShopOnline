@@ -1491,10 +1491,14 @@ tbody tr:hover {
 .responsive-items h2 {
   font-size: 1rem; }
 
+.responsive-items ul {
+  display: none; }
+
 .responsive-items ul li {
   float: none;
   font-size: 0.8rem;
-  border: none; }
+  border: none;
+  display: inline-block; }
 
 @media screen and (max-width: 1024px) {
   .responsive-left-list {

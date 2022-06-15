@@ -50,10 +50,14 @@
 
     $(window).on('scroll', function() {
       //ADD .TIGHT
-      if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
+      if (($('body').height())/2 > $('.wrapper').outerHeight()) {
+        $('.arrow').hide();
+      }
+      else if ($(window).scrollTop() + $(window).height() > $('.wrapper').outerHeight()) {
         $('body').addClass('tight');
         $('.arrow').hide();
-      } else {
+      } 
+      else {
         $('body').removeClass('tight');
         $('.arrow').show();
       }
@@ -622,9 +626,30 @@ $(".main-header").hover(function(){
     $(this).parent().find('ul').slideToggle('normal', function() {
       $(this).parent().find('i').toggleClass('fa-minus fa-plus');
     });
-    $('.filter-shoe-btn').not(this).find('ul').hide();
+    $('.filter-shoe-btn').not(this).find('ul').show();
   });
 
+
+  $('.category-shoe-btn').on('click', function() {
+    $(this).parent().find('ul').slideToggle('normal', function() {
+      $(this).parent().find('i').toggleClass('fa-minus fa-plus');
+    });
+    $('.category-shoe-btn').not(this).find('ul').show();
+  });
+
+  $('.brand-shoe-btn').on('click', function() {
+    $(this).parent().find('ul').slideToggle('normal', function() {
+      $(this).parent().find('i').toggleClass('fa-minus fa-plus');
+    });
+    $('.brand-shoe-btn').not(this).find('ul').show();
+  });
+
+  $('.sort-shoe-btn').on('click', function() {
+    $(this).parent().find('ul').slideToggle('normal', function() {
+      $(this).parent().find('i').toggleClass('fa-minus fa-plus');
+    });
+    $('.sort-shoe-btn').not(this).find('ul').show();
+  });
   // Responsive UL LI filter
   $("[select-item]").click(function () {
     $("#" + $(this).attr("select-item")).slideToggle('normal').toggleClass("selected");
