@@ -333,7 +333,7 @@ class SiteController {
             });
         }
     }
-
+//
     cart(req,res,next){
         if(!req.cookies.token){
             if(!req.session.cart) {
