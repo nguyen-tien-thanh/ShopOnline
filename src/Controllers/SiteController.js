@@ -357,13 +357,13 @@ class SiteController {
             if(req.session.cart){
                 Promise.all([
                     User.findOne({_id: decodeToken}),
-                    Shoe.find({})
+                    Pod.find({})
                         .populate('brand')
                         .populate('type')
                 ])
                 .then(([
                     data,
-                    shoe,
+                    pod,
                 ]) => {
                     if (data) {
                         req.data = data
@@ -381,12 +381,14 @@ class SiteController {
             }
             else{
                 User.findOne({_id: decodeToken})
-                .then(() => res.render('cart',{
-                    title: 'Cart'
+                .then((user) => res.render('cart',{
+                    title: 'Cart',
+                    user: mongooseToObject(user)
                 }))
             }
         }
     }
+    
 
     //[POST] /checkout
     checkout (req,res,next){
