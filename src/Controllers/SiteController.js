@@ -332,7 +332,7 @@ class SiteController {
             });
         }
     }
-
+//
     cart(req,res,next){
         if(!req.cookies.token){
             if(!req.session.cart) {
@@ -356,13 +356,13 @@ class SiteController {
             if(req.session.cart){
                 Promise.all([
                     User.findOne({_id: decodeToken}),
-                    Shoe.find({})
+                    Pod.find({})
                         .populate('brand')
                         .populate('type')
                 ])
                 .then(([
                     data,
-                    shoe,
+                    pod,
                 ]) => {
                     if (data) {
                         req.data = data
@@ -380,12 +380,18 @@ class SiteController {
             else{
                 User.findOne({_id: decodeToken})
                 .then((user) => res.render('cart',{
+<<<<<<< HEAD
                     user: mongooseToObject(user),
                     title: 'Cart'
+=======
+                    title: 'Cart',
+                    user: mongooseToObject(user)
+>>>>>>> 57f05a1b298c7bbb1c1601b4de42164e8400d6c9
                 }))
             }
         }
     }
+    
 
     //[POST] /checkout
     checkout (req,res,next){
