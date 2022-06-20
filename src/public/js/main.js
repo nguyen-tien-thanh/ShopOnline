@@ -564,7 +564,57 @@ function getTotalStockOfSize(){
         forceDeleteShoeForm.submit();
       }
     }
-    
+
+// ================ checkout form /cart ====================
+
+if(document.getElementById('payment-form')){
+  var stripe = Stripe('pk_test_51LCjUmGXzbc60gITz8yj4uHqkougbdm9OfES09TPBSSecYthkmjdteUAxoDJLOLozcd2LcZxkrQeyIK0x5vjO7Ie00S1fLfs2x');
+  var elements = stripe.elements();
+  
+  var style = {
+    base: {
+      // CSS for payment form elemnts input
+      fontSize: '16px',
+      color: '#32325d',
+    },
+  };
+  
+  // Create an instance of the card Element.
+  var card = elements.create('card', {style: style});
+  
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+
+  var paymentForm = document.getElementById('payment-form');
+  paymentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the customer that there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var paymentForm = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    paymentForm.appendChild(hiddenInput);
+
+    // Submit the form
+    paymentForm.submit();
+  }
+}
+
+ 
 // ================= /shoe/:id =============================
   // GET SIZE WHEN ORDER, ADD TO CART
     $('#size-options input').on('change', function() {

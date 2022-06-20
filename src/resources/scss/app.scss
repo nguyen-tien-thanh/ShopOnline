@@ -130,11 +130,25 @@ a:hover{
     z-index: 100;
     display: none;
   }
+    .subnav-dropdown span{
+      padding-left: 1rem;
+      cursor: pointer;
+    }
+      .subnav-dropdown span i{
+        padding-right: 7px;
+      }
+      .subnav-dropdown span:hover .fa-plus-circle{
+        color: $maincolor;
+      }
+    .subnav-dropdown-items i{
+      padding-right: 7px;
+    }
 
   .sub-nav ul li:hover .subnav-dropdown,
   .sub-nav ul li:hover .subnav-lang-dropdown{
     display: block;
   }
+  
 
   .subnav-lang-dropdown {
     right:18%;
@@ -251,7 +265,7 @@ a:hover{
       font-size: 24px;
     }
     header nav ul li:hover,
-    #add-one-href:hover {
+    .element-a-href:hover {
       // font-size: 22px;
       text-decoration: underline;
       font-style: bold;

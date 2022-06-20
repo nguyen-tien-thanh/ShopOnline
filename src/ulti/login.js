@@ -9,11 +9,12 @@ const secret = 'secretpasstoken'
 function isLoggined(req, res, next) {
     try {
         var token = req.cookies.token;
-        var decodeToken = jwt.verify(token, secret)
+        var decodeToken = jwt.verify(token, secret);
         User.findOne({_id: decodeToken})
         .then(data => {
             if (data) {
-                req.data = data
+                req.data = data;
+                req.session.url = req.url;
                 // console.log(data)
                 next()
             }

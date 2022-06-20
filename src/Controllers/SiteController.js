@@ -14,6 +14,7 @@ const { checkUserExist, makePassword } = require('../ulti/register')
 const bcrypt = require('bcrypt');
 // const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+const stripe = require('stripe');
 
 
 class SiteController {
@@ -121,9 +122,14 @@ class SiteController {
 
     //[GET] /register User
     register(req, res, next){
-        res.render('register', {
-            title:'Register',
-            layout: 'loginLayout'});
+        if(!req.cookies.token){
+            res.render('register', {
+                title:'Register',
+                layout: 'loginLayout'});
+        }
+        else{
+            res.redirect('/user/profile')
+        }
     }
 
     //[POST] /store User
@@ -182,9 +188,14 @@ class SiteController {
     }
 
     login(req, res, next){
-        res.render('login', {
-            title:'Login',
-            layout: 'loginLayout'});
+        if(!req.cookies.token){
+            res.render('login', {
+                title:'Login',
+                layout: 'loginLayout'});
+        }
+        else{
+            res.redirect('/user/profile')
+        }
     }
 
     //[POST] /validation User
@@ -356,13 +367,13 @@ class SiteController {
             if(req.session.cart){
                 Promise.all([
                     User.findOne({_id: decodeToken}),
-                    Pod.find({})
+                    Shoe.find({})
                         .populate('brand')
                         .populate('type')
                 ])
                 .then(([
                     data,
-                    pod,
+                    shoe,
                 ]) => {
                     if (data) {
                         req.data = data
@@ -380,13 +391,8 @@ class SiteController {
             else{
                 User.findOne({_id: decodeToken})
                 .then((user) => res.render('cart',{
-<<<<<<< HEAD
                     user: mongooseToObject(user),
                     title: 'Cart'
-=======
-                    title: 'Cart',
-                    user: mongooseToObject(user)
->>>>>>> 57f05a1b298c7bbb1c1601b4de42164e8400d6c9
                 }))
             }
         }
@@ -395,22 +401,44 @@ class SiteController {
 
     //[POST] /checkout
     checkout (req,res,next){
-        var order = new Order({
-            user: req.user,
-            cart: req.session.cart,
-            email: req.body.email,
-            address: req.body.address,
-            phone: req.body.phone,
-        })
-        order.save()
-        req.session.cart = null;
+        if(!req.session.cart){
+            return res.redirect('/cart');
+        }
+        else{
+            var cart = new Cart(req.session.cart);
 
-        res.redirect('/')
-        // return res.json({msg: 'Successfully', body:order});
-        // return res.render('cart',{
-        //     title: 'Cart',
-        //     msg: 'Successfully order product'
+            const stripe = require('stripe')('sk_test_51LCjUmGXzbc60gITm4NDsulfqX13P2Xy5TjTZzHyhVBjamQt1DMD6pIRvM7elIMFUFI0DUDuh18P5MyN0O18yyZ100setk5tNV');
+            stripe.charges.create({
+                amount: cart.totalPrice,
+                currency: 'vnd',
+                source: req.body.stripeToken,
+                description: 'Test Charge',
+            }, function(err, charge){
+                if(err){
+                    res.redirect('back');
+                }
+                var order = new Order({
+                    user: req.user,
+                    cart: req.session.cart,
+                    email: req.body.email,
+                    address: req.body.address,
+                    phone: req.body.phone,
+                })
+                order.save()
+                req.session.cart = null;
+                res.redirect('/')
+            })
+        }
+        // var order = new Order({
+        //     user: req.user,
+        //     cart: req.session.cart,
+        //     email: req.body.email,
+        //     address: req.body.address,
+        //     phone: req.body.phone,
         // })
+        // order.save()
+        // req.session.cart = null;
+        // res.redirect('/')
     }
 }
 

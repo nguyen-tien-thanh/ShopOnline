@@ -21,7 +21,36 @@ class ShoeController {
         res.render('shoe/custom');
     }
 
-    // [GET] /shoe/add-to-cart:id
+    
+
+    //[GET] /shoe/delete-cart
+    deleteCart(req, res, next){
+        var cart = new Cart({});
+        req.session.cart = cart;
+        res.redirect('/cart')
+    }
+
+    //[GET] /shoe/remove-item/:id
+    removeItem(req, res, next){
+        var shoeId = req.params.id;
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+        cart.removeItem(shoeId);
+        req.session.cart = cart;
+        res.redirect('/cart')
+    }
+
+    //[GET] /shoe/reduce-cart/:id
+    reduceCart(req, res, next){
+        var shoeId = req.params.id;
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+        cart.reduceByOne(shoeId);
+        req.session.cart = cart;
+        res.redirect('/cart')
+    }
+
+    // [GET] /shoe/add-to-cart/:id
     addToCart(req, res, next){
         var shoeId = req.params.id;
         var shoeSize = req.query.size;

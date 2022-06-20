@@ -12,31 +12,26 @@
                   </a>
                 </li>
                 <li>
-                    <a class="active" href="#">Welcome <b>{{user.name}}</b>!</a>
+                    <a class="active" href="#"><b>{{user.name}}</b></a>
                     <div class="subnav-dropdown">
                       <br>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-address-card"></i> My Account</a>
+                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-address-card"></i>My Account</a>
                       <hr>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i> My purchase</a>
+                      <span>
+                        <i class="fa fa-money-check"></i>10.000 VND
+                        <i class="fas fa-plus-circle"></i>
+                      </span>
+                      <hr>
+                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i>My purchase</a>
                       <hr>
                       {{#ifeq user.role 'Admin'}}
-                        <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i> Management</a>
+                        <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i>Management</a>
                         <hr>
                       {{/ifeq}}
-                      <a class="subnav-dropdown-items" onclick="logout()"><i class='fas fa-sign-out-alt'></i> Log out</a>
+                      <a class="subnav-dropdown-items" onclick="logout()"><i class='fas fa-sign-out-alt'></i>Log out</a>
                       <br><br>
                     </div>
                 </li>
-                {{!-- <li>
-                  <a href="#"><i class="fa fa-globe"></i> Change languages <i class="fa fa-chevron-down"></i></a>
-                    <div class="subnav-dropdown subnav-lang-dropdown">
-                      <br>
-                      <a class="subnav-dropdown-items" href="#">Tiếng Việt</a>
-                      <hr>
-                      <a class="subnav-dropdown-items" href="#">English</a>
-                      <br><br>
-                    </div>
-                </li> --}}
             {{else}}
                 <li>
                   <a href="/cart">
@@ -50,16 +45,6 @@
                 <li>
                     <a href="/register">Register</a>
                 </li>
-                {{!-- <li>
-                  <a href="#"><i class="fa fa-globe"></i> Change languages <i class="fa fa-chevron-down"></i></a>
-                  <div class="subnav-dropdown subnav-lang-dropdown" style="right: 12%">
-                    <br>
-                    <a class="subnav-dropdown-items" href="#">Tiếng Việt</a>
-                    <hr>
-                    <a class="subnav-dropdown-items" href="#">English</a>
-                    <br><br>
-                  </div>
-                </li> --}}
             {{/if}}
 
         </ul>
@@ -68,11 +53,10 @@
 
 
 <header class="main-header" id="main-header">   
-  {{!-- <a href="/" class="logo-icon-header"><div id="logo-header">Phong<span>Store</span></div></a> --}}
   <div class="row">
     <div class="col-lg-11 col-md-9 col-sm-6 col-9">
       <a href="/" class="logo-icon-header">
-        <div id="logo-header">Phong<span>Store</span></div>
+        <div id="logo-header">Dus<span>Tin</span></div>
       </a>
     </div>
 

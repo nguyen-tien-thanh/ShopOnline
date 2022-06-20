@@ -10,6 +10,15 @@ router.use(cookieParser())
 // [GET] /shoe/custom shoe
 router.get('/custom', shoeController.custom)
 
+// [GET] /shoe/delete-cart:id shoe
+router.get('/delete-cart', shoeController.deleteCart)
+
+// [GET] /shoe/remove-item:id shoe
+router.get('/remove-item/:id', shoeController.removeItem)
+
+// [GET] /shoe/reduce-cart:id shoe
+router.get('/reduce-cart/:id', shoeController.reduceCart)
+
 // [GET] /shoe/add-to-cart:id shoe
 router.get('/add-to-cart/:id', shoeController.addToCart)
 
