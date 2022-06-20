@@ -464,6 +464,9 @@ a:hover{
   .img-container {
     position: relative;
     overflow: hidden;   
+    border-radius: var(--border-radius);
+    -moz-border-radius: 7px; /*Firefox*/
+    -webkit-border-radius: 7px; /*Chrome và Safari*/
   }
 
   .img-container a img {
@@ -1535,10 +1538,16 @@ tbody tr:hover{
     line-height: 23px;
     // text-transform: uppercase;
   }
+  #size-options{
+    cursor: default;
+  }
   .detail-shoe-container #shoe-detail #size-options label{
     font-size: 15px;
     cursor: pointer;
     display: inline-block;
+  }
+  #size-options span {
+    cursor: not-allowed;
   }
   .detail-shoe-container #shoe-detail #size-options input[type=radio]{
     display: none;
@@ -1591,6 +1600,9 @@ tbody tr:hover{
     #pre-order-modal .modal-footer {
       display: block;
     }
+  #noti-pre-order{
+    display: none;
+  }
 
   #size-guide-modal button{
     background: inherit;
@@ -1789,17 +1801,20 @@ tbody tr:hover{
       margin: 0;
       padding: 0;
       overflow: hidden;
+      cursor: pointer;
     }
       .responsive-left-list ul li {
         float: right;
         font-weight: 100;
         font-size: 1.2rem;
+        cursor: pointer;
       }
         .responsive-left-list li {
           display: block;
           text-align: left;
           padding: 14px 16px;
           text-decoration: none;
+          cursor: pointer;
         }
         .responsive-left-list .selected {
           display: block;
@@ -1811,15 +1826,18 @@ tbody tr:hover{
     }
       .responsive-items h2{
         font-size: 1rem;
+        cursor: pointer;
       }
       .responsive-items ul{
         display: none;
+        cursor: pointer;
       }
         .responsive-items ul li{
           float: none;
           font-size: 0.8rem;
           border: none;
           display: inline-block;
+          cursor: pointer;
         }
         
 // @media screen and (max-width: 1440px) {

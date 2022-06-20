@@ -16,6 +16,11 @@ const jwt = require('jsonwebtoken');
 
 class ShoeController {
 
+    // [GET] /shoe/custom
+    custom(req,res,next){
+        res.render('shoe/custom');
+    }
+
     // [GET] /shoe/add-to-cart:id
     addToCart(req, res, next){
         var shoeId = req.params.id;

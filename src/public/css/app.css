@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(//db.onlinewebfonts.com/c/1fed4454352f201d52b65ca5480afb2d?family=Playlist);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 @font-face {
@@ -388,7 +389,12 @@ section.cards .card img {
 
 .img-container {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  -moz-border-radius: 7px;
+  /*Firefox*/
+  -webkit-border-radius: 7px;
+  /*Chrome và Safari*/ }
 
 .img-container a img {
   display: block;
@@ -1250,10 +1256,16 @@ tbody tr:hover {
   font-weight: 100;
   line-height: 23px; }
 
+#size-options {
+  cursor: default; }
+
 .detail-shoe-container #shoe-detail #size-options label {
   font-size: 15px;
   cursor: pointer;
   display: inline-block; }
+
+#size-options span {
+  cursor: not-allowed; }
 
 .detail-shoe-container #shoe-detail #size-options input[type=radio] {
   display: none; }
@@ -1302,6 +1314,9 @@ tbody tr:hover {
 
 #pre-order-modal .modal-footer {
   display: block; }
+
+#noti-pre-order {
+  display: none; }
 
 #size-guide-modal button {
   background: inherit;
@@ -1476,18 +1491,21 @@ tbody tr:hover {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  cursor: pointer; }
 
 .responsive-left-list ul li {
   float: right;
   font-weight: 100;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  cursor: pointer; }
 
 .responsive-left-list li {
   display: block;
   text-align: left;
   padding: 14px 16px;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 .responsive-left-list .selected {
   display: block; }
@@ -1498,16 +1516,19 @@ tbody tr:hover {
   display: none; }
 
 .responsive-items h2 {
-  font-size: 1rem; }
+  font-size: 1rem;
+  cursor: pointer; }
 
 .responsive-items ul {
-  display: none; }
+  display: none;
+  cursor: pointer; }
 
 .responsive-items ul li {
   float: none;
   font-size: 0.8rem;
   border: none;
-  display: inline-block; }
+  display: inline-block;
+  cursor: pointer; }
 
 @media screen and (max-width: 1024px) {
   .responsive-left-list {

@@ -22,7 +22,7 @@
                                 {{#ifeq stock 0}}
                                     <span disabled>{{number}}</span>
                                 {{else}}
-                                    <input type="radio" class="checked" id="{{number}}" name="size" value="{{number}}" required>
+                                    <input type="radio" class="checked" id="{{number}}" name="size" value="{{number}}">
                                     <label for="{{number}}" class="radio-checked">{{number}}</label>
                                 {{/ifeq}}
                             {{/each}}
@@ -38,7 +38,8 @@
 
                     <a href="" id="size-guide-btn" data-toggle="modal" data-target=".bd-example-modal-lg"> SIZE GUIDE</a>
 
-                    <button type="button" class="btn btn-outline-dark mt-5" data-toggle="modal" data-target="#pre-order-modal">pre-order</button>
+                    <button id="pre-order-btn" type="button" class="btn btn-outline-dark mt-5" data-toggle="modal">pre-order</button>
+                    <span class="badge-danger text-danger" id="noti-pre-order">You need to select size first.</span>
 
                     <h3 class="mt-4">
                         *All pre-orders will take 30 working days for preparation. Once your pre-orders are ready, you will receive an email for confirmation with tracking information. 

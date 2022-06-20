@@ -566,8 +566,12 @@ function getTotalStockOfSize(){
     }
     
 // ================= /shoe/:id =============================
-    // GET SIZE WHEN ORDER, ADD TO CART
+  // GET SIZE WHEN ORDER, ADD TO CART
     $('#size-options input').on('change', function() {
+      //enable pre-order button
+      $('#pre-order-btn').attr('data-target', '#pre-order-modal');
+
+      $('#noti-pre-order').hide();
       var sizeValue = $('input[name=size]:checked', '#size-options').val();
       var addToCartHref = $('#add-to-cart-href')
       $('#size-checkout-modal').html('Size: '+ sizeValue)
@@ -575,6 +579,15 @@ function getTotalStockOfSize(){
       addToCartHref.attr('href', '/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue);
     });
 
+      //Display noti when not choosing size
+      $('#pre-order-btn').on('click', function() {
+        if($('#pre-order-btn').attr('data-target')){
+          $('#noti-pre-order').hide();
+        }
+        else{
+          $('#noti-pre-order').show();
+        }
+      })
   // ================= OPEN UL LI SHOE DETAIL =========
   $('.nav-list-items').on('click', function() {
     $('.nav-list-items').not(this).find('div').hide();
