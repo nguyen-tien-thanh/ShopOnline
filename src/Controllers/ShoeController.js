@@ -161,7 +161,7 @@ class ShoeController {
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
                     shoeDetail: mongooseToObject(shoeDetail),
-                    title: 'Detail',
+                    title: shoeDetail.name,
                     shoeDetailTitle: req.query.shoeDetailTitle,
                 })
             }
@@ -199,7 +199,7 @@ class ShoeController {
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
                             shoeDetail: mongooseToObject(shoeDetail),
-                            title: 'Detail',
+                            title: shoeDetail.name,
                             shoeDetailTitle: req.query.shoeDetailTitle
                         })
                     next()
@@ -281,7 +281,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -311,7 +311,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }
@@ -339,7 +339,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -369,7 +369,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }
@@ -397,7 +397,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -427,7 +427,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }
@@ -454,7 +454,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -483,7 +483,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }
@@ -510,7 +510,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -539,7 +539,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }
@@ -572,7 +572,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -607,7 +607,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }
@@ -634,7 +634,7 @@ class ShoeController {
                     brandList: multipleMongooseToObject(brandList),
                     shoeType: multipleMongooseToObject(shoeType),
                     shoe: multipleMongooseToObject(shoe),
-                    title: 'Detail',
+                    title: 'Shop',
                 })
             }
             )}
@@ -663,7 +663,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
-                            title: 'Detail',
+                            title: 'Shop',
                         })
                     next()
                 }

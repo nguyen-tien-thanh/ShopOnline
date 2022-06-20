@@ -343,7 +343,8 @@ class SiteController {
             });
         }
     }
-//
+
+    // [GET] /cart
     cart(req,res,next){
         if(!req.cookies.token){
             if(!req.session.cart) {
@@ -429,16 +430,6 @@ class SiteController {
                 res.redirect('/')
             })
         }
-        // var order = new Order({
-        //     user: req.user,
-        //     cart: req.session.cart,
-        //     email: req.body.email,
-        //     address: req.body.address,
-        //     phone: req.body.phone,
-        // })
-        // order.save()
-        // req.session.cart = null;
-        // res.redirect('/')
     }
 }
 

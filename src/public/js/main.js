@@ -576,6 +576,7 @@ if(document.getElementById('payment-form')){
       // CSS for payment form elemnts input
       fontSize: '16px',
       color: '#32325d',
+      lineHeight: '1.429'
     },
   };
   
