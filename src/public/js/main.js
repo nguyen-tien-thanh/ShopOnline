@@ -614,6 +614,16 @@ if(document.getElementById('payment-form')){
   }
 }
 
+// $('.fa-times').on('click', function (e){
+//   e.preventDefault();
+//   var shoeId = $(this).parent().data('id');
+//   var quantityValue = $('input[name="quantity"]').val();
+//   $('.session-totalQty').html(parseInt($('.session-totalQty').html(), 10)-quantityValue);
+//   $.ajax({
+//     url: 'shoe/remove-item/' + shoeId,
+//   })
+// })
+
  
 // ================= /shoe/:id =============================
   // GET SIZE WHEN ORDER, ADD TO CART

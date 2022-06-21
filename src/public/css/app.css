@@ -1324,6 +1324,20 @@ tbody tr:hover {
   margin-top: 1.5rem;
   width: 100%; }
 
+.btn-link:focus, .btn-link:active {
+  outline: none !important;
+  box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.fa-plus, .fa-minus {
+  color: #6c757d; }
+
+.cart-container .fa-times:hover,
+.cart-container .fa-plus:hover,
+.cart-container .fa-minus:hover {
+  color: #d00109;
+  cursor: pointer; }
+
 .zoom {
   position: absolute;
   right: 50%;
