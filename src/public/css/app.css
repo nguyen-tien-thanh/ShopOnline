@@ -1574,3 +1574,18 @@ tbody tr:hover {
   height: 20vh !important;
   width: 30% !important;
   object-fit: scale-down !important; }
+
+.container-custom {
+  margin-top: 30px; }
+
+.img-custom {
+  margin-left: 20%; }
+
+.shoe-type {
+  display: inline-block;
+  padding-right: 55px;
+  padding-left: 55px; }
+
+.shoe-type img {
+  width: 200px;
+  height: 200px; }
