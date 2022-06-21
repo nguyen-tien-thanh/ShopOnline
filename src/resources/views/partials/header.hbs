@@ -8,7 +8,11 @@
                 <li>
                   <a href="/cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{#if session.cart.totalQty}}
+                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{else}}
+                      <span class="badge badge-danger badge-counter">0</span>
+                    {{/if}}
                   </a>
                 </li>
                 <li>
@@ -36,7 +40,11 @@
                 <li>
                   <a href="/cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{#if session.cart.totalQty}}
+                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{else}}
+                      <span class="badge badge-danger badge-counter">0</span>
+                    {{/if}}
                   </a>
                 </li>
                 <li>

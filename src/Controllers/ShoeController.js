@@ -20,7 +20,6 @@ class ShoeController {
     custom(req,res,next){
         res.render('shoe/custom');
     }
-
     
 
     //[GET] /shoe/delete-cart
