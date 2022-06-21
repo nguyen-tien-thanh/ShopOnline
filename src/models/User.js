@@ -14,7 +14,7 @@ const User = new Schema({
     birthday: {type: Date, default: 0},
     role: {type: String, default: 'Customer'},
     address: {type: String, minLength: 1, maxLength: 255},
-    gender: {type: Boolean, minLength: 1, maxLength: 255},
+    gender: {type: String, default: 'male'},
     avatar: {type: String, maxLength: 255},
     // permission: { type: Boolean, default: false},
     // countlogin: { type: Number, default:0 },

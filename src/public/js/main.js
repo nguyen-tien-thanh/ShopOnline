@@ -574,7 +574,7 @@ if(document.getElementById('payment-form')){
   var style = {
     base: {
       // CSS for payment form elemnts input
-      fontSize: '16px',
+      fontSize: '18px',
       color: '#32325d',
       lineHeight: '1.429'
     },
@@ -615,25 +615,48 @@ if(document.getElementById('payment-form')){
   }
 }
 
+// $('.fa-times').on('click', function (e){
+//   e.preventDefault();
+//   var shoeId = $(this).parent().data('id');
+//   var quantityValue = $('input[name="quantity"]').val();
+//   $('.session-totalQty').html(parseInt($('.session-totalQty').html(), 10)-quantityValue);
+//   $.ajax({
+//     url: 'shoe/remove-item/' + shoeId,
+//   })
+// })
+
  
 // ================= /shoe/:id =============================
   // GET SIZE WHEN ORDER, ADD TO CART
     $('#size-options input').on('change', function() {
       //enable pre-order button
-      $('#pre-order-btn').attr('data-target', '#pre-order-modal');
-
       $('#noti-pre-order').hide();
-      var sizeValue = $('input[name=size]:checked', '#size-options').val();
-      var addToCartHref = $('#add-to-cart-href')
-      $('#size-checkout-modal').html('Size: '+ sizeValue)
-      var shoeId = addToCartHref.data('id')
-      addToCartHref.attr('href', '/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue);
+      $('#add-to-cart-btn').addClass('active')
     });
 
       //Display noti when not choosing size
-      $('#pre-order-btn').on('click', function() {
-        if($('#pre-order-btn').attr('data-target')){
+      $('#add-to-cart-btn').on('click', function(e) {
+        // e.preventDefault();
+        if($('#add-to-cart-btn').hasClass('active')){
           $('#noti-pre-order').hide();
+
+          var sizeValue = $('input[name=size]:checked', '#size-options').val();
+          var shoeId = $(this).data('id');
+          $.ajax({
+            url:'/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue,
+          })
+
+          $(this).closest('section')
+          .find('#img-shoedetail')
+          .clone()
+          .addClass('zoom')
+          .appendTo('body');
+
+          setTimeout(function(){
+            $(".zoom").remove();
+            $('.badge-counter').html(parseInt($('.badge-counter').html(), 10)+1);
+          }, 1000);
+
         }
         else{
           $('#noti-pre-order').show();
@@ -662,6 +685,7 @@ if(document.getElementById('payment-form')){
         deliveryModal.style.display = "block";
       }
     }
+
 })
 
 //==================== DISPLAY ICON FOR NAVBAR RESPONSIVE =================

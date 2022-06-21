@@ -10,6 +10,7 @@ const db = require('./config/db');
 const methodOverride = require('method-override');
 const { default: mongoose } = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
+var flash = require('req-flash');
 
 db.connect();
 
@@ -51,6 +52,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //HTTP Loggers
 app.use(morgan('combined'));
+
+//Msg Loggers
+app.use(flash());
 
 //Middleware to solve Body Form
 app.use(express.urlencoded({ extended: true }))

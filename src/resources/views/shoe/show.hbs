@@ -2,7 +2,7 @@
     <section id="shoe-detail">
         <div class="row">
             <div class="col-sm-12 col-md-7 col-lg-9">
-                <img src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">
+                <img id="img-shoedetail" src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">
             </div>
 
             <div class="col-sm-12 col-md-5 col-lg-3 p-4">
@@ -38,7 +38,8 @@
 
                     <a href="" id="size-guide-btn" data-toggle="modal" data-target=".bd-example-modal-lg"> SIZE GUIDE</a>
 
-                    <button id="pre-order-btn" type="button" class="btn btn-outline-dark mt-5" data-toggle="modal">pre-order</button>
+                    <button id="add-to-cart-btn" data-id="{{shoeDetail._id}}" type="button" class="btn btn-outline-dark">add to cart</button>
+                    
                     <span class="badge-danger text-danger" id="noti-pre-order">You need to select size first.</span>
 
                     <h3 class="mt-4">
@@ -392,38 +393,6 @@
 
 </div>
 
-
-    {{!-- Modal pre-order (Cart) --}}
-	<div class="modal right fade" id="pre-order-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel2">My Cart</h4>
-					<button type="button" class="close btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-
-				<div class="modal-body row">
-                    <div class="col-6">
-                        <h2>From {{shoeDetail.brand.name}}</h2>
-                        <h1>{{shoeDetail.name}}</h1>
-                        <h2 id="size-checkout-modal"></h2>
-                        <h3>Color: <span style="color:{{shoeDetail.color}}">{{shoeDetail.color}}</span></h3>
-                        <h1>{{formatCurrency shoeDetail.price}} VND</h1>
-                    </div>
-                    <div class="col-6">
-                        <img src="../uploads/{{shoeDetail.image}}" alt="{{shoeDetail.name}}">
-                    </div>
-				</div>
-                {{!-- <hr> --}}
-
-                <div class="modal-footer">
-                    <a id="add-to-cart-href" data-id="{{shoeDetail._id}}" href="/shoe/add-to-cart/{{shoeDetail._id}}?size="><button class="btn btn-outline-dark">Add to Cart</button></a>
-                    <a href="/cart"><button class="btn btn-dark">Check out</button></a>
-                </div>
-			</div>
-		</div>
-	</div>
     
     
 

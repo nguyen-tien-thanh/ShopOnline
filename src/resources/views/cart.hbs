@@ -34,7 +34,16 @@
                                             <h6 class="text-black mb-0">{{this.item.name}}</h6>
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                            <button class="btn btn-link px-2"
+                                                <a href="/shoe/reduce-cart/{{this.item._id}}">
+                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-minus"></i></button>
+                                                </a>
+                                                <input min="0" value="{{this.qty}}" type="text" disabled class="form-control form-control-sm">
+                                                <input type="hidden" name="quantity" value="{{this.qty}}">
+                                                {{!-- <a href="/shoe/add-to-cart/{{this.item._id}}"> --}}
+                                                <a href="/shoe/{{this.item._id}}">
+                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
+                                                </a>
+                                            {{!-- <button class="btn btn-link px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                 <i class="fas fa-minus"></i>
                                             </button>
@@ -45,13 +54,13 @@
                                             <button class="btn btn-link px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                                 <i class="fas fa-plus"></i>
-                                            </button>
+                                            </button> --}}
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                             <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="/shoe/reduce-cart/{{this.item._id}}" class="text-muted"><i class="fas fa-times"></i></a>
+                                            <a href="/shoe/delete-cart/{{this.item._id}}" class="text-muted"><i class="fas fa-times"></i></a>
                                             </div>
                                         </div>
 

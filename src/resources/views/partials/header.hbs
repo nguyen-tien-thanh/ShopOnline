@@ -8,14 +8,18 @@
                 <li>
                   <a href="/cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{#if session.cart.totalQty}}
+                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{else}}
+                      <span class="badge badge-danger badge-counter">0</span>
+                    {{/if}}
                   </a>
                 </li>
                 <li>
                     <a class="active" href="#"><b>{{user.name}}</b></a>
                     <div class="subnav-dropdown">
                       <br>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-address-card"></i>My Account</a>
+                      <a class="subnav-dropdown-items" href="/user/profile"><i class="fa fa-address-card"></i>My Account</a>
                       <hr>
                       <span>
                         <i class="fa fa-money-check"></i>{{formatCurrency user.money}} VND
@@ -36,7 +40,11 @@
                 <li>
                   <a href="/cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{#if session.cart.totalQty}}
+                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                    {{else}}
+                      <span class="badge badge-danger badge-counter">0</span>
+                    {{/if}}
                   </a>
                 </li>
                 <li>
