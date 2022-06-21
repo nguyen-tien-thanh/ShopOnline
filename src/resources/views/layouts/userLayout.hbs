@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{!-- Jquery --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    {{!-- Bootstrap (Optional) --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    {{!-- Ico icons --}}
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    {{!-- Fonts logo --}}
+    <link href="//db.onlinewebfonts.com/c/1fed4454352f201d52b65ca5480afb2d?family=Playlist" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <link type="text/css" rel="stylesheet" href="/css/app.css">
+
+
+    <link rel="shortcut icon" href="/images/logo-icon.png">
+    <title>DusTin - {{title}}</title>
+</head>
+<body>
+    {{> header }}
+
+    <div class="wrapper cart-container profile-container">
+    <section class="h-100 h-custom">
+        <div class="h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-2">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5 row">
+                                            <div class="col-3">
+                                                <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
+                                                class="img-responsive img-rounded" alt="img-user" style="max-height: 50px; max-width: 50px;">
+                                            </div>
+                                            <div class="col-9">
+                                                <h6 class="fw-bold mb-0 text-black">{{user.name}}</h6>
+                                                <h6 class="mb-0 text-muted">Edit profile <a class="element-a-href" href="/user/profile">
+                                                <i class="fa fa-edit"></i></a></h6>
+                                            </div>
+                                        </div>
+                                        <hr class="my-3">
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            {{!-- <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img
+                                                src="./uploads/{{this.item.image}}"
+                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                            </div> --}}
+                                            <div class="nav-profile-left">
+                                                <ul>
+                                                    <li><a href=""><i class="fas fa-fw fa-user text-info"></i> My account</a>
+                                                        <ul>
+                                                            <a href="/user/profile" class="active"><li>Profile</li></a>
+                                                            <a href=""><li>Banks & Cards</li></a>
+                                                            <a href="/user/transfer"><li>Transfer</li></a>
+                                                            <a href="/user/changeps"><li>Change Password</li></a>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href=""><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>
+                                                    <li><a href=""><i class="fas fa-fw fa-gift text-success"></i> My voucher</a></li>
+                                                    <li><a href=""><i class="fas fa-fw fa-bell text-danger"></i> Notifications</a>
+                                                        <ul>
+                                                            <a href=""><li>Profile</li></a>
+                                                            <a href=""><li>Banks & Cards</li></a>
+                                                            <a href=""><li>Addresses</li></a>
+                                                            <a href=""><li>Change Password</li></a>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            {{!-- <h6 class="text-muted">{{this.item.brand}}</h6> --}}
+                                            </div>
+                                            {{!-- <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <a href="/shoe/reduce-cart/_id">
+                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-minus"></i></button>
+                                                </a>
+                                                <input min="0" value="qty" type="text" disabled class="form-control form-control-sm">
+                                                <input type="hidden" name="quantity" value="qty">
+                                                <a href="/shoe/asd">
+                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h6 class="mb-0">10000 VND</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                            <a href="/shoe/delete-cart/123" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div> --}}
+                                        </div>
+                                        <hr class="my-4">
+                                        <div class="pt-5">
+                                            <h6 class="mb-0"><a href="/shoe" class="text-body element-a-href">
+                                                <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
+                                            </a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+    {{{body}}}
+
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {{> footer}}
+
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"
+        ></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

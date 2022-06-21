@@ -1,151 +1,80 @@
 
 {{!-- https://bbbootstrap.com/snippets/payment-form-three-transfer-options-30514683 --}}
-
-<div class="wrapper cart-container profile-container">
-    <section class="h-100 h-custom">
-        <div class="h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12">
-                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                        <form action="/user/{{user._id}}?_method=PUT" method="post">
-                            <div class="card-body p-0">
-                                <div class="row g-0">
-                                    <div class="col-lg-2">
-                                        <div class="p-5">
-                                            <div class="d-flex justify-content-between align-items-center mb-5 row">
-                                                <div class="col-3">
-                                                    <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
-                                                    class="img-responsive img-rounded" alt="img-user" style="max-height: 50px; max-width: 50px;">
-                                                </div>
-                                                <div class="col-9">
-                                                    <h6 class="fw-bold mb-0 text-black">{{user.name}}</h6>
-                                                    <h6 class="mb-0 text-muted">Edit profile <a class="element-a-href" href="/user/profile">
-                                                    <i class="fa fa-edit"></i></a></h6>
-                                                </div>
-                                            </div>
-                                            <hr class="my-3">
-                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                                {{!-- <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <img
-                                                    src="./uploads/{{this.item.image}}"
-                                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                                </div> --}}
-                                                <div class="nav-profile-left">
-                                                    <ul>
-                                                        <li><a href=""><i class="fas fa-fw fa-user text-info"></i> My account</a>
-                                                            <ul>
-                                                                <a href="" class="active"><li>Profile</li></a>
-                                                                <a href=""><li>Banks & Cards</li></a>
-                                                                <a href="/user/transfer"><li>Transfer</li></a>
-                                                                <a href=""><li>Change Password</li></a>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href=""><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>
-                                                        <li><a href=""><i class="fas fa-fw fa-gift text-success"></i> My voucher</a></li>
-                                                        <li><a href=""><i class="fas fa-fw fa-bell text-danger"></i> Notifications</a>
-                                                            <ul>
-                                                                <a href=""><li>Profile</li></a>
-                                                                <a href=""><li>Banks & Cards</li></a>
-                                                                <a href=""><li>Addresses</li></a>
-                                                                <a href=""><li>Change Password</li></a>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <hr class="my-4">
-                                            <div class="pt-5">
-                                                <h6 class="mb-0"><a href="/shoe" class="text-body element-a-href">
-                                                    <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
-                                                </a></h6>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-10">
-                                        <div class="p-5">
-                                            <h3 class="fw-bold">Transfer</h3>
-                                            <h6 class="mb-4 mt-2 pt-1">Deposit money into your account</h6>
-                                            <hr class="my-4">
-                                            <div class="row my-profile-form">
-                                                <div class="col-7">
-                                                        <div class="form-group row mb-4">
-                                                            <label for="name" class="col-sm-3 col-form-label">Name</label>
-                                                            <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row mb-4">
-                                                            <label for="email" class="col-sm-3 col-form-label">Email</label>
-                                                            <div class="col-sm-9">
-                                                            <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row mb-4">
-                                                            <label for="phone" class="col-sm-3 col-form-label">Phone number</label>
-                                                            <div class="col-sm-9">
-                                                            <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row mb-4">
-                                                            <label for="name" class="col-sm-3 col-form-label">Gender</label>
-                                                            <div class="col-sm-9">
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="gender" id="gender-male" value="male" {{#ifeq user.gender 'male'}} checked {{/ifeq}}>
-                                                                    <label class="form-check-label" for="gender-male">Male</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="gender" id="gender-female" value="female" {{#ifeq user.gender 'female'}} checked {{/ifeq}}>
-                                                                    <label class="form-check-label" for="gender-female">Female</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row mb-4">
-                                                            <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
-                                                            <div class="col-sm-9">
-                                                            <input type="date" class="form-control" id="birthday" name="birthday"
-                                                                    value="{{moment user.birthday format = "yyyy-MM-DD"}}"
-                                                                    min="1960-01-01" max="2020-12-31">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row mb-4">
-                                                            <label for="address" class="col-sm-3 col-form-label">Address</label>
-                                                            <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="address" value="{{user.address}}">
-                                                            </div>
-                                                        </div>
-                                                        {{!-- <div class="form-group row">
-                                                            <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
-                                                            <div class="col-sm-9">
-                                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                                                            </div>
-                                                        </div> --}}
-
-                                                        <hr class="my-4">
-
-                                                        <button type="submit" class="btn btn-dark btn-block btn-lg form-control mb-1"
-                                                            data-mdb-ripple-color="dark">Save changes</button>
-                                                        {{#if message}}
-                                                            <button type="submit" class="btn btn-success btn-block btn-lg form-control mb-1"
-                                                            data-mdb-ripple-color="dark">{{message}}</button>
-                                                        {{/if}}
-                                                </div>
-                                                <div class="col-5 edit-user-image text-center">
-                                                    <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
-                                                    class="card-img-top mb-2" alt="img-user">
-                                                    <input type="button" class="btn btn-outline-dark mb-2" id="input" value="SELECT IMAGE">
-                                                    <h6>File size: maximum 1 MB</h6>
-                                                    <h6>File accepted: JPG, PNG</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+<div class="col-lg-10">
+    <div class="p-5">
+        <h3 class="fw-bold">Transfer</h3>
+        <h6 class="mb-4 mt-2 pt-1">Deposit money into your account</h6>
+        <hr class="my-4">
+        <div class="row my-profile-form">
+            <div class="col-7">
+                    <div class="form-group row mb-4">
+                        <label for="name" class="col-sm-3 col-form-label">Name</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group row mb-4">
+                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="phone" class="col-sm-3 col-form-label">Phone number</label>
+                        <div class="col-sm-9">
+                        <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="name" class="col-sm-3 col-form-label">Gender</label>
+                        <div class="col-sm-9">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="gender-male" value="male" {{#ifeq user.gender 'male'}} checked {{/ifeq}}>
+                                <label class="form-check-label" for="gender-male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="gender-female" value="female" {{#ifeq user.gender 'female'}} checked {{/ifeq}}>
+                                <label class="form-check-label" for="gender-female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
+                        <div class="col-sm-9">
+                        <input type="date" class="form-control" id="birthday" name="birthday"
+                                value="{{moment user.birthday format = "yyyy-MM-DD"}}"
+                                min="1960-01-01" max="2020-12-31">
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="address" class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" id="address" value="{{user.address}}">
+                        </div>
+                    </div>
+                    {{!-- <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        </div>
+                    </div> --}}
+
+                    <hr class="my-4">
+
+                    <button type="submit" class="btn btn-dark btn-block btn-lg form-control mb-1"
+                        data-mdb-ripple-color="dark">Save changes</button>
+                    {{#if message}}
+                        <button type="submit" class="btn btn-success btn-block btn-lg form-control mb-1"
+                        data-mdb-ripple-color="dark">{{message}}</button>
+                    {{/if}}
+            </div>
+            <div class="col-5 edit-user-image text-center">
+                <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
+                class="card-img-top mb-2" alt="img-user">
+                <input type="button" class="btn btn-outline-dark mb-2" id="input" value="SELECT IMAGE">
+                <h6>File size: maximum 1 MB</h6>
+                <h6>File accepted: JPG, PNG</h6>
             </div>
         </div>
-    </section>
+    </div>
 </div>

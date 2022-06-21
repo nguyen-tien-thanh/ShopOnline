@@ -156,14 +156,15 @@ a:hover{
 
   // =================================================================
   // =============== HEADER ================
+  .wrapper-index{
+    margin-top: 120px;
+  }
   .wrap-image{
     background-image: url("/images/banner-index.png");
-    height: 95vh;
-    background-position: center;
+    padding-top: 54.5382166%;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    border-radius: 1em;
   }
 
   .hero-text {
@@ -536,7 +537,7 @@ a:hover{
         background: var(--clr2);
         border-radius: var(--text-radius); }
   
-  @media (max-width: 728px) {
+  @media screen and (max-width: 728px) and (min-width: 501px){
     section.cards .card {
       width: 100%;
       display: block;
@@ -556,12 +557,11 @@ a:hover{
     }
     .wrap-image{
       background-image: url("/images/banner-index-sm.png");
-      height: 95vh;
+      padding-top: 54.5382166;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
-      border-radius: 1em;
     }
   
     .hero-text {
@@ -590,13 +590,21 @@ a:hover{
       
     }
   }
+  @media screen and (max-width: 500px) {
+    .hero-text h1{
+      font-size: 15px;
+    }
+    .hero-text span{
+      font-size: 30px;
+    }
+
+  }
 
   // ============================ SLIDE CAROUSEL ===========================
   .img-slide-index{
     width: 100%;
-    height: 95vh;
+    height: auto;
     opacity: 0.4;
-    object-fit: cover;
   }
 
   .slide-text{
@@ -620,9 +628,13 @@ a:hover{
     text-shadow: 0.5px 1px 1px #000000;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) and (min-width: 501px) {
     .slide-text h3{font-size: 28px;}
     .slide-text h1{font-size: 58px;}
+  }
+  @media screen and (max-width:500px) {
+    .slide-text h3{font-size: 20px;}
+    .slide-text h1{font-size: 20px;}
   }
 
   //END SLIDE
@@ -1501,6 +1513,9 @@ tbody tr:hover{
   .cart-container section{
     padding: 80px 0 0 0;
   }
+  .cart-container section .card{
+    min-height: 95vh;
+  }
 
 .detail-shoe-container section,
 .cart-container section{
@@ -1926,3 +1941,19 @@ tbody tr:hover{
       font-size: 0.6em;
     }
     
+// =============== /shoe/custom =================
+.container-custom{
+  margin-top: 30px;
+}
+.img-custom{
+  margin-left: 20%;
+}
+.shoe-type{
+  display: inline-block;
+  padding-right: 55px;
+  padding-left: 55px;
+}
+.shoe-type img{
+  width: 200px;
+  height: 200px;
+}

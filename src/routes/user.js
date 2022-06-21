@@ -9,7 +9,9 @@ router.use(cookieParser())
 
 const userController = require('../Controllers/UserController');
 
-router.use('/changeps', isLoggined, userController.changeps);
+router.get('/changeps', isLoggined, userController.changeps);
+
+router.post('/updateps/:id', isLoggined, userController.updateps);
 
 router.use('/transfer', isLoggined, userController.transfer);
 
