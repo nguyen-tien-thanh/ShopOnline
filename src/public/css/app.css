@@ -1593,10 +1593,9 @@ tbody tr:hover {
   margin-left: 20%; }
 
 .shoe-type {
-  display: inline-block;
   padding-right: 55px;
   padding-left: 55px; }
 
 .shoe-type img {
-  width: 200px;
+  width: 600px;
   height: 200px; }
