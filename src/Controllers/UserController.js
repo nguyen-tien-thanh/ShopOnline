@@ -33,11 +33,12 @@ class UserController {
                 return res.render('user/profile',
                     {
                         user: mongooseToObject(data),
-                        title: 'user',
-                        layout: 'userLayout',
+                        title: 'My Profile',
+                        layout: 'accountLayout',
+                        titleSection: 'My Account',
+                        section: 'profile',
                         message: req.flash('successMsg')
                     })
-                next()
             }
         })
     }
@@ -54,11 +55,12 @@ class UserController {
                     {
                         user: mongooseToObject(data),
                         title: 'Transfer',
-                        layout: 'userLayout',
+                        layout: 'accountLayout',
+                        titleSection: 'My Account',
+                        section: 'changeps',
                         successMessage: req.flash('successMessage'),
                         failMessage: req.flash('failMessage')
                     })
-                next()
             }
         })
     }
@@ -120,10 +122,30 @@ class UserController {
                     {
                         user: mongooseToObject(data),
                         title: 'Transfer',
-                        layout: 'userLayout',
+                        layout: 'accountLayout',
+                        titleSection: 'My Account',
+                        section: 'transfer',
                         message: req.flash('successMsg')
                     })
                 next()
+            }
+        })
+    }
+
+    // [POST] /user/transfer
+    transferToAccount(req, res, next){
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        User.findOneAndUpdate({ _id: decodeToken}, {$inc : {money: req.body.money}})
+        .then(data => {
+            if (data) {
+                req.data = data
+                req.flash('successMsg', 'Transfer Successfully')
+                return res.redirect('back')
+            }
+            else{
+                req.flash('failMsg', 'Transfer Failed')
+                return res.redirect('back')
             }
         })
     }

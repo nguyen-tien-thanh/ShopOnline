@@ -12,6 +12,8 @@ router.get('/cart', siteController.cart)
 
 // [POST] /checkout/
 router.post('/checkout', isLoggined, siteController.checkout)
+// [POST] /checkoutByWallet
+router.post('/checkout-by-wallet', isLoggined, siteController.checkoutByWallet)
 
 // [POST] /logout/
 router.post('/logout', siteController.logout)

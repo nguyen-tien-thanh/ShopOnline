@@ -398,7 +398,41 @@ class SiteController {
             }
         }
     }
-    
+
+
+    //[POST] /checkout-by-wallet
+    checkoutByWallet (req,res,next){
+        if(!req.session.cart){
+            return res.redirect('/cart');
+        }
+        else{
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+
+            var money= parseInt(req.body.money)
+
+            User.findOneAndUpdate({_id: decodeToken}, {$inc: {money: -money}})
+            .then((data)=> {
+                var order = new Order({
+                    user: req.user,
+                    cart: req.session.cart,
+                    email: req.body.email,
+                    address: req.body.address,
+                    phone: req.body.phone,
+                })
+                order.save()
+                req.session.cart = null;
+                return res.render('cart',
+                            {
+                                user: mongooseToObject(data),
+                                // shoe: cart.generateArrays(),
+                                // totalPrice: cart.totalPrice,
+                                title: 'Cart',
+                                message: 'Checkout successfully'
+                            })
+            })
+        }
+    }
 
     //[POST] /checkout
     checkout (req,res,next){
@@ -409,25 +443,43 @@ class SiteController {
             var cart = new Cart(req.session.cart);
 
             const stripe = require('stripe')('sk_test_51LCjUmGXzbc60gITm4NDsulfqX13P2Xy5TjTZzHyhVBjamQt1DMD6pIRvM7elIMFUFI0DUDuh18P5MyN0O18yyZ100setk5tNV');
-            stripe.charges.create({
+            
+            stripe.customers.create({
+                email: req.body.email,
+                source: req.body.stripeToken,
+                name: req.body.name,
+                address: {line1: req.body.address},
+
+            })
+            .then((customer) => {
+                stripe.charges.create({
                 amount: cart.totalPrice,
                 currency: 'vnd',
-                source: req.body.stripeToken,
+                // source: req.body.stripeToken,
                 description: 'Test Charge',
-            }, function(err, charge){
-                if(err){
-                    res.redirect('back');
-                }
-                var order = new Order({
-                    user: req.user,
-                    cart: req.session.cart,
-                    email: req.body.email,
-                    address: req.body.address,
-                    phone: req.body.phone,
+                customer: customer.id,
+                }, function(err, charge){
+                    if(err){
+                        console.log(err);
+                        res.redirect('back');
+                    }
+                    var order = new Order({
+                        user: req.user,
+                        cart: req.session.cart,
+                        email: req.body.email,
+                        address: req.body.address,
+                        phone: req.body.phone,
+                    })
+                    order.save()
+                    req.session.cart = null;
+                    return res.redirect('/cart')
                 })
-                order.save()
-                req.session.cart = null;
-                res.redirect('/')
+            })
+            .catch((err) => {
+                res.render('partials/error',{
+                    layout: null,
+                    msg: 'Error: ' + err.message
+                })
             })
         }
     }

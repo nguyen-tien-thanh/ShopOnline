@@ -59,16 +59,16 @@
                                             </div> --}}
                                             <div class="nav-profile-left">
                                                 <ul>
-                                                    <li><a href=""><i class="fas fa-fw fa-user text-info"></i> My account</a>
+                                                    <li><a href="" {{#ifeq titleSection 'My Account'}}class="active"{{/ifeq}}><i class="fas fa-fw fa-user text-info"></i> My Account</a>
                                                         <ul>
-                                                            <a href="/user/profile" class="active"><li>Profile</li></a>
+                                                            <a href="/user/profile" {{#ifeq section 'profile'}}class="active"{{/ifeq}}><li>Profile</li></a>
                                                             <a href=""><li>Banks & Cards</li></a>
-                                                            <a href="/user/transfer"><li>Transfer</li></a>
-                                                            <a href="/user/changeps"><li>Change Password</li></a>
+                                                            <a href="/user/transfer"{{#ifeq section 'transfer'}}class="active"{{/ifeq}}><li>Transfer</li></a>
+                                                            <a href="/user/changeps"{{#ifeq section 'changeps'}}class="active"{{/ifeq}}><li>Change Password</li></a>
                                                         </ul>
                                                     </li>
                                                     <li><a href=""><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>
-                                                    <li><a href=""><i class="fas fa-fw fa-gift text-success"></i> My voucher</a></li>
+                                                    <li><a href=""><i class="fas fa-fw fa-gift text-success"></i> My Voucher</a></li>
                                                     <li><a href=""><i class="fas fa-fw fa-bell text-danger"></i> Notifications</a>
                                                         <ul>
                                                             <a href=""><li>Profile</li></a>

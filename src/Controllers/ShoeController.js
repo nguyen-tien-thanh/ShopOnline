@@ -22,14 +22,14 @@ class ShoeController {
     }
     
 
-    //[GET] /shoe/delete-cart
+    //[POST] /shoe/delete-cart
     deleteCart(req, res, next){
         var cart = new Cart({});
         req.session.cart = cart;
         res.redirect('/cart')
     }
 
-    //[GET] /shoe/remove-item/:id
+    //[POST] /shoe/remove-item/:id
     removeItem(req, res, next){
         var shoeId = req.params.id;
         var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -39,7 +39,7 @@ class ShoeController {
         res.redirect('/cart')
     }
 
-    //[GET] /shoe/reduce-cart/:id
+    //[POST] /shoe/reduce-cart/:id
     reduceCart(req, res, next){
         var shoeId = req.params.id;
         var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -49,7 +49,7 @@ class ShoeController {
         res.redirect('/cart')
     }
 
-    // [GET] /shoe/add-to-cart/:id
+    // [POST] /shoe/add-to-cart/:id
     addToCart(req, res, next){
         var shoeId = req.params.id;
         var shoeSize = req.query.size;

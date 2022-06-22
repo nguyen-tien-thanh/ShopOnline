@@ -7,57 +7,23 @@
         <hr class="my-4">
         <div class="row my-profile-form">
             <div class="col-7">
+                <form action="/user/transferToAccount" method="post" id="payment-form">
                     <div class="form-group row mb-4">
-                        <label for="name" class="col-sm-3 col-form-label">Name</label>
+                        <label for="money" class="col-sm-3 col-form-label">Money</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
+                        <input type="text" class="form-control" id="money" placeholder="Enter money amount">
+                        <input type="hidden" name="money" id="money-transfer" value="">
                         </div>
                     </div>
-                    <div class="form-group row mb-4">
-                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+
+                    <div class="form-group row mb-2">
+                        <label for="card-element" class="col-sm-3 col-form-label">Credit Card</label>
                         <div class="col-sm-9">
-                        <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-4">
-                        <label for="phone" class="col-sm-3 col-form-label">Phone number</label>
-                        <div class="col-sm-9">
-                        <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-4">
-                        <label for="name" class="col-sm-3 col-form-label">Gender</label>
-                        <div class="col-sm-9">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="gender-male" value="male" {{#ifeq user.gender 'male'}} checked {{/ifeq}}>
-                                <label class="form-check-label" for="gender-male">Male</label>
+                            <div id="card-element" class="form-control">
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="gender-female" value="female" {{#ifeq user.gender 'female'}} checked {{/ifeq}}>
-                                <label class="form-check-label" for="gender-female">Female</label>
-                            </div>
+                            <div id="card-errors" class="text-danger h6" role="alert"></div>
                         </div>
                     </div>
-                    <div class="form-group row mb-4">
-                        <label for="birthday" class="col-sm-3 col-form-label">Birthday</label>
-                        <div class="col-sm-9">
-                        <input type="date" class="form-control" id="birthday" name="birthday"
-                                value="{{moment user.birthday format = "yyyy-MM-DD"}}"
-                                min="1960-01-01" max="2020-12-31">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-4">
-                        <label for="address" class="col-sm-3 col-form-label">Address</label>
-                        <div class="col-sm-9">
-                        <input type="text" class="form-control" id="address" value="{{user.address}}">
-                        </div>
-                    </div>
-                    {{!-- <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
-                        <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                        </div>
-                    </div> --}}
 
                     <hr class="my-4">
 
@@ -67,14 +33,15 @@
                         <button type="submit" class="btn btn-success btn-block btn-lg form-control mb-1"
                         data-mdb-ripple-color="dark">{{message}}</button>
                     {{/if}}
+                </form>
             </div>
-            <div class="col-5 edit-user-image text-center">
+            {{!-- <div class="col-5 edit-user-image text-center">
                 <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
                 class="card-img-top mb-2" alt="img-user">
                 <input type="button" class="btn btn-outline-dark mb-2" id="input" value="SELECT IMAGE">
                 <h6>File size: maximum 1 MB</h6>
                 <h6>File accepted: JPG, PNG</h6>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

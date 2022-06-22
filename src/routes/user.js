@@ -10,10 +10,10 @@ router.use(cookieParser())
 const userController = require('../Controllers/UserController');
 
 router.get('/changeps', isLoggined, userController.changeps);
-
-router.post('/updateps/:id', isLoggined, userController.updateps);
+router.post('/updateps', isLoggined, userController.updateps);
 
 router.use('/transfer', isLoggined, userController.transfer);
+router.post('/transferToAccount', isLoggined, userController.transferToAccount);
 
 router.put('/:id', isLoggined, userController.update);
 
