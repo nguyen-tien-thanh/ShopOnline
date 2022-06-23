@@ -41,7 +41,7 @@
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5 row">
                                             <div class="col-3">
-                                                <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
+                                                <img src="{{#if user.password}}/uploads/{{/if}}{{user.avatar}}" 
                                                 class="img-responsive img-rounded" alt="img-user" style="max-height: 50px; max-width: 50px;">
                                             </div>
                                             <div class="col-9">
@@ -64,8 +64,10 @@
                                                             <a href="/user/profile" {{#ifeq section 'profile'}}class="active"{{/ifeq}}><li>Profile</li></a>
                                                             <a href=""><li>Banks & Cards</li></a>
                                                             <a href="/user/transfer"{{#ifeq section 'transfer'}}class="active"{{/ifeq}}><li>Transfer</li></a>
-                                                            <a href="/user/changeps"{{#ifeq section 'changeps'}}class="active"{{/ifeq}}><li>Change Password</li></a>
-                                                            <a href="/user/forgotps"{{#ifeq section 'forgotps'}}class="active"{{/ifeq}}><li>Forgot Password</li></a>
+                                                            {{#if user.password}}
+                                                                <a href="/user/changeps"{{#ifeq section 'changeps'}}class="active"{{/ifeq}}><li>Change Password</li></a>
+                                                                <a href="/user/forgotps"{{#ifeq section 'forgotps'}}class="active"{{/ifeq}}><li>Forgot Password</li></a>
+                                                            {{/if}}
                                                         </ul>
                                                     </li>
                                                     <li><a href=""><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>

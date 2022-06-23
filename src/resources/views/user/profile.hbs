@@ -46,14 +46,14 @@ Credit or debit card
                             <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
                             </div>
                         </div>
-                        <div class="form-group row mb-4">
-                            <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="form-group row mb-4"{{#if user.password}}{{else}} hidden {{/if}}>
+                            <label for="email" class="col-sm-3 col-form-label" >Email</label>
                             <div class="col-sm-9">
                             <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
                             </div>
                         </div>
-                        <div class="form-group row mb-4">
-                            <label for="phone" class="col-sm-3 col-form-label">Phone number</label>
+                        <div class="form-group row mb-4"{{#if user.password}}{{else}} hidden {{/if}}>
+                            <label for="phone" class="col-sm-3 col-form-label" >Phone number</label>
                             <div class="col-sm-9">
                             <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>
                             </div>
@@ -102,7 +102,7 @@ Credit or debit card
                         {{/if}}
                 </div>
                 <div class="col-5 edit-user-image text-center">
-                    <img src="https://img.freepik.com/free-vector/smiling-girl-avatar_102172-32.jpg" 
+                    <img src="{{#if user.password}}/uploads/{{/if}}{{user.avatar}}" 
                     class="card-img-top mb-2" alt="img-user">
                     <input type="button" class="btn btn-outline-dark mb-2" id="input" value="SELECT IMAGE">
                     <h6>File size: maximum 1 MB</h6>

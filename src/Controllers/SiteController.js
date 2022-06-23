@@ -96,13 +96,6 @@ class SiteController {
 
     // [GET] /logout --> Home page
     logout (req, res) {
-        // req.logout();
-        // delete req.session;
-        // return res.render('login',{
-        //     msgLog: 'You need to login first',
-        //     layout: 'loginLayout',
-        //     title: 'Login'
-        // })
             res.clearCookie('token');
             return res.json({ logout: true , msgLog: 'Log out successfully'})
     }
@@ -113,13 +106,6 @@ class SiteController {
             title:'Authonize',
             layout: 'loginLayout'});
     }
-
-    // //[GET] /validation User
-    // validation(req, res, next){
-    //     res.render('validation', {
-    //         title:'Validation',
-    //         layout: 'loginLayout'});
-    // }
 
     //[GET] /register User
     register(req, res, next){
@@ -160,7 +146,7 @@ class SiteController {
                         name: req.body.name,
                         birthday: req.body.birthday,
                         address: req.body.address,
-                        avatar: 'https://duytan.thinkingschool.vn/wp-content/uploads/2019/01/avatar.png'
+                        avatar: 'sample-avatar.jpg'
                     })
                     // console.log(user)
                     user.save(err, result =>{
@@ -224,7 +210,7 @@ class SiteController {
                     success: false,
                     layout: 'loginLayout',
                     title: 'Login again',
-                    msgLog: `Sai tài khoản hoặc mật khẩu`
+                    msgLog: `Wrong username`
                 })
             }
             //kiểm tra nếu count = 10 thì là đang khoá tạm thời
@@ -233,7 +219,7 @@ class SiteController {
                     success: false,
                     layout: 'loginLayout',
                     title: 'Login again',
-                    msgLog: `Tài khoản hiện đang bị tạm khóa, vui lòng thử lại sau 1 phút`
+                    msgLog: `Account is temporarily locked, please try again in 1 minute`
                 })
             }
             //kiểm tra nếu count = 10 thì là đang khoá tạm thời
@@ -242,7 +228,7 @@ class SiteController {
                     success: false,
                     layout: 'loginLayout',
                     title: 'Login again',
-                    msgLog: `Tài khoản đã bị khoá vĩnh viễn! Bạn đã nhập sai mật khẩu quá nhiều lần! Liên hệ admin để mở lại tài khoản`
+                    msgLog: `Account has been permanently locked! You have entered the wrong password too many times! Contact admin to reopen the account`
                 })
             }
             bcrypt.compare(password, user.password, function (err, result) {
@@ -285,7 +271,7 @@ class SiteController {
                         success: false,
                         title: 'Login again',
                         layout: 'loginLayout',
-                        msgLog: `Tài khoản đã bị khoá trong 1 phút! Nếu bạn tiếp tục nhập sai thêm 3 lần nữa sẽ bị khoá vĩnh viễn!`
+                        msgLog: `Account has been locked for 1 minute! If you continue to enter incorrectly 3 more times, you will be locked forever!`
                     })
                 } else if (failed >= 5) {
                     User.updateOne({ username: username }, { $set: { countFailed: 6 } }, (err, status) => {
@@ -297,10 +283,13 @@ class SiteController {
                         success: false,
                         title: 'Login again',
                         layout: 'loginLayout',
-                        msgLog: 'Tài khoản đã bị khoá vĩnh viễn! Bạn đã nhập sai mật khẩu quá nhiều lần! Liên hệ admin để mở lại tài khoản'
+                        msgLog: 'Account has been permanently locked! You have entered the wrong password too many times! Contact admin to reopen the account'
                     })
                 } else {
-                    User.updateOne({ username: username }, { $set: { countFailed: failed + 1 } }, (err, status) => {
+                    User.updateOne({ $or: [
+                        {email: username}, 
+                        {phone: username}
+                    ] }, { $set: { countFailed: failed + 1 } }, (err, status) => {
                         if (err) {
                             console.log(err)
                         }
@@ -309,7 +298,7 @@ class SiteController {
                         success: false,
                         title: 'Login again',
                         layout: 'loginLayout',
-                        msgLog: `Bạn đã nhập sai mật khẩu ${failed + 1} lần!!!`
+                        msgLog: `You have entered the wrong password!!!`
                     })
                 }
             });
@@ -470,6 +459,7 @@ class SiteController {
                         email: req.body.email,
                         address: req.body.address,
                         phone: req.body.phone,
+                        shipping: req.body.shipping,
                     })
                     order.save()
                     req.session.cart = null;
