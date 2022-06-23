@@ -10,7 +10,8 @@ const db = require('./config/db');
 const methodOverride = require('method-override');
 const { default: mongoose } = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-var flash = require('req-flash');
+const flash = require('req-flash');
+const nodemailer = require('nodemailer');
 
 db.connect();
 

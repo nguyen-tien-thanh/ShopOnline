@@ -65,6 +65,7 @@ class UserController {
         })
     }
 
+
     // [POST] /user/updateps/:id
     updateps(req,res,next){
         var token = req.cookies.token;

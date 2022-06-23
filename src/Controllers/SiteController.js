@@ -9,10 +9,11 @@ const Order = require('../models/Order')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
-const { checkUserExist, makePassword } = require('../ulti/register')
+const { checkUserExist } = require('../ulti/register')
+const { makePassword } = require('../ulti/password');
 
 const bcrypt = require('bcrypt');
-// const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const stripe = require('stripe');
 
@@ -482,6 +483,63 @@ class SiteController {
                 })
             })
         }
+    }
+
+    
+    // [GET] /user/forgotps/
+    forgotps(req,res,next){
+        return res.render('forgotps',{
+            title: 'Forgot Password',
+            layout: 'loginLayout',
+            msgFail: req.flash('failMessage'),
+            msgSuccess: req.flash('successMessage')
+        })
+    }
+
+    // [POST] /user/forgotps
+    forgotpsRequest(req,res,next){
+        let temp = makePassword();
+
+        bcrypt.hash(temp, 10, function (err, hash) {
+            User.findOneAndUpdate({email:req.body.email}, {$set:{password:hash}})
+            .then((user)=>{
+                if(!user){
+                    req.flash('failMessage', 'Email not found')
+                    res.redirect('back')
+                }
+                else{
+                    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: "nguyentienthanh.tgdd@gmail.com",
+                            pass: "fdpcycsrdcumuaar"
+                        }
+                    });
+
+                    var mailOptions = {
+                        from: { name: "DUSTIN-SHOP", address: process.env.GMAIL },
+                        to: req.body.email,
+                        title: 'Activation Account',
+                        subject: 'DUSTIN STORE - Reset Password for Account',
+                        text: `Information about this:
+                            New password: ${temp}
+                        `
+                    };
+
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            req.flash('failMessage', 'Can not send email. Please try again')
+                            console.log(error);
+                        } else {
+                            req.flash('successMessage', 'Mail sent successfully')
+                            console.log('Email sent: ' + info.response);
+                            res.redirect('back')
+                        }
+                    });
+                }
+            })
+            .catch(err => console.log(err))
+        });
     }
 }
 

@@ -104,7 +104,7 @@
                                         <div class="mb-2 pb-2">
                                             <select class="form-control" name="payment" id="payment-method-select" required>
                                                 <option value="">Choose payment method</option>
-                                                <option value="wallet">DusTin Wallet ({{formatCurrency user.money}} VND)</option>
+                                                <option value="wallet">DusTin Wallet {{#if user.money}}({{formatCurrency user.money}} VND){{/if}} </option>
                                                 <option value="card">Credit Card</option>
                                             </select>
                                         </div>

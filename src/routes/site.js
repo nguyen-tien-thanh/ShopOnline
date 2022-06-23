@@ -7,6 +7,12 @@ const {isLoggined} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
+
+// [GET] /forgotps
+router.get('/forgotps', siteController.forgotps);
+// [POST] /forgotps
+router.post('/forgotps', siteController.forgotpsRequest);
+
 // [GET] /cart/
 router.get('/cart', siteController.cart)
 

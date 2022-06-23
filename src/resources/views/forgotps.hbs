@@ -1,0 +1,44 @@
+
+    <a href="/register">
+        <div class="login-sidenav">
+            <div class="login-main-text">
+            <h2> Forgot Password</h2>
+            <p class="text-muted">Click here to <span>REGISTER</span> if you don't have an account</p>
+            </div>
+        </div>
+    </a>
+
+    <div class="login-main">
+        <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+            <form action="/forgotps" method="POST">
+                <div class="form-group">
+                    <label>Enter email</label>
+                    <input type="text" class="form-control" name="email" aria-describedby="email-check" required>
+                    {{#if msgFail}}
+                        <div id="email-check" class="invalid-feedback text-light">
+                        {{msgFail}}
+                        </div>
+                    {{/if}}
+                    {{#if msgSuccess}}
+                        <div id="email-check" class="valid-feedback text-light">
+                        {{msgSuccess}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-black">Reset password</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        if('{{msgFail}}'){
+            $('input[name=email]').addClass('is-invalid');
+        }
+        else if('{{msgSuccess}}'){
+            $('input[name=email]').addClass('is-valid');
+        }
+    </script>
