@@ -1,21 +1,51 @@
 <div class="wrapper cart-container container-custom">
 <div class="wrap">
   <section class="transparent">
-      <div class="img-custom">
-          <img src="https://dqshop.vn/wp-content/uploads/2020/10/giay-nike-air-force-1-low-shadow-white-rep-11-dep-chat-5-600x600-1.png" alt="">
+      <div class="img-custom-1 open-img-custom-1">
+          <img src="/images/shoetype1.png" alt="">
+      </div>
+      <div class="img-custom-2 open-img-custom-2">
+          <img src="/images/shoetype2.png" alt="">
+      </div>
+      <div class="img-custom-3 open-img-custom-3">
+          <img src="/images/shoetype3.png" alt="">
       </div>
       <div class="Diversion-shoe">
-          <div class="shoe-type">
-              <img src="https://dqshop.vn/wp-content/uploads/2020/10/giay-nike-air-force-1-low-shadow-white-rep-11-dep-chat-5-600x600-1.png" alt="">
+          <div class="shoe-type-1">
+              <img src="/images/shoetype1.png" alt="">
           </div>
-          <div class="shoe-type">
-              <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b01c67f2-2481-45d7-b383-a1476d768f6e/air-force-1-07-next-nature-shoes-cg65FM.png" alt="">
+          <div class="shoe-type-2">
+              <img src="/images/shoetype2.png" alt="">
           </div>
-          <div class="shoe-type">
-              <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/82d3e348-00ac-4bb4-98a7-6c236f5dcb71/air-force-1-07-craft-mens-shoes-CL8Zfx.png" alt="">
+          <div class="shoe-type-3">
+              <img src="/images/shoetype3.png" alt="">
           </div>
       </div>
   </section> 
   
 </div>
 </div>
+<script>
+    var shoeType1= document.querySelector('.shoe-type-1')
+    var shoeType2= document.querySelector('.shoe-type-2')
+    var shoeType3= document.querySelector('.shoe-type-3')
+    var openImgCustom1=document.querySelector('.open-img-custom-1')
+    var openImgCustom2=document.querySelector('.open-img-custom-2')
+    var openImgCustom3=document.querySelector('.open-img-custom-3')
+    shoeType2.addEventListener('click', function(){
+        openImgCustom2.classList.remove('open-img-custom-2')
+        openImgCustom3.classList.add('open-img-custom-3')
+        openImgCustom1.setAttribute('style', 'display:none')
+    })
+    shoeType3.addEventListener('click', function(){
+        openImgCustom3.classList.remove('open-img-custom-3')
+        openImgCustom1.setAttribute('style', 'display:none')
+        openImgCustom2.classList.add('open-img-custom-2')
+    })
+    shoeType1.addEventListener('click', function(){
+        openImgCustom2.classList.add('open-img-custom-2')
+        openImgCustom3.classList.add('open-img-custom-3')
+        openImgCustom1.setAttribute('style', 'display:block')
+
+    })
+</script>

@@ -1589,13 +1589,24 @@ tbody tr:hover {
 .container-custom {
   margin-top: 30px; }
 
-.img-custom {
+.img-custom-1 {
   margin-left: 20%; }
 
-.shoe-type {
-  padding-right: 55px;
-  padding-left: 55px; }
+.img-custom-2 img {
+  width: 500px;
+  margin-left: 20%; }
 
-.shoe-type img {
-  width: 600px;
+.img-custom-3 img {
+  width: 500px;
+  margin-left: 20%; }
+
+.open-img-custom-2, .open-img-custom-3 {
+  display: none; }
+
+.Diversion-shoe {
+  display: flex;
+  justify-content: space-between; }
+
+.Diversion-shoe img {
+  width: 200px;
   height: 200px; }
