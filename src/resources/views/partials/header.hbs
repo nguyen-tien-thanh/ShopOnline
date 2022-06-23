@@ -21,10 +21,12 @@
                       <br>
                       <a class="subnav-dropdown-items" href="/user/profile"><i class="fa fa-address-card"></i>My Account</a>
                       <hr>
-                      <span>
-                        <i class="fa fa-money-check"></i>10.000 VND
-                        <i class="fas fa-plus-circle"></i>
-                      </span>
+                      <a href="/user/transfer" class="subnav-dropdown-items" id="money-item-nav">
+                        <span>
+                          <i class="fa fa-money-check"></i>{{formatCurrency user.money}} VND
+                          <i class="fas fa-plus-circle"></i>
+                        </span>
+                      </a>
                       <hr>
                       <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i>My purchase</a>
                       <hr>

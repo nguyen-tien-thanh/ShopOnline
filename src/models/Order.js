@@ -12,6 +12,7 @@ const Order = new Schema({
     address: {type: String, required: true},
     phone: {type: Number, required: true},
     name: {type: String, minLength: 1, maxLength: 255},
+    shipping: {type: String, required: true},
     deletedAt: {},
     // createdAt: {type: Date, default : Date.Now},
     // updateAt: {type: Date, default : Date.Now}

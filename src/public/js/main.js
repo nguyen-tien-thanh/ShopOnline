@@ -567,6 +567,47 @@ function getTotalStockOfSize(){
 
 // ================ checkout form /cart ====================
 
+
+$('#payment-method-select').on('change', function () {
+  if(this.value == 'wallet'){
+    $(this).closest('form').attr('action','/checkout-by-wallet')
+    $(this).closest('form').removeAttr('id')
+    $('#payment-form-btn').attr('type', 'button')
+    $('#payment-form-btn').attr('onclick', 'submitCheckoutByWalletForm()')
+    $('#card-information').hide()
+  }
+  else{
+    $(this).closest('form').attr('action','/checkout')
+    $(this).closest('form').attr('id', 'payment-form')
+    $('#payment-form-btn').attr('type', 'submit')
+    $('#payment-form-btn').removeAttr('onclick')
+    $('#card-information').show()
+  }
+})
+
+
+
+// if($('#payment-method-select').val() == ' wallet'){
+//   $('#payment-form-btn').click(function(e){
+//     e.preventDefault();
+//     $.ajax({
+//       url: "/checkout-by-wallet",
+//       type: "POST",
+//       data: $(this).closest('form').serialize() ,
+//       dataType : 'json', // changing data type to json
+//       data: {
+//         quantity: $('input[name="quantity"]').val(),
+//         money: $('input[name="money"]').val(),
+//         shipping: $('input[name="shipping"]').val(),
+//         phone: $('input[name="phone"]').val(),
+//         address: $('input[name="address"]').val(),
+//         email: $('input[name="email"]').val(),
+//         name: $('input[name="name"]').val(),
+//       }
+//     });
+//   })
+// }
+
 if(document.getElementById('payment-form')){
   var stripe = Stripe('pk_test_51LCjUmGXzbc60gITz8yj4uHqkougbdm9OfES09TPBSSecYthkmjdteUAxoDJLOLozcd2LcZxkrQeyIK0x5vjO7Ie00S1fLfs2x');
   var elements = stripe.elements();
@@ -576,6 +617,7 @@ if(document.getElementById('payment-form')){
       // CSS for payment form elemnts input
       fontSize: '18px',
       color: '#32325d',
+      lineHeight: '1.429'
     },
   };
   
@@ -751,6 +793,47 @@ $(".main-header").hover(function(){
     $("#" + $(this).attr("select-item")).slideToggle('normal').toggleClass("selected");
   });
 
-  
+// add Dot when input money 
+$('input[id="money"]').keyup(function(event) {
+  if(event.which >= 37 && event.which <= 40) return;
+  $('#money-transfer').val($(this).val()
+  .replace(/\D/g, "")
+  )
+  // format number
+  $(this).val(function(index, value) {
+    return value
+    .replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    + ' VND';
+  });
+});
+
+// SUBMIT CHECK OUT BY WALLET /cart - /checkout-by-wallet
+function submitCheckoutByWalletForm(){
+  $.ajax({
+    url: "/checkout-by-wallet",
+    type: "POST",
+    data: {
+      quantity: $('input[name="quantity"]').val(),
+      money: $('input[name="money"]').val(),
+      shipping: $('input[name="shipping"]').val(),
+      phone: $('input[name="phone"]').val(),
+      address: $('input[name="address"]').val(),
+      email: $('input[name="email"]').val(),
+      name: $('input[name="name"]').val(),
+    },
+    success: 'Checkout successful'
+  })
+  .then(data => {
+            if (data.success) {
+              window.location.href = "/login"
+            } else {
+              location.reload();
+              alert('Checkout successful');
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+}
 
 

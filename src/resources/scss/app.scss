@@ -130,7 +130,6 @@ a:hover{
     display: none;
   }
     .subnav-dropdown span{
-      padding-left: 1rem;
       cursor: pointer;
     }
       .subnav-dropdown span i{
@@ -1513,6 +1512,9 @@ tbody tr:hover{
   .cart-container section{
     padding: 80px 0 0 0;
   }
+  .cart-container section .card{
+    min-height: 95vh;
+  }
 
 .detail-shoe-container section,
 .cart-container section{
@@ -1894,6 +1896,50 @@ tbody tr:hover{
   width: 30% !important;
   object-fit: scale-down !important;
 }
+
+// =============== /user/profile =================
+.profile-container .nav-profile-left{
+  
+}
+  .profile-container .nav-profile-left ul{
+    list-style-type: none;
+    font-size: 0.9em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    line-height: 2em;
+  }
+    .profile-container .nav-profile-left ul a:hover,
+    .profile-container .nav-profile-left ul .active{
+      color: $maincolor;
+    }
+    .profile-container .nav-profile-left i{
+      // color:#000 !important;
+      font-size: 0.9em !important;
+    }
+      .profile-container .nav-profile-left .fa-user,
+      .profile-container .nav-profile-left .fa-bell{
+        font-weight: 100 !important;
+      }
+    .profile-container .nav-profile-left li{
+      font-size: 0.95em;
+    }
+
+  
+  .profile-container .my-profile-form{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+    .profile-container .my-profile-form label{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 0.8em;
+      color:rgb(150, 150, 150);
+      text-align: right;
+    }
+    .profile-container .my-profile-form .edit-user-image h6{
+      color:rgb(150, 150, 150);
+      font-size: 0.6em;
+    }
+    
 // =============== /shoe/custom =================
 .container-custom{
   margin-top: 30px;

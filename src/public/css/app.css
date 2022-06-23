@@ -106,7 +106,6 @@ body.vi :lang(en) {
   display: none; }
 
 .subnav-dropdown span {
-  padding-left: 1rem;
   cursor: pointer; }
 
 .subnav-dropdown span i {
@@ -1232,6 +1231,9 @@ tbody tr:hover {
 .cart-container section {
   padding: 80px 0 0 0; }
 
+.cart-container section .card {
+  min-height: 95vh; }
+
 .detail-shoe-container section,
 .cart-container section {
   text-align: left;
@@ -1585,6 +1587,41 @@ tbody tr:hover {
   height: 20vh !important;
   width: 30% !important;
   object-fit: scale-down !important; }
+
+.profile-container .nav-profile-left ul {
+  list-style-type: none;
+  font-size: 0.9em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 2em; }
+
+.profile-container .nav-profile-left ul a:hover,
+.profile-container .nav-profile-left ul .active {
+  color: #d00109; }
+
+.profile-container .nav-profile-left i {
+  font-size: 0.9em !important; }
+
+.profile-container .nav-profile-left .fa-user,
+.profile-container .nav-profile-left .fa-bell {
+  font-weight: 100 !important; }
+
+.profile-container .nav-profile-left li {
+  font-size: 0.95em; }
+
+.profile-container .my-profile-form {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+.profile-container .my-profile-form label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #969696;
+  text-align: right; }
+
+.profile-container .my-profile-form .edit-user-image h6 {
+  color: #969696;
+  font-size: 0.6em; }
 
 .container-custom {
   margin-top: 30px; }

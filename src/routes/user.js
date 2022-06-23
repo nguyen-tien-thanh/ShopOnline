@@ -9,8 +9,18 @@ router.use(cookieParser())
 
 const userController = require('../Controllers/UserController');
 
-router.use('/profile',isLoggined , userController.profile);
 
-router.use('/',isLoggined , userController.index);
+
+router.get('/changeps', isLoggined, userController.changeps);
+router.post('/updateps', isLoggined, userController.updateps);
+
+router.use('/transfer', isLoggined, userController.transfer);
+router.post('/transferToAccount', isLoggined, userController.transferToAccount);
+
+router.put('/:id', isLoggined, userController.update);
+
+router.use('/profile', isLoggined, userController.profile);
+
+router.use('/', isLoggined, userController.index);
 
 module.exports = router;

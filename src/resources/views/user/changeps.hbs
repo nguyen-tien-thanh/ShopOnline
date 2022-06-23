@@ -1,0 +1,45 @@
+<div class="col-lg-10">
+    <div class="p-5">
+        <h3 class="fw-bold">Change password</h3>
+        <h6 class="mb-4 mt-2 pt-1">For your account's security, do not share your password with anyone else</h6>
+
+        <div class="row my-profile-form">
+            <div class="col-7">
+                <form action="/user/updateps/{{user._id}}" method="post">
+                    <hr class="my-4">
+                    <div class="form-group row mb-4">
+                        <label for="old-password" class="col-sm-3 col-form-label">Old Password</label>
+                        <div class="col-sm-9">
+                        <input type="password" class="form-control" id="old-password" name="oldps" placeholder="Enter old password" required>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="new-password" class="col-sm-3 col-form-label">New Password</label>
+                        <div class="col-sm-9">
+                        <input type="password" class="form-control" id="new-password" name="newps" placeholder="Enter new password" required>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="confirm-password" class="col-sm-3 col-form-label">Confirm Password</label>
+                        <div class="col-sm-9">
+                        <input type="password" class="form-control" id="confirm-password" name="confirmps" placeholder="Re-enter new password" required/>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button type="submit" class="btn btn-dark btn-block btn-lg form-control mb-1"
+                        data-mdb-ripple-color="dark">Save changes</button>
+                    {{#if successMessage}}
+                        <button type="submit" class="btn btn-success btn-block btn-lg form-control mb-1"
+                        data-mdb-ripple-color="dark">{{successMessage}}</button>
+                    {{/if}}
+                    {{#if failMessage}}
+                        <button type="submit" class="btn btn-danger btn-block btn-lg form-control mb-1"
+                        data-mdb-ripple-color="dark">{{failMessage}}</button>
+                    {{/if}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
