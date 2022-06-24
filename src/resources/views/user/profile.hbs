@@ -3,6 +3,12 @@
     <div class="p-5">
         <h3 class="fw-bold">My Profile</h3>
         <h6 class="mb-4 mt-2 pt-1">Manage and protect your account</h6>
+        {{#if msg}}
+            <h6 class="text-success"><i class="fa fa-check"></i> {{msg}}</h6>
+        {{/if}}
+        {{#if failMsg}}
+            <h6 class="text-danger"><i class="fa fa-times"></i> {{failMsg}}</h6>
+        {{/if}}
         <hr class="my-4">
 
 {{!-- <div class="d-flex justify-content-between mb-4">
@@ -46,13 +52,13 @@ Credit or debit card
                             <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
                             </div>
                         </div>
-                        <div class="form-group row mb-4"{{#if user.password}}{{else}} hidden {{/if}}>
+                        <div class="form-group row mb-4"{{#if user.email}}{{else}}hidden{{/if}}>
                             <label for="email" class="col-sm-3 col-form-label" >Email</label>
                             <div class="col-sm-9">
                             <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
                             </div>
                         </div>
-                        <div class="form-group row mb-4"{{#if user.password}}{{else}} hidden {{/if}}>
+                        <div class="form-group row mb-4"{{#if user.phone}}{{else}} hidden {{/if}}>
                             <label for="phone" class="col-sm-3 col-form-label" >Phone number</label>
                             <div class="col-sm-9">
                             <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>

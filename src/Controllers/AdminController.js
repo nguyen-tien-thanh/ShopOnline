@@ -206,6 +206,45 @@ class AdminController {
             res.redirect('/login')
         })
     }
+
+
+    // [GET] /admin/edit-user/:id
+    editUser(req, res, next) {
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([User.findOne({_id: req.params.id}), User.findOne({_id:decodeToken})])
+        .then(([userEdit, data]) => {
+            if (data) {
+                req.data = data
+                return res.render('admin/edit-user',
+                    {
+                        user: mongooseToObject(data),
+                        userEdit: mongooseToObject(userEdit),
+                        layout: 'adminLayout',
+                        title: 'Edit user information',
+                        msg: req.flash('successMsg')
+                    })
+            }
+        })
+        .catch((error) => {
+            req.flash('failedMsg', 'Can not edit this user information')
+            res.redirect('back')
+        })
+    }
+
+    // [PUT] /admin/edit-user/:id
+    putUser(req,res,next){
+        User.updateOne({_id: req.params.id}, req.body)
+            .then(() => {
+                req.flash('successMsg', 'Updated user information successfully')
+                res.redirect('back')
+            })
+            .catch(err => {
+                req.flash('failedMsg', 'Updated user information failed')
+                res.redirect('back')
+            });
+    }
+
 }
 
 module.exports = new AdminController;

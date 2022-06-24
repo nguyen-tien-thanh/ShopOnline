@@ -9,7 +9,8 @@ router.use(cookieParser())
 
 const userController = require('../Controllers/UserController');
 
-
+router.get('/ban/:id', isLoggined, isAdmin, userController.ban);
+router.get('/unban/:id', isLoggined, isAdmin, userController.unban);
 
 router.get('/changeps', isLoggined, userController.changeps);
 router.post('/updateps', isLoggined, userController.updateps);
