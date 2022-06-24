@@ -19,6 +19,7 @@
                                     <th>Avatar</th>
                                     <th>Phone</th>
                                     <th>Email</th>
+                                    <th>Social Login</th>
                                     <th>Role</th>
                                     <th>Status</th>
                                     <th>Birthday</th>
@@ -30,9 +31,16 @@
                             <tbody>
                                 {{#each userList}}
                                 <tr>
-                                    <td><img class="img-user-table" src="{{this.avatar}}" alt="{{this.name}}"></td>
+                                    <td><img class="img-user-table" src="{{#if this.password}}../uploads/{{/if}}{{this.avatar}}" alt="{{this.name}}"></td>
                                     <td>{{this.phone}}</td>
                                     <td>{{this.email}}</td>
+                                    <td>
+                                        {{#if this.facebookId}}
+                                            Facebook
+                                        {{else if this.googleId}}
+                                            Google
+                                        {{/if}}
+                                    </td>
                                     <td>{{this.role}}</td>
 
                                     {{#ifeq this.countFailed 6}}
@@ -45,11 +53,17 @@
                                     <td>{{moment this.createdAt format = "HH:mm - DD/MM/yyyy"}}</td>
                                     {{!-- <td>{{this.address}}</td> --}}
                                     <td>
-                                        <a href="#">
-                                            <button class="btn btn-success">Edit</button>
-                                        </a>
-                                        <a href="#">
-                                            <button class="mt-1 btn btn-info">Detail</button>
+                                        {{#ifeq this.countFailed 6}}
+                                            <a href="/user/unban/{{this._id}}">
+                                                <button class="btn btn-success">UnBan</button>
+                                            </a>
+                                        {{else}}
+                                            <a href="/user/ban/{{this._id}}">
+                                                <button class="btn btn-danger">Ban</button>
+                                            </a>
+                                        {{/ifeq}}
+                                        <a href="/admin/edit-user/{{this._id}}">
+                                            <button class="mt-1 btn btn-info">Edit</button>
                                         </a>
                                         <a href="#">
                                             <button class="mt-1 btn btn-danger">Delete</button>

@@ -3,9 +3,16 @@
         <h3 class="fw-bold">Change password</h3>
         <h6 class="mb-4 mt-2 pt-1">For your account's security, do not share your password with anyone else</h6>
 
+        {{#if successMsg}}
+            <h6 class="text-success"><i class="fa fa-check"></i> {{successMsg}}</h6>
+        {{/if}}
+        {{#if failedMsg}}
+            <h6 class="text-danger"><i class="fa fa-times"></i> {{failedMsg}}</h6>
+        {{/if}}
+
         <div class="row my-profile-form">
             <div class="col-7">
-                <form action="/user/updateps/{{user._id}}" method="post">
+                <form action="/user/updateps" method="post">
                     <hr class="my-4">
                     <div class="form-group row mb-4">
                         <label for="old-password" class="col-sm-3 col-form-label">Old Password</label>
@@ -30,14 +37,6 @@
 
                     <button type="submit" class="btn btn-dark btn-block btn-lg form-control mb-1"
                         data-mdb-ripple-color="dark">Save changes</button>
-                    {{#if successMessage}}
-                        <button type="submit" class="btn btn-success btn-block btn-lg form-control mb-1"
-                        data-mdb-ripple-color="dark">{{successMessage}}</button>
-                    {{/if}}
-                    {{#if failMessage}}
-                        <button type="submit" class="btn btn-danger btn-block btn-lg form-control mb-1"
-                        data-mdb-ripple-color="dark">{{failMessage}}</button>
-                    {{/if}}
                 </form>
             </div>
         </div>

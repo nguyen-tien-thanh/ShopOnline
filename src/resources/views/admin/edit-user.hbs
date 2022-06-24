@@ -1,0 +1,96 @@
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            {{!-- <h1 class="mt-4">Edit profile</h1> --}}
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                <li class="breadcrumb-item active">{{title}}</li>
+            </ol>
+            <div class="card mb-2">
+                <div class="card-header">
+                    {{#if msg}}<b class="text-success"><i class="fa fa-check"></i> {{msg}}</b>
+                    {{else}}
+                    <i class="fas fa-table me-1"></i>
+                    Edit <b>{{userEdit.name}}</b>
+                    {{/if}}
+                </div>
+                <div class="card-body">
+                    <form action="/admin/put-user/{{userEdit._id}}?_method=PUT" method="POST">
+                    <div class="modal-body row">
+                        <div class="col-6">  
+                            <div class="form-group">
+                                <label for="edit-user-name" class="col-form-label">User name</label>
+                                <input type="text" class="form-control" id="edit-user-name" name="name" value="{{userEdit.name}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-user-phone" class="col-form-label">Phone number</label>
+                                <input type="text" class="form-control" id="edit-user-phone" name="phone" value="{{userEdit.phone}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-user-email" class="col-form-label">Email</label>
+                                <input type="email" class="form-control" id="edit-user-email" name="email" value="{{userEdit.email}}" >
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-user-birthday" class="col-form-label">Birthday</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday"
+                                    value="{{moment userEdit.birthday format = "yyyy-MM-DD"}}"
+                                    min="1960-01-01" max="2020-12-31">
+                                {{!-- <input type="text" class="form-control" id="edit-user-birthday" name="birthday" value="{{userEdit.birthday}}"> --}}
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-user-role" class="col-form-label">Role</label>
+                                <select name="role" class="form-control">
+                                    <option value="" disabled>Choose role</option>
+                                    <hr class="">
+                                    <option value="Customer" {{#ifeq userEdit.role 'Customer'}}selected{{/ifeq}}>Customer</option>
+                                    <option value="Admin" {{#ifeq userEdit.role 'Admin'}}selected{{/ifeq}}>Admin</option>
+                                </select>
+                                {{!-- <input type="text" class="form-control" id="edit-user-role" name="role" value="{{userEdit.role}}"> --}}
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-user-address" class="col-form-label">Address</label>
+                                <input type="text" class="form-control" id="edit-user-address" name="address" value="{{userEdit.address}}">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Gender</label>
+                                <div class="col-sm-9">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="gender-male" value="male" {{#ifeq userEdit.gender 'male'}} checked {{/ifeq}}>
+                                        <label class="form-check-label" for="gender-male">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="gender-female" value="female" {{#ifeq userEdit.gender 'female'}} checked {{/ifeq}}>
+                                        <label class="form-check-label" for="gender-female">Female</label>
+                                    </div>
+                                </div>
+                                {{!-- <input type="text" class="form-control" id="edit-user-gender" name="gender" value="{{userEdit.gender}}"> --}}
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-user-countFailed" class="col-form-label">Count Login Failed</label>
+                                <input type="number" class="form-control" id="edit-user-countFailed" name="countFailed" value="{{userEdit.countFailed}}">
+                            </div>
+                            <div class="edit-user-image text-center">
+                                <img src="{{#if user.password}}/uploads/{{/if}}{{user.avatar}}" 
+                                class="card-img-top mb-2" alt="img-user">
+                                <input type="button" class="btn btn-outline-dark mb-2" id="input" value="SELECT IMAGE">
+                                <h6>File size: maximum 1 MB</h6>
+                                <h6>File accepted: JPG, PNG</h6>
+                            </div>
+                        </div>
+                        {{!-- <div class="form-group">
+                            <label for="edit-user-avatar" class="col-form-label">Avatar</label>
+                            <input type="text" class="form-control" id="edit-user-avatar" name="avatar">
+                        </div> --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark">Close</button>
+                        <button type="submit" class="btn btn-info">Save changes</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -596,7 +596,24 @@ a:hover{
     .hero-text span{
       font-size: 30px;
     }
-
+    section.cards .card {
+      width: 100%;
+      display: block;
+      margin: 10px 0 0 0 !important;
+      padding: 0; }
+  }
+  @media  screen and (min-width:320px) and (max-width:374px) {
+    section.cards .card {
+      width: 84%;
+      display: block;
+      margin: 10px 0 0 0 !important;
+      padding: 0; }
+    .shoe-sections{
+      margin-right: 60px;
+    }
+    .shoe-sections button{
+      font-size: 25px;
+    }
   }
 
   // ============================ SLIDE CAROUSEL ===========================
@@ -1943,7 +1960,7 @@ tbody tr:hover{
   margin-top: 30px;
 }
 .img-custom-1{
-  margin-left: 20%;
+  margin-left: 18%;
 }
 .img-custom-2 img{
   width: 500px;
@@ -1964,4 +1981,61 @@ tbody tr:hover{
 .Diversion-shoe img{
   width: 200px;
   height: 200px;
+}
+@media only screen and (max-width: 600px) {
+  .img-custom-1 img{
+    width: 300px;
+   margin-left: 10%;
+  }
+  .img-custom-2 img{
+    width: 300px;
+   margin-left: 25%;
+  }
+  .img-custom-3 img{
+    max-width: 300px;
+   margin-left: 25%;
+  }
+  .Diversion-shoe img{
+    width: 150px;
+    height: 150px;
+  }
+}
+@media only screen and (min-width:350px) and(max-width:599px)  {
+  .img-custom-1 img{
+    width: 200px;
+    margin-left: 10%;
+  }
+  .img-custom-2 img{
+    width: 200px;
+   margin-left: 25%;
+  }
+  .img-custom-3 img{
+    max-width: 200px;
+   margin-left: 25%;
+  }
+  .Diversion-shoe img{
+    width: 100px;
+    height: 100px;
+  }
+}
+@media only screen and (min-width:320px) and(max-width:350px) {
+  .img-custom-1 img{
+    width: 200px;
+    margin-left: 10%;
+  }
+  .img-custom-2 img{
+    width: 200px;
+   margin-left: 25%;
+  }
+  .img-custom-3 img{
+    max-width: 200px;
+   margin-left: 25%;
+  }
+  .Diversion-shoe img{
+    width: 105px;
+    height: 100px;
+  }
+  .Diversion-shoe{
+    justify-content: start;
+  }
 }

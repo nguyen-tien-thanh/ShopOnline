@@ -45,13 +45,14 @@
     "multer": "^1.4.4",
     "node-sass": "^7.0.1",
     "nodemailer": "^6.7.5",
+    "nodesass": "^0.0.2-security",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "connect-mongo": "^3.2.0",
     "heroku": "^7.60.2",
     "mongoose-findorcreate": "^3.0.0",
-    "nodemon": "^2.0.16",
+    "nodemon": "^2.0.18",
     "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",

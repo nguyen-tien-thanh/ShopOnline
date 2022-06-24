@@ -43,7 +43,7 @@ passport.use(new FacebookStrategy({
 
         // find the user in the database based on their facebook id
         User.findOne({ 'facebookId' : profile.id }, function(err, user) {
-
+            console.log(profile)
             // if there is an error, stop everything and return that
             // ie an error connecting to the database
             if (err)
@@ -55,7 +55,7 @@ passport.use(new FacebookStrategy({
             } else {
                     // if there is no user found with that facebook id, create them
                     var newUser = new User();
-
+                    newUser.email = profile.emails[0].value
                     // set all of the facebook information in our user model
                     newUser.facebookId    = profile.id; // set the users facebook id           
                     newUser.name  = profile.displayName // look at the passport user profile to see how names are returned
@@ -124,7 +124,6 @@ passport.use(new GoogleStrategy({
 
         // find the user in the database based on their google id
         User.findOne({ 'googleId' : profile.id }, function(err, user) {
-
             // if there is an error, stop everything and return that
             // ie an error connecting to the database
             if (err)
@@ -136,14 +135,15 @@ passport.use(new GoogleStrategy({
             } else {
                     // if there is no user found with that google id, create them
                     var newUser = new User();
-
+                    
+                    newUser.email = profile.email;
                     // set all of the google information in our user model
                     newUser.googleId    = profile.id; // set the users google id           
-                    newUser.name  = profile.displayName // look at the passport user profile to see how names are returned
+                    newUser.name  = profile.displayName; // look at the passport user profile to see how names are returned
                     // newUser.email = profile.emails[0].value;
-                    newUser.money = 0
-                    newUser.gender = profile.gender
-                    newUser.avatar = profile.photos[0].value
+                    newUser.money = 0;
+                    newUser.gender = profile.gender;
+                    newUser.avatar = profile.photos[0].value;
                     // save our user to the database
                     newUser.save(function(err) {
                         if (err)
