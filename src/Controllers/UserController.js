@@ -10,6 +10,7 @@ const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 const bcrypt = require('bcrypt');
 var secret = 'secretpasstoken'
+const stripe = require('stripe');
 class UserController {
 
     // [GET] /user/unban/:id
@@ -190,6 +191,16 @@ class UserController {
                 next()
             }
         })
+    }
+
+    // [GET] /history
+    history(req, res, next){
+        const stripe = require('stripe')('sk_test_51LCjUmGXzbc60gITm4NDsulfqX13P2Xy5TjTZzHyhVBjamQt1DMD6pIRvM7elIMFUFI0DUDuh18P5MyN0O18yyZ100setk5tNV');
+
+        const transactions = stripe.issuing.transactions.list({
+            limit: 3,
+          });
+        console.log(transactions)
     }
 }
 

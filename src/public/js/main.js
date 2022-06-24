@@ -816,7 +816,7 @@ function submitCheckoutByWalletForm(){
     data: {
       quantity: $('input[name="quantity"]').val(),
       money: $('input[name="money"]').val(),
-      shipping: $('input[name="shipping"]').val(),
+      shipping: $('select[name="shipping"]').val(),
       phone: $('input[name="phone"]').val(),
       address: $('input[name="address"]').val(),
       email: $('input[name="email"]').val(),
