@@ -62,7 +62,7 @@
                                                     <li><a href="" {{#ifeq titleSection 'My Account'}}class="active"{{/ifeq}}><i class="fas fa-fw fa-user text-info"></i> My Account</a>
                                                         <ul>
                                                             <a href="/user/profile" {{#ifeq section 'profile'}}class="active"{{/ifeq}}><li>Profile</li></a>
-                                                            <a href=""><li>Banks & Cards</li></a>
+                                                            <a href="/user/history" {{#ifeq section 'history'}}class="active"{{/ifeq}}><li>Transaction history</li></a>
                                                             <a href="/user/transfer"{{#ifeq section 'transfer'}}class="active"{{/ifeq}}><li>Transfer</li></a>
                                                             {{#if user.password}}
                                                                 <a href="/user/changeps"{{#ifeq section 'changeps'}}class="active"{{/ifeq}}><li>Change Password</li></a>
