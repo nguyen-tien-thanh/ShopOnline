@@ -16,11 +16,7 @@
     padding: 0 60px;
   }
   
-  @media screen and (max-height: 450px) {
-    .register-sidenav {
-        padding-top: 15px;
-    }
-  }
+
   
   @media screen and (max-width: 450px) {
     .register-form{
@@ -29,7 +25,6 @@
   
   }
   
-  @media screen and (min-width: 768px){
     .register-main{
         margin-right: 40%; 
         width: 80%;
@@ -46,7 +41,7 @@
     .register-form{
         margin-top: 35%;
     }
-  }
+  
   
   
   .register-main-text{
@@ -59,7 +54,55 @@
     font-weight: 300;
     font-size: 70px;
   }
-  
+  @media screen and (max-width:1024px) and (min-width:768px) {
+    .register-main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  }
+  @media  screen and (max-width:767px) and (min-width:600px) {
+    .register-main {
+      padding-left: 0;
+      padding-right: 0;
+      width: 55%;
+    }
+    .register-main-text h2 {
+      font-weight: 300;
+      font-size: 36px;
+      text-align: center;
+    }
+    .register-main-text p{
+      text-align: center;
+    }
+}
+@media screen and (max-width:599px) and (min-width:320px){
+  .register-main {
+    padding-left: 0;
+    padding-right: 0;
+    width: 55%;
+  }
+  .register-main-text h2 {
+    font-weight: 300;
+    font-size: 36px;
+    text-align: center;
+  }
+  .register-main-text p{
+    text-align: center;
+  }
+  .register-sidenav {
+    width: 100%;
+    position:unset;
+    padding-top:0;
+}
+.register-main-text {
+  margin-top: 0;
+}
+.register-main {
+  padding-left: 0;
+  padding-right: 0;
+  width: 95%;
+}
+}
   
   // ================ End REGISTER =============================
   
