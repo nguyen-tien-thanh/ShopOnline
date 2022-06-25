@@ -1,0 +1,327 @@
+// =================================================================
+// ============== FOOTER ======================
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+
+footer {
+  font-family: 'Calibri';
+}
+
+section {
+  width: 100%;
+  display: inline-block;
+  background: #333;
+  // height: 50vh;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  // text-decoration: underline;
+}
+
+.footer-distributed{
+	background: black;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+.footer-distributed .footer-left a{
+  cursor: pointer;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 4rem 'Playlist', cursive;
+	margin: 0;
+    color:white;
+}
+
+.footer-distributed h3 span{
+	color:  $maincolor;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+  font-weight:400;
+	
+	color:  inherit;
+}
+
+.footer-distributed .footer-links a:hover{
+  text-decoration: underline;
+}
+
+.footer-distributed .footer-company-name{
+	color:  rgb(105, 104, 104);
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center ion-icon{
+	background-color:  #000000;
+	// color: #ffffff;
+	color: $maincolor;
+	font-size: 25px;
+	width: 28px;
+	height: 28px;
+	border-radius: 0%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center ico-icon{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #ffffff;
+  font-weight:400;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	// color:  lightseagreen;
+    color: lightgrey;
+	
+}
+
+.footer-distributed .footer-center p a:hover{
+	text-decoration: underline;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight:300;
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons .social-icons{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+    background-color: #92999f;
+	border-radius: 50%;
+	font-size: 25px;
+  // color: inherit;
+	text-align: center;
+	line-height: 35px;
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons .fa-facebook {
+  color: #4267B2;
+}
+.footer-distributed .footer-icons .fa-twitter {
+  color: #38A1F2;
+}
+.footer-distributed .footer-icons .fa-instagram {
+  color: transparent;
+  background: -webkit-radial-gradient(30% 107%, circle, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -o-radial-gradient(30% 107%, circle, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.footer-distributed .footer-icons .fa-tiktok {
+  color: black;
+}
+
+.footer-distributed .footer-icons .social-icons i:hover{
+  color: $maincolor;
+}
+
+
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+    .footer-distributed .footer-center{
+        text-align: left;
+    }
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
+}
+
+// =================================================================
+// ============== MODAL OF   THE FOOTER =================
+/* The Modal (background) */
+.delivery-modal,
+.payment-modal,
+.return-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 101; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.return-modal a:hover {
+  text-decoration: underline;
+}
+
+/* Modal Content/Box */
+.delivery-modal-content,
+.payment-modal-content,
+.return-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  // padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 15px;
+}
+
+.return-modal-content{
+  margin: 1% auto
+}
+
+.modal-header{
+  background-color: var(--clr4);
+  color:white;
+  border-radius: 13px 13px 0 0;
+  border: 3px var(--clr4);
+}
+.fa-shipping-fast,
+.fa-credit-card,
+.fa-exchange-alt{
+  font-size:30px
+}
+
+/* The Close Button */
+.delivery-close, 
+.payment-close, 
+.return-close,
+.modal-header button span {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.delivery-close:hover,
+.delivery-close:focus,
+.payment-close:hover,
+.payment-close:focus,
+.return-close:hover,
+.return-close:focus,
+.size-guide-close:hover,
+.modal-header button span:hover  {
+  color: gray;
+  cursor: pointer;
+}
+// ============== ICON FOR PAYMENT COPY TEXT =============================
+.copy-payment-btn:active,
+.copy-payment-btn:focus {
+  color:red
+}
+
+.copy-payment-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}

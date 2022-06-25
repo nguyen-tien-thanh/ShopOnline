@@ -6,57 +6,6 @@
   src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot");
   src: url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.woff") format("woff"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1fed4454352f201d52b65ca5480afb2d.svg#Playlist") format("svg"); }
 
-@font-face {
-  font-family: 'FuturaLight';
-  src: url("/fonts/futurasmalllight/Futura-SC-T-OT-Light_19038.ttf") format("truetype"); }
-
-@font-face {
-  font-family: 'GroovedPersonalUseRegular';
-  src: url("/fonts/GroovedPersonalUseRegular/GROOVEDPERSONALUSE.ttf") format("truetype"); }
-
-@font-face {
-  font-family: 'Sofia';
-  src: url("/fonts/sofia/Sofia Pro Regular.ttf") format("truetype"); }
-
-#logo-header {
-  font-family: 'Playlist';
-  font-size: 40px; }
-
-#logo-header span {
-  color: #d00109;
-  font-family: 'Playlist';
-  font-size: 40px; }
-
-a, b, th, td {
-  color: inherit;
-  text-decoration: none; }
-
-a:hover {
-  color: inherit; }
-
-:root {
-  --clr1: #ddd;
-  --clr2: #efefef;
-  --clr3: #333;
-  --clr4: rgb(100,4,3);
-  --border-radius: 7px;
-  --text-radius: 50em;
-  --maincolor: @maincolor; }
-
-body {
-  background: var(--clr1);
-  padding: 50px 0 0 0;
-  margin: 0 10px; }
-
-body *, body :after, body :before {
-  box-sizing: border-box; }
-
-body.en :lang(vi) {
-  display: none; }
-
-body.vi :lang(en) {
-  display: none; }
-
 .sub-header {
   position: relative; }
 
@@ -399,6 +348,39 @@ section.cards .card img {
 @media screen and (max-width: 768px) {
   .shoe-sections button {
     font-size: 30px; } }
+
+#logo-header {
+  font-family: 'Playlist';
+  font-size: 40px; }
+
+#logo-header span {
+  color: #d00109;
+  font-family: 'Playlist';
+  font-size: 40px; }
+
+a, b, th, td {
+  color: inherit;
+  text-decoration: none; }
+
+a:hover {
+  color: inherit; }
+
+:root {
+  --clr1: #ddd;
+  --clr2: #efefef;
+  --clr3: #333;
+  --clr4: rgb(100,4,3);
+  --border-radius: 7px;
+  --text-radius: 50em;
+  --maincolor: @maincolor; }
+
+body {
+  background: var(--clr1);
+  padding: 50px 0 0 0;
+  margin: 0 10px; }
+
+body *, body :after, body :before {
+  box-sizing: border-box; }
 
 .img-container {
   position: relative;
@@ -897,112 +879,6 @@ section {
   margin: 0;
   padding: 0; }
 
-.create-product-box {
-  text-align: left;
-  font-size: 18px;
-  font-weight: 700;
-  padding: 10px 10px; }
-
-.create-product-box h2 {
-  font-size: 50px;
-  color: white;
-  padding-bottom: 20px;
-  text-align: center; }
-
-.create-product-box label {
-  color: lightgray; }
-
-.create-product-box button {
-  margin-top: 20px; }
-
-.manage-product-box,
-.manage-product-box th,
-.manage-product-box td {
-  color: white; }
-
-.manage-product-box td {
-  font-weight: normal; }
-
-.wrap-manage {
-  padding: 10px;
-  max-width: 960rem; }
-
-.manage-product-box button {
-  margin-top: 0px; }
-
-.modal-header-confirm-delete {
-  border-radius: 15px; }
-
-.modal-body-confirm-delete {
-  color: black; }
-
-#logo-product-detail {
-  font-family: 'Playlist';
-  opacity: 70%;
-  padding-left: 10px;
-  margin-bottom: -2rem;
-  font-size: 22px;
-  z-index: 1; }
-
-#logo-product-detail span {
-  color: #d00109; }
-
-.product-detail-page {
-  padding: 20px;
-  font-weight: bold; }
-
-.zalo-icon {
-  height: 20px;
-  margin-bottom: 5px;
-  background-color: white;
-  border-radius: 20%; }
-
-.zalo-icon:hover {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg); }
-
-.card-product-list {
-  margin-top: 20px;
-  margin-bottom: 20px; }
-
-.card-product-item {
-  transition: transform .2s;
-  border: 0px solid;
-  box-shadow: 4px 5px #838080; }
-
-.card-product-item:hover {
-  opacity: 1;
-  -ms-transform: scale(1.08);
-  /* IE 9 */
-  -webkit-transform: scale(1.08);
-  /* Safari 3-8 */
-  transform: scale(1.08);
-  border: 3px solid black;
-  box-shadow: 0px 0px; }
-
-.column-card-product-item {
-  margin-top: 10px;
-  margin-bottom: 10px; }
-
-.card-img-top {
-  width: 100%;
-  height: 30vh;
-  object-fit: contain; }
-
-@media only screen and (max-width: 600px) {
-  .card-img-top {
-    height: 50vh; } }
-
-.img-edit-page {
-  display: block;
-  text-align: center;
-  justify-content: center;
-  top: 0;
-  transform: translate(0px, 47px);
-  padding: 0; }
-
-.img-edit-page img {
-  max-width: 100%; }
-
 #notfound {
   position: relative;
   height: 100vh; }
@@ -1099,23 +975,21 @@ section {
 .login-main {
   padding: 0px 10px; }
 
-@media screen and (max-width: 450px) {
-  .login-form {
-    margin-top: 10%; } }
+.login-main {
+  margin-left: 40%; }
 
-@media screen and (min-width: 768px) {
-  .login-main {
-    margin-left: 40%; }
-  .login-sidenav {
-    width: 40%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0; }
-  .login-form {
-    margin-top: 80%; }
-  .login-form form a {
-    font-size: 14px; } }
+.login-sidenav {
+  width: 40%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0; }
+
+.login-form {
+  margin-top: 80%; }
+
+.login-form form a {
+  font-size: 14px; }
 
 .login-main-text {
   margin-top: 50%;
@@ -1133,6 +1007,62 @@ section {
 .btn-black:hover {
   color: #fff;
   background-color: #3e3d3d !important; }
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  .login-form form {
+    width: 170%; } }
+
+@media only screen and (max-width: 767px) and (min-width: 600px) {
+  .login-form form {
+    width: 90%; }
+  .login-form form a {
+    font-size: 9px; }
+  .login-main-text h2 {
+    font-size: 40px; } }
+
+@media only screen and (max-width: 599px) and (min-width: 375px) {
+  .login-form form {
+    width: 90%; }
+  .login-form form a {
+    font-size: 12px; }
+  .login-sidenav {
+    height: 50%;
+    width: 100%;
+    position: static; }
+  .login-form {
+    margin-top: 30px; }
+  .login-main-text {
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff; }
+  .login-main-text h2 {
+    font-size: 30px;
+    text-align: center; }
+  .login-main {
+    margin-left: 0;
+    padding: 0; } }
+
+@media only screen and (max-width: 374px) and (min-width: 320px) {
+  .login-form form {
+    width: 90%; }
+  .login-form form a {
+    font-size: 9px; }
+  .login-sidenav {
+    height: 50%;
+    width: 100%;
+    position: static; }
+  .login-form {
+    margin-top: 30px; }
+  .login-main-text {
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff; }
+  .login-main-text h2 {
+    font-size: 30px;
+    text-align: center; }
+  .login-main {
+    margin-left: 0;
+    padding: 0; } }
 
 .register-sidenav {
   height: 100%;
@@ -1209,20 +1139,6 @@ section {
 .login-form a:hover {
   color: white;
   text-decoration: underline; }
-
-.img-user-table {
-  max-width: 3.5rem; }
-
-tr:nth-child(even) {
-  background: #ebebeb; }
-
-tbody tr:hover {
-  color: #d00109; }
-
-#shoe-sections-index,
-#shoe-available {
-  border: 0;
-  padding: 0; }
 
 .detail-shoe-container,
 .cart-container {
@@ -1463,6 +1379,20 @@ tbody tr:hover {
   .detail-shoe-container #another-shoe-detail h1 {
     font-size: 28px; } }
 
+.img-user-table {
+  max-width: 3.5rem; }
+
+tr:nth-child(even) {
+  background: #ebebeb; }
+
+tbody tr:hover {
+  color: #d00109; }
+
+#shoe-sections-index,
+#shoe-available {
+  border: 0;
+  padding: 0; }
+
 .wrapper.shoe-index {
   margin-top: 10px;
   font-family: 'Sofia';
@@ -1599,11 +1529,6 @@ tbody tr:hover {
   .shoe-list {
     text-align: center; } }
 
-.img-checkout {
-  height: 20vh !important;
-  width: 30% !important;
-  object-fit: scale-down !important; }
-
 .profile-container .nav-profile-left ul {
   list-style-type: none;
   font-size: 0.9em;
@@ -1707,3 +1632,93 @@ tbody tr:hover {
     height: 100px; }
   .Diversion-shoe {
     justify-content: start; } }
+
+.container-custom {
+  margin-top: 30px; }
+
+.img-custom-1 {
+  margin-left: 18%; }
+
+.img-custom-2 img {
+  width: 500px;
+  margin-left: 20%; }
+
+.img-custom-3 img {
+  width: 500px;
+  margin-left: 20%; }
+
+.open-img-custom-2, .open-img-custom-3 {
+  display: none; }
+
+.Diversion-shoe {
+  display: flex;
+  justify-content: space-between; }
+
+.Diversion-shoe img {
+  width: 200px;
+  height: 200px; }
+
+@media only screen and (max-width: 600px) {
+  .img-custom-1 img {
+    width: 300px;
+    margin-left: 10%; }
+  .img-custom-2 img {
+    width: 300px;
+    margin-left: 25%; }
+  .img-custom-3 img {
+    max-width: 300px;
+    margin-left: 25%; }
+  .Diversion-shoe img {
+    width: 150px;
+    height: 150px; } }
+
+@media only screen and (min-width: 350px) and (max-width: 599px) {
+  .img-custom-1 img {
+    width: 200px;
+    margin-left: 10%; }
+  .img-custom-2 img {
+    width: 200px;
+    margin-left: 25%; }
+  .img-custom-3 img {
+    max-width: 200px;
+    margin-left: 25%; }
+  .Diversion-shoe img {
+    width: 100px;
+    height: 100px; } }
+
+@media only screen and (min-width: 320px) and (max-width: 350px) {
+  .img-custom-1 img {
+    width: 200px;
+    margin-left: 10%; }
+  .img-custom-2 img {
+    width: 200px;
+    margin-left: 25%; }
+  .img-custom-3 img {
+    max-width: 200px;
+    margin-left: 25%; }
+  .Diversion-shoe img {
+    width: 105px;
+    height: 100px; }
+  .Diversion-shoe {
+    justify-content: start; } }
+
+@font-face {
+  font-family: 'FuturaLight';
+  src: url("/fonts/futurasmalllight/Futura-SC-T-OT-Light_19038.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'GroovedPersonalUseRegular';
+  src: url("/fonts/GroovedPersonalUseRegular/GROOVEDPERSONALUSE.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Sofia';
+  src: url("/fonts/sofia/Sofia Pro Regular.ttf") format("truetype"); }
+
+.zalo-icon {
+  height: 20px;
+  margin-bottom: 5px;
+  background-color: white;
+  border-radius: 20%; }
+
+.zalo-icon:hover {
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg); }

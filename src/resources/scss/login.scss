@@ -1,0 +1,132 @@
+// =================================================================
+// ===================== LOGIN PAGE ===========================
+.login-sidenav {
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .login-main {
+    padding: 0px 10px;
+  }
+  .login-main{
+    margin-left: 40%; 
+}
+.login-sidenav{
+  width: 40%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.login-form{
+  margin-top: 80%;
+}
+
+.login-form form a {
+font-size: 14px;
+}
+
+
+
+.login-main-text{
+margin-top: 50%;
+padding: 60px;
+color: #fff;
+}
+
+.login-main-text h2{
+font-weight: 300;
+font-size: 70px;
+}
+
+.btn-black{
+background-color: #000 !important;
+color: #fff;
+}
+
+.btn-black:hover{
+color: #fff;
+background-color: rgb(62, 61, 61) !important;
+}
+// ================ End LOGIN =============================
+
+
+  @media only screen and (max-width:1024px) and (min-width:768px){
+   .login-form form{
+     width:170%;
+   }
+  }
+  @media only screen and (max-width:767px) and (min-width:600px){
+    .login-form form{
+      width:90%;
+    }
+    .login-form form a {
+      font-size: 9px;
+      }
+    .login-main-text h2{
+      font-size:40px;
+    }
+   }
+   @media only screen and (max-width:599px) and (min-width:375px){
+    .login-form form{
+      width:90%;
+    }
+    .login-form form a {
+      font-size: 12px;
+      }
+    .login-sidenav{
+      height:50%;
+      width:100%;
+      position:static;
+    }
+    .login-form{
+      margin-top: 30px;
+    }
+    .login-main-text{
+      margin-top: 20%;
+      padding: 60px;
+      color: #fff;
+    }
+    .login-main-text h2{
+      font-size: 30px;
+      text-align: center;
+    }
+    .login-main {
+      margin-left:0;
+      padding:0;
+    }
+   }
+  
+   @media only screen and (max-width:374px) and (min-width:320px){
+    .login-form form{
+      width:90%;
+    }
+    .login-form form a {
+      font-size: 9px;
+      }
+    .login-sidenav{
+      height:50%;
+      width:100%;
+      position:static;
+    }
+    .login-form{
+      margin-top: 30px;
+    }
+    .login-main-text{
+      margin-top: 20%;
+      padding: 60px;
+      color: #fff;
+    }
+    .login-main-text h2{
+      font-size: 30px;
+      text-align: center;
+    }
+    .login-main {
+      margin-left:0;
+      padding:0;
+    }
+   } 
+  
