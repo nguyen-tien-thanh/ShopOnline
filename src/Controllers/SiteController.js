@@ -441,40 +441,103 @@ class SiteController {
         }
     }
 
-    //[POST] /checkout-by-wallet
-    checkoutByMomo (req,res,next){
-        if(!req.session.cart){
-            return res.redirect('/cart');
-        }
-        else{
-            var token = req.cookies.token;
-            var decodeToken = jwt.verify(token, 'secretpasstoken')
+    //[POST] /checkout-by-momo
+    checkoutByMomo (req,res,next){ 
 
-            var money= parseInt(req.body.money)
+        var order = new Order({
+            cart: req.session.cart,
+            email: req.body.email,
+            address: req.body.address,
+            phone: req.body.phone,
+            shipping: req.body.shipping
+        })
+        var orderParams = encodeURIComponent(JSON.stringify(order))
 
-            User.findOneAndUpdate({_id: decodeToken}, {$inc: {money: -money}})
-            .then((data)=> {
-                var order = new Order({
-                    user: req.user,
-                    cart: req.session.cart,
-                    email: req.body.email,
-                    address: req.body.address,
-                    phone: req.body.phone,
-                    shipping: req.body.shipping,
-                })
-                order.save()
-                req.session.cart = null;
-                return res.render('cart',
-                            {
-                                user: mongooseToObject(data),
-                                // shoe: cart.generateArrays(),
-                                // totalPrice: cart.totalPrice,
-                                title: 'Cart',
-                                message: 'Checkout successfully'
-                            })
-            })
+        var partnerCode = "MOMO";
+        var accessKey = "F8BBA842ECF85";
+        var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+        var requestId = partnerCode + new Date().getTime();
+        var orderId = requestId;
+        var orderInfo = req.body.email +" | DUSTIN pay ";
+        var redirectUrl = "http://localhost:5000/checkout-by-momo-success?order="+ orderParams + "";
+        var ipnUrl =  "http://localhost:5000/checkout-error";
+        // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
+        var amount = req.body.money;
+        var requestType = "captureWallet"
+        var extraData = "";
+
+        var rawSignature = "accessKey="+accessKey
+                            +"&amount=" + amount
+                            +"&extraData=" + extraData
+                            +"&ipnUrl=" + ipnUrl
+                            +"&orderId=" + orderId
+                            +"&orderInfo=" + orderInfo
+                            +"&partnerCode=" + partnerCode 
+                            +"&redirectUrl=" + redirectUrl
+                            +"&requestId=" + requestId
+                            +"&requestType=" + requestType
+
+        const crypto = require('crypto');
+        var signature = crypto.createHmac('sha256', secretkey)
+            .update(rawSignature)
+            .digest('hex');
+
+        const requestBody = JSON.stringify({
+            partnerCode : partnerCode,
+            accessKey : accessKey,
+            requestId : requestId,
+            amount : amount,
+            orderId : orderId,
+            orderInfo : orderInfo,
+            redirectUrl : redirectUrl,
+            ipnUrl : ipnUrl,
+            extraData : extraData,
+            requestType : requestType,
+            signature : signature,
+            lang: 'en'
+        });
+
+        //Create the HTTPS objects
+        const https = require('https');
+        const options = {
+            hostname: 'test-payment.momo.vn',
+            port: 443,
+            path: '/v2/gateway/api/create',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(requestBody)
+            }
         }
+        //Send the request and get the response
+        const request = https.request(options, response => {
+            response.setEncoding('utf8');
+            response.on('data', (body) => {
+                var paymentUrl = JSON.parse(body).payUrl;
+                res.redirect(paymentUrl);
+            });
+        })
+        request.on('error', (e) => {
+            console.log(`Problem with payment Momo: ${e.message}`);
+        });
+        request.write(requestBody);
     }
+        checkoutByMomoSuccess(req,res,next){
+            if(req.query.message == 'Successful'){
+                var queryOrder = req.query.order
+                queryOrder = JSON.parse(queryOrder)
+                var order = new Order(queryOrder)
+                order.save()
+    
+                req.session.cart = null;
+                req.flash('successMsg','Checkout successfully')
+                res.redirect('/cart')
+            }
+            else{
+                req.flash('failedMsg','Your payment has been paused or canceled')
+                res.redirect('/cart')
+            }
+        }
 
     //[POST] /checkout-by-wallet
     checkoutByPaypal (req,res,next){
@@ -504,7 +567,7 @@ class SiteController {
             },
             "redirect_urls": {
                 "return_url": "http://localhost:5000/checkout-by-paypal-success?order="+ orderParams + "",
-                "cancel_url": "http://localhost:5000/checkout-by-paypal-error"
+                "cancel_url": "http://localhost:5000/checkout-error"
             },
             "transactions": [{
                 "item_list": {
@@ -576,9 +639,9 @@ class SiteController {
             })
         }
 
-        //GET /check-out-by-paypal-error
+        //GET /checkout-error
         checkoutByPaypalError(req,res){
-            req.flash('failedMsg','You not have enough money to pay')
+            req.flash('failedMsg','Your payment has been paused or canceled')
             return res.redirect('/cart')
         }
 

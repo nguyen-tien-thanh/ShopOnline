@@ -12,7 +12,7 @@ const { default: mongoose } = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('req-flash');
 const nodemailer = require('nodemailer');
-
+require('dotenv').config()
 
 db.connect();
 

@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "connect-mongo": "^3.2.0",
+    "dotenv": "^16.0.1",
     "heroku": "^7.60.2",
     "mongoose-findorcreate": "^3.0.0",
     "nodemon": "^2.0.18",

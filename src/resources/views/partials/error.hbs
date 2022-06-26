@@ -29,6 +29,8 @@
 			<h2>404 - Page not found</h2>
 			{{#if roleNofitication}}
 				<p>{{roleNofitication}}</p>
+			{{else if failedMsg}}
+				<p>{{failedMsg}}</p>
 			{{else}}
 				<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
 			{{/if}}
