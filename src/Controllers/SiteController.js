@@ -452,6 +452,7 @@ class SiteController {
                     email: req.body.email,
                     address: req.body.address,
                     phone: req.body.phone,
+                    shipping: req.body.shipping,
                 })
                 order.save()
                 req.session.cart = null;
@@ -556,7 +557,6 @@ class SiteController {
         }
         else{
             var cart = new Cart(req.session.cart);
-
             const stripe = require('stripe')('sk_test_51LCjUmGXzbc60gITm4NDsulfqX13P2Xy5TjTZzHyhVBjamQt1DMD6pIRvM7elIMFUFI0DUDuh18P5MyN0O18yyZ100setk5tNV');
             
             stripe.customers.create({
@@ -571,7 +571,7 @@ class SiteController {
                 amount: cart.totalPrice,
                 currency: 'vnd',
                 // source: req.body.stripeToken,
-                description: 'Test Charge',
+                description: 'Payment for shoes',
                 customer: customer.id,
                 }, function(err, charge){
                     if(err){

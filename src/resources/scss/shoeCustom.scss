@@ -1,0 +1,85 @@
+    
+// =============== /shoe/custom =================
+.container-custom{
+    margin-top: 30px;
+  }
+  .img-custom-1{
+    margin-left: 18%;
+  }
+  .img-custom-2 img{
+    width: 500px;
+    margin-left: 20%;
+  }
+  .img-custom-3 img{
+    width: 500px;
+    margin-left: 20%;
+  }
+  .open-img-custom-2,.open-img-custom-3{
+    display: none;
+  }
+  .Diversion-shoe{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .Diversion-shoe img{
+    width: 200px;
+    height: 200px;
+  }
+  @media only screen and (max-width: 600px) {
+    .img-custom-1 img{
+      width: 300px;
+     margin-left: 10%;
+    }
+    .img-custom-2 img{
+      width: 300px;
+     margin-left: 25%;
+    }
+    .img-custom-3 img{
+      max-width: 300px;
+     margin-left: 25%;
+    }
+    .Diversion-shoe img{
+      width: 150px;
+      height: 150px;
+    }
+  }
+  @media only screen and (min-width:350px) and(max-width:599px)  {
+    .img-custom-1 img{
+      width: 200px;
+      margin-left: 10%;
+    }
+    .img-custom-2 img{
+      width: 200px;
+     margin-left: 25%;
+    }
+    .img-custom-3 img{
+      max-width: 200px;
+     margin-left: 25%;
+    }
+    .Diversion-shoe img{
+      width: 100px;
+      height: 100px;
+    }
+  }
+  @media only screen and (min-width:320px) and(max-width:350px) {
+    .img-custom-1 img{
+      width: 200px;
+      margin-left: 10%;
+    }
+    .img-custom-2 img{
+      width: 200px;
+     margin-left: 25%;
+    }
+    .img-custom-3 img{
+      max-width: 200px;
+     margin-left: 25%;
+    }
+    .Diversion-shoe img{
+      width: 105px;
+      height: 100px;
+    }
+    .Diversion-shoe{
+      justify-content: start;
+    }
+  }

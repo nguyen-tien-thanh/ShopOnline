@@ -1,0 +1,22 @@
+// =================================================================
+// ================ /admin/user-table =================
+.img-user-table{
+    max-width: 3.5rem;
+  }
+  
+  tr:nth-child(even) {
+    background: rgb(235, 235, 235);
+  }
+  
+  tbody tr:hover{
+    color: $maincolor;
+  }
+  // tr td:empty {
+  //   background:rgb(240, 239, 239) !important;
+  // }
+  
+  #shoe-sections-index,
+  #shoe-available{
+    border: 0;
+    padding: 0;
+  }
