@@ -105,6 +105,8 @@
                                             <select class="form-control" name="payment" id="payment-method-select" required>
                                                 <option value="">Choose payment method</option>
                                                 <option value="wallet">DusTin Wallet {{#if user.money}}({{formatCurrency user.money}} VND){{/if}} </option>
+                                                <option value="momo">Momo</option>
+                                                <option value="paypal">Paypal</option>
                                                 <option value="card">Credit Card</option>
                                             </select>
                                         </div>
@@ -157,24 +159,26 @@
 
                                         <hr class="my-4">
 
-                                        <div class="d-flex justify-content-between mb-5">
-                                            {{#if session.cart}}
-                                            <h5 class="text-uppercase">Total price</h5>
-                                            <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
-                                            {{/if}}
-                                        </div>
-
                                         {{#if session.cart}}
-                                        <button type="button" id="payment-form-btn" class="btn btn-outline-dark btn-block btn-lg form-control"
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <h5 class="text-uppercase">Total price</h5>
+                                                <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
+                                            </div>
+                                        {{/if}}
+
+                                        {{#if successMsg}}
+                                            <h6 class="text-success"><i class="fa fa-check"></i>  {{successMsg}}</h6>
+                                        {{/if}}
+                                        {{#if failedMsg}}
+                                            <h6 class="text-danger"><i class="fa fa-times"></i>  {{failedMsg}}</h6>
+                                        {{/if}}
+                                        
+                                        {{#if session.cart}}
+                                        <button type="submit" id="payment-form-btn" class="btn btn-outline-dark btn-block btn-lg form-control"
                                             data-mdb-ripple-color="dark">Check Out</button>
                                         {{else}}
                                         <button type="button" id="payment-form-btn" class="btn btn-dark btn-block btn-lg form-control"
-                                            data-mdb-ripple-color="dark" disabled>Check Out</button>
-                                        {{/if}}
-
-                                        {{#if message}}
-                                            <button type="button" class="btn btn-success btn-block btn-lg form-control mb-1 mt-2"
-                                            data-mdb-ripple-color="dark">{{message}}</button>
+                                            data-mdb-ripple-color="dark" disabled>No item to check out</button>
                                         {{/if}}
 
                                     </div>

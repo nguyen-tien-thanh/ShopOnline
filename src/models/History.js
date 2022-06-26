@@ -5,14 +5,13 @@ const mongooseDelete = require('mongoose-delete');
 
 const Schema = mongoose.Schema;
 
-const Order = new Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    cart: {type: Object, required: true },
-    email: {type: String, required: true},
-    address: {type: String, required: true},
-    phone: {type: Number, required: true},
+const History = new Schema({
     name: {type: String, minLength: 1, maxLength: 255},
-    shipping: {type: String},
+    desc: {type: String},
+    type: {type: String, minLength: 1, maxLength: 255},
+    amount: {type: String, minLength: 1, maxLength: 255},
+    status: {type: String, minLength: 1, maxLength: 255},
+    
     deletedAt: {},
     // createdAt: {type: Date, default : Date.Now},
     // updateAt: {type: Date, default : Date.Now}
@@ -21,10 +20,10 @@ const Order = new Schema({
 });
 
 //Add plugin
-Order.plugin(mongooseDelete, {
+History.plugin(mongooseDelete, {
     overrideMethods: 'all',
     deletedAt: true
 });
 mongoose.plugin(slug);
 
-module.exports = mongoose.model('Order', Order);
+module.exports = mongoose.model('History', History);

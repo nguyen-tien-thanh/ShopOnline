@@ -576,6 +576,20 @@ $('#payment-method-select').on('change', function () {
     $('#payment-form-btn').attr('onclick', 'submitCheckoutByWalletForm()')
     $('#card-information').hide()
   }
+  else if(this.value == 'momo'){
+    $(this).closest('form').attr('action','/checkout-by-momo')
+    $(this).closest('form').removeAttr('id')
+    $('#payment-form-btn').attr('type', 'button')
+    $('#payment-form-btn').attr('onclick', 'submitCheckoutByMomoForm()')
+    $('#card-information').hide()
+  }
+  else if(this.value == 'paypal'){
+    $(this).closest('form').attr('action','/checkout-by-paypal')
+    $(this).closest('form').removeAttr('id')
+    $('#payment-form-btn').attr('type', 'button')
+    $('#payment-form-btn').attr('onclick', 'submitCheckoutByPaypalForm()')
+    $('#card-information').hide()
+  }
   else{
     $(this).closest('form').attr('action','/checkout')
     $(this).closest('form').attr('id', 'payment-form')
@@ -586,27 +600,6 @@ $('#payment-method-select').on('change', function () {
 })
 
 
-
-// if($('#payment-method-select').val() == ' wallet'){
-//   $('#payment-form-btn').click(function(e){
-//     e.preventDefault();
-//     $.ajax({
-//       url: "/checkout-by-wallet",
-//       type: "POST",
-//       data: $(this).closest('form').serialize() ,
-//       dataType : 'json', // changing data type to json
-//       data: {
-//         quantity: $('input[name="quantity"]').val(),
-//         money: $('input[name="money"]').val(),
-//         shipping: $('input[name="shipping"]').val(),
-//         phone: $('input[name="phone"]').val(),
-//         address: $('input[name="address"]').val(),
-//         email: $('input[name="email"]').val(),
-//         name: $('input[name="name"]').val(),
-//       }
-//     });
-//   })
-// }
 
 if(document.getElementById('payment-form')){
   var stripe = Stripe('pk_test_51LCjUmGXzbc60gITz8yj4uHqkougbdm9OfES09TPBSSecYthkmjdteUAxoDJLOLozcd2LcZxkrQeyIK0x5vjO7Ie00S1fLfs2x');
@@ -822,18 +815,47 @@ function submitCheckoutByWalletForm(){
       email: $('input[name="email"]').val(),
       name: $('input[name="name"]').val(),
     },
-    success: 'Checkout successful'
+
   })
-  .then(data => {
-            if (data.success) {
-              window.location.href = "/login"
-            } else {
-              location.reload();
-              alert('Checkout successful');
-            }
-        }).catch(err => {
-            console.log(err)
-        })
+  .then(()=> {location.reload();})
+  .catch(err => { console.log(err)})
+}
+
+// SUBMIT CHECK OUT BY Momo /cart - /checkout-by-momo
+function submitCheckoutByMomoForm(){
+  $.ajax({
+    url: "/checkout-by-momo",
+    type: "POST",
+    data: {
+      quantity: $('input[name="quantity"]').val(),
+      money: $('input[name="money"]').val(),
+      shipping: $('input[name="shipping"]').val(),
+      phone: $('input[name="phone"]').val(),
+      address: $('input[name="address"]').val(),
+      email: $('input[name="email"]').val(),
+      name: $('input[name="name"]').val(),
+    },
+  })
+  .then(()=> {location.reload();})
+  .catch(err => { console.log(err)})
 }
 
 
+// SUBMIT CHECK OUT BY paypal /cart - /checkout-by-paypal
+function submitCheckoutByPaypalForm(){
+  $.ajax({
+    url: "/checkout-by-paypal",
+    type: "POST",
+    data: {
+      quantity: $('input[name="quantity"]').val(),
+      money: $('input[name="money"]').val(),
+      shipping: $('input[name="shipping"]').val(),
+      phone: $('input[name="phone"]').val(),
+      address: $('input[name="address"]').val(),
+      email: $('input[name="email"]').val(),
+      name: $('input[name="name"]').val(),
+    },
+  })
+  .then(()=> {location.reload();})
+  .catch(err => { console.log(err)})
+}

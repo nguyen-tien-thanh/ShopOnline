@@ -183,6 +183,14 @@ router.get('/social-login-success', function(req, res) {
 })
 // ---------------------------------
 
+// ---------------------------------
+// CHECKOUT BY PAYPAL 
+// ---------------------------------
+
+
+// ---------------------------------
+
+
 
 // [GET] /forgotps
 router.get('/forgotps', siteController.forgotps);
@@ -190,12 +198,16 @@ router.get('/forgotps', siteController.forgotps);
 router.post('/forgotps', siteController.forgotpsRequest);
 
 // [GET] /cart/
-router.get('/cart', siteController.cart)
+router.get('/cart', isLoggined, siteController.cart)
 
 // [POST] /checkout/
-router.post('/checkout', isLoggined, siteController.checkout)
+router.post('/checkout-by-card', isLoggined, siteController.checkout)
 // [POST] /checkoutByWallet
 router.post('/checkout-by-wallet', isLoggined, siteController.checkoutByWallet)
+// [POST] /checkoutByMomo
+router.post('/checkout-by-momo', isLoggined, siteController.checkoutByMomo)
+// [POST] /checkoutByPaypal
+router.post('/checkout-by-paypal', isLoggined, siteController.checkoutByPaypal)
 
 // [POST] /logout/
 router.post('/logout', siteController.logout)

@@ -22,9 +22,6 @@ router.get('/reduce-cart/:id', shoeController.reduceCart)
 // [GET] /shoe/add-to-cart:id shoe
 router.get('/add-to-cart/:id', shoeController.addToCart)
 
-// [GET] /shoe/checkout shoe
-router.get('/checkout', shoeController.checkout)
-
 // [GET] /shoe/newarrival shoe
 router.get('/newarrival', shoeController.newarrival)
 

@@ -68,8 +68,8 @@ module.exports = {
         }
     },
     formatCurrency: function(value) {
-        // if(value == 0) return value;
-        // return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-        return value
+        if(value == 0) return value;
+        return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        // return value
     }
   }

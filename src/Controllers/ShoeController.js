@@ -669,6 +669,69 @@ class ShoeController {
             })
         }
     }
+
+    // [GET] /shoe/checkout-by-card
+    checkoutByCard(req,res,next){
+        if(!req.cookies.token){
+            if(!req.session.cart) {
+                return res.render('cart', {
+                    title: 'Cart',
+                    successMsg: req.flash('successMsg'),
+                    failedMsg: req.flash('failedMsg')
+                })
+            }
+            else{
+                var cart = new Cart(req.session.cart)
+                return res.render('cart',
+                    {
+                        shoe: cart.generateArrays(),
+                        totalPrice: cart.totalPrice,
+                        title: 'Cart',
+                        successMsg: req.flash('successMsg'),
+                        failedMsg: req.flash('failedMsg')
+                    })
+            }
+        }
+        else {
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+            if(req.session.cart){
+                Promise.all([
+                    User.findOne({_id: decodeToken}),
+                    Shoe.find({})
+                        .populate('brand')
+                        .populate('type')
+                ])
+                .then(([
+                    data,
+                    shoe,
+                ]) => {
+                    if (data) {
+                        req.data = data
+                        var cart = new Cart(req.session.cart)
+                        return res.render('cart',
+                            {
+                                user: mongooseToObject(data),
+                                shoe: cart.generateArrays(),
+                                totalPrice: cart.totalPrice,
+                                title: 'Cart',
+                                successMsg: req.flash('successMsg'),
+                                failedMsg: req.flash('failedMsg')
+                            })
+                    }
+                })
+            }
+            else{
+                User.findOne({_id: decodeToken})
+                .then((user) => res.render('cart',{
+                    user: mongooseToObject(user),
+                    title: 'Cart',
+                    successMsg: req.flash('successMsg'),
+                    failedMsg: req.flash('failedMsg')
+                }))
+            }
+        }
+    }
 }
 
 module.exports = new ShoeController;

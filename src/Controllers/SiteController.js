@@ -178,7 +178,9 @@ class SiteController {
         if(!req.cookies.token){
             res.render('login', {
                 title:'Login',
-                layout: 'loginLayout'});
+                layout: 'loginLayout',
+                msgLog: req.flash('failedMsg')
+            });
         }
         else{
             res.redirect('/user/profile')
@@ -339,7 +341,9 @@ class SiteController {
         if(!req.cookies.token){
             if(!req.session.cart) {
                 return res.render('cart', {
-                    title: 'Cart'
+                    title: 'Cart',
+                    successMsg: req.flash('successMsg'),
+                    failedMsg: req.flash('failedMsg')
                 })
             }
             else{
@@ -349,6 +353,8 @@ class SiteController {
                         shoe: cart.generateArrays(),
                         totalPrice: cart.totalPrice,
                         title: 'Cart',
+                        successMsg: req.flash('successMsg'),
+                        failedMsg: req.flash('failedMsg')
                     })
             }
         }
@@ -375,6 +381,8 @@ class SiteController {
                                 shoe: cart.generateArrays(),
                                 totalPrice: cart.totalPrice,
                                 title: 'Cart',
+                                successMsg: req.flash('successMsg'),
+                                failedMsg: req.flash('failedMsg')
                             })
                     }
                 })
@@ -383,7 +391,9 @@ class SiteController {
                 User.findOne({_id: decodeToken})
                 .then((user) => res.render('cart',{
                     user: mongooseToObject(user),
-                    title: 'Cart'
+                    title: 'Cart',
+                    successMsg: req.flash('successMsg'),
+                    failedMsg: req.flash('failedMsg')
                 }))
             }
         }
@@ -392,6 +402,39 @@ class SiteController {
 
     //[POST] /checkout-by-wallet
     checkoutByWallet (req,res,next){
+        if(!req.session.cart){
+            req.flash('failedMsg','Your cart is empty')
+            return res.redirect('/cart');
+        }
+        else{
+            var token = req.cookies.token;
+            var decodeToken = jwt.verify(token, 'secretpasstoken')
+
+            var cartMoney = parseInt(req.body.money)
+
+            User.findOneAndUpdate({_id: decodeToken}, {$inc: {money: -cartMoney}})
+            .then((data)=> {
+                var order = new Order({
+                    user: req.user,
+                    cart: req.session.cart,
+                    email: req.body.email,
+                    address: req.body.address,
+                    phone: req.body.phone,
+                })
+                order.save()
+                req.session.cart = null;
+                req.flash('successMsg','Checkout successfully')
+                return res.render('cart',
+                            {
+                                user: mongooseToObject(data),
+                                title: 'Cart',
+                            })
+            })
+        }
+    }
+
+    //[POST] /checkout-by-wallet
+    checkoutByMomo (req,res,next){
         if(!req.session.cart){
             return res.redirect('/cart');
         }
@@ -422,6 +465,88 @@ class SiteController {
                             })
             })
         }
+    }
+
+    //[POST] /checkout-by-wallet
+    checkoutByPaypal (req,res,next){
+        // if(!req.session.cart){
+        //     return res.redirect('/cart');
+        // }
+        // else{
+        //     var token = req.cookies.token;
+        //     var decodeToken = jwt.verify(token, 'secretpasstoken')
+
+        //     var money= parseInt(req.body.money)
+
+        //     User.findOneAndUpdate({_id: decodeToken}, {$inc: {money: -money}})
+        //     .then((data)=> {
+        //         var order = new Order({
+        //             user: req.user,
+        //             cart: req.session.cart,
+        //             email: req.body.email,
+        //             address: req.body.address,
+        //             phone: req.body.phone,
+        //         })
+        //         order.save()
+        //         req.session.cart = null;
+        //         return res.render('cart',
+        //                     {
+        //                         user: mongooseToObject(data),
+        //                         title: 'Cart',
+        //                         message: 'Checkout successfully'
+        //                     })
+        //     })
+        // }
+        const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
+        const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
+        const paypal = require('paypal-rest-sdk');
+        paypal.configure({
+            'mode': 'sandbox',
+            'client_id': CILENT_ID_PP,
+            'client_secret': CILENT_SECRET_PP
+        })
+
+        // router.post('/checkout-by-paypal', siteController.checkoutByPaypal)
+        var create_payment_json = {
+            "intent": "sale",
+            "payer": {
+                "payment_method": "paypal"
+            },
+            "redirect_urls": {
+                "return_url": "http://localhost:5000/cart",
+                "cancel_url": "http://localhost:5000/error"
+            },
+            "transactions": [{
+                "item_list": {
+                    "items": [{
+                        "name": "item",
+                        "sku": "item",
+                        "price": "1.00",
+                        "currency": "USD",
+                        "quantity": 1
+                    }]
+                },
+                "amount": {
+                    "currency": "USD",
+                    "total": "1.00"
+                },
+                "description": "This is the payment description."
+            }]
+        };
+
+
+        paypal.payment.create(create_payment_json, function (error, payment) {
+            if (error) {
+                throw error;
+            } else {
+                for(let i = 0; i < payment.links.length; i++) {
+                    if(payment.links[i].rel === 'approval_url'){
+                        res.redirect(payment.links[i].href);
+                        // console.log(payment)
+                    }
+                }
+            }
+        });
     }
 
     //[POST] /checkout
