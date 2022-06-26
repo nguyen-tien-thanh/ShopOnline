@@ -201,13 +201,17 @@ router.post('/forgotps', siteController.forgotpsRequest);
 router.get('/cart', isLoggined, siteController.cart)
 
 // [POST] /checkout/
-router.post('/checkout-by-card', isLoggined, siteController.checkout)
+router.post('/checkout-by-card', isLoggined, siteController.checkoutByCard)
 // [POST] /checkoutByWallet
 router.post('/checkout-by-wallet', isLoggined, siteController.checkoutByWallet)
 // [POST] /checkoutByMomo
 router.post('/checkout-by-momo', isLoggined, siteController.checkoutByMomo)
-// [POST] /checkoutByPaypal
+// [POST] /checkout-by-paypal
 router.post('/checkout-by-paypal', isLoggined, siteController.checkoutByPaypal)
+    // [GET] /checkout-by-paypal-success
+    router.get('/checkout-by-paypal-success', siteController.checkoutByPaypalSuccess)
+    // [GET] /checkout-by-paypal-error
+    router.get('/checkout-by-paypal-error', siteController.checkoutByPaypalError)
 
 // [POST] /logout/
 router.post('/logout', siteController.logout)

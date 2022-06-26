@@ -566,36 +566,40 @@ function getTotalStockOfSize(){
     }
 
 // ================ checkout form /cart ====================
-
+$('#shipping-method-select').on('change', function () {
+  if(this.value == '24h'){
+    $('input[name="shipping"]').attr('value', '24h')
+  }
+  else if(this.value == 'asap'){
+    $('input[name="shipping"]').attr('value', 'asap')
+  }
+  else if(this.value == '3days'){
+    $('input[name="shipping"]').attr('value', '3days')
+  }
+  else{
+    $('input[name="shipping"]').removeAttr('value')
+  }
+})
 
 $('#payment-method-select').on('change', function () {
   if(this.value == 'wallet'){
-    $(this).closest('form').attr('action','/checkout-by-wallet')
-    $(this).closest('form').removeAttr('id')
-    $('#payment-form-btn').attr('type', 'button')
-    $('#payment-form-btn').attr('onclick', 'submitCheckoutByWalletForm()')
-    $('#card-information').hide()
+    $('#online-payment-form').attr('action','/checkout-by-wallet')
+    $('#payment-form').hide()
+    $('#online-payment-form').show()
   }
   else if(this.value == 'momo'){
-    $(this).closest('form').attr('action','/checkout-by-momo')
-    $(this).closest('form').removeAttr('id')
-    $('#payment-form-btn').attr('type', 'button')
-    $('#payment-form-btn').attr('onclick', 'submitCheckoutByMomoForm()')
-    $('#card-information').hide()
+    $('#online-payment-form').attr('action','/checkout-by-momo')
+    $('#payment-form').hide()
+    $('#online-payment-form').show()
   }
   else if(this.value == 'paypal'){
-    $(this).closest('form').attr('action','/checkout-by-paypal')
-    $(this).closest('form').removeAttr('id')
-    $('#payment-form-btn').attr('type', 'button')
-    $('#payment-form-btn').attr('onclick', 'submitCheckoutByPaypalForm()')
-    $('#card-information').hide()
+    $('#online-payment-form').attr('action','/checkout-by-paypal')
+    $('#payment-form').hide()
+    $('#online-payment-form').show()
   }
   else{
-    $(this).closest('form').attr('action','/checkout')
-    $(this).closest('form').attr('id', 'payment-form')
-    $('#payment-form-btn').attr('type', 'submit')
-    $('#payment-form-btn').removeAttr('onclick')
-    $('#card-information').show()
+    $('#payment-form').show()
+    $('#online-payment-form').hide()
   }
 })
 
@@ -800,62 +804,3 @@ $('input[id="money"]').keyup(function(event) {
     + ' VND';
   });
 });
-
-// SUBMIT CHECK OUT BY WALLET /cart - /checkout-by-wallet
-function submitCheckoutByWalletForm(){
-  $.ajax({
-    url: "/checkout-by-wallet",
-    type: "POST",
-    data: {
-      quantity: $('input[name="quantity"]').val(),
-      money: $('input[name="money"]').val(),
-      shipping: $('select[name="shipping"]').val(),
-      phone: $('input[name="phone"]').val(),
-      address: $('input[name="address"]').val(),
-      email: $('input[name="email"]').val(),
-      name: $('input[name="name"]').val(),
-    },
-
-  })
-  .then(()=> {location.reload();})
-  .catch(err => { console.log(err)})
-}
-
-// SUBMIT CHECK OUT BY Momo /cart - /checkout-by-momo
-function submitCheckoutByMomoForm(){
-  $.ajax({
-    url: "/checkout-by-momo",
-    type: "POST",
-    data: {
-      quantity: $('input[name="quantity"]').val(),
-      money: $('input[name="money"]').val(),
-      shipping: $('input[name="shipping"]').val(),
-      phone: $('input[name="phone"]').val(),
-      address: $('input[name="address"]').val(),
-      email: $('input[name="email"]').val(),
-      name: $('input[name="name"]').val(),
-    },
-  })
-  .then(()=> {location.reload();})
-  .catch(err => { console.log(err)})
-}
-
-
-// SUBMIT CHECK OUT BY paypal /cart - /checkout-by-paypal
-function submitCheckoutByPaypalForm(){
-  $.ajax({
-    url: "/checkout-by-paypal",
-    type: "POST",
-    data: {
-      quantity: $('input[name="quantity"]').val(),
-      money: $('input[name="money"]').val(),
-      shipping: $('input[name="shipping"]').val(),
-      phone: $('input[name="phone"]').val(),
-      address: $('input[name="address"]').val(),
-      email: $('input[name="email"]').val(),
-      name: $('input[name="name"]').val(),
-    },
-  })
-  .then(()=> {location.reload();})
-  .catch(err => { console.log(err)})
-}

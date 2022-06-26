@@ -4,7 +4,6 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                    <form action="/checkout" method="post" id="payment-form">
                         <div class="card-body p-0">
                             <div class="row g-0">
                             <div class="col-lg-8">
@@ -87,13 +86,12 @@
                                             <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
                                             {{/if}}
                                         </div>
-                                        <input type="hidden" name="money" value="{{session.cart.totalPrice}}">
 
                                         <h5 class="text-uppercase mb-3">Delivery & Payment</h5>
                                         
 
                                         <div class="mb-2 pb-2">
-                                            <select class="form-control" name="shipping" required>
+                                            <select class="form-control" id="shipping-method-select" required>
                                                 <option value="">Choose delivery</option>
                                                 <option value="24h">In 24h - 34.000 VND (HCM City)</option>
                                                 <option value="asap">ASAP - 30.000 VND to 70.000 VND (HCM City)</option>
@@ -111,8 +109,9 @@
                                             </select>
                                         </div>
                                         
+                                    <form action="/checkout-by-card" method="post" id="payment-form" style="display:none">
                                         {{!-- Create token for payment information--}}
-                                        <div class="form-group mb-4" id="card-information" style="display: none">
+                                        <div class="form-group mb-4" id="card-information">
                                             <div id="card-element" class="form-control">
                                             </div>
                                             <div id="card-errors" role="alert"></div>
@@ -145,17 +144,8 @@
                                             </div>
                                         </div>
 
-                                        {{!-- <div class="mb-2">
-                                            <div class="form-outline">
-                                            <input type="text" placeholder="Enter promo code" name="promocode" class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-5">
-                                            <div class="form-outline">
-                                            <textarea type="text" placeholder="Note" name="note" class="form-control" /></textarea>
-                                            </div>
-                                        </div> --}}
+                                        <input type="hidden" name="money" value="{{session.cart.totalPrice}}">
+                                        <input type="hidden" name="shipping" value="">
 
                                         <hr class="my-4">
 
@@ -180,12 +170,69 @@
                                         <button type="button" id="payment-form-btn" class="btn btn-dark btn-block btn-lg form-control"
                                             data-mdb-ripple-color="dark" disabled>No item to check out</button>
                                         {{/if}}
+                                    </form>
 
+
+                                    <form action="/checkout-by-wallet" method="post" id="online-payment-form">
+                                        
+                                        <h5 class="text-uppercase mb-3">Information</h5>
+
+                                        <div class="mb-2">
+                                            <div class="form-outline">
+                                            <input type="text" placeholder="Enter phone number" class="form-control" name="phone" value="{{user.phone}}" required
+                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <div class="form-outline">
+                                            <input type="text" placeholder="Enter address" name="address" class="form-control" value="{{user.address}}" required/>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <div class="form-outline">
+                                            <input type="email" placeholder="Enter email" name="email" class="form-control" value="{{user.email}}" required/>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <div class="form-outline">
+                                            <input type="text" placeholder="Enter name" name="name" class="form-control" value="{{user.name}}" required/>
+                                            </div>
+                                        </div>
+                                        
+                                        <input type="hidden" name="money" value="{{session.cart.totalPrice}}">
+                                        <input type="hidden" name="shipping" value="">
+
+                                        <hr class="my-4">
+
+                                        {{#if session.cart}}
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <h5 class="text-uppercase">Total price</h5>
+                                                <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
+                                            </div>
+                                        {{/if}}
+
+                                        {{#if successMsg}}
+                                            <h6 class="text-success"><i class="fa fa-check"></i>  {{successMsg}}</h6>
+                                        {{/if}}
+                                        {{#if failedMsg}}
+                                            <h6 class="text-danger"><i class="fa fa-times"></i>  {{failedMsg}}</h6>
+                                        {{/if}}
+                                        
+                                        {{#if session.cart}}
+                                        <button type="submit" id="payment-form-btn" class="btn btn-outline-dark btn-block btn-lg form-control"
+                                            data-mdb-ripple-color="dark">Check Out</button>
+                                        {{else}}
+                                        <button type="button" id="payment-form-btn" class="btn btn-dark btn-block btn-lg form-control"
+                                            data-mdb-ripple-color="dark" disabled>No item to check out</button>
+                                        {{/if}}
+                                    </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
             </div>

@@ -18,6 +18,8 @@ const jwt = require('jsonwebtoken');
 const stripe = require('stripe');
 
 
+const paypal = require('paypal-rest-sdk');
+
 class SiteController {
 
     // [GET] /index -- Home page
@@ -411,25 +413,31 @@ class SiteController {
             var decodeToken = jwt.verify(token, 'secretpasstoken')
 
             var cartMoney = parseInt(req.body.money)
-
-            User.findOneAndUpdate({_id: decodeToken}, {$inc: {money: -cartMoney}})
-            .then((data)=> {
-                var order = new Order({
-                    user: req.user,
-                    cart: req.session.cart,
-                    email: req.body.email,
-                    address: req.body.address,
-                    phone: req.body.phone,
-                })
-                order.save()
-                req.session.cart = null;
-                req.flash('successMsg','Checkout successfully')
-                return res.render('cart',
-                            {
-                                user: mongooseToObject(data),
-                                title: 'Cart',
+            
+            User.findOne({_id: decodeToken})
+            .then((user) =>{
+                if(user.money < cartMoney){
+                    req.flash('failedMsg','You not have enough money to pay')
+                    return res.redirect('/cart')
+                }
+                else{
+                    User.updateOne({_id: decodeToken}, {$inc: {money: -cartMoney}})
+                    .then(()=> {
+                            var order = new Order({
+                                cart: req.session.cart,
+                                email: req.body.email,
+                                address: req.body.address,
+                                phone: req.body.phone,
+                                shipping: req.body.shipping
                             })
+                            order.save()
+                            req.session.cart = null;
+                            req.flash('successMsg','Checkout successfully')
+                            return res.redirect('/cart')
+                        })
+                }
             })
+            .catch(err => console.log(err))
         }
     }
 
@@ -470,71 +478,51 @@ class SiteController {
 
     //[POST] /checkout-by-wallet
     checkoutByPaypal (req,res,next){
-        // if(!req.session.cart){
-        //     return res.redirect('/cart');
-        // }
-        // else{
-        //     var token = req.cookies.token;
-        //     var decodeToken = jwt.verify(token, 'secretpasstoken')
-
-        //     var money= parseInt(req.body.money)
-
-        //     User.findOneAndUpdate({_id: decodeToken}, {$inc: {money: -money}})
-        //     .then((data)=> {
-        //         var order = new Order({
-        //             user: req.user,
-        //             cart: req.session.cart,
-        //             email: req.body.email,
-        //             address: req.body.address,
-        //             phone: req.body.phone,
-        //         })
-        //         order.save()
-        //         req.session.cart = null;
-        //         return res.render('cart',
-        //                     {
-        //                         user: mongooseToObject(data),
-        //                         title: 'Cart',
-        //                         message: 'Checkout successfully'
-        //                     })
-        //     })
-        // }
         const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
         const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
-        const paypal = require('paypal-rest-sdk');
         paypal.configure({
             'mode': 'sandbox',
             'client_id': CILENT_ID_PP,
             'client_secret': CILENT_SECRET_PP
         })
 
-        // router.post('/checkout-by-paypal', siteController.checkoutByPaypal)
+        var order = new Order({
+            cart: req.session.cart,
+            email: req.body.email,
+            address: req.body.address,
+            phone: req.body.phone,
+            shipping: req.body.shipping
+        })
+
+        var orderParams = encodeURIComponent(JSON.stringify(order))
+        console.log(req.session.cart.items)
+
         var create_payment_json = {
             "intent": "sale",
             "payer": {
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "http://localhost:5000/cart",
-                "cancel_url": "http://localhost:5000/error"
+                "return_url": "http://localhost:5000/checkout-by-paypal-success?order="+ orderParams + "",
+                "cancel_url": "http://localhost:5000/checkout-by-paypal-error"
             },
             "transactions": [{
                 "item_list": {
                     "items": [{
                         "name": "item",
                         "sku": "item",
-                        "price": "1.00",
+                        "price": req.body.money,
                         "currency": "USD",
                         "quantity": 1
                     }]
                 },
                 "amount": {
                     "currency": "USD",
-                    "total": "1.00"
+                    "total": req.body.money
                 },
-                "description": "This is the payment description."
+                "description": "Payment for shoes (DusTin)."
             }]
         };
-
 
         paypal.payment.create(create_payment_json, function (error, payment) {
             if (error) {
@@ -543,15 +531,60 @@ class SiteController {
                 for(let i = 0; i < payment.links.length; i++) {
                     if(payment.links[i].rel === 'approval_url'){
                         res.redirect(payment.links[i].href);
-                        // console.log(payment)
                     }
                 }
             }
         });
     }
 
-    //[POST] /checkout
-    checkout (req,res,next){
+        //GET /check-out-by-paypal-success
+        checkoutByPaypalSuccess(req,res){
+            const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
+            const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
+            paypal.configure({
+                'mode': 'sandbox',
+                'client_id': CILENT_ID_PP,
+                'client_secret': CILENT_SECRET_PP
+            })
+
+            const payerId = req.query.PayerID;
+            const paymentId = req.query.paymentId;
+
+            const execute_payment_json = {
+                "payer_id": payerId,
+                "transactions": [{
+                    "amount":{
+                        "currency": "USD",
+                        "total": "1.00"
+                    }
+                }]
+            }
+            paypal.payment.execute(paymentId, execute_payment_json, function(err, payment){
+                if(err){
+                    console.log('Paypal err: '+ err);
+                }
+                else{
+                    var queryOrder = req.query.order
+                    queryOrder = JSON.parse(queryOrder)
+                    var order = new Order(queryOrder)
+                    order.save()
+
+                    req.session.cart = null;
+                    req.flash('successMsg','Checkout successfully')
+                    return res.redirect('/cart')
+                }
+            })
+        }
+
+        //GET /check-out-by-paypal-error
+        checkoutByPaypalError(req,res){
+            req.flash('failedMsg','You not have enough money to pay')
+            return res.redirect('/cart')
+        }
+
+
+    //[POST] /checkout-by-card
+    checkoutByCard (req,res,next){
         if(!req.session.cart){
             return res.redirect('/cart');
         }
@@ -570,12 +603,12 @@ class SiteController {
                 stripe.charges.create({
                 amount: cart.totalPrice,
                 currency: 'vnd',
-                // source: req.body.stripeToken,
                 description: 'Payment for shoes',
                 customer: customer.id,
                 }, function(err, charge){
                     if(err){
                         console.log(err);
+                        req.flash('failedMsg','Checkout Failed');
                         res.redirect('back');
                     }
                     var order = new Order({
@@ -588,10 +621,12 @@ class SiteController {
                     })
                     order.save()
                     req.session.cart = null;
+                    req.flash('successMsg','Checkout successfully')
                     return res.redirect('/cart')
                 })
             })
             .catch((err) => {
+                req.flash('failedMsg','Can not checkout')
                 res.render('partials/error',{
                     layout: null,
                     msg: 'Error: ' + err.message
