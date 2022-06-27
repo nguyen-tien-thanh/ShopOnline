@@ -14,7 +14,7 @@ const Shoe = new Schema({
     price: {type: Number, minLength:1, default: 0},
     // size: {type: Number, minLength:1, maxlength:2, default: 2},
     size: [{
-        number: {type: Number, minLength:1, maxLength:2 },
+        number: {type: Number, minLength:1 },
         stock: {type: Number}
     }],
     image: {type : String, minLength : 1},

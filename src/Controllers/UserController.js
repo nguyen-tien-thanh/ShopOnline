@@ -5,7 +5,7 @@ const User = require('../models/User')
 const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
-const Product = require('../models/Product')
+const History = require('../models/History')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 const bcrypt = require('bcrypt');
@@ -195,12 +195,27 @@ class UserController {
 
     // [GET] /history
     history(req, res, next){
-        const stripe = require('stripe')('sk_test_51LCjUmGXzbc60gITm4NDsulfqX13P2Xy5TjTZzHyhVBjamQt1DMD6pIRvM7elIMFUFI0DUDuh18P5MyN0O18yyZ100setk5tNV');
-
-        const transactions = stripe.issuing.transactions.list({
-            limit: 3,
-          });
-        console.log(transactions)
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([
+            User.findOne({ _id: decodeToken}), 
+            History.find({ user: decodeToken}).sort({createdAt: -1})
+        ])
+        .then(([data, history]) => {
+            if (data) {
+                req.data = data
+                return res.render('user/history',
+                    {
+                        user: mongooseToObject(data),
+                        history: multipleMongooseToObject(history),
+                        title: 'History',
+                        layout: 'accountLayout',
+                        titleSection: 'My Account',
+                        section: 'history',
+                        msg: req.flash('successMsg')
+                    })
+            }
+        }) 
     }
 }
 

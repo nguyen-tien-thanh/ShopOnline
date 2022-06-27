@@ -3,9 +3,9 @@ const User = require('../models/User')
 const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
-const Product = require('../models/Product')
 const Cart = require('../models/Cart')
 const Order = require('../models/Order')
+const History = require('../models/History')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -422,7 +422,7 @@ class SiteController {
                 }
                 else{
                     User.updateOne({_id: decodeToken}, {$inc: {money: -cartMoney}})
-                    .then(()=> {
+                    .then((user)=> {
                             var order = new Order({
                                 cart: req.session.cart,
                                 email: req.body.email,
@@ -431,6 +431,16 @@ class SiteController {
                                 shipping: req.body.shipping
                             })
                             order.save()
+
+                            var history = new History({
+                                user: decodeToken,
+                                amount: cartMoney,
+                                desc: 'By DusTin Wallet',
+                                type: 'Pay',
+                                status: 'Success'
+                            })
+                            history.save()
+                            
                             req.session.cart = null;
                             req.flash('successMsg','Checkout successfully')
                             return res.redirect('/cart')
@@ -529,6 +539,17 @@ class SiteController {
                 var order = new Order(queryOrder)
                 order.save()
     
+                var token = req.cookies.token;
+                var decodeToken = jwt.verify(token, 'secretpasstoken')
+                var history = new History({
+                    user: decodeToken,
+                    amount: req.session.cart.totalPrice,
+                    desc: 'By Momo',
+                    type: 'Pay',
+                    status: 'Success'
+                })
+                history.save()
+
                 req.session.cart = null;
                 req.flash('successMsg','Checkout successfully')
                 res.redirect('/cart')
@@ -574,14 +595,14 @@ class SiteController {
                     "items": [{
                         "name": "item",
                         "sku": "item",
-                        "price": req.body.money,
+                        "price": '2.0',
                         "currency": "USD",
                         "quantity": 1
                     }]
                 },
                 "amount": {
                     "currency": "USD",
-                    "total": req.body.money
+                    "total": '2.0'
                 },
                 "description": "Payment for shoes (DusTin)."
             }]
@@ -631,6 +652,18 @@ class SiteController {
                     queryOrder = JSON.parse(queryOrder)
                     var order = new Order(queryOrder)
                     order.save()
+
+    
+                    var token = req.cookies.token;
+                    var decodeToken = jwt.verify(token, 'secretpasstoken')
+                    var history = new History({
+                        user: decodeToken,
+                        amount: req.session.cart.totalPrice,
+                        desc: 'By Paypal',
+                        type: 'Pay',
+                        status: 'Success'
+                    })
+                    history.save()
 
                     req.session.cart = null;
                     req.flash('successMsg','Checkout successfully')
@@ -684,6 +717,19 @@ class SiteController {
                     })
                     order.save()
                     req.session.cart = null;
+
+                    var token = req.cookies.token;
+                    var decodeToken = jwt.verify(token, 'secretpasstoken')
+                    console.log(token + ' ' + decodeToken)
+                    var history = new History({
+                        user: decodeToken,
+                        amount: req.body.money,
+                        desc: 'By Credit Card',
+                        type: 'Pay',
+                        status: 'Success'
+                    })
+                    history.save()
+
                     req.flash('successMsg','Checkout successfully')
                     return res.redirect('/cart')
                 })

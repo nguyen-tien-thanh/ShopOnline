@@ -1,5 +1,4 @@
 
-const productRouter = require('./product');
 const siteRouter = require('./site');
 const adminRouter = require('./admin');
 const brandRouter = require('./brand');
@@ -22,8 +21,6 @@ function route(app){
     app.use('/brand', upload.single('image'), brandRouter);
 
     app.use('/admin', adminRouter);
-
-    app.use('/product', productRouter);
 
     app.use('/', siteRouter);
 }
