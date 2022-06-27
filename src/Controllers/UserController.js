@@ -164,6 +164,14 @@ class UserController {
         .then(data => {
             if (data) {
                 req.data = data
+                var history = new History({
+                    user: decodeToken,
+                    amount: req.body.money,
+                    desc: 'By Credit Card',
+                    type: 'Transfer',
+                    status: 'Success'
+                })
+                history.save()
                 req.flash('successMsg', 'Transfer Successfully')
                 return res.redirect('back')
             }
