@@ -1,11 +1,9 @@
 # Dustin
 
 - Custom shoe
-- Thanh toan momo
 - History
 - 10000 req
 - Refund
-- Fix Payment by Wallet
 - 
 
 Class Diagram
