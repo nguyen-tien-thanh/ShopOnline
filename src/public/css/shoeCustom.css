@@ -19,6 +19,36 @@
   display: flex;
   justify-content: space-between; }
 
+.custom-color-board {
+  display: flex;
+  justify-content: space-between; }
+
+.custom-color-board button {
+  border: none;
+  padding: 15px 32px;
+  cursor: pointer; }
+
+.color-board-red button {
+  background-color: red; }
+
+.color-board-orange button {
+  background-color: orange; }
+
+.color-board-yellow button {
+  background-color: yellow; }
+
+.color-board-green button {
+  background-color: green; }
+
+.color-board-blue button {
+  background-color: blue; }
+
+.color-board-indigo button {
+  background-color: indigo; }
+
+.color-board-violet button {
+  background-color: violet; }
+
 .Diversion-shoe img {
   width: 200px;
   height: 200px; }
