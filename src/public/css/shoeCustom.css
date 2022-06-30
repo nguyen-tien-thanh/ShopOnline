@@ -1,52 +1,140 @@
 .container-custom {
-  margin-top: 30px; }
+  margin-top: 30px;
+  background-color: white; }
+
+.wrap-shoe-custom {
+  max-width: 1900px;
+  min-width: 320px; }
+
+.main-img-custom {
+  display: flex;
+  justify-content: center; }
 
 .img-custom-1 {
-  margin-left: 18%; }
+  position: relative;
+  margin-left: 0; }
 
-.img-custom-2 img {
-  width: 500px;
-  margin-left: 20%; }
+.af1-custom-images {
+  width: 650px;
+  height: auto; }
 
-.img-custom-3 img {
-  width: 500px;
-  margin-left: 20%; }
+.main-swooth-custom {
+  position: absolute;
+  bottom: 44%;
+  left: 17%;
+  z-index: 1; }
 
-.open-img-custom-2, .open-img-custom-3 {
+.main-midsole-custom {
+  position: absolute;
+  bottom: 210px;
+  left: 85px; }
+
+.close-main-midsole-custom {
   display: none; }
 
-.Diversion-shoe {
-  display: flex;
-  justify-content: space-between; }
+.main-midsole-custom img {
+  width: 480px;
+  filter: brightness(0%) saturate(100%); }
+
+.main-middle-custom {
+  position: absolute;
+  bottom: 258px;
+  left: 200px; }
+
+.close-main-middle-custom {
+  display: none; }
+
+.main-middle-custom img {
+  width: 167px;
+  filter: brightness(0%) saturate(100%); }
+
+.middle-custom {
+  text-align: center; }
+
+.close-main-swooth-custom {
+  display: none; }
+
+.main-swooth-custom img {
+  width: 219px;
+  filter: brightness(0%) saturate(100%); }
+
+.swooth-custom {
+  text-align: center; }
 
 .custom-color-board {
   display: flex;
-  justify-content: space-between; }
+  margin-bottom: 10px;
+  justify-content: center; }
+
+.midsole-custom {
+  text-align: center; }
 
 .custom-color-board button {
   border: none;
   padding: 15px 32px;
   cursor: pointer; }
 
-.color-board-red button {
+.color-swooth-board-red button {
   background-color: red; }
 
-.color-board-orange button {
+.color-swooth-board-orange button {
   background-color: orange; }
 
-.color-board-yellow button {
+.color-swooth-board-yellow button {
   background-color: yellow; }
 
-.color-board-green button {
+.color-swooth-board-green button {
   background-color: green; }
 
-.color-board-blue button {
+.color-swooth-board-blue button {
   background-color: blue; }
 
-.color-board-indigo button {
+.color-swooth-board-indigo button {
   background-color: indigo; }
 
-.color-board-violet button {
+.color-swooth-board-violet button {
+  background-color: violet; }
+
+.color-midsole-board-red button {
+  background-color: red; }
+
+.color-midsole-board-orange button {
+  background-color: orange; }
+
+.color-midsole-board-yellow button {
+  background-color: yellow; }
+
+.color-midsole-board-green button {
+  background-color: green; }
+
+.color-midsole-board-blue button {
+  background-color: blue; }
+
+.color-midsole-board-indigo button {
+  background-color: indigo; }
+
+.color-midsole-board-violet button {
+  background-color: violet; }
+
+.color-middle-board-red button {
+  background-color: red; }
+
+.color-middle-board-orange button {
+  background-color: orange; }
+
+.color-middle-board-yellow button {
+  background-color: yellow; }
+
+.color-middle-board-green button {
+  background-color: green; }
+
+.color-middle-board-blue button {
+  background-color: blue; }
+
+.color-middle-board-indigo button {
+  background-color: indigo; }
+
+.color-middle-board-violet button {
   background-color: violet; }
 
 .Diversion-shoe img {
@@ -55,44 +143,12 @@
 
 @media only screen and (max-width: 600px) {
   .img-custom-1 img {
-    width: 300px;
-    margin-left: 10%; }
-  .img-custom-2 img {
-    width: 300px;
-    margin-left: 25%; }
-  .img-custom-3 img {
-    max-width: 300px;
-    margin-left: 25%; }
-  .Diversion-shoe img {
-    width: 150px;
-    height: 150px; } }
+    width: 300px; } }
 
 @media only screen and (min-width: 350px) and (max-width: 599px) {
   .img-custom-1 img {
-    width: 200px;
-    margin-left: 10%; }
-  .img-custom-2 img {
-    width: 200px;
-    margin-left: 25%; }
-  .img-custom-3 img {
-    max-width: 200px;
-    margin-left: 25%; }
-  .Diversion-shoe img {
-    width: 100px;
-    height: 100px; } }
+    width: 300px; } }
 
 @media only screen and (min-width: 320px) and (max-width: 350px) {
   .img-custom-1 img {
-    width: 200px;
-    margin-left: 10%; }
-  .img-custom-2 img {
-    width: 200px;
-    margin-left: 25%; }
-  .img-custom-3 img {
-    max-width: 200px;
-    margin-left: 25%; }
-  .Diversion-shoe img {
-    width: 105px;
-    height: 100px; }
-  .Diversion-shoe {
-    justify-content: start; } }
+    width: 300px; } }
