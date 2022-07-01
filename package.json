@@ -46,9 +46,7 @@
     "node-sass": "^7.0.1",
     "nodemailer": "^6.7.5",
     "nodesass": "^0.0.2-security",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
+    "path": "^0.12.7",
     "connect-mongo": "^3.2.0",
     "dotenv": "^16.0.1",
     "heroku": "^7.60.2",
@@ -61,5 +59,7 @@
     "paypal-rest-sdk": "^1.8.1",
     "req-flash": "^0.0.3",
     "stripe": "^9.9.0"
+  },
+  "devDependencies": {
   }
 }
