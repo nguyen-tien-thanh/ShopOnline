@@ -108,14 +108,16 @@ Credit or debit card
             <form action="/user/change-avatar/{{user._id}}" method="post" enctype="multipart/form-data">
                     <img src="{{#if user.password}}/uploads/{{/if}}{{user.avatar}}" 
                     class="card-img-top mb-2" alt="img-user" id="preview-image">
-                    <span id="change-avatar-btn" class="btn btn-outline-dark mb-2">SELECT IMAGE</span>
-                    <button type="submit" class="btn btn-dark mb-2"
-                        data-mdb-ripple-color="dark">SAVE AVATAR</button>
-                    <input id="file-avatar" type="file" name="image" value=""
-                        accept="image/*" style="display:none" 
-                        onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
-                    <h6>File size: maximum 1 MB</h6>
-                    <h6>File accepted: JPG, PNG</h6>
+                    {{#if user.password}}
+                        <span id="change-avatar-btn" class="btn btn-outline-dark mb-2">SELECT IMAGE</span>
+                        <button type="submit" class="btn btn-dark mb-2"
+                            data-mdb-ripple-color="dark">SAVE AVATAR</button>
+                        <input id="file-avatar" type="file" name="image" value=""
+                            accept="image/*" style="display:none" 
+                            onchange="document.getElementById('preview-image').src = window.URL.createObjectURL(this.files[0])">
+                        <h6>File size: maximum 1 MB</h6>
+                        <h6>File accepted: JPG, PNG</h6>
+                    {{/if}}
                 </div>
             </form>
         </div>

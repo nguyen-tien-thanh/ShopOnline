@@ -818,7 +818,7 @@ class SiteController {
                             req.flash('failMessage', 'Can not send email. Please try again')
                             console.log(error);
                         } else {
-                            req.flash('successMessage', 'Mail sent successfully')
+                            req.flash('successMessage', 'New password has sent to' + req.body.email)
                             console.log('Email sent: ' + info.response);
                             res.redirect('back')
                         }
