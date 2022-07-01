@@ -18,7 +18,12 @@ router.get('/changeps', isLoggined, userController.changeps);
 router.post('/updateps', isLoggined, userController.updateps);
 
 router.use('/transfer', isLoggined, userController.transfer);
-router.post('/transferToAccount', isLoggined, userController.transferToAccount);
+router.post('/transfer-by-card', isLoggined, userController.transferByCard);
+router.post('/transfer-by-momo', isLoggined, userController.transferByMomo);
+    router.get('/transfer-by-momo-success', userController.transferByMomoSuccess);
+router.post('/transfer-by-paypal', isLoggined, userController.transferByPaypal);
+    router.get('/transfer-by-paypal-success', userController.transferByPaypalSuccess);
+    router.get('/transfer-by-paypal-error', userController.transferByPaypalError);
 
 router.put('/:id', isLoggined, userController.update);
 
