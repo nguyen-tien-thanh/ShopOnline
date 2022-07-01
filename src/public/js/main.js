@@ -824,3 +824,8 @@ $('input[id="money"]').keyup(function(event) {
     + ' VND';
   });
 });
+
+// ======== edit image profile /user/profile =================
+$('#change-avatar-btn').click(function(){
+  $('#file-avatar').trigger('click');
+})

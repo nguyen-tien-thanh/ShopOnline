@@ -25,7 +25,8 @@ router.post('/transfer-by-paypal', isLoggined, userController.transferByPaypal);
     router.get('/transfer-by-paypal-success', userController.transferByPaypalSuccess);
     router.get('/transfer-by-paypal-error', userController.transferByPaypalError);
 
-router.put('/:id', isLoggined, userController.update);
+router.post('/update/:id', isLoggined, userController.update);
+router.post('/change-avatar/:id', isLoggined, userController.changeAvatar);
 
 router.use('/profile', isLoggined, userController.profile);
 

@@ -38,9 +38,19 @@ class UserController {
 
     // [PUT] /user/:id 
     update(req, res, next) {
-        User.updateOne({_id: req.params.id}, req.body)
+        User.findOneAndUpdate({_id: req.params.id}, {$set: req.body})
             .then(() => {
-                req.flash('successMsg', 'Your profile has been updated'),
+                req.flash('successMsg', 'Your profile information has been updated'),
+                res.redirect('/user/profile')
+            })
+            .catch(next);
+    }
+
+    // [POST] /user/change-avatar
+    changeAvatar(req, res, next) {
+        User.findOneAndUpdate({_id: req.params.id}, {$set: {avatar: req.file.filename}})
+            .then(() => {
+                req.flash('successMsg', 'Your avatar has been updated'),
                 res.redirect('/user/profile')
             })
             .catch(next);
