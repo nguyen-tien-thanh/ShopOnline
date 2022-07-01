@@ -1,7 +1,7 @@
 {
-  "name": "bardpod",
+  "name": "dustin",
   "version": "1.0.0",
-  "description": "pod, bard pod, bard, bardpod, rodeo, nasty, balmy",
+  "description": "dustin, shoe, nike, adidas, jordan",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,15 +13,13 @@
     "url": "git+https://github.com/0703086663/bardpod.git"
   },
   "keywords": [
-    "bard",
-    "pod",
-    "bard",
-    "pod",
-    "rodeo",
-    "balmy",
-    "nasty"
+    "dustin",
+    "nike",
+    "adidas",
+    "jordan",
+    "shoe"
   ],
-  "author": "Bard Pod",
+  "author": "Dong, Thanh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/0703086663/bardpod/issues"
