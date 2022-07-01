@@ -7,7 +7,6 @@
         <div class="img-custom-1 open-img-custom-1">
                 <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
              <div class="main-swooth-custom close-main-swooth-custom">
-                <img src="/images/smooth.png" alt="">
              </div>
              <div class="main-midsole-custom close-main-midsole-custom">
                 <img src="/images/midsole.png" alt="">
@@ -17,170 +16,54 @@
              </div>
         </div>
       </div>
-            <div class="swooth-custom">
-                <h1>Swooth</h1> 
-                <p>Click on the icon below to see your custom location <button class="btn-for-swooth-custom">Custom</button></p>
-            </div>
+      <div class="diversion-shoe">
+        <div class="swooth"><img src="/images/smooth.png" alt=""></div>
+        <div class="midsole"><img src="/images/midsole.png" alt=""></div>
+        <div class="middle"><img src="/images/middle.png" alt=""></div>
+        <div class="head"><img src="/images/head.png" alt=""></div>
+        <div class="back"><img src="/images/back.png" alt=""></div>
+        <div class="backward"><img src="/images/backward.png" alt=""></div>
+      </div>
             <div class="custom-color-board">
-                <div class="color-swooth-board-red"><button></button></div>
-                <div class="color-swooth-board-orange"><button></button></div>
-                <div class="color-swooth-board-yellow"><button></button></div>
-                <div class="color-swooth-board-green"><button></button></div>
-                <div class="color-swooth-board-blue"><button></button></div>
-                <div class="color-swooth-board-indigo"><button></button></div>
-                <div class="color-swooth-board-violet"><button></button></div>
+                <div id="red" class="color-list"></div>
+                <div id="orange" class="color-list"></div>
+                <div id="yellow" class="color-list"></div>
+                <div id="green" class="color-list"></div>
+                <div id="blue" class="color-list"></div>
+                <div id="indigo" class="color-list"></div>
+                <div id="violet" class="color-list"></div>
             </div>
-
-            <div class="midsole-custom">
-                <h1>Midsole</h1> 
-                <p>Click on the icon below to see your custom location <button class="btn-for-midsole-custom">Custom</button></p>
-            </div>
-            <div class="custom-color-board">
-                <div class="color-midsole-board-red"><button></button></div>
-                <div class="color-midsole-board-orange"><button></button></div>
-                <div class="color-midsole-board-yellow"><button></button></div>
-                <div class="color-midsole-board-green"><button></button></div>
-                <div class="color-midsole-board-blue"><button></button></div>
-                <div class="color-midsole-board-indigo"><button></button></div>
-                <div class="color-midsole-board-violet"><button></button></div>
-            </div>
-
-             <div class="middle-custom">
-                <h1>Middle</h1> 
-                <p>Click on the icon below to see your custom location <button class="btn-for-middle-custom">Custom</button></p>
-            </div>
-            <div class="custom-color-board">
-                <div class="color-middle-board-red"><button></button></div>
-                <div class="color-middle-board-orange"><button></button></div>
-                <div class="color-middle-board-yellow"><button></button></div>
-                <div class="color-middle-board-green"><button></button></div>
-                <div class="color-middle-board-blue"><button></button></div>
-                <div class="color-middle-board-indigo"><button></button></div>
-                <div class="color-middle-board-violet"><button></button></div>
-            </div>
-   
     </div>
     </section>
    </div>
 </div>
 
 <script>
-    var mainSwoothCustom= document.querySelector('.main-swooth-custom')
-    var btnForSwoothCustom= document.querySelector('.btn-for-swooth-custom')
-    var colorSwoothBoardRed= document.querySelector('.color-swooth-board-red')
-    var colorSwoothBoardOrange= document.querySelector('.color-swooth-board-orange')
-    var colorSwoothBoardYellow= document.querySelector('.color-swooth-board-yellow')
-    var colorSwoothBoardGreen= document.querySelector('.color-swooth-board-green')
-    var colorSwoothBoardBlue= document.querySelector('.color-swooth-board-blue')
-    var colorSwoothBoardIndigo= document.querySelector('.color-swooth-board-indigo')
-    var colorSwoothBoardViolet= document.querySelector('.color-swooth-board-violet')
-    
-    var mainMidsoleCustom= document.querySelector('.main-midsole-custom')
-    var btnForMidsoleCustom= document.querySelector('.btn-for-midsole-custom')
-    var colorMidsoleBoardRed= document.querySelector('.color-midsole-board-red')
-    var colorMidsoleBoardOrange= document.querySelector('.color-midsole-board-orange')
-    var colorMidsoleBoardYellow= document.querySelector('.color-midsole-board-yellow')
-    var colorMidsoleBoardGreen= document.querySelector('.color-midsole-board-green')
-    var colorMidsoleBoardBlue= document.querySelector('.color-midsole-board-blue')
-    var colorMidsoleBoardIndigo= document.querySelector('.color-midsole-board-indigo')
-    var colorMidsoleBoardViolet= document.querySelector('.color-midsole-board-violet')
+    var swooth= document.querySelector('.swooth')
+    const colorList= document.querySelectorAll('.color-list')
+    var color='color-red'
 
-    var mainMiddleCustom= document.querySelector('.main-middle-custom')
-    var btnForMiddleCustom= document.querySelector('.btn-for-middle-custom')
-    var colorMiddleBoardRed= document.querySelector('.color-middle-board-red')
-    var colorMiddleBoardOrange= document.querySelector('.color-middle-board-orange')
-    var colorMiddleBoardYellow= document.querySelector('.color-middle-board-yellow')
-    var colorMiddleBoardGreen= document.querySelector('.color-middle-board-green')
-    var colorMiddleBoardBlue= document.querySelector('.color-middle-board-blue')
-    var colorMiddleBoardIndigo= document.querySelector('.color-middle-board-indigo')
-    var colorMiddleBoardViolet= document.querySelector('.color-middle-board-violet')
-      function ShowMiddle(){
-        mainMiddleCustom.classList.remove('close-main-middle-custom')
-    }
-    btnForMiddleCustom.addEventListener('click', ShowMiddle)
-
-
-    colorMiddleBoardRed.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(10%) sepia(76%) saturate(7437%) hue-rotate(359deg) brightness(119%) contrast(112%)')
-    })
-    colorMiddleBoardOrange.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(55%) sepia(93%) saturate(559%) hue-rotate(359deg) brightness(102%) contrast(107%)')
-    })
-    colorMiddleBoardYellow.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(93%) sepia(38%) saturate(4903%) hue-rotate(0deg) brightness(107%) contrast(101%)')
-    })
-    colorMiddleBoardGreen.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(22%) sepia(73%) saturate(7500%) hue-rotate(130deg) brightness(95%) contrast(101%)')
-    })
-    colorMiddleBoardBlue.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(8%) sepia(99%) saturate(7441%) hue-rotate(249deg) brightness(103%) contrast(144%)')
-    })
-    colorMiddleBoardIndigo.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(19%) sepia(43%) saturate(5323%) hue-rotate(267deg) brightness(61%) contrast(126%)')
-    })
-    colorMiddleBoardViolet.addEventListener('click', function(){
-        mainMiddleCustom.setAttribute('style', 'filter: invert(73%) sepia(44%) saturate(1345%) hue-rotate(241deg) brightness(97%) contrast(92%)')
+    colorList.forEach(item =>{
+        item.addEventListener('click', function(){
+            const idColor=this.id;
+            console.log(idColor)
+            document.querySelector('.main-swooth-custom').style.color=idColor
+            $('.main-swooth-custom').attr('color', 'red')
+        })
     })
 
-
-    function ShowSwooth(){
+    {{!-- swooth.onclick= function(){
         mainSwoothCustom.classList.remove('close-main-swooth-custom')
+        
+        colorBoardRed.onclick= function(){
+            mainSwoothCustom.classList.add(color)
+        }
     }
-    btnForSwoothCustom.addEventListener('click', ShowSwooth)
-
-
-    colorSwoothBoardRed.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(10%) sepia(76%) saturate(7437%) hue-rotate(359deg) brightness(119%) contrast(112%)')
-    })
-    colorSwoothBoardOrange.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(55%) sepia(93%) saturate(559%) hue-rotate(359deg) brightness(102%) contrast(107%)')
-    })
-    colorSwoothBoardYellow.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(93%) sepia(38%) saturate(4903%) hue-rotate(0deg) brightness(107%) contrast(101%)')
-    })
-    colorSwoothBoardGreen.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(22%) sepia(73%) saturate(7500%) hue-rotate(130deg) brightness(95%) contrast(101%)')
-    })
-    colorSwoothBoardBlue.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(8%) sepia(99%) saturate(7441%) hue-rotate(249deg) brightness(103%) contrast(144%)')
-    })
-    colorSwoothBoardIndigo.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(19%) sepia(43%) saturate(5323%) hue-rotate(267deg) brightness(61%) contrast(126%)')
-    })
-    colorSwoothBoardViolet.addEventListener('click', function(){
-        mainSwoothCustom.setAttribute('style', 'filter: invert(73%) sepia(44%) saturate(1345%) hue-rotate(241deg) brightness(97%) contrast(92%)')
-    })
-
-
-    function ShowMidsole(){
+    midsole.onclick=function(){
         mainMidsoleCustom.classList.remove('close-main-midsole-custom')
-    }
-    btnForMidsoleCustom.addEventListener('click', ShowMidsole)
-
-
-    colorMidsoleBoardRed.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(10%) sepia(76%) saturate(7437%) hue-rotate(359deg) brightness(119%) contrast(112%)')
-    })
-    colorMidsoleBoardOrange.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(55%) sepia(93%) saturate(559%) hue-rotate(359deg) brightness(102%) contrast(107%)')
-    })
-    colorMidsoleBoardYellow.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(93%) sepia(38%) saturate(4903%) hue-rotate(0deg) brightness(107%) contrast(101%)')
-    })
-    colorMidsoleBoardGreen.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(22%) sepia(73%) saturate(7500%) hue-rotate(130deg) brightness(95%) contrast(101%)')
-    })
-    colorMidsoleBoardBlue.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(8%) sepia(99%) saturate(7441%) hue-rotate(249deg) brightness(103%) contrast(144%)')
-    })
-    colorMidsoleBoardIndigo.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(19%) sepia(43%) saturate(5323%) hue-rotate(267deg) brightness(61%) contrast(126%)')
-    })
-    colorMidsoleBoardViolet.addEventListener('click', function(){
-        mainMidsoleCustom.setAttribute('style', 'filter: invert(73%) sepia(44%) saturate(1345%) hue-rotate(241deg) brightness(97%) contrast(92%)')
-    })
-
-
+        colorBoardRed.onclick= function(){
+            mainMidsoleCustom.classList.add('img-color-red')
+        }
+    } --}}
 </script>
 
-{{!--Filter edit https://codepen.io/sosuke/pen/Pjoqqp --}}

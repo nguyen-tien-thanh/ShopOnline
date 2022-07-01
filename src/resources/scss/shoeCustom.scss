@@ -1,5 +1,29 @@
     
 // =============== /shoe/custom =================
+.color-red{
+  background: red;
+}
+.color-orange{
+  background: orange;
+}
+.color-yellow{
+  background: yellow;
+}
+.color-green{
+  background: green;
+}
+.color-blue{
+  background: blue;
+}
+.color-indigo{
+  background: indigo;
+}
+.color-violet{
+  background: violet;
+}
+.color-black{
+  background: black;
+}
 .container-custom{
     margin-top: 30px;
     background-color: white;
@@ -21,10 +45,16 @@
     height: auto;
   }
   .main-swooth-custom {
+      width: 316px;
+      height: 83px;
       position: absolute;
       bottom: 44%;
-      left: 17%;
-      z-index: 1;
+      left: 9%;
+      background: red;
+      -webkit-mask:url("/images/smooth.png") center/contain;
+              mask:url("/images/smooth.png") center/contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
   }
   .main-midsole-custom{
     position: absolute;
@@ -56,14 +86,7 @@
     text-align: center;
   }
   .close-main-swooth-custom{
-    display: none;
-  }
-  .main-swooth-custom img{
-    width: 219px;
-    filter: brightness(0%) saturate(100%);
-  }
-  .swooth-custom{
-    text-align: center;
+    // display: none;
   }
   .custom-color-board{
     display: flex;
@@ -74,83 +97,50 @@
     text-align: center;
   }
 
-  .custom-color-board button {
-    border: none;
-    padding: 15px 32px;
-    cursor: pointer;
-  }
+ 
 
-  .color-swooth-board-red button{
+  #red{
+    width: 70px;
+    height: 25px;
     background-color: red;
   }
-  .color-swooth-board-orange button{
+  #orange{
+    width: 70px;
+    height: 25px;
     background-color: orange;
   }
-  .color-swooth-board-yellow button{
+  #yellow{
+    width: 70px;
+    height: 25px;
     background-color: yellow;
   }
-  .color-swooth-board-green button{
+  #green{
+    width: 70px;
+    height: 25px;
     background-color: green;
   }
-  .color-swooth-board-blue button{
+  #blue{
+    width: 70px;
+    height: 25px;
     background-color: blue;
   }
-  .color-swooth-board-indigo button{
+  #indigo{
+    width: 70px;
+    height: 25px;
     background-color: indigo;
   }
-  .color-swooth-board-violet button{
+  #violet{
+    width: 70px;
+    height: 25px;
     background-color: violet;
   }
-
-  
-  .color-midsole-board-red button{
-    background-color: red;
+  .diversion-shoe{
+    display: flex;
+    justify-content:center;
   }
-  .color-midsole-board-orange button{
-    background-color: orange;
-  }
-  .color-midsole-board-yellow button{
-    background-color: yellow;
-  }
-  .color-midsole-board-green button{
-    background-color: green;
-  }
-  .color-midsole-board-blue button{
-    background-color: blue;
-  }
-  .color-midsole-board-indigo button{
-    background-color: indigo;
-  }
-  .color-midsole-board-violet button{
-    background-color: violet;
-  }
-
-
-  .color-middle-board-red button{
-    background-color: red;
-  }
-  .color-middle-board-orange button{
-    background-color: orange;
-  }
-  .color-middle-board-yellow button{
-    background-color: yellow;
-  }
-  .color-middle-board-green button{
-    background-color: green;
-  }
-  .color-middle-board-blue button{
-    background-color: blue;
-  }
-  .color-middle-board-indigo button{
-    background-color: indigo;
-  }
-  .color-middle-board-violet button{
-    background-color: violet;
-  }
-
-  .Diversion-shoe img{
+  .diversion-shoe img{
     width: 200px;
-    height: 200px;
+    height: 100px;
   }
 
   @media  only screen and (max-width:1919) and (min-width:1024px) {
