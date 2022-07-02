@@ -420,7 +420,7 @@ class SiteController {
                     var history = new History({
                         user: req.body.userId,
                         amount: cartMoney,
-                        desc: 'By DusTin Wallet',
+                        desc: 'DusTin Wallet',
                         type: 'Pay',
                         status: 'Failed'
                     })
@@ -443,7 +443,7 @@ class SiteController {
                             var history = new History({
                                 user: req.body.userId,
                                 amount: cartMoney,
-                                desc: 'By DusTin Wallet',
+                                desc: 'DusTin Wallet',
                                 type: 'Pay',
                                 status: 'Success'
                             })
@@ -553,7 +553,7 @@ class SiteController {
                 var history = new History({
                     user: req.query.userId,
                     amount: req.query.totalPrice,
-                    desc: 'By Momo',
+                    desc: 'Momo',
                     type: 'Pay',
                     status: 'Success'
                 })
@@ -566,7 +566,7 @@ class SiteController {
                 var history = new History({
                     user: req.query.userId,
                     amount: req.query.totalPrice,
-                    desc: 'By Momo',
+                    desc: 'Momo',
                     type: 'Pay',
                     status: 'Failed'
                 })
@@ -598,7 +598,6 @@ class SiteController {
         var totalPrice = req.session.cart.totalPrice
 
         var orderParams = encodeURIComponent(JSON.stringify(order))
-        console.log(req.session.cart.items)
 
         var create_payment_json = {
             "intent": "sale",
@@ -675,7 +674,7 @@ class SiteController {
                     var history = new History({
                         user: req.query.userId,
                         amount: req.query.totalPrice,
-                        desc: 'By Paypal',
+                        desc: 'Paypal',
                         type: 'Pay',
                         status: 'Success'
                     })
@@ -693,7 +692,7 @@ class SiteController {
             var history = new History({
                 user: req.query.userId,
                 amount: req.query.totalPrice,
-                desc: 'By Paypal',
+                desc: 'Paypal',
                 type: 'Pay',
                 status: 'Failed'
             })
@@ -745,7 +744,7 @@ class SiteController {
                     var history = new History({
                         user: req.body.userId,
                         amount: req.body.money,
-                        desc: 'By Credit Card',
+                        desc: 'Credit Card',
                         type: 'Pay',
                         status: 'Success'
                     })
@@ -759,7 +758,7 @@ class SiteController {
                 var history = new History({
                     user: req.body.userId,
                     amount: req.body.money,
-                    desc: 'By Credit Card',
+                    desc: 'Credit Card',
                     type: 'Pay',
                     status: 'Failed'
                 })
@@ -819,7 +818,7 @@ class SiteController {
                             req.flash('failMessage', 'Can not send email. Please try again')
                             console.log(error);
                         } else {
-                            req.flash('successMessage', 'Mail sent successfully')
+                            req.flash('successMessage', 'New password has sent to' + req.body.email)
                             console.log('Email sent: ' + info.response);
                             res.redirect('back')
                         }

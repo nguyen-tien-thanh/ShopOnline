@@ -6,18 +6,16 @@
     <div class="main-img-custom">
         <div class="img-custom-1 open-img-custom-1">
                 <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
-             <div class="main-swooth-custom close-main-swooth-custom">
-             </div>
-             <div class="main-midsole-custom close-main-midsole-custom">
-                <img src="/images/midsole.png" alt="">
-             </div>
-             <div class="main-middle-custom close-main-middle-custom">
-                <img src="/images/middle.png" alt="">
-             </div>
+             <div class="main-swooth-custom close-main-swooth-custom"></div>
+             <div class="main-midsole-custom close-main-midsole-custom"></div>
+             <div class="main-middle-custom close-main-middle-custom"></div>
+             <div class="main-head-custom close-main-head-custom"></div>
+             <div class="main-back-custom close-main-back-custom"></div>
+             <div class="main-backward-custom close-main-backward-custom"></div>
         </div>
       </div>
       <div class="diversion-shoe">
-        <div class="swooth"><img src="/images/smooth.png" alt=""></div>
+        <div class="swooth close-swooth"><img src="/images/smooth.png" alt=""></div>
         <div class="midsole"><img src="/images/midsole.png" alt=""></div>
         <div class="middle"><img src="/images/middle.png" alt=""></div>
         <div class="head"><img src="/images/head.png" alt=""></div>
@@ -39,31 +37,68 @@
 </div>
 
 <script>
-    var swooth= document.querySelector('.swooth')
     const colorList= document.querySelectorAll('.color-list')
-    var color='color-red'
 
+    document.querySelector('.swooth').onclick=function(){
+    document.querySelector('.main-swooth-custom').setAttribute('class', 'main-swooth-custom');
     colorList.forEach(item =>{
-        item.addEventListener('click', function(){
-            const idColor=this.id;
-            console.log(idColor)
-            document.querySelector('.main-swooth-custom').style.color=idColor
-            $('.main-swooth-custom').attr('color', 'red')
-        })
+        item.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-swooth-custom').style.backgroundColor=idColor;
+        }
     })
+    } 
 
-    {{!-- swooth.onclick= function(){
-        mainSwoothCustom.classList.remove('close-main-swooth-custom')
-        
-        colorBoardRed.onclick= function(){
-            mainSwoothCustom.classList.add(color)
+   document.querySelector('.midsole').onclick=function(){
+    document.querySelector('.main-midsole-custom').setAttribute('class', 'main-midsole-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-midsole-custom').style.backgroundColor=idColor;
         }
+    })
     }
-    midsole.onclick=function(){
-        mainMidsoleCustom.classList.remove('close-main-midsole-custom')
-        colorBoardRed.onclick= function(){
-            mainMidsoleCustom.classList.add('img-color-red')
+
+    document.querySelector('.middle').onclick=function(){
+    document.querySelector('.main-middle-custom').setAttribute('class', 'main-middle-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-middle-custom').style.backgroundColor=idColor;
         }
-    } --}}
+    })
+    }
+
+   document.querySelector('.head').onclick=function(){
+    document.querySelector('.main-head-custom').setAttribute('class', 'main-head-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-head-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+   document.querySelector('.back').onclick=function(){
+    document.querySelector('.main-back-custom').setAttribute('class', 'main-back-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-back-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+   document.querySelector('.backward').onclick=function(){
+    document.querySelector('.main-backward-custom').setAttribute('class', 'main-backward-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-backward-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+
 </script>
 

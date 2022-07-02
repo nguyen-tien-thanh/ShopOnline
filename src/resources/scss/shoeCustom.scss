@@ -1,29 +1,6 @@
     
 // =============== /shoe/custom =================
-.color-red{
-  background: red;
-}
-.color-orange{
-  background: orange;
-}
-.color-yellow{
-  background: yellow;
-}
-.color-green{
-  background: green;
-}
-.color-blue{
-  background: blue;
-}
-.color-indigo{
-  background: indigo;
-}
-.color-violet{
-  background: violet;
-}
-.color-black{
-  background: black;
-}
+
 .container-custom{
     margin-top: 30px;
     background-color: white;
@@ -48,56 +25,109 @@
       width: 316px;
       height: 83px;
       position: absolute;
-      bottom: 44%;
-      left: 9%;
-      background: red;
+      bottom: 285px;
+      left: 60px;
+      background-color: black;
       -webkit-mask:url("/images/smooth.png") center/contain;
               mask:url("/images/smooth.png") center/contain;
       -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
+      z-index: 1;
   }
+  .close-main-swooth-custom{
+    display: none;
+ }
   .main-midsole-custom{
+    width: 478px;
+    height: 83px;
     position: absolute;
-    bottom: 210px;
-    left: 85px;
+    bottom: 203px;
+    left: 86px;
+    background-color: black;
+    -webkit-mask:url("/images/midsole.png") center/contain;
+            mask:url("/images/midsole.png") center/contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
   .close-main-midsole-custom{
     display: none;
   }
-  .main-midsole-custom img{
-    width: 480px;
-    filter: brightness(0%) saturate(100%);
-  }
+
 
   
   .main-middle-custom{
+    width: 166px;
+    height: 165px;
     position: absolute;
-    bottom: 258px;
-    left: 200px;
+    bottom: 234px;
+    left: 202px;
+    background-color: black;
+    -webkit-mask:url("/images/middle.png") center/contain;
+            mask:url("/images/middle.png") center/contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
   .close-main-middle-custom{
     display: none;
   }
-  .main-middle-custom img{
-    width: 167px;
-    filter: brightness(0%) saturate(100%);
+
+  .main-head-custom{
+    width: 267px;
+    height: 165px;
+    position: absolute;
+    bottom: 206px;
+    left: 297px;
+    background-color: black;
+    -webkit-mask:url("/images/head.png") center/contain;
+            mask:url("/images/head.png") center/contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
+  .close-main-head-custom{
+    display: none;
+  }
+
+  .main-back-custom{
+    width: 264px;
+    height: 132px;
+    position: absolute;
+    bottom: 263px;
+    left: 51px;
+    background-color: black;
+    -webkit-mask:url("/images/back.png") center/contain;
+            mask:url("/images/back.png") center/contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  .close-main-back-custom{
+    display: none;
+  }
+
+  .main-backward-custom{
+    width: 98px;
+    height: 80px;
+    position: absolute;
+    bottom: 320px;
+    left: 68px;
+    background-color: black;
+    -webkit-mask:url("/images/backward.png") center/contain;
+            mask:url("/images/backward.png") center/contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  .close-main-backward-custom{
+    display: none;
+  }
+
+
   .middle-custom{
     text-align: center;
-  }
-  .close-main-swooth-custom{
-    // display: none;
   }
   .custom-color-board{
     display: flex;
     margin-bottom: 10px;
     justify-content: center;
   }
-  .midsole-custom{
-    text-align: center;
-  }
-
- 
 
   #red{
     width: 70px;
