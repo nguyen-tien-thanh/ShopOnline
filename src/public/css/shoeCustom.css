@@ -170,4 +170,6 @@
 
 @media only screen and (min-width: 320px) and (max-width: 350px) {
   .img-custom-1 img {
+    width: 300px; }
+  .img-custom-1 img {
     width: 300px; } }
