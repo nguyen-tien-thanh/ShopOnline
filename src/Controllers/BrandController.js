@@ -3,23 +3,23 @@ const Brand = require('../models/Brand');
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
 
-class ProductController {
+class BrandController {
  
     //[POST] /brand/handle-form-actions
     handleFormActions(req,res,next) {
         switch (req.body.action){
             case 'delete':
-                Brand.delete({_id: { $in: req.body.productIds}})
+                Brand.delete({_id: { $in: req.body.brandIds}})
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
             case 'restore':
-                Brand.restore({_id: { $in: req.body.productIds}})
+                Brand.restore({_id: { $in: req.body.brandIds}})
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
             case 'force':
-                Brand.remove({_id: { $in: req.body.productIds}})
+                Brand.remove({_id: { $in: req.body.brandIds}})
                     .then(() => res.redirect('back'))
                     .catch(next);
                 break;
@@ -76,7 +76,7 @@ class ProductController {
 
 }
 
-module.exports = new ProductController;
+module.exports = new BrandController;
 
 const res = require('express/lib/response');
-const productController = require('./ProductController');
+const brandController = require('./BrandController');

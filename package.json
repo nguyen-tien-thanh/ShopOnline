@@ -1,7 +1,7 @@
 {
-  "name": "bardpod",
+  "name": "dustin",
   "version": "1.0.0",
-  "description": "pod, bard pod, bard, bardpod, rodeo, nasty, balmy",
+  "description": "dustin, shoe, nike, adidas, jordan",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,15 +13,13 @@
     "url": "git+https://github.com/0703086663/bardpod.git"
   },
   "keywords": [
-    "bard",
-    "pod",
-    "bard",
-    "pod",
-    "rodeo",
-    "balmy",
-    "nasty"
+    "dustin",
+    "nike",
+    "adidas",
+    "jordan",
+    "shoe"
   ],
-  "author": "Bard Pod",
+  "author": "Dong, Thanh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/0703086663/bardpod/issues"
@@ -46,9 +44,7 @@
     "node-sass": "^7.0.1",
     "nodemailer": "^6.7.5",
     "nodesass": "^0.0.2-security",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
+    "path": "^0.12.7",
     "connect-mongo": "^3.2.0",
     "dotenv": "^16.0.1",
     "heroku": "^7.60.2",
@@ -61,5 +57,7 @@
     "paypal-rest-sdk": "^1.8.1",
     "req-flash": "^0.0.3",
     "stripe": "^9.9.0"
+  },
+  "devDependencies": {
   }
 }

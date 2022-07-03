@@ -565,6 +565,26 @@ function getTotalStockOfSize(){
       }
     }
 
+
+// ================ transfer form /user/transfer ====================
+$('#transfer-method-select').on('change', function () {
+  if(this.value == 'momo'){
+    $('#online-transfer-form').attr('action','/user/transfer-by-momo')
+    $('#payment-form').hide()
+    $('#online-transfer-form').show()
+  }
+  else if(this.value == 'paypal'){
+    $('#online-transfer-form').attr('action','/user/transfer-by-paypal')
+    $('#payment-form').hide()
+    $('#online-transfer-form').show()
+  }
+  else{
+    $('#payment-form').show()
+    $('#online-transfer-form').hide()
+  }
+})
+
+
 // ================ checkout form /cart ====================
 $('#shipping-method-select').on('change', function () {
   if(this.value == '24h'){
@@ -793,7 +813,7 @@ $(".main-header").hover(function(){
 // add Dot when input money 
 $('input[id="money"]').keyup(function(event) {
   if(event.which >= 37 && event.which <= 40) return;
-  $('#money-transfer').val($(this).val()
+  $('input[name="money"]').val($(this).val()
   .replace(/\D/g, "")
   )
   // format number
@@ -804,3 +824,8 @@ $('input[id="money"]').keyup(function(event) {
     + ' VND';
   });
 });
+
+// ======== edit image profile /user/profile =================
+$('#change-avatar-btn').click(function(){
+  $('#file-avatar').trigger('click');
+})

@@ -1,15 +1,28 @@
+
 <div class="wrapper cart-container container-custom">
-<div class="wrap">
+<div class="wrap wrap-shoe-custom">
   <section class="transparent">
-      <div class="img-custom-1 open-img-custom-1">
-          <img src="/images/shoetype1.png" alt="">
+    <div class="container-shoe-custom">
+    <div class="main-img-custom">
+        <div class="img-custom-1 open-img-custom-1">
+                <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
+             <div class="main-swooth-custom close-main-swooth-custom"></div>
+             <div class="main-midsole-custom close-main-midsole-custom"></div>
+             <div class="main-middle-custom close-main-middle-custom"></div>
+             <div class="main-head-custom close-main-head-custom"></div>
+             <div class="main-back-custom close-main-back-custom"></div>
+             <div class="main-backward-custom close-main-backward-custom"></div>
+        </div>
       </div>
-      <div class="img-custom-2 open-img-custom-2">
-          <img src="/images/shoetype2.png" alt="">
+      <div class="diversion-shoe">
+        <div class="swooth close-swooth"><img src="/images/smooth.png" alt=""></div>
+        <div class="midsole"><img src="/images/midsole.png" alt=""></div>
+        <div class="middle"><img src="/images/middle.png" alt=""></div>
+        <div class="head"><img src="/images/head.png" alt=""></div>
+        <div class="back"><img src="/images/back.png" alt=""></div>
+        <div class="backward"><img src="/images/backward.png" alt=""></div>
       </div>
-      <div class="img-custom-3 open-img-custom-3">
-          <img src="/images/shoetype3.png" alt="">
-      </div>
+<<<<<<< HEAD
       <div class="Diversion-shoe">
           <div class="shoe-type-1">
               <img src="/images/shoetype1.png" alt="">
@@ -31,28 +44,85 @@
   </section> 
   
 </div>
+=======
+            <div class="custom-color-board">
+                <div id="red" class="color-list"></div>
+                <div id="orange" class="color-list"></div>
+                <div id="yellow" class="color-list"></div>
+                <div id="green" class="color-list"></div>
+                <div id="blue" class="color-list"></div>
+                <div id="indigo" class="color-list"></div>
+                <div id="violet" class="color-list"></div>
+            </div>
+    </div>
+    </section>
+   </div>
+>>>>>>> 35cb7d8bc34041f1ecd9a60218a7ffeb95148b1c
 </div>
-<script>
-    var shoeType1= document.querySelector('.shoe-type-1')
-    var shoeType2= document.querySelector('.shoe-type-2')
-    var shoeType3= document.querySelector('.shoe-type-3')
-    var openImgCustom1=document.querySelector('.open-img-custom-1')
-    var openImgCustom2=document.querySelector('.open-img-custom-2')
-    var openImgCustom3=document.querySelector('.open-img-custom-3')
-    shoeType2.addEventListener('click', function(){
-        openImgCustom2.classList.remove('open-img-custom-2')
-        openImgCustom3.classList.add('open-img-custom-3')
-        openImgCustom1.setAttribute('style', 'display:none')
-    })
-    shoeType3.addEventListener('click', function(){
-        openImgCustom3.classList.remove('open-img-custom-3')
-        openImgCustom1.setAttribute('style', 'display:none')
-        openImgCustom2.classList.add('open-img-custom-2')
-    })
-    shoeType1.addEventListener('click', function(){
-        openImgCustom2.classList.add('open-img-custom-2')
-        openImgCustom3.classList.add('open-img-custom-3')
-        openImgCustom1.setAttribute('style', 'display:block')
 
+<script>
+    const colorList= document.querySelectorAll('.color-list')
+
+    document.querySelector('.swooth').onclick=function(){
+    document.querySelector('.main-swooth-custom').setAttribute('class', 'main-swooth-custom');
+    colorList.forEach(item =>{
+        item.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-swooth-custom').style.backgroundColor=idColor;
+        }
     })
+    } 
+
+   document.querySelector('.midsole').onclick=function(){
+    document.querySelector('.main-midsole-custom').setAttribute('class', 'main-midsole-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-midsole-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+    document.querySelector('.middle').onclick=function(){
+    document.querySelector('.main-middle-custom').setAttribute('class', 'main-middle-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-middle-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+   document.querySelector('.head').onclick=function(){
+    document.querySelector('.main-head-custom').setAttribute('class', 'main-head-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-head-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+   document.querySelector('.back').onclick=function(){
+    document.querySelector('.main-back-custom').setAttribute('class', 'main-back-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-back-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+   document.querySelector('.backward').onclick=function(){
+    document.querySelector('.main-backward-custom').setAttribute('class', 'main-backward-custom');
+    colorList.forEach(item2 =>{
+          item2.onclick=function(){
+            const idColor = this.id;
+            document.querySelector('.main-backward-custom').style.backgroundColor=idColor;
+        }
+    })
+    }
+
+
 </script>
+

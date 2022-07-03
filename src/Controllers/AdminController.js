@@ -4,7 +4,6 @@ const User = require('../models/User')
 const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
-const Product = require('../models/Product')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 
@@ -91,28 +90,6 @@ class AdminController {
         // });
     }
 
-    // [GET] /admin/product-table
-    productTable(req,res,next){      
-        var token = req.cookies.token;
-        var decodeToken = jwt.verify(token, secret)
-        Promise.all([Product.find(), User.findOne({_id:decodeToken})])
-        .then(([productList, data]) => {
-            if (data) {
-                req.data = data
-                return res.render('admin/product-table',
-                    {
-                        user: mongooseToObject(data),
-                        productList: multipleMongooseToObject(productList),
-                        layout: 'adminLayout',
-                        title: 'Product Management'
-                    })
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            res.redirect('/login')
-        })
-    }
 
     // [GET] /admin/brand-table
     brandTable(req,res,next){      

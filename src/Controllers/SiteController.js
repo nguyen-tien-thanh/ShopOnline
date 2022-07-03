@@ -3,9 +3,9 @@ const User = require('../models/User')
 const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
-const Product = require('../models/Product')
 const Cart = require('../models/Cart')
 const Order = require('../models/Order')
+const History = require('../models/History')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -417,12 +417,20 @@ class SiteController {
             User.findOne({_id: decodeToken})
             .then((user) =>{
                 if(user.money < cartMoney){
+                    var history = new History({
+                        user: req.body.userId,
+                        amount: cartMoney,
+                        desc: 'DusTin Wallet',
+                        type: 'Pay',
+                        status: 'Failed'
+                    })
+                    history.save()
                     req.flash('failedMsg','You not have enough money to pay')
                     return res.redirect('/cart')
                 }
                 else{
                     User.updateOne({_id: decodeToken}, {$inc: {money: -cartMoney}})
-                    .then(()=> {
+                    .then((user)=> {
                             var order = new Order({
                                 cart: req.session.cart,
                                 email: req.body.email,
@@ -431,6 +439,16 @@ class SiteController {
                                 shipping: req.body.shipping
                             })
                             order.save()
+
+                            var history = new History({
+                                user: req.body.userId,
+                                amount: cartMoney,
+                                desc: 'DusTin Wallet',
+                                type: 'Pay',
+                                status: 'Success'
+                            })
+                            history.save()
+                            
                             req.session.cart = null;
                             req.flash('successMsg','Checkout successfully')
                             return res.redirect('/cart')
@@ -451,7 +469,10 @@ class SiteController {
             phone: req.body.phone,
             shipping: req.body.shipping
         })
-        var orderParams = encodeURIComponent(JSON.stringify(order))
+        var orderParams = JSON.stringify(order)
+
+        var userId = req.body.userId
+        var totalPrice = req.session.cart.totalPrice
 
         var partnerCode = "MOMO";
         var accessKey = "F8BBA842ECF85";
@@ -459,7 +480,7 @@ class SiteController {
         var requestId = partnerCode + new Date().getTime();
         var orderId = requestId;
         var orderInfo = req.body.email +" | DUSTIN pay ";
-        var redirectUrl = "http://localhost:5000/checkout-by-momo-success?order="+ orderParams + "";
+        var redirectUrl = "http://localhost:5000/checkout-by-momo-success?totalPrice="+ totalPrice + "&userId="+ userId + "&order="+ orderParams + "";
         var ipnUrl =  "http://localhost:5000/checkout-error";
         // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
         var amount = req.body.money;
@@ -523,17 +544,33 @@ class SiteController {
         request.write(requestBody);
     }
         checkoutByMomoSuccess(req,res,next){
-            if(req.query.message == 'Successful'){
+            if(req.query.message == 'Successful.'){
                 var queryOrder = req.query.order
                 queryOrder = JSON.parse(queryOrder)
                 var order = new Order(queryOrder)
                 order.save()
     
+                var history = new History({
+                    user: req.query.userId,
+                    amount: req.query.totalPrice,
+                    desc: 'Momo',
+                    type: 'Pay',
+                    status: 'Success'
+                })
+                history.save()
                 req.session.cart = null;
                 req.flash('successMsg','Checkout successfully')
                 res.redirect('/cart')
             }
             else{
+                var history = new History({
+                    user: req.query.userId,
+                    amount: req.query.totalPrice,
+                    desc: 'Momo',
+                    type: 'Pay',
+                    status: 'Failed'
+                })
+                history.save()
                 req.flash('failedMsg','Your payment has been paused or canceled')
                 res.redirect('/cart')
             }
@@ -557,8 +594,10 @@ class SiteController {
             shipping: req.body.shipping
         })
 
+        var userId = req.body.userId
+        var totalPrice = req.session.cart.totalPrice
+
         var orderParams = encodeURIComponent(JSON.stringify(order))
-        console.log(req.session.cart.items)
 
         var create_payment_json = {
             "intent": "sale",
@@ -566,7 +605,7 @@ class SiteController {
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "http://localhost:5000/checkout-by-paypal-success?order="+ orderParams + "",
+                "return_url": "http://localhost:5000/checkout-by-paypal-success?totalPrice="+ totalPrice + "&userId="+ userId + "&order="+ orderParams + "",
                 "cancel_url": "http://localhost:5000/checkout-error"
             },
             "transactions": [{
@@ -574,14 +613,14 @@ class SiteController {
                     "items": [{
                         "name": "item",
                         "sku": "item",
-                        "price": req.body.money,
+                        "price": '2.0',
                         "currency": "USD",
                         "quantity": 1
                     }]
                 },
                 "amount": {
                     "currency": "USD",
-                    "total": req.body.money
+                    "total": '2.0'
                 },
                 "description": "Payment for shoes (DusTin)."
             }]
@@ -618,7 +657,7 @@ class SiteController {
                 "transactions": [{
                     "amount":{
                         "currency": "USD",
-                        "total": "1.00"
+                        "total": "2.00"
                     }
                 }]
             }
@@ -632,6 +671,15 @@ class SiteController {
                     var order = new Order(queryOrder)
                     order.save()
 
+                    var history = new History({
+                        user: req.query.userId,
+                        amount: req.query.totalPrice,
+                        desc: 'Paypal',
+                        type: 'Pay',
+                        status: 'Success'
+                    })
+                    history.save()
+
                     req.session.cart = null;
                     req.flash('successMsg','Checkout successfully')
                     return res.redirect('/cart')
@@ -641,6 +689,14 @@ class SiteController {
 
         //GET /checkout-error
         checkoutByPaypalError(req,res){
+            var history = new History({
+                user: req.query.userId,
+                amount: req.query.totalPrice,
+                desc: 'Paypal',
+                type: 'Pay',
+                status: 'Failed'
+            })
+            history.save()
             req.flash('failedMsg','Your payment has been paused or canceled')
             return res.redirect('/cart')
         }
@@ -684,11 +740,29 @@ class SiteController {
                     })
                     order.save()
                     req.session.cart = null;
+
+                    var history = new History({
+                        user: req.body.userId,
+                        amount: req.body.money,
+                        desc: 'Credit Card',
+                        type: 'Pay',
+                        status: 'Success'
+                    })
+                    history.save()
+
                     req.flash('successMsg','Checkout successfully')
                     return res.redirect('/cart')
                 })
             })
             .catch((err) => {
+                var history = new History({
+                    user: req.body.userId,
+                    amount: req.body.money,
+                    desc: 'Credit Card',
+                    type: 'Pay',
+                    status: 'Failed'
+                })
+                history.save()
                 req.flash('failedMsg','Can not checkout')
                 res.render('partials/error',{
                     layout: null,
@@ -744,7 +818,7 @@ class SiteController {
                             req.flash('failMessage', 'Can not send email. Please try again')
                             console.log(error);
                         } else {
-                            req.flash('successMessage', 'Mail sent successfully')
+                            req.flash('successMessage', 'New password has sent to' + req.body.email)
                             console.log('Email sent: ' + info.response);
                             res.redirect('back')
                         }
