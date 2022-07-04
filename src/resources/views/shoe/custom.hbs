@@ -15,114 +15,73 @@
         </div>
       </div>
       <div class="diversion-shoe">
-        <div class="swooth close-swooth"><img src="/images/smooth.png" alt=""></div>
-        <div class="midsole"><img src="/images/midsole.png" alt=""></div>
-        <div class="middle"><img src="/images/middle.png" alt=""></div>
-        <div class="head"><img src="/images/head.png" alt=""></div>
-        <div class="back"><img src="/images/back.png" alt=""></div>
-        <div class="backward"><img src="/images/backward.png" alt=""></div>
+        <div value="1" class="swooth "><img src="/images/smooth.png" alt=""></div>
+        <div value="2" class="midsole"><img src="/images/midsole.png" alt=""></div>
+        <div value="3" class="middle"><img src="/images/middle.png" alt=""></div>
+        <div value="4" class="head"><img src="/images/head.png" alt=""></div>
+        <div value="5" class="back"><img src="/images/back.png" alt=""></div>
+        <div value="6" class="backward"><img src="/images/backward.png" alt=""></div>
       </div>
-<<<<<<< HEAD
-      <div class="Diversion-shoe">
-          <div class="shoe-type-1">
-              <img src="/images/shoetype1.png" alt="">
-          </div>
-          <div class="shoe-type-2">
-              <img src="/images/shoetype2.png" alt="">
-          </div>
-          <div class="shoe-type-3">
-              <img src="/images/shoetype3.png" alt="">
-          </div>
-      </div>
-
-     <div class="nike-logo-custom">
-         <div class="nike-logo-orange">
-             <img src="/images/nikeLogoOrange1.png" alt="">
-         </div>
-     </div>
-
-  </section> 
-  
-</div>
-=======
             <div class="custom-color-board">
-                <div id="red" class="color-list"></div>
-                <div id="orange" class="color-list"></div>
-                <div id="yellow" class="color-list"></div>
-                <div id="green" class="color-list"></div>
-                <div id="blue" class="color-list"></div>
-                <div id="indigo" class="color-list"></div>
-                <div id="violet" class="color-list"></div>
+                <input class="color-list" name="swoothColor" id="color-swooth" type="color">
+                <input class="color-list" name="midsoleColor" id="color-midsole" type="color">
+                <input class="color-list" name="middleColor" id="color-middle" type="color">
+                <input class="color-list" name="headColor" id="color-head" type="color">
+                <input class="color-list" name="backColor" id="color-back" type="color">
+                <input class="color-list" name="backwardColor" id="color-backward" type="color">
             </div>
     </div>
     </section>
    </div>
->>>>>>> 35cb7d8bc34041f1ecd9a60218a7ffeb95148b1c
 </div>
 
 <script>
-    const colorList= document.querySelectorAll('.color-list')
+    const colorSwooth= document.querySelector('#color-swooth')
+    const colorMidsole= document.querySelector('#color-midsole')
+    const colorMiddle= document.querySelector('#color-middle')
+    const colorHead= document.querySelector('#color-head')
+    const colorBack= document.querySelector('#color-back')
+    const colorBackward= document.querySelector('#color-backward')
 
-    document.querySelector('.swooth').onclick=function(){
-    document.querySelector('.main-swooth-custom').setAttribute('class', 'main-swooth-custom');
-    colorList.forEach(item =>{
-        item.onclick=function(){
-            const idColor = this.id;
-            document.querySelector('.main-swooth-custom').style.backgroundColor=idColor;
-        }
-    })
-    } 
-
-   document.querySelector('.midsole').onclick=function(){
-    document.querySelector('.main-midsole-custom').setAttribute('class', 'main-midsole-custom');
-    colorList.forEach(item2 =>{
-          item2.onclick=function(){
-            const idColor = this.id;
-            document.querySelector('.main-midsole-custom').style.backgroundColor=idColor;
-        }
-    })
-    }
-
-    document.querySelector('.middle').onclick=function(){
-    document.querySelector('.main-middle-custom').setAttribute('class', 'main-middle-custom');
-    colorList.forEach(item2 =>{
-          item2.onclick=function(){
-            const idColor = this.id;
-            document.querySelector('.main-middle-custom').style.backgroundColor=idColor;
-        }
-    })
-    }
-
-   document.querySelector('.head').onclick=function(){
-    document.querySelector('.main-head-custom').setAttribute('class', 'main-head-custom');
-    colorList.forEach(item2 =>{
-          item2.onclick=function(){
-            const idColor = this.id;
-            document.querySelector('.main-head-custom').style.backgroundColor=idColor;
-        }
-    })
-    }
-
-   document.querySelector('.back').onclick=function(){
-    document.querySelector('.main-back-custom').setAttribute('class', 'main-back-custom');
-    colorList.forEach(item2 =>{
-          item2.onclick=function(){
-            const idColor = this.id;
-            document.querySelector('.main-back-custom').style.backgroundColor=idColor;
-        }
-    })
-    }
-
-   document.querySelector('.backward').onclick=function(){
-    document.querySelector('.main-backward-custom').setAttribute('class', 'main-backward-custom');
-    colorList.forEach(item2 =>{
-          item2.onclick=function(){
-            const idColor = this.id;
-            document.querySelector('.main-backward-custom').style.backgroundColor=idColor;
-        }
-    })
-    }
-
-
+        $('.diversion-shoe div').on('click', function(){
+           if($(this).attr('value') == 1){
+            $('.main-swooth-custom').attr('class', 'main-swooth-custom')
+            $('input[name="swoothColor"]').trigger('click')
+            colorSwooth.oninput = function() {
+                document.querySelector('.main-swooth-custom').style.backgroundColor = this.value;
+            }
+           } else if ($(this).attr('value')== 2){
+                $('.main-midsole-custom').attr('class', 'main-midsole-custom')
+                $('input[name="midsoleColor"]').trigger('click')
+                colorMidsole.oninput = function() {
+                    document.querySelector('.main-midsole-custom').style.backgroundColor = this.value;
+                }
+           } else if ($(this).attr('value')== 3){
+                $('.main-middle-custom').attr('class', 'main-middle-custom')
+                $('input[name="middleColor"]').trigger('click')
+                colorMiddle.oninput = function() {
+                    document.querySelector('.main-middle-custom').style.backgroundColor = this.value;
+                }
+           } else if ($(this).attr('value')== 4){
+                $('.main-head-custom').attr('class', 'main-head-custom')
+                $('input[name="headColor"]').trigger('click')
+                colorHead.oninput = function() {
+                    document.querySelector('.main-head-custom').style.backgroundColor = this.value;
+                }
+           } else if ($(this).attr('value')== 5){
+                $('.main-back-custom').attr('class', 'main-back-custom')
+                $('input[name="backColor"]').trigger('click')
+                colorBack.oninput = function() {
+                    document.querySelector('.main-back-custom').style.backgroundColor = this.value;
+                }
+           } else if ($(this).attr('value')== 6){
+                $('.main-backward-custom').attr('class', 'main-backward-custom')
+                $('input[name="backwardColor"]').trigger('click')
+                colorBackward.oninput = function() {
+                    document.querySelector('.main-backward-custom').style.backgroundColor = this.value;
+                }
+           }
+        })
+   
 </script>
 
