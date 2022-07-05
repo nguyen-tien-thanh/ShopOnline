@@ -196,76 +196,82 @@ class UserController {
 
     // [POST] /user/transfer-by-momo
     transferByMomo(req,res,next){
-        var userId = req.body.userId
-        var amount = req.body.money;
-
-        var partnerCode = "MOMO";
-        var accessKey = "F8BBA842ECF85";
-        var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        var requestId = partnerCode + new Date().getTime();
-        var orderId = requestId;
-        var orderInfo = "Transfer | DUSTIN";
-        var redirectUrl = "http://localhost:5000/user/transfer-by-momo-success?userId="+ userId + "&money=" + amount + "";
-        var ipnUrl =  "http://localhost:5000/checkout-error";
-        // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
-        var requestType = "captureWallet"
-        var extraData = "";
-
-        var rawSignature = "accessKey="+accessKey
-                            +"&amount=" + amount
-                            +"&extraData=" + extraData
-                            +"&ipnUrl=" + ipnUrl
-                            +"&orderId=" + orderId
-                            +"&orderInfo=" + orderInfo
-                            +"&partnerCode=" + partnerCode 
-                            +"&redirectUrl=" + redirectUrl
-                            +"&requestId=" + requestId
-                            +"&requestType=" + requestType
-
-        const crypto = require('crypto');
-        var signature = crypto.createHmac('sha256', secretkey)
-            .update(rawSignature)
-            .digest('hex');
-
-        const requestBody = JSON.stringify({
-            partnerCode : partnerCode,
-            accessKey : accessKey,
-            requestId : requestId,
-            amount : amount,
-            orderId : orderId,
-            orderInfo : orderInfo,
-            redirectUrl : redirectUrl,
-            ipnUrl : ipnUrl,
-            extraData : extraData,
-            requestType : requestType,
-            signature : signature,
-            lang: 'en'
-        });
-
-        //Create the HTTPS objects
-        const https = require('https');
-        const options = {
-            hostname: 'test-payment.momo.vn',
-            port: 443,
-            path: '/v2/gateway/api/create',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(requestBody)
-            }
+        if(parseInt(req.body.money) < 1000 || parseInt(req.body.money) >50000000){
+            res.redirect('/user/transfer-by-momo-error')
         }
-        //Send the request and get the response
-        const request = https.request(options, response => {
-            response.setEncoding('utf8');
-            response.on('data', (body) => {
-                var transferUrl = JSON.parse(body).payUrl;
-                res.redirect(transferUrl);
+        else{
+            console.log(req.body.name)
+            var userId = req.body.userId
+            var amount = req.body.money;
+
+            var partnerCode = "MOMO";
+            var accessKey = "F8BBA842ECF85";
+            var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+            var requestId = partnerCode + new Date().getTime();
+            var orderId = requestId;
+            var orderInfo = "Transfer | DUSTIN";
+            var redirectUrl = "http://localhost:5000/user/transfer-by-momo-success?userId="+ userId + "&money=" + amount + "";
+            var ipnUrl =  "http://localhost:5000/checkout-error";
+            // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
+            var requestType = "captureWallet"
+            var extraData = "";
+
+            var rawSignature = "accessKey="+accessKey
+                                +"&amount=" + amount
+                                +"&extraData=" + extraData
+                                +"&ipnUrl=" + ipnUrl
+                                +"&orderId=" + orderId
+                                +"&orderInfo=" + orderInfo
+                                +"&partnerCode=" + partnerCode 
+                                +"&redirectUrl=" + redirectUrl
+                                +"&requestId=" + requestId
+                                +"&requestType=" + requestType
+
+            const crypto = require('crypto');
+            var signature = crypto.createHmac('sha256', secretkey)
+                .update(rawSignature)
+                .digest('hex');
+
+            const requestBody = JSON.stringify({
+                partnerCode : partnerCode,
+                accessKey : accessKey,
+                requestId : requestId,
+                amount : amount,
+                orderId : orderId,
+                orderInfo : orderInfo,
+                redirectUrl : redirectUrl,
+                ipnUrl : ipnUrl,
+                extraData : extraData,
+                requestType : requestType,
+                signature : signature,
+                lang: 'en'
             });
-        })
-        request.on('error', (e) => {
-            console.log(`Problem with transfer Momo: ${e.message}`);
-        });
-        request.write(requestBody);
+
+            //Create the HTTPS objects
+            const https = require('https');
+            const options = {
+                hostname: 'test-payment.momo.vn',
+                port: 443,
+                path: '/v2/gateway/api/create',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': Buffer.byteLength(requestBody)
+                }
+            }
+            //Send the request and get the response
+            const request = https.request(options, response => {
+                response.setEncoding('utf8');
+                response.on('data', (body) => {
+                    var transferUrl = JSON.parse(body).payUrl;
+                    res.redirect(transferUrl);
+                });
+            })
+            request.on('error', (e) => {
+                console.log(`Problem with transfer Momo: ${e.message}`);
+            });
+            request.write(requestBody);
+        }
     }
         // [GET] /user/transfer-by-momo-success
         transferByMomoSuccess(req,res,next){
@@ -298,6 +304,11 @@ class UserController {
                 req.flash('failedMsg','Transfer has been paused or canceled')
                 res.redirect('/user/transfer')
             }
+        }
+        //[GET] /user/transfer-by-momo-error
+        transferByMomoError(req,res,next){
+            req.flash('failedMsg','The money must be between 1.000 VND and 50.000.000 VND.')
+            res.redirect('/user/transfer')
         }
 
     //[POST] /transfer-by-wallet

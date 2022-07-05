@@ -18,7 +18,7 @@
                     <label for="transfer-method-select" class="col-sm-3 col-form-label">Transfer By</label>
                     <div class="col-sm-9">
                         <select class="form-control" name="payment" id="transfer-method-select" required>
-                            <option value="">Choose transfer method</option>
+                            <option value="" selected="true" disabled="disabled">Choose transfer method</option>
                             <option value="momo">Momo</option>
                             <option value="paypal">Paypal</option>
                             <option value="card">Credit Card</option>
@@ -54,10 +54,11 @@
                         <label for="money" class="col-sm-3 col-form-label">Money</label>
                         <div class="col-sm-9">
                         <input type="text" class="form-control" id="money" placeholder="Enter money amount">
-                        <input type="hidden" name="money" id="money-transfer" value="">
+                        <h6 class="text-danger" style="display: none;">Momo just accept from 1.000 VND to 50.000.000 VND.</h6>
                         </div>
                     </div>
                     <input type="hidden" name="userId" value="{{user._id}}">
+                    <input type="hidden" name="money" id="money-transfer" value="">
 
                     <hr class="my-4">
 

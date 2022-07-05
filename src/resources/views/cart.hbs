@@ -92,7 +92,7 @@
 
                                         <div class="mb-2 pb-2">
                                             <select class="form-control" id="shipping-method-select" required>
-                                                <option value="">Choose delivery</option>
+                                                <option value="" selected="true" disabled="disabled">Choose delivery</option>
                                                 <option value="24h">In 24h - 34.000 VND (HCM City)</option>
                                                 <option value="asap">ASAP - 30.000 VND to 70.000 VND (HCM City)</option>
                                                 <option value="3days">In 3 days - 30.000 VND (not HCM City)</option>
@@ -101,7 +101,7 @@
 
                                         <div class="mb-2 pb-2">
                                             <select class="form-control" name="payment" id="payment-method-select" required>
-                                                <option value="">Choose payment method</option>
+                                                <option value="" selected="true" disabled="disabled">Choose payment method</option>
                                                 <option value="wallet">DusTin Wallet {{#if user.money}}({{formatCurrency user.money}} VND){{/if}} </option>
                                                 <option value="momo">Momo</option>
                                                 <option value="paypal">Paypal</option>

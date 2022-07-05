@@ -572,15 +572,18 @@ $('#transfer-method-select').on('change', function () {
     $('#online-transfer-form').attr('action','/user/transfer-by-momo')
     $('#payment-form').hide()
     $('#online-transfer-form').show()
+    $('#online-transfer-form h6').show()
   }
   else if(this.value == 'paypal'){
     $('#online-transfer-form').attr('action','/user/transfer-by-paypal')
     $('#payment-form').hide()
     $('#online-transfer-form').show()
+    $('#online-transfer-form h6').hide()
   }
   else{
     $('#payment-form').show()
     $('#online-transfer-form').hide()
+    $('#online-transfer-form h6').hide()
   }
 })
 

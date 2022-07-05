@@ -16,6 +16,12 @@
                   </a>
                 </li>
                 <li>
+                  <a href="/cart">
+                    <i class="fa fa-bell"></i>
+                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                  </a>
+                </li>
+                <li>
                     <a class="active" href="#"><b>{{user.name}}</b></a>
                     <div class="subnav-dropdown">
                       <br>
@@ -28,7 +34,7 @@
                         </span>
                       </a>
                       <hr>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i>My purchase</a>
+                      <a class="subnav-dropdown-items" href="/cart"><i class="fa fa-shopping-cart"></i>My purchase</a>
                       <hr>
                       {{#ifeq user.role 'Admin'}}
                         <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i>Management</a>
