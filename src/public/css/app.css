@@ -349,6 +349,25 @@ section.cards .card img {
   .shoe-sections button {
     font-size: 30px; } }
 
+@keyframes fa-shake {
+  0% {
+    transform: rotate(0deg); }
+  80% {
+    transform: rotate(0deg); }
+  85% {
+    transform: rotate(30deg); }
+  95% {
+    transform: rotate(-30deg); }
+  100% {
+    transform: rotate(0deg); } }
+
+i.fa-shake {
+  display: inline-block;
+  animation: fa-shake 1.5s infinite; }
+
+i.fa-shake:hover {
+  animation: none; }
+
 #logo-header {
   font-family: 'Playlist';
   font-size: 40px; }

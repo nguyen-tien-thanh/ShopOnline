@@ -240,7 +240,7 @@ class ShoeController {
 
     //[POST] /store shoe
     store(req,res,next) {
-        console.log(req.body)
+        // console.log(req.body)
         const shoe = new Shoe({
             brand: req.body.brand,
             type: req.body.type,

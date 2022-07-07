@@ -1,3 +1,4 @@
+$maincolor: rgb(208,1,9);
 .sub-header {
     position: relative;
   }
@@ -396,3 +397,20 @@
   @media screen and (max-width: 768px){
     .shoe-sections button{font-size: 30px;}
   }
+
+  // Bell ringing 
+  @keyframes fa-shake {
+    0% { transform: rotate(0deg); }
+   80% { transform: rotate(0deg); }
+   85% { transform: rotate(30deg); }
+   95% { transform: rotate(-30deg); }
+  100% { transform: rotate(0deg); }
+  }
+    i.fa-shake {
+      display: inline-block;
+      animation: fa-shake 1.5s infinite;
+    }
+
+    i.fa-shake:hover {
+      animation: none;
+    }

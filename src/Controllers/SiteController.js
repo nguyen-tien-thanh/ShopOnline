@@ -6,6 +6,7 @@ const Shoe = require('../models/Shoe')
 const Cart = require('../models/Cart')
 const Order = require('../models/Order')
 const History = require('../models/History')
+const Notification = require('../models/Notification')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -31,6 +32,9 @@ class SiteController {
                 User.findOne({_id: decodeToken}),
                 Brand.find({}),
                 Shoetype.find({}),
+                Notification.find({user: decodeToken})
+                    .limit(4)
+                    .sort({createdAt: -1}),
                 Shoe.find({bestseller: true})
                     .populate('brand')
                     .populate('type')
@@ -46,6 +50,7 @@ class SiteController {
                 data,
                 brandList,
                 shoeType,
+                noti,
                 shoeBestseller,
                 shoeAvailable
             ]) => {
@@ -56,6 +61,7 @@ class SiteController {
                             user: mongooseToObject(data),
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
+                            noti: multipleMongooseToObject(noti),
                             shoeBestseller: multipleMongooseToObject(shoeBestseller),
                             shoeAvailable: multipleMongooseToObject(shoeAvailable),
                             title: 'Home page'
@@ -150,7 +156,6 @@ class SiteController {
                         address: req.body.address,
                         avatar: 'sample-avatar.jpg'
                     })
-                    // console.log(user)
                     user.save(err, result =>{
                         if(err) {
                             console.log('err: ' + err)
@@ -425,6 +430,11 @@ class SiteController {
                         status: 'Failed'
                     })
                     history.save()
+                    var noti = new Notification({
+                        user: req.body.userId,
+                        desc: '[Failed] Checkout by Wallet.' 
+                    })
+                    noti.save()
                     req.flash('failedMsg','You not have enough money to pay')
                     return res.redirect('/cart')
                 }
@@ -448,6 +458,11 @@ class SiteController {
                                 status: 'Success'
                             })
                             history.save()
+                            var noti = new Notification({
+                                user: req.body.userId,
+                                desc: '[Success] Checkout by Wallet.' 
+                            })
+                            noti.save()
                             
                             req.session.cart = null;
                             req.flash('successMsg','Checkout successfully')
@@ -478,7 +493,7 @@ class SiteController {
             var totalPrice = req.session.cart.totalPrice
 
             var partnerCode = "MOMO";
-            var partnerName = req.body.name;
+            // var partnerName = req.body.name;
             var accessKey = "F8BBA842ECF85";
             var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
             var requestId = partnerCode + new Date().getTime();
@@ -501,7 +516,7 @@ class SiteController {
                                 +"&redirectUrl=" + redirectUrl
                                 +"&requestId=" + requestId
                                 +"&requestType=" + requestType
-                                +"&partnerName=" + partnerName
+                                // +"&partnerName=" + partnerName
 
             const crypto = require('crypto');
             var signature = crypto.createHmac('sha256', secretkey)
@@ -564,6 +579,11 @@ class SiteController {
                     status: 'Success'
                 })
                 history.save()
+                var noti = new Notification({
+                    user: req.query.userId,
+                    desc: '[Success] Checkout by Momo.' 
+                })
+                noti.save()
                 req.session.cart = null;
                 req.flash('successMsg','Checkout successfully')
                 res.redirect('/cart')
@@ -576,6 +596,11 @@ class SiteController {
                     type: 'Pay',
                     status: 'Failed'
                 })
+                var noti = new Notification({
+                    user: req.query.userId,
+                    desc: '[Failed] Checkout by Momo.' 
+                })
+                noti.save()
                 history.save()
                 req.flash('failedMsg','Your payment has been paused or canceled')
                 res.redirect('/cart')
@@ -689,6 +714,11 @@ class SiteController {
                         status: 'Success'
                     })
                     history.save()
+                    // var noti = new Notification({
+                    //     user: req.query.userId,
+                    //     desc: '[Success] Checkout by Paypal.' 
+                    // })
+                    // noti.save()
 
                     req.session.cart = null;
                     req.flash('successMsg','Checkout successfully')
@@ -707,6 +737,11 @@ class SiteController {
                 status: 'Failed'
             })
             history.save()
+            var noti = new Notification({
+                user: req.query.userId,
+                desc: '[Failed] Checkout by Paypal.' 
+            })
+            noti.save()
             req.flash('failedMsg','Your payment has been paused or canceled')
             return res.redirect('/cart')
         }
@@ -759,6 +794,11 @@ class SiteController {
                         status: 'Success'
                     })
                     history.save()
+                    var noti = new Notification({
+                        user: req.body.userId,
+                        desc: '[Success] Checkout by Card.' 
+                    })
+                    noti.save()
 
                     req.flash('successMsg','Checkout successfully')
                     return res.redirect('/cart')
@@ -773,6 +813,11 @@ class SiteController {
                     status: 'Failed'
                 })
                 history.save()
+                var noti = new Notification({
+                    user: req.body.userId,
+                    desc: '[Failed] Checkout by Card.' 
+                })
+                noti.save()
                 req.flash('failedMsg','Can not checkout')
                 res.render('partials/error',{
                     layout: null,
@@ -828,6 +873,11 @@ class SiteController {
                             req.flash('failMessage', 'Can not send email. Please try again')
                             console.log(error);
                         } else {
+                            var noti = new Notification({
+                                user: user._id,
+                                desc: 'Your password is changed.' 
+                            })
+                            noti.save()
                             req.flash('successMessage', 'New password has sent to' + req.body.email)
                             console.log('Email sent: ' + info.response);
                             res.redirect('back')

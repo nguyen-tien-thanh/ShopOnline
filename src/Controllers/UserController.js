@@ -6,6 +6,7 @@ const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
 const History = require('../models/History')
+const Notification = require('../models/Notification')
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 const bcrypt = require('bcrypt');
@@ -15,20 +16,30 @@ const paypal = require('paypal-rest-sdk');
 
 class UserController {
 
-    // [GET] /user/unban/:id
+    // [POST] /user/unban/:id
     ban(req,res,next){
         User.updateOne({_id: req.params.id}, { $set: {countFailed: 6}})
             .then(() =>{
+                var noti = new Notification({
+                    user: req.params.id,
+                    desc: 'Your account is banned.' 
+                })
+                noti.save()
                 req.flash('successMsg','This user has been unban')
                 res.redirect('back')
             })
             .catch(next);
     }
 
-    // [GET] /user/unban/:id
+    // [POST] /user/unban/:id
     unban(req,res,next){
         User.updateOne({_id: req.params.id}, { $set: {countFailed: 0}})
             .then(() =>{
+                var noti = new Notification({
+                    user: req.params.id,
+                    desc: 'Your account is unbanned.' 
+                })
+                noti.save()
                 req.flash('successMsg','This user has been unban')
                 res.redirect('back')
             })
@@ -40,6 +51,11 @@ class UserController {
     update(req, res, next) {
         User.findOneAndUpdate({_id: req.params.id}, {$set: req.body})
             .then(() => {
+                var noti = new Notification({
+                    user: req.params.id,
+                    desc: 'Your profile has been updated.' 
+                })
+                noti.save()
                 req.flash('successMsg', 'Your profile information has been updated'),
                 res.redirect('/user/profile')
             })
@@ -50,6 +66,11 @@ class UserController {
     changeAvatar(req, res, next) {
         User.findOneAndUpdate({_id: req.params.id}, {$set: {avatar: req.file.filename}})
             .then(() => {
+                var noti = new Notification({
+                    user: req.params.id,
+                    desc: 'Avatar changed.' 
+                })
+                noti.save()
                 req.flash('successMsg', 'Your avatar has been updated'),
                 res.redirect('/user/profile')
             })
@@ -132,6 +153,11 @@ class UserController {
                                     req.flash('failedMsg', 'Change password failed'),
                                         res.redirect('/user/changeps')
                                 }
+                                var noti = new Notification({
+                                    user: decodeToken,
+                                    desc: 'Password has been updated.' 
+                                })
+                                noti.save()
                                 req.flash('successMsg', 'Change password successfully'),
                                     res.redirect('/user/changeps')
                             })
@@ -184,10 +210,20 @@ class UserController {
                     status: 'Success'
                 })
                 history.save()
+                var noti = new Notification({
+                    user: decodeToken,
+                    desc: '[Success] Transfer by Card.' 
+                })
+                noti.save()
                 req.flash('successMsg', 'Transfer Successfully')
                 return res.redirect('back')
             }
             else{
+                var noti = new Notification({
+                    user: decodeToken,
+                    desc: '[Failed] Transfer by Card.' 
+                })
+                noti.save()
                 req.flash('failMsg', 'Transfer Failed')
                 return res.redirect('back')
             }
@@ -200,7 +236,6 @@ class UserController {
             res.redirect('/user/transfer-by-momo-error')
         }
         else{
-            console.log(req.body.name)
             var userId = req.body.userId
             var amount = req.body.money;
 
@@ -275,7 +310,7 @@ class UserController {
     }
         // [GET] /user/transfer-by-momo-success
         transferByMomoSuccess(req,res,next){
-            var money = parseInt(req.params.money)
+            var money = parseInt(req.query.amount)
             if(req.query.message == 'Successful.'){
                 User.findOneAndUpdate({_id: req.query.userId}, {$inc: {money: money}})
                 .then((user) =>{
@@ -287,6 +322,11 @@ class UserController {
                         status: 'Success'
                     })
                     history.save()
+                    var noti = new Notification({
+                        user: req.query.userId,
+                        desc: '[Success] Transfer by Momo.' 
+                    })
+                    noti.save()
                     req.flash('successMsg','Transfer successfully')
                     res.redirect('/user/transfer')
                 })
@@ -301,12 +341,22 @@ class UserController {
                     status: 'Failed'
                 })
                 history.save()
+                var noti = new Notification({
+                    user: req.query.userId,
+                    desc: '[Failed] Transfer by Momo.' 
+                })
+                noti.save()
                 req.flash('failedMsg','Transfer has been paused or canceled')
                 res.redirect('/user/transfer')
             }
         }
         //[GET] /user/transfer-by-momo-error
         transferByMomoError(req,res,next){
+            var noti = new Notification({
+                user: req.query.userId,
+                desc: '[Failed] Transfer by Momo.' 
+            })
+            noti.save()
             req.flash('failedMsg','The money must be between 1.000 VND and 50.000.000 VND.')
             res.redirect('/user/transfer')
         }
@@ -404,6 +454,11 @@ class UserController {
                             status: 'Success'
                         })
                         history.save()
+                        var noti = new Notification({
+                            user: req.query.userId,
+                            desc: '[Success] Transfer by Paypal.' 
+                        })
+                        noti.save()
                         
                         req.flash('successMsg','Transfer successfully')
                         return res.redirect('/user/transfer')
@@ -422,6 +477,11 @@ class UserController {
                 status: 'Failed'
             })
             history.save()
+            var noti = new Notification({
+                user: req.query.userId,
+                desc: '[Failed] Transfer by Paypal.' 
+            })
+            noti.save()
             req.flash('failedMsg','Your transfer has been paused or canceled')
             return res.redirect('/user/transfer')
         }
@@ -445,7 +505,7 @@ class UserController {
         })
     }
 
-    // [GET] /history
+    // [GET] /user/history
     history(req, res, next){
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
@@ -464,6 +524,31 @@ class UserController {
                         layout: 'accountLayout',
                         titleSection: 'My Account',
                         section: 'history',
+                        msg: req.flash('successMsg')
+                    })
+            }
+        }) 
+    }
+    
+    // [GET] /user/notification
+    notification(req, res, next){
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, secret)
+        Promise.all([
+            User.findOne({ _id: decodeToken}), 
+            Notification.find({user: decodeToken}).sort({createdAt: -1})
+        ])
+        .then(([user, notification]) => {
+            if (user) {
+                req.data = user
+                return res.render('user/notification',
+                    {
+                        user: mongooseToObject(user),
+                        notification: multipleMongooseToObject(notification),
+                        title: 'Notification',
+                        layout: 'accountLayout',
+                        titleSection: 'notification',
+                        section: 'notification',
                         msg: req.flash('successMsg')
                     })
             }

@@ -41,7 +41,7 @@
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5 row">
                                             <div class="col-3">
-                                                <img src="{{#if user.password}}/uploads/{{/if}}{{user.avatar}}" 
+                                                <img src="{{#ifCond user.avatar '!=' 'http://.*'}}/uploads/{{/ifCond}}{{user.avatar}}" 
                                                 class="img-responsive img-rounded" alt="img-user" style="max-height: 50px; max-width: 50px;">
                                             </div>
                                             <div class="col-9">
@@ -71,14 +71,8 @@
                                                     </li>
                                                     <li><a href="/cart"><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>
                                                     <li><a href="/voucher"><i class="fas fa-fw fa-gift text-success"></i> My Voucher</a></li>
-                                                    <li><a href="/notification"><i class="fas fa-fw fa-bell text-danger"></i> Notifications</a>
-                                                        <ul>
-                                                            <a href=""><li>Profile</li></a>
-                                                            <a href=""><li>Banks & Cards</li></a>
-                                                            <a href=""><li>Addresses</li></a>
-                                                            <a href=""><li>Change Password</li></a>
-                                                        </ul>
-                                                    </li>
+                                                    <li><a href="/user/notification" {{#ifeq section 'notification'}}class="active"{{/ifeq}}>
+                                                        <i class="fas fa-fw fa-bell text-danger"></i> Notifications</a></li>
                                                 </ul>
                                             </div>
                                         </div>
