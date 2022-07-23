@@ -29,7 +29,13 @@
                         <td>₫{{formatCurrency this.amount}}</td>
                         <td>{{this.desc}}</td>
                         <td>{{this.type}}</td>
-                        <td>{{this.status}}</td>
+                        <td>
+                            {{#ifeq this.status 'Success'}}
+                                <i class="fa fa-check text-success"></i>
+                            {{else}}
+                                <i class="fa fa-times text-danger"></i>
+                            {{/ifeq}}
+                        </td>
                         <td>{{moment this.createdAt format = "DD/MM, HH:mm"}}</td>
                     </tr>
                 {{/each}}

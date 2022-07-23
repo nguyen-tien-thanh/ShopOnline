@@ -1,4 +1,5 @@
 module.exports = {
+    counter: (a) => a.length,
     sum: (a,b) => a+b,
     each_upto: function(ary, max, options) {
       if(!ary || ary.length == 0)

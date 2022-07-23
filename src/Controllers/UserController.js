@@ -81,13 +81,19 @@ class UserController {
     profile(req,res,next){
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({ _id: decodeToken})
-        .then(data => {
+        Promise.all([
+        User.findOne({ _id: decodeToken}),
+        Notification.find({user: decodeToken})
+            // .limit(4)
+            .sort({createdAt: -1}),
+        ])
+        .then(([data,noti]) => {
             if (data) {
                 req.data = data
                 return res.render('user/profile',
                     {
                         user: mongooseToObject(data),
+                        noti: multipleMongooseToObject(noti),
                         title: 'My Profile',
                         layout: 'accountLayout',
                         titleSection: 'My Account',
@@ -102,13 +108,19 @@ class UserController {
     changeps(req,res,next){
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({ _id: decodeToken})
-        .then(data => {
+        Promise.all([
+        User.findOne({ _id: decodeToken}),
+        Notification.find({user: decodeToken})
+            // .limit(4)
+            .sort({createdAt: -1}),
+        ])
+        .then(([data,noti]) => {
             if (data) {
                 req.data = data
                 return res.render('user/changeps',
                     {
                         user: mongooseToObject(data),
+                        noti: multipleMongooseToObject(noti),
                         title: 'Transfer',
                         layout: 'accountLayout',
                         titleSection: 'My Account',
@@ -175,13 +187,18 @@ class UserController {
     transfer(req,res,next){
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({ _id: decodeToken})
-        .then(data => {
+        Promise.all([
+        User.findOne({ _id: decodeToken}),
+        Notification.find({user: decodeToken})
+            // .limit(4)
+            .sort({createdAt: -1}),])
+        .then(([data,noti]) => {
             if (data) {
                 req.data = data
                 return res.render('user/transfer',
                     {
                         user: mongooseToObject(data),
+                        noti: multipleMongooseToObject(noti),
                         title: 'Transfer',
                         layout: 'accountLayout',
                         titleSection: 'My Account',
@@ -491,16 +508,20 @@ class UserController {
 
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({ _id: decodeToken})
-        .then(data => {
+        Promise.all([
+        User.findOne({ _id: decodeToken}),
+        Notification.find({user: decodeToken})
+            // .limit(4)
+            .sort({createdAt: -1}),])
+        .then(([data,noti]) => {
             if (data) {
                 req.data = data
                 return res.render('index',
                     {
                         user: mongooseToObject(data),
+                        noti: multipleMongooseToObject(noti),
                         title: 'user'
                     })
-                next()
             }
         })
     }
@@ -511,15 +532,19 @@ class UserController {
         var decodeToken = jwt.verify(token, secret)
         Promise.all([
             User.findOne({ _id: decodeToken}), 
-            History.find({ user: decodeToken}).sort({createdAt: -1})
+            History.find({ user: decodeToken}).sort({createdAt: -1}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
         ])
-        .then(([data, history]) => {
+        .then(([data, history, noti]) => {
             if (data) {
                 req.data = data
                 return res.render('user/history',
                     {
                         user: mongooseToObject(data),
                         history: multipleMongooseToObject(history),
+                        noti: multipleMongooseToObject(noti),
                         title: 'History',
                         layout: 'accountLayout',
                         titleSection: 'My Account',
@@ -536,15 +561,20 @@ class UserController {
         var decodeToken = jwt.verify(token, secret)
         Promise.all([
             User.findOne({ _id: decodeToken}), 
-            Notification.find({user: decodeToken}).sort({createdAt: -1})
+            Notification.find({user: decodeToken}).sort({createdAt: -1}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
+            Notification.updateMany({isRead: false}, {$set: {isRead: true}})
         ])
-        .then(([user, notification]) => {
+        .then(([user, notification, noti]) => {
             if (user) {
                 req.data = user
                 return res.render('user/notification',
                     {
                         user: mongooseToObject(user),
                         notification: multipleMongooseToObject(notification),
+                        noti: multipleMongooseToObject(noti),
                         title: 'Notification',
                         layout: 'accountLayout',
                         titleSection: 'notification',

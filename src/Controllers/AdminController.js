@@ -4,6 +4,8 @@ const User = require('../models/User')
 const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
+const Notification = require('../models/Notification')
+
 const {mongooseToObject, multipleMongooseToObject} = require('../ulti/mongoose')
 
 
@@ -16,14 +18,19 @@ class AdminController {
 
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({ _id: decodeToken})
-        .then(data => {
+        Promise.all([
+        User.findOne({ _id: decodeToken}),
+        Notification.find({user: decodeToken})
+            // .limit(4)
+            .sort({isRead: 1, createdAt: -1}),
+        ])
+        .then(([data,noti]) => {
             if (data) {
                 req.data = data
-                // console.log(data)
                 return res.render('admin',
                     {
                         user: mongooseToObject(data),
+                        noti: multipleMongooseToObject(noti),
                         layout: 'adminLayout',
                         title: 'Dashboard'
                     })
@@ -32,28 +39,25 @@ class AdminController {
         })
     }
 
-    // // [GET] /logout --> Home page
-    // logout (req, res) {
-    //     req.logout();
-    //     res.redirect('login');
-    // }
-
     // [GET] /:slug
     // Show 404 not found error
     error(req,res,next){
-        // res.render('partials/error', {
-        //     title: 'Not Found',
-        //     layout: null
-        // });
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        User.findOne({ _id: decodeToken})
-        .then(data => {
+
+        Promise.all([
+        User.findOne({ _id: decodeToken}),
+        Notification.find({user: decodeToken})
+            // .limit(4)
+            .sort({createdAt: -1}),
+        ])
+        .then(([data,noti]) => {
             if (data) {
                 req.data = data
                 return res.render('partials/error',
                     {
                         user: mongooseToObject(data),
+                        noti: multipleMongooseToObject(noti),
                         title: 'Not Found',
                         layout: null
                     })
@@ -67,14 +71,21 @@ class AdminController {
         
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([User.find(), User.findOne({_id:decodeToken})])
-        .then(([userList, data]) => {
+        Promise.all([
+            User.find(), 
+            User.findOne({_id:decodeToken}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
+        ])
+        .then(([userList, data, noti]) => {
             if (data) {
                 req.data = data
                 return res.render('admin/user-table',
                     {
                         user: mongooseToObject(data),
                         userList: multipleMongooseToObject(userList),
+                        noti: multipleMongooseToObject(noti),
                         layout: 'adminLayout',
                         title: 'User Management'
                     })
@@ -84,10 +95,6 @@ class AdminController {
             console.error(error);
             res.redirect('/login')
         })
-        // res.render('admin/user-table', {
-        //     title: 'User Table',
-        //     layout: 'adminLayout'
-        // });
     }
 
 
@@ -95,12 +102,20 @@ class AdminController {
     brandTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([Brand.find({}).sort({'createdAt': -1}), 
+        Promise.all([
+            Brand.find({}).sort({'createdAt': -1}), 
             Brand.findDeleted({}).sort({'createdAt': -1}),
-            User.findOne({_id:decodeToken})])
-        .then(([brandList, 
+            User.findOne({_id:decodeToken}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
+            ])
+        .then(([
+            brandList, 
             brandDeletedList,
-            data]) => {
+            data,
+            noti
+        ]) => {
             if (data) {
                 req.data = data
                 return res.render('admin/brand-table',
@@ -108,6 +123,7 @@ class AdminController {
                         user: mongooseToObject(data),
                         brandDeletedList: multipleMongooseToObject(brandDeletedList),
                         brandList: multipleMongooseToObject(brandList),
+                        noti: multipleMongooseToObject(noti),
                         layout: 'adminLayout',
                         title: 'Brand Management'
                     })
@@ -124,8 +140,15 @@ class AdminController {
     shoetypeTable(req,res,next){      
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([Shoetype.find(), Shoetype.findDeleted(), User.findOne({_id:decodeToken})])
-        .then(([shoetypeList, shoetypeDeleted, data]) => {
+        Promise.all([
+            Shoetype.find(), 
+            Shoetype.findDeleted(), 
+            User.findOne({_id:decodeToken}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
+        ])
+        .then(([shoetypeList, shoetypeDeleted, data, noti]) => {
             if (data) {
                 req.data = data
                 return res.render('admin/shoetype-table',
@@ -133,6 +156,7 @@ class AdminController {
                         user: mongooseToObject(data),
                         shoetypeList: multipleMongooseToObject(shoetypeList),
                         shoetypeDeleted: multipleMongooseToObject(shoetypeDeleted),
+                        noti: multipleMongooseToObject(noti),
                         layout: 'adminLayout',
                         title: 'Shoe Type',
                         deletedTitle: 'Deleted Types'
@@ -154,14 +178,18 @@ class AdminController {
             Shoe.find().populate('brand').populate('type'), 
             Shoe.findDeleted().populate('brand').populate('type'), 
             Brand.find({}),
-            Shoetype.find({})
+            Shoetype.find({}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
         ])
         .then(([
             data,
             shoeList, 
             shoeDeleted, 
             brandList,
-            shoetypeList
+            shoetypeList,
+            noti
         ]) => {
             if (data) {
                 req.data = data
@@ -172,6 +200,7 @@ class AdminController {
                         shoeDeleted: multipleMongooseToObject(shoeDeleted),
                         brandList: multipleMongooseToObject(brandList),
                         shoetypeList: multipleMongooseToObject(shoetypeList),
+                        noti: multipleMongooseToObject(noti),
                         layout: 'adminLayout',
                         title: 'Shoe',
                         deletedTitle: 'Deleted Shoe'
@@ -189,14 +218,21 @@ class AdminController {
     editUser(req, res, next) {
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, secret)
-        Promise.all([User.findOne({_id: req.params.id}), User.findOne({_id:decodeToken})])
-        .then(([userEdit, data]) => {
+        Promise.all([
+            User.findOne({_id: req.params.id}), 
+            User.findOne({_id:decodeToken}),
+            Notification.find({user: decodeToken})
+                // .limit(4)
+                .sort({createdAt: -1}),
+            ])
+        .then(([userEdit, data, noti]) => {
             if (data) {
                 req.data = data
                 return res.render('admin/edit-user',
                     {
                         user: mongooseToObject(data),
                         userEdit: mongooseToObject(userEdit),
+                        noti: multipleMongooseToObject(noti),
                         layout: 'adminLayout',
                         title: 'Edit user information',
                         msg: req.flash('successMsg')

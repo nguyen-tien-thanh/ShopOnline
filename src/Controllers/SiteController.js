@@ -371,12 +371,16 @@ class SiteController {
             if(req.session.cart){
                 Promise.all([
                     User.findOne({_id: decodeToken}),
+                    Notification.find({user: decodeToken})
+                        // .limit(4)
+                        .sort({createdAt: -1}),
                     Shoe.find({})
                         .populate('brand')
                         .populate('type')
                 ])
                 .then(([
                     data,
+                    noti,
                     shoe,
                 ]) => {
                     if (data) {
@@ -385,6 +389,7 @@ class SiteController {
                         return res.render('cart',
                             {
                                 user: mongooseToObject(data),
+                                noti: multipleMongooseToObject(noti),
                                 shoe: cart.generateArrays(),
                                 totalPrice: cart.totalPrice,
                                 title: 'Cart',
@@ -395,9 +400,15 @@ class SiteController {
                 })
             }
             else{
-                User.findOne({_id: decodeToken})
-                .then((user) => res.render('cart',{
+                Promise.all([
+                User.findOne({_id: decodeToken}),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1})
+            ])
+                .then(([user, noti]) => res.render('cart',{
                     user: mongooseToObject(user),
+                    noti: multipleMongooseToObject(noti),
                     title: 'Cart',
                     successMsg: req.flash('successMsg'),
                     failedMsg: req.flash('failedMsg')
@@ -674,7 +685,7 @@ class SiteController {
         });
     }
 
-        //GET /check-out-by-paypal-success
+        //[POST] /check-out-by-paypal-success
         checkoutByPaypalSuccess(req,res){
             const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
             const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
@@ -727,7 +738,7 @@ class SiteController {
             })
         }
 
-        //GET /checkout-error
+        //[POST] /checkout-error
         checkoutByPaypalError(req,res){
             var history = new History({
                 user: req.query.userId,
