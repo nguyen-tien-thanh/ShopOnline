@@ -224,7 +224,7 @@
                                     Notifications
                                 </h6>
                                 {{#each_upto noti 5}}
-                                <a class="dropdown-item d-flex align-items-center" href="/noti/{{this._id}}">
+                                <button class="dropdown-item d-flex align-items-center noti-list" onclick="readNoti('{{this._id}}')">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-{{#ifeq this.isRead false}}primary{{else}}secondary{{/ifeq}}">
                                             <i class="fas fa-file-alt text-white"></i>
@@ -234,7 +234,7 @@
                                         <div {{#ifeq this.isRead false}} class="small font-weight-bold text-500 text-primary" {{else}}class="small text-gray-500"{{/ifeq}}>{{moment this.createdAt format = "HH:mm - DD/MM/yyyy"}}</div>
                                         <span {{#ifeq this.isRead false}} class="font-weight-bold text-primary" {{/ifeq}}>{{this.desc}}</span>
                                     </div>
-                                </a>
+                                </button>
                                 {{/each_upto}}
                                 {{!-- <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">

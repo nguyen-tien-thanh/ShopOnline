@@ -71,6 +71,25 @@
     });
   });
 
+  // ================= read notification =================
+  $('.noti-list button').click(function() {
+    var notiId = $(this).data('id')
+    
+    $.ajax({
+      type: 'POST',
+      url: '/notification/read-noti',
+      data: {notiId: notiId}
+    })
+
+    // ======== Aminate open mail/envelope Header =================
+    $(this).find('.text-primary').addClass('text-dark')
+    $(this).find('.bg-primary').addClass('bg-secondary')
+    $(this).find('.fa-envelope-open').fadeIn(700)
+    $(this).find('.fa-envelope').fadeOut(700)
+  })
+
+  // ==============================================================
+
   $('.arrow').click(function(){
     $("html").animate({ scrollTop: $('html').prop("scrollHeight")}, 200);
   });
@@ -832,3 +851,4 @@ $('input[id="money"]').keyup(function(event) {
 $('#change-avatar-btn').click(function(){
   $('#file-avatar').trigger('click');
 })
+

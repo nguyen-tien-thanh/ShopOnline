@@ -6,11 +6,12 @@ class NotificationController {
 
     //[GET] /noti/:id
     read(req,res,next){
-        Noti.findByIdAndUpdate(req.params.id, {$set: {isRead: true}})
+        Noti.findByIdAndUpdate(req.body.notiId, {$set: {isRead: true}})
         .then(() => {
-            res.send({message: 'Read'})
+            console.log('Send')
+            res.send({msg: 'Success read'})
         })
-        .catch(() => res.send({message: 'Error'}))
+        .catch(() => res.send({msg: 'Error'}))
     }
 }
 

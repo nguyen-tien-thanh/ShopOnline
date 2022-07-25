@@ -1,81 +1,103 @@
 
 <div class="sub-header">
     <div class="arrow animated bounce"></div>
-    <nav class="sub-nav">
-        <ul id="sub-nav-left">
-
+    <nav class="subnav">
+        <ul id="subnav-right">
             {{#if user}}
-                <li>
-                  <a href="/cart">
-                    <i class="fa fa-shopping-cart"></i>
-                    {{#if session.cart.totalQty}}
-                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
-                    {{else}}
-                      <span class="badge badge-danger badge-counter">0</span>
-                    {{/if}}
-                  </a>
-                </li>
-                <li>
-                  <a href="/user/notification">
-                    <i class="fa fa-bell fa-shake"></i>
-                      {{!-- <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span> --}}
-                      
-                    <div class="subnav-dropdown">
-                      <br>
-                      {{#each noti}}
-                        <span class="subnav-dropdown-items">{{this.desc}}</span>
-                        {{!-- <a class="subnav-dropdown-items" href="/user/profile"><i class="fa fa-address-card"></i>My Account</a> --}}
-                        <hr>
-                      {{/each}}
-                      <a class="subnav-dropdown-items"><i class="fa fa-ellipsis-h"></i></a>
-                      <hr>
-                      <a class="subnav-dropdown-items" href="/user/notification"><i class="fa fa-tasks"></i>See All</a>
-                      <br><br>
+              <li>
+                <a href="/cart">
+                  <i class="fa fa-shopping-cart"></i>
+                  {{#if session.cart.totalQty}}
+                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                  {{else}}
+                    <span class="badge badge-danger badge-counter">0</span>
+                  {{/if}}
+                </a>
+              </li>
+              <li>
+                <i class="fa fa-bell fa-shake"></i>
+                  
+                <div class="subnav-dropdown noti-list">
+                  {{!-- <br> --}}
+                  {{#each noti}}
+                    <button class="dropdown-item d-flex align-items-center" data-id="{{this._id}}">
+                        <div class="mr-3">
+                          {{#ifeq this.isRead false}}
+                            <div class="icon-circle bg-primary">
+                                <i class="fa fa-envelope text-white"></i>
+                                <i class="fa fa-envelope-open text-white" style="position: absolute; display: none;"></i>
+                            </div>
+                          {{else}}
+                            <div class="icon-circle bg-secondary">
+                                <i class="fa fa-envelope-open text-white"></i>
+                            </div>
+                          {{/ifeq}}
+                        </div>
+                        <div>
+                            <div {{#ifeq this.isRead false}} class="font-weight-bold text-500 text-primary" {{else}}class="text-gray-500"{{/ifeq}}>{{moment this.createdAt format = "HH:mm - DD/MM/yyyy"}}</div>
+                            <span {{#ifeq this.isRead false}} class="font-weight-bold text-primary" {{/ifeq}}>{{this.desc}}</span>
+                        </div>
+                    </button>
+                    <hr>
+                  {{/each}}
+                  <div class="subnav-dropdown-items">
+                    <a><i class="fa fa-ellipsis-h"></i></a>
+                  </div>
+                  <hr>
+                  <div class="subnav-dropdown-items">
+                    <a href="/user/notification"><i class="fa fa-tasks"></i>Read All</a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <a class="active" href="#"><b>{{user.name}}</b></a>
+                  <div class="subnav-dropdown">
+                    <div class="subnav-dropdown-items">
+                      <a href="/user/profile"><i class="fa fa-address-card"></i>My Account</a>
                     </div>
-                  </a>
-                </li>
-                <li>
-                    <a class="active" href="#"><b>{{user.name}}</b></a>
-                    <div class="subnav-dropdown">
-                      <br>
-                      <a class="subnav-dropdown-items" href="/user/profile"><i class="fa fa-address-card"></i>My Account</a>
-                      <hr>
-                      <a href="/user/transfer" class="subnav-dropdown-items" id="money-item-nav">
+                    <hr>
+                    <div class="subnav-dropdown-items">
+                      <a href="/user/transfer" id="money-item-nav">
                         <span>
                           <i class="fa fa-money-check"></i>{{formatCurrency user.money}} VND
                           <i class="fas fa-plus-circle"></i>
                         </span>
                       </a>
-                      <hr>
-                      <a class="subnav-dropdown-items" href="/cart"><i class="fa fa-shopping-cart"></i>My purchase</a>
-                      <hr>
-                      {{#ifeq user.role 'Admin'}}
-                        <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i>Management</a>
-                        <hr>
-                      {{/ifeq}}
-                      <a class="subnav-dropdown-items" onclick="logout()"><i class='fas fa-sign-out-alt'></i>Log out</a>
-                      <br><br>
                     </div>
-                </li>
+                    <hr>
+                    <div class="subnav-dropdown-items">
+                      <a href="/cart"><i class="fa fa-shopping-cart"></i>My purchase</a>
+                    </div>
+                    <hr>
+                    {{#ifeq user.role 'Admin'}}
+                      <div class="subnav-dropdown-items">
+                        <a href="/admin"><i class="fa fa-tasks"></i>Management</a>
+                      </div>
+                      <hr>
+                    {{/ifeq}}
+                    <div class="subnav-dropdown-items">
+                      <a onclick="logout()"><i class='fas fa-sign-out-alt'></i>Log out</a>
+                    </div>
+                  </div>
+              </li>
             {{else}}
-                <li>
-                  <a href="/cart">
-                    <i class="fa fa-shopping-cart"></i>
-                    {{#if session.cart.totalQty}}
-                      <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
-                    {{else}}
-                      <span class="badge badge-danger badge-counter">0</span>
-                    {{/if}}
-                  </a>
-                </li>
-                <li>
-                    <a class="active" href="/login">Login</a>
-                </li>
-                <li>
-                    <a href="/register">Register</a>
-                </li>
+              <li>
+                <a href="/cart">
+                  <i class="fa fa-shopping-cart"></i>
+                  {{#if session.cart.totalQty}}
+                    <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span>
+                  {{else}}
+                    <span class="badge badge-danger badge-counter">0</span>
+                  {{/if}}
+                </a>
+              </li>
+              <li>
+                  <a class="active" href="/login">Login</a>
+              </li>
+              <li>
+                  <a href="/register">Register</a>
+              </li>
             {{/if}}
-
         </ul>
     </nav>
 </div>

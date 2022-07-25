@@ -33,7 +33,7 @@ class SiteController {
                 Brand.find({}),
                 Shoetype.find({}),
                 Notification.find({user: decodeToken})
-                    .limit(4)
+                    // .limit(4)
                     .sort({createdAt: -1}),
                 Shoe.find({bestseller: true})
                     .populate('brand')

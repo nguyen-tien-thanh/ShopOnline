@@ -38,7 +38,6 @@ module.exports = function Cart(oldCart) {
         this.totalPrice -= this.items[id].price;
         delete this.items[id];
     }
-
     
 
     this.deleteCart = function(){

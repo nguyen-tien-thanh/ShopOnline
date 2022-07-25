@@ -1,11 +1,11 @@
 .sub-header {
   position: relative; }
 
-.sub-nav {
+.subnav {
   bottom: 0;
   left: 0; }
 
-#sub-nav-left {
+#subnav-right {
   display: block;
   list-style-type: none;
   margin: 0;
@@ -13,28 +13,30 @@
   overflow: hidden;
   background-color: transparent; }
 
-#sub-nav-left li {
+#subnav-right li {
   float: right; }
 
-#sub-nav-left li a {
+#subnav-right li a {
   color: white;
-  text-align: center;
   padding: 0 10px 16px 14px;
   text-decoration: none;
   font-size: 18px; }
 
-#sub-nav-left li .subnav-dropdown-items,
-#sub-nav-left li .subnav-lang-dropdown-items {
-  padding: 0 10px 16px 14px;
-  color: black !important;
+#subnav-right .subnav-dropdown-items a {
+  color: black;
+  padding: 0; }
+
+#subnav-right li .subnav-dropdown-items,
+#subnav-right li .subnav-lang-dropdown-items {
+  padding: 16px 10px 16px 14px;
+  color: black;
   cursor: pointer; }
 
-#sub-nav-left li .subnav-dropdown-items:hover,
-#sub-nav-left li .subnav-lang-dropdown-items:hover {
-  color: #d00109 !important; }
+#subnav-right li .subnav-dropdown-items a:hover {
+  color: #d00109; }
 
-#sub-nav-left li a:hover {
-  text-decoration: underline; }
+#subnav-right li .subnav-dropdown-items a:hover div {
+  color: #d00109 !important; }
 
 .subnav-dropdown {
   position: absolute;
@@ -58,8 +60,8 @@
 .subnav-dropdown-items i {
   padding-right: 7px; }
 
-.sub-nav ul li:hover .subnav-dropdown,
-.sub-nav ul li:hover .subnav-lang-dropdown {
+.subnav ul li:hover .subnav-dropdown,
+.subnav ul li:hover .subnav-lang-dropdown {
   display: block; }
 
 .subnav-lang-dropdown {
@@ -152,7 +154,6 @@ header nav ul li {
 
 header nav ul li:hover,
 .element-a-href:hover {
-  text-decoration: underline;
   font-style: bold;
   color: #d00109;
   cursor: pointer; }
@@ -354,8 +355,23 @@ section.cards .card img {
     transform: rotate(0deg); } }
 
 i.fa-shake {
+  color: white;
   display: inline-block;
-  animation: fa-shake 1.5s infinite; }
+  animation: fa-shake 1.5s infinite;
+  font-size: 20px;
+  margin-top: 3px; }
 
 i.fa-shake:hover {
   animation: none; }
+
+.subnav-dropdown hr {
+  margin: 0; }
+
+.icon-circle {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; }
