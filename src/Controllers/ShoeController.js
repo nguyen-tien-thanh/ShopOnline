@@ -5,6 +5,7 @@ const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
 const Cart = require('../models/Cart')
+const Custom = require('../models/Custom')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -18,7 +19,15 @@ class ShoeController {
 
     // [GET] /shoe/custom
     custom(req,res,next){
-        res.render('shoe/custom');
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, 'secretpasstoken')
+        User.findOne({_id: decodeToken})
+        .then((user) =>{
+            res.render('shoe/custom', {
+                user: mongooseToObject(user)
+            })
+        })
+        .catch((err)=>{console.log(err)})
     }
     
 
@@ -258,6 +267,32 @@ class ShoeController {
             .catch(error => {
                 console.log(error)
             })
+    }
+
+     //[POST] /store shoe
+     storeCustom(req,res,next) {
+        // console.log(req.body)
+        
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, 'secretpasstoken')
+        User.findOne({_id: decodeToken})
+        .then((user) => {
+            const shoe = new Custom({
+                user: user._id,
+                swooth: req.body.swoothColor,
+                midsole: req.body.midsoleColor,
+                middle: req.body.middleColor,
+                head: req.body.headColor,
+                back: req.body.backColor,
+                backward: req.body.backwardColor,
+            })
+            shoe.save()
+
+            res.redirect('back')
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
     }
 
     //[GET] /shoe/newarrival
@@ -668,6 +703,29 @@ class ShoeController {
                 }
             })
         }
+    }
+
+    customList(req, res, next){
+
+        var token = req.cookies.token;
+        var decodeToken = jwt.verify(token, 'secretpasstoken')
+        Promise.all([
+            User.findOne({_id: decodeToken}),
+            Custom.find({user: decodeToken})
+            .populate('user')
+        ])
+        .then(([
+            user,
+            custom
+        ]) => {
+            res.render('shoe/custom-list', {
+                user: mongooseToObject(user),
+                custom: multipleMongooseToObject(custom)
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 
