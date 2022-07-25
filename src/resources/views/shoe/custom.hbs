@@ -6,29 +6,34 @@
     <div class="main-img-custom">
         <div class="img-custom-1 open-img-custom-1">
                 <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
-             <div class="main-swooth-custom close-main-swooth-custom"></div>
-             <div class="main-midsole-custom close-main-midsole-custom"></div>
-             <div class="main-middle-custom close-main-middle-custom"></div>
-             <div class="main-head-custom close-main-head-custom"></div>
-             <div class="main-back-custom close-main-back-custom"></div>
-             <div class="main-backward-custom close-main-backward-custom"></div>
+                <div class="main-swooth-custom close-main-swooth-custom"></div>
+                <div class="main-midsole-custom close-main-midsole-custom"></div>
+                <div class="main-middle-custom close-main-middle-custom"></div>
+                <div class="main-head-custom close-main-head-custom"></div>
+                <div class="main-back-custom close-main-back-custom"></div>
+                <div class="main-backward-custom close-main-backward-custom"></div>
         </div>
       </div>
       <div class="diversion-shoe">
-        <div value="1" class="swooth "><img src="/images/smooth.png" alt=""></div>
-        <div value="2" class="midsole"><img src="/images/midsole.png" alt=""></div>
-        <div value="3" class="middle"><img src="/images/middle.png" alt=""></div>
-        <div value="4" class="head"><img src="/images/head.png" alt=""></div>
-        <div value="5" class="back"><img src="/images/back.png" alt=""></div>
-        <div value="6" class="backward"><img src="/images/backward.png" alt=""></div>
+        <div class="swooth"><img src="/images/smooth.png" alt=""></div>
+        <div class="midsole"><img src="/images/midsole.png" alt=""></div>
+        <div class="middle"><img src="/images/middle.png" alt=""></div>
+        <div class="head"><img src="/images/head.png" alt=""></div>
+        <div class="back"><img src="/images/back.png" alt=""></div>
+        <div class="backward"><img src="/images/backward.png" alt=""></div>
       </div>
             <div class="custom-color-board">
-                <input class="color-list" name="swoothColor" id="color-swooth" type="color">
-                <input class="color-list" name="midsoleColor" id="color-midsole" type="color">
-                <input class="color-list" name="middleColor" id="color-middle" type="color">
-                <input class="color-list" name="headColor" id="color-head" type="color">
-                <input class="color-list" name="backColor" id="color-back" type="color">
-                <input class="color-list" name="backwardColor" id="color-backward" type="color">
+                <form method="POST" action="/shoe/store-custom">
+                    <input class="color-list" name="swoothColor" id="color-swooth" type="color">
+                    <input class="color-list" name="midsoleColor" id="color-midsole" type="color">
+                    <input class="color-list" name="middleColor" id="color-middle" type="color">
+                    <input class="color-list" name="headColor" id="color-head" type="color">
+                    <input class="color-list" name="backColor" id="color-back" type="color">
+                    <input class="color-list" name="backwardColor" id="color-backward" type="color">
+                    <button>Save</button>
+                    <button class="cancle-reload" type="button">Cancle reload</button>
+                    <button class="cancle-realtime" type="button">Cancle realtime</button>
+                </form>
             </div>
     </div>
     </section>
@@ -36,52 +41,35 @@
 </div>
 
 <script>
-    const colorSwooth= document.querySelector('#color-swooth')
-    const colorMidsole= document.querySelector('#color-midsole')
-    const colorMiddle= document.querySelector('#color-middle')
-    const colorHead= document.querySelector('#color-head')
-    const colorBack= document.querySelector('#color-back')
-    const colorBackward= document.querySelector('#color-backward')
+    $('.cancle-reload').click(()=>{
+        location.reload();
+    })
+  
+    $('.cancle-realtime').click(()=>{
+       $('.img-custom-1 div').removeAttr('style').hide()
+       
+    })
 
-        $('.diversion-shoe div').on('click', function(){
-           if($(this).attr('value') == 1){
-            $('.main-swooth-custom').attr('class', 'main-swooth-custom')
-            $('input[name="swoothColor"]').trigger('click')
-            colorSwooth.oninput = function() {
-                document.querySelector('.main-swooth-custom').style.backgroundColor = this.value;
-            }
-           } else if ($(this).attr('value')== 2){
-                $('.main-midsole-custom').attr('class', 'main-midsole-custom')
-                $('input[name="midsoleColor"]').trigger('click')
-                colorMidsole.oninput = function() {
-                    document.querySelector('.main-midsole-custom').style.backgroundColor = this.value;
-                }
-           } else if ($(this).attr('value')== 3){
-                $('.main-middle-custom').attr('class', 'main-middle-custom')
-                $('input[name="middleColor"]').trigger('click')
-                colorMiddle.oninput = function() {
-                    document.querySelector('.main-middle-custom').style.backgroundColor = this.value;
-                }
-           } else if ($(this).attr('value')== 4){
-                $('.main-head-custom').attr('class', 'main-head-custom')
-                $('input[name="headColor"]').trigger('click')
-                colorHead.oninput = function() {
-                    document.querySelector('.main-head-custom').style.backgroundColor = this.value;
-                }
-           } else if ($(this).attr('value')== 5){
-                $('.main-back-custom').attr('class', 'main-back-custom')
-                $('input[name="backColor"]').trigger('click')
-                colorBack.oninput = function() {
-                    document.querySelector('.main-back-custom').style.backgroundColor = this.value;
-                }
-           } else if ($(this).attr('value')== 6){
-                $('.main-backward-custom').attr('class', 'main-backward-custom')
-                $('input[name="backwardColor"]').trigger('click')
-                colorBackward.oninput = function() {
-                    document.querySelector('.main-backward-custom').style.backgroundColor = this.value;
-                }
-           }
+    $('.diversion-shoe div').on('click', function(){
+     var shoePart = $(this).attr('class')
+     $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
+     $('input[name ="' + shoePart + 'Color"]').trigger('click')
+     $('#color-' + shoePart).on('input', function(){     
+        $('.main-' + shoePart + '-custom').attr('active','true').attr('style', 'background-color:' + $(this).val())
+     })
+    })
+
+    $('.diversion-shoe div').mouseover( function() {
+        var shoePart = $(this).attr('class')
+        var isEditable = $('.main-' + shoePart + '-custom').attr('active')
+        console.log(isEditable)
+        $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
+        $(this).mouseout(()=>{
+            var ele = $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom')
+            if(isEditable == 'true') ele.show()
+            else ele.hide()
         })
-   
+    })
+    
 </script>
 
