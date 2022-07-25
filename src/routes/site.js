@@ -201,6 +201,8 @@ router.post('/checkout-by-wallet', isLoggined, siteController.checkoutByWallet)
 router.post('/checkout-by-momo', isLoggined, siteController.checkoutByMomo)
     // [GET] /checkout-by-momo-success
     router.get('/checkout-by-momo-success', isLoggined, siteController.checkoutByMomoSuccess)
+    // [GET] /checkout-by-momo-success
+    router.get('/checkout-by-momo-error', isLoggined, siteController.checkoutByMomoError)
 // [POST] /checkout-by-paypal
 router.post('/checkout-by-paypal', isLoggined, siteController.checkoutByPaypal)
     // [GET] /checkout-by-paypal-success

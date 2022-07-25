@@ -10,6 +10,7 @@ router.use(cookieParser())
 const userController = require('../Controllers/UserController');
 
 router.get('/history', isLoggined, userController.history);
+router.get('/notification', isLoggined, userController.notification);
 
 router.get('/ban/:id', isLoggined, isAdmin, userController.ban);
 router.get('/unban/:id', isLoggined, isAdmin, userController.unban);
@@ -21,6 +22,7 @@ router.use('/transfer', isLoggined, userController.transfer);
 router.post('/transfer-by-card', isLoggined, userController.transferByCard);
 router.post('/transfer-by-momo', isLoggined, userController.transferByMomo);
     router.get('/transfer-by-momo-success', userController.transferByMomoSuccess);
+    router.get('/transfer-by-momo-error', userController.transferByMomoError);
 router.post('/transfer-by-paypal', isLoggined, userController.transferByPaypal);
     router.get('/transfer-by-paypal-success', userController.transferByPaypalSuccess);
     router.get('/transfer-by-paypal-error', userController.transferByPaypalError);

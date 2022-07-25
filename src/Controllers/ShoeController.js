@@ -5,7 +5,11 @@ const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
 const Cart = require('../models/Cart')
+<<<<<<< HEAD
 const Custom = require('../models/Custom')
+=======
+const Notification = require('../models/Notification')
+>>>>>>> d590b516274be57a34a4b9d5085be99e6071742a
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -92,7 +96,7 @@ class ShoeController {
                 brandList,
                 shoeType,
                 shoe,
-                shoeDetail
+                shoeDetail,
             ]) => {
                 res.render('shoe/checkout', {
                     brandList: multipleMongooseToObject(brandList),
@@ -117,13 +121,17 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .limit(4),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
                 shoe,
-                shoeDetail
+                shoeDetail,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -134,6 +142,7 @@ class ShoeController {
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
                             shoeDetail: mongooseToObject(shoeDetail),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Checkout',
                         })
                     next()
@@ -162,7 +171,7 @@ class ShoeController {
                 brandList,
                 shoeType,
                 shoe,
-                shoeDetail
+                shoeDetail,
             ]) => {
                 res.render('shoe/show', {
                     brandList: multipleMongooseToObject(brandList),
@@ -190,13 +199,17 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .limit(4),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
                 shoe,
-                shoeDetail
+                shoeDetail,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -207,6 +220,7 @@ class ShoeController {
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
                             shoeDetail: mongooseToObject(shoeDetail),
+                            noti: multipleMongooseToObject(noti),
                             title: shoeDetail.name,
                             shoeDetailTitle: req.query.shoeDetailTitle
                         })
@@ -249,7 +263,7 @@ class ShoeController {
 
     //[POST] /store shoe
     store(req,res,next) {
-        console.log(req.body)
+        // console.log(req.body)
         const shoe = new Shoe({
             brand: req.body.brand,
             type: req.body.type,
@@ -330,12 +344,16 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({createdAt: 1}),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -345,6 +363,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()
@@ -388,12 +407,16 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({price: 1}),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -403,6 +426,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()
@@ -446,12 +470,16 @@ class ShoeController {
                     .populate('brand')
                     .populate('type')
                     .sort({price: -1}),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -461,6 +489,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()
@@ -502,12 +531,16 @@ class ShoeController {
                 Shoe.find({bestseller: true})
                     .populate('brand')
                     .populate('type'),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -517,6 +550,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()
@@ -558,12 +592,16 @@ class ShoeController {
                 Shoe.find({available: true})
                     .populate('brand')
                     .populate('type'),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -573,6 +611,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()
@@ -626,12 +665,16 @@ class ShoeController {
                     ]})
                     .populate('brand')
                     .populate('type'),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -641,6 +684,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()
@@ -682,12 +726,16 @@ class ShoeController {
                 Shoe.find({})
                     .populate('brand')
                     .populate('type'),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1}),
             ])
             .then(([
                 data,
                 brandList,
                 shoeType,
-                shoe
+                shoe,
+                noti
             ]) => {
                 if (data) {
                     req.data = data
@@ -697,6 +745,7 @@ class ShoeController {
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
                             shoe: multipleMongooseToObject(shoe),
+                            noti: multipleMongooseToObject(noti),
                             title: 'Shop',
                         })
                     next()

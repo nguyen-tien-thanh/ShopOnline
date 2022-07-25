@@ -6,6 +6,7 @@ const Shoe = require('../models/Shoe')
 const Cart = require('../models/Cart')
 const Order = require('../models/Order')
 const History = require('../models/History')
+const Notification = require('../models/Notification')
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -31,6 +32,9 @@ class SiteController {
                 User.findOne({_id: decodeToken}),
                 Brand.find({}),
                 Shoetype.find({}),
+                Notification.find({user: decodeToken})
+                    .limit(4)
+                    .sort({createdAt: -1}),
                 Shoe.find({bestseller: true})
                     .populate('brand')
                     .populate('type')
@@ -46,6 +50,7 @@ class SiteController {
                 data,
                 brandList,
                 shoeType,
+                noti,
                 shoeBestseller,
                 shoeAvailable
             ]) => {
@@ -56,6 +61,7 @@ class SiteController {
                             user: mongooseToObject(data),
                             brandList: multipleMongooseToObject(brandList),
                             shoeType: multipleMongooseToObject(shoeType),
+                            noti: multipleMongooseToObject(noti),
                             shoeBestseller: multipleMongooseToObject(shoeBestseller),
                             shoeAvailable: multipleMongooseToObject(shoeAvailable),
                             title: 'Home page'
@@ -150,7 +156,6 @@ class SiteController {
                         address: req.body.address,
                         avatar: 'sample-avatar.jpg'
                     })
-                    // console.log(user)
                     user.save(err, result =>{
                         if(err) {
                             console.log('err: ' + err)
@@ -366,12 +371,16 @@ class SiteController {
             if(req.session.cart){
                 Promise.all([
                     User.findOne({_id: decodeToken}),
+                    Notification.find({user: decodeToken})
+                        // .limit(4)
+                        .sort({createdAt: -1}),
                     Shoe.find({})
                         .populate('brand')
                         .populate('type')
                 ])
                 .then(([
                     data,
+                    noti,
                     shoe,
                 ]) => {
                     if (data) {
@@ -380,6 +389,7 @@ class SiteController {
                         return res.render('cart',
                             {
                                 user: mongooseToObject(data),
+                                noti: multipleMongooseToObject(noti),
                                 shoe: cart.generateArrays(),
                                 totalPrice: cart.totalPrice,
                                 title: 'Cart',
@@ -390,9 +400,15 @@ class SiteController {
                 })
             }
             else{
-                User.findOne({_id: decodeToken})
-                .then((user) => res.render('cart',{
+                Promise.all([
+                User.findOne({_id: decodeToken}),
+                Notification.find({user: decodeToken})
+                    // .limit(4)
+                    .sort({createdAt: -1})
+            ])
+                .then(([user, noti]) => res.render('cart',{
                     user: mongooseToObject(user),
+                    noti: multipleMongooseToObject(noti),
                     title: 'Cart',
                     successMsg: req.flash('successMsg'),
                     failedMsg: req.flash('failedMsg')
@@ -425,6 +441,11 @@ class SiteController {
                         status: 'Failed'
                     })
                     history.save()
+                    var noti = new Notification({
+                        user: req.body.userId,
+                        desc: '[Failed] Checkout by Wallet.' 
+                    })
+                    noti.save()
                     req.flash('failedMsg','You not have enough money to pay')
                     return res.redirect('/cart')
                 }
@@ -448,6 +469,11 @@ class SiteController {
                                 status: 'Success'
                             })
                             history.save()
+                            var noti = new Notification({
+                                user: req.body.userId,
+                                desc: '[Success] Checkout by Wallet.' 
+                            })
+                            noti.save()
                             
                             req.session.cart = null;
                             req.flash('successMsg','Checkout successfully')
@@ -461,87 +487,93 @@ class SiteController {
 
     //[POST] /checkout-by-momo
     checkoutByMomo (req,res,next){ 
-
-        var order = new Order({
-            cart: req.session.cart,
-            email: req.body.email,
-            address: req.body.address,
-            phone: req.body.phone,
-            shipping: req.body.shipping
-        })
-        var orderParams = JSON.stringify(order)
-
-        var userId = req.body.userId
-        var totalPrice = req.session.cart.totalPrice
-
-        var partnerCode = "MOMO";
-        var accessKey = "F8BBA842ECF85";
-        var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        var requestId = partnerCode + new Date().getTime();
-        var orderId = requestId;
-        var orderInfo = req.body.email +" | DUSTIN pay ";
-        var redirectUrl = "http://localhost:5000/checkout-by-momo-success?totalPrice="+ totalPrice + "&userId="+ userId + "&order="+ orderParams + "";
-        var ipnUrl =  "http://localhost:5000/checkout-error";
-        // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
-        var amount = req.body.money;
-        var requestType = "captureWallet"
-        var extraData = "";
-
-        var rawSignature = "accessKey="+accessKey
-                            +"&amount=" + amount
-                            +"&extraData=" + extraData
-                            +"&ipnUrl=" + ipnUrl
-                            +"&orderId=" + orderId
-                            +"&orderInfo=" + orderInfo
-                            +"&partnerCode=" + partnerCode 
-                            +"&redirectUrl=" + redirectUrl
-                            +"&requestId=" + requestId
-                            +"&requestType=" + requestType
-
-        const crypto = require('crypto');
-        var signature = crypto.createHmac('sha256', secretkey)
-            .update(rawSignature)
-            .digest('hex');
-
-        const requestBody = JSON.stringify({
-            partnerCode : partnerCode,
-            accessKey : accessKey,
-            requestId : requestId,
-            amount : amount,
-            orderId : orderId,
-            orderInfo : orderInfo,
-            redirectUrl : redirectUrl,
-            ipnUrl : ipnUrl,
-            extraData : extraData,
-            requestType : requestType,
-            signature : signature,
-            lang: 'en'
-        });
-
-        //Create the HTTPS objects
-        const https = require('https');
-        const options = {
-            hostname: 'test-payment.momo.vn',
-            port: 443,
-            path: '/v2/gateway/api/create',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(requestBody)
-            }
+        if(parseInt(req.session.cart.totalPrice) < 1000 || parseInt(req.session.cart.totalPrice) >50000000){
+            res.redirect('/checkout-by-momo-error')
         }
-        //Send the request and get the response
-        const request = https.request(options, response => {
-            response.setEncoding('utf8');
-            response.on('data', (body) => {
-                var paymentUrl = JSON.parse(body).payUrl;
-                res.redirect(paymentUrl);
+        else{
+            var order = new Order({
+                cart: req.session.cart,
+                email: req.body.email,
+                address: req.body.address,
+                phone: req.body.phone,
+                shipping: req.body.shipping
+            })
+            var orderParams = JSON.stringify(order)
+
+            var userId = req.body.userId
+            var totalPrice = req.session.cart.totalPrice
+
+            var partnerCode = "MOMO";
+            // var partnerName = req.body.name;
+            var accessKey = "F8BBA842ECF85";
+            var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+            var requestId = partnerCode + new Date().getTime();
+            var orderId = requestId;
+            var orderInfo = req.body.email +" | DUSTIN pay ";
+            var redirectUrl = "http://localhost:5000/checkout-by-momo-success?totalPrice="+ totalPrice + "&userId="+ userId + "&order="+ orderParams + "";
+            var ipnUrl =  "http://localhost:5000/checkout-error";
+            // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
+            var amount = req.body.money;
+            var requestType = "captureWallet"
+            var extraData = "";
+
+            var rawSignature = "accessKey="+accessKey
+                                +"&amount=" + amount
+                                +"&extraData=" + extraData
+                                +"&ipnUrl=" + ipnUrl
+                                +"&orderId=" + orderId
+                                +"&orderInfo=" + orderInfo
+                                +"&partnerCode=" + partnerCode 
+                                +"&redirectUrl=" + redirectUrl
+                                +"&requestId=" + requestId
+                                +"&requestType=" + requestType
+                                // +"&partnerName=" + partnerName
+
+            const crypto = require('crypto');
+            var signature = crypto.createHmac('sha256', secretkey)
+                .update(rawSignature)
+                .digest('hex');
+
+            const requestBody = JSON.stringify({
+                partnerCode : partnerCode,
+                accessKey : accessKey,
+                requestId : requestId,
+                amount : amount,
+                orderId : orderId,
+                orderInfo : orderInfo,
+                redirectUrl : redirectUrl,
+                ipnUrl : ipnUrl,
+                extraData : extraData,
+                requestType : requestType,
+                signature : signature,
+                lang: 'en'
             });
-        })
-        request.on('error', (e) => {
-            console.log(`Problem with payment Momo: ${e.message}`);
-        });
-        request.write(requestBody);
+
+            //Create the HTTPS objects
+            const https = require('https');
+            const options = {
+                hostname: 'test-payment.momo.vn',
+                port: 443,
+                path: '/v2/gateway/api/create',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': Buffer.byteLength(requestBody)
+                }
+            }
+            //Send the request and get the response
+            const request = https.request(options, response => {
+                response.setEncoding('utf8');
+                response.on('data', (body) => {
+                    var paymentUrl = JSON.parse(body).payUrl;
+                    res.redirect(paymentUrl);
+                });
+            })
+            request.on('error', (e) => {
+                console.log(`Problem with payment Momo: ${e.message}`);
+            });
+            request.write(requestBody);
+        }
     }
         checkoutByMomoSuccess(req,res,next){
             if(req.query.message == 'Successful.'){
@@ -558,6 +590,11 @@ class SiteController {
                     status: 'Success'
                 })
                 history.save()
+                var noti = new Notification({
+                    user: req.query.userId,
+                    desc: '[Success] Checkout by Momo.' 
+                })
+                noti.save()
                 req.session.cart = null;
                 req.flash('successMsg','Checkout successfully')
                 res.redirect('/cart')
@@ -570,10 +607,19 @@ class SiteController {
                     type: 'Pay',
                     status: 'Failed'
                 })
+                var noti = new Notification({
+                    user: req.query.userId,
+                    desc: '[Failed] Checkout by Momo.' 
+                })
+                noti.save()
                 history.save()
                 req.flash('failedMsg','Your payment has been paused or canceled')
                 res.redirect('/cart')
             }
+        }
+        checkoutByMomoError(req, res, next){
+            req.flash('failedMsg','Momo checkout just accept cart from 1.000 VND to 50.000.000 VND.')
+            res.redirect('/cart')
         }
 
     //[POST] /checkout-by-wallet
@@ -639,7 +685,7 @@ class SiteController {
         });
     }
 
-        //GET /check-out-by-paypal-success
+        //[POST] /check-out-by-paypal-success
         checkoutByPaypalSuccess(req,res){
             const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
             const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
@@ -679,6 +725,11 @@ class SiteController {
                         status: 'Success'
                     })
                     history.save()
+                    // var noti = new Notification({
+                    //     user: req.query.userId,
+                    //     desc: '[Success] Checkout by Paypal.' 
+                    // })
+                    // noti.save()
 
                     req.session.cart = null;
                     req.flash('successMsg','Checkout successfully')
@@ -687,7 +738,7 @@ class SiteController {
             })
         }
 
-        //GET /checkout-error
+        //[POST] /checkout-error
         checkoutByPaypalError(req,res){
             var history = new History({
                 user: req.query.userId,
@@ -697,6 +748,11 @@ class SiteController {
                 status: 'Failed'
             })
             history.save()
+            var noti = new Notification({
+                user: req.query.userId,
+                desc: '[Failed] Checkout by Paypal.' 
+            })
+            noti.save()
             req.flash('failedMsg','Your payment has been paused or canceled')
             return res.redirect('/cart')
         }
@@ -749,6 +805,11 @@ class SiteController {
                         status: 'Success'
                     })
                     history.save()
+                    var noti = new Notification({
+                        user: req.body.userId,
+                        desc: '[Success] Checkout by Card.' 
+                    })
+                    noti.save()
 
                     req.flash('successMsg','Checkout successfully')
                     return res.redirect('/cart')
@@ -763,6 +824,11 @@ class SiteController {
                     status: 'Failed'
                 })
                 history.save()
+                var noti = new Notification({
+                    user: req.body.userId,
+                    desc: '[Failed] Checkout by Card.' 
+                })
+                noti.save()
                 req.flash('failedMsg','Can not checkout')
                 res.render('partials/error',{
                     layout: null,
@@ -818,6 +884,11 @@ class SiteController {
                             req.flash('failMessage', 'Can not send email. Please try again')
                             console.log(error);
                         } else {
+                            var noti = new Notification({
+                                user: user._id,
+                                desc: 'Your password is changed.' 
+                            })
+                            noti.save()
                             req.flash('successMessage', 'New password has sent to' + req.body.email)
                             console.log('Email sent: ' + info.response);
                             res.redirect('back')

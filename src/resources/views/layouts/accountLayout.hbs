@@ -41,7 +41,7 @@
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5 row">
                                             <div class="col-3">
-                                                <img src="{{#if user.password}}/uploads/{{/if}}{{user.avatar}}" 
+                                                <img src="{{#ifCond user.avatar '!=' 'http://.*'}}/uploads/{{/ifCond}}{{user.avatar}}" 
                                                 class="img-responsive img-rounded" alt="img-user" style="max-height: 50px; max-width: 50px;">
                                             </div>
                                             <div class="col-9">
@@ -66,39 +66,15 @@
                                                             <a href="/user/transfer"{{#ifeq section 'transfer'}}class="active"{{/ifeq}}><li>Transfer</li></a>
                                                             {{#if user.password}}
                                                                 <a href="/user/changeps"{{#ifeq section 'changeps'}}class="active"{{/ifeq}}><li>Change Password</li></a>
-                                                                {{!-- <a href="/user/forgotps"{{#ifeq section 'forgotps'}}class="active"{{/ifeq}}><li>Forgot Password</li></a> --}}
                                                             {{/if}}
                                                         </ul>
                                                     </li>
-                                                    <li><a href=""><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>
-                                                    <li><a href=""><i class="fas fa-fw fa-gift text-success"></i> My Voucher</a></li>
-                                                    <li><a href=""><i class="fas fa-fw fa-bell text-danger"></i> Notifications</a>
-                                                        <ul>
-                                                            <a href=""><li>Profile</li></a>
-                                                            <a href=""><li>Banks & Cards</li></a>
-                                                            <a href=""><li>Addresses</li></a>
-                                                            <a href=""><li>Change Password</li></a>
-                                                        </ul>
-                                                    </li>
+                                                    <li><a href="/cart"><i class="fas fa-fw fa-shopping-cart text-info"></i> My Purchase</a></li>
+                                                    <li><a href="/voucher"><i class="fas fa-fw fa-gift text-success"></i> My Voucher</a></li>
+                                                    <li><a href="/user/notification" {{#ifeq section 'notification'}}class="active"{{/ifeq}}>
+                                                        <i class="fas fa-fw fa-bell text-danger"></i> Notifications</a></li>
                                                 </ul>
-                                            {{!-- <h6 class="text-muted">{{this.item.brand}}</h6> --}}
                                             </div>
-                                            {{!-- <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <a href="/shoe/reduce-cart/_id">
-                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-minus"></i></button>
-                                                </a>
-                                                <input min="0" value="qty" type="text" disabled class="form-control form-control-sm">
-                                                <input type="hidden" name="quantity" value="qty">
-                                                <a href="/shoe/asd">
-                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">10000 VND</h6>
-                                            </div>
-                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="/shoe/delete-cart/123" class="text-muted"><i class="fas fa-times"></i></a>
-                                            </div> --}}
                                         </div>
                                         <hr class="my-4">
                                         <div class="pt-5">
@@ -109,7 +85,7 @@
                                     </div>
                                 </div>
 
-    {{{body}}}
+                                {{{body}}}
 
     
                                 </div>

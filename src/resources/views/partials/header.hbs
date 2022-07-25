@@ -16,6 +16,25 @@
                   </a>
                 </li>
                 <li>
+                  <a href="/user/notification">
+                    <i class="fa fa-bell fa-shake"></i>
+                      {{!-- <span class="badge badge-danger badge-counter">{{session.cart.totalQty}}</span> --}}
+                      
+                    <div class="subnav-dropdown">
+                      <br>
+                      {{#each noti}}
+                        <span class="subnav-dropdown-items">{{this.desc}}</span>
+                        {{!-- <a class="subnav-dropdown-items" href="/user/profile"><i class="fa fa-address-card"></i>My Account</a> --}}
+                        <hr>
+                      {{/each}}
+                      <a class="subnav-dropdown-items"><i class="fa fa-ellipsis-h"></i></a>
+                      <hr>
+                      <a class="subnav-dropdown-items" href="/user/notification"><i class="fa fa-tasks"></i>See All</a>
+                      <br><br>
+                    </div>
+                  </a>
+                </li>
+                <li>
                     <a class="active" href="#"><b>{{user.name}}</b></a>
                     <div class="subnav-dropdown">
                       <br>
@@ -28,7 +47,7 @@
                         </span>
                       </a>
                       <hr>
-                      <a class="subnav-dropdown-items" href="#"><i class="fa fa-shopping-cart"></i>My purchase</a>
+                      <a class="subnav-dropdown-items" href="/cart"><i class="fa fa-shopping-cart"></i>My purchase</a>
                       <hr>
                       {{#ifeq user.role 'Admin'}}
                         <a class="subnav-dropdown-items" href="/admin"><i class="fa fa-tasks"></i>Management</a>

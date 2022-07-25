@@ -1,9 +1,8 @@
 
-{{!-- https://bbbootstrap.com/snippets/payment-form-three-transfer-options-30514683 --}}
 <div class="col-lg-9">
     <div class="p-5">
-        <h3 class="fw-bold">History</h3>
-        <h6 class="mb-4 mt-2 pt-1">Transaction history of payment, recharge</h6>
+        <h3 class="fw-bold">Notifications</h3>
+        <h6 class="mb-4 mt-2 pt-1">Notice of transactions, events.</h6>
         {{#if successMsg}}
             <h6 class="text-success"><i class="fa fa-check"></i> {{successMsg}}</h6>
         {{/if}}
@@ -15,28 +14,18 @@
             <thead>
                 <tr>
                 <th scope="col">#</th>
-                <th scope="col">Amount</th>
                 <th scope="col">Description</th>
-                <th scope="col">Type</th>
-                <th scope="col">Status</th>
                 <th scope="col">Date</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each history}}
+                {{#each notification}}
                     <tr>
                         <th scope="row">{{sum @index 1}}</th>
-                        <td>₫{{formatCurrency this.amount}}</td>
                         <td>{{this.desc}}</td>
-                        <td>{{this.type}}</td>
-                        <td>
-                            {{#ifeq this.status 'Success'}}
-                                <i class="fa fa-check text-success"></i>
-                            {{else}}
-                                <i class="fa fa-times text-danger"></i>
-                            {{/ifeq}}
-                        </td>
                         <td>{{moment this.createdAt format = "DD/MM, HH:mm"}}</td>
+                        <td></td>
                     </tr>
                 {{/each}}
             </tbody>
