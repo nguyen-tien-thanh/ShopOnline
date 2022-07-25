@@ -5,11 +5,8 @@ const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
 const Cart = require('../models/Cart')
-<<<<<<< HEAD
 const Custom = require('../models/Custom')
-=======
 const Notification = require('../models/Notification')
->>>>>>> d590b516274be57a34a4b9d5085be99e6071742a
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')
@@ -28,7 +25,8 @@ class ShoeController {
         User.findOne({_id: decodeToken})
         .then((user) =>{
             res.render('shoe/custom', {
-                user: mongooseToObject(user)
+                user: mongooseToObject(user),
+                title: 'Custom'
             })
         })
         .catch((err)=>{console.log(err)})
@@ -769,7 +767,8 @@ class ShoeController {
         ]) => {
             res.render('shoe/custom-list', {
                 user: mongooseToObject(user),
-                custom: multipleMongooseToObject(custom)
+                custom: multipleMongooseToObject(custom),
+                title: 'List of custom'
             })
         })
         .catch(err => {
