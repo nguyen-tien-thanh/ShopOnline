@@ -18,6 +18,8 @@ const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const stripe = require('stripe');
 
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../secrets/.env') })
 
 const paypal = require('paypal-rest-sdk');
 
@@ -505,8 +507,8 @@ class SiteController {
 
             var partnerCode = "MOMO";
             // var partnerName = req.body.name;
-            var accessKey = "F8BBA842ECF85";
-            var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+            var accessKey = process.env.ACCESS_KEY_MOMO;
+            var secretkey = process.env.SECRET_KEY_MOMO;
             var requestId = partnerCode + new Date().getTime();
             var orderId = requestId;
             var orderInfo = req.body.email +" | DUSTIN pay ";
@@ -624,8 +626,8 @@ class SiteController {
 
     //[POST] /checkout-by-wallet
     checkoutByPaypal (req,res,next){
-        const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
-        const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
+        const CILENT_ID_PP = process.env.CILENT_ID_PP
+        const CILENT_SECRET_PP = process.env.CILENT_SECRET_PP
         paypal.configure({
             'mode': 'sandbox',
             'client_id': CILENT_ID_PP,
@@ -687,8 +689,8 @@ class SiteController {
 
         //[POST] /check-out-by-paypal-success
         checkoutByPaypalSuccess(req,res){
-            const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
-            const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
+            const CILENT_ID_PP = process.env.CILENT_ID_PP
+            const CILENT_SECRET_PP = process.env.CILENT_SECRET_PP
             paypal.configure({
                 'mode': 'sandbox',
                 'client_id': CILENT_ID_PP,
@@ -765,7 +767,7 @@ class SiteController {
         }
         else{
             var cart = new Cart(req.session.cart);
-            const stripe = require('stripe')('sk_test_51LCjUmGXzbc60gITm4NDsulfqX13P2Xy5TjTZzHyhVBjamQt1DMD6pIRvM7elIMFUFI0DUDuh18P5MyN0O18yyZ100setk5tNV');
+            const stripe = require('stripe')(process.env.STRIPE_KEY);
             
             stripe.customers.create({
                 email: req.body.email,
@@ -864,8 +866,8 @@ class SiteController {
                     var transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
-                            user: "nguyentienthanh.tgdd@gmail.com",
-                            pass: "fdpcycsrdcumuaar"
+                            user: process.env.NODEMAILER_USERNAME,
+                            pass: process.env.NODEMAILER_PASS
                         }
                     });
 
