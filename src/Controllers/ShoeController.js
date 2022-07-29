@@ -5,11 +5,7 @@ const Brand = require('../models/Brand')
 const Shoetype = require('../models/Shoetype')
 const Shoe = require('../models/Shoe')
 const Cart = require('../models/Cart')
-<<<<<<< HEAD
 const Custom = require('../models/Custom')
-=======
-const Notification = require('../models/Notification')
->>>>>>> d590b516274be57a34a4b9d5085be99e6071742a
 
 const { multipleMongooseToObject } = require('../ulti/mongoose')
 const { mongooseToObject } = require('../ulti/mongoose')

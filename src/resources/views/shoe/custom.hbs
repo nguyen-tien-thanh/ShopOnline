@@ -14,28 +14,29 @@
                 <div class="main-backward-custom close-main-backward-custom"></div>
         </div>
       </div>
-      <div class="diversion-shoe">
-        <div class="swooth"><img src="/images/smooth.png" alt=""></div>
-        <div class="midsole"><img src="/images/midsole.png" alt=""></div>
-        <div class="middle"><img src="/images/middle.png" alt=""></div>
-        <div class="head"><img src="/images/head.png" alt=""></div>
-        <div class="back"><img src="/images/back.png" alt=""></div>
-        <div class="backward"><img src="/images/backward.png" alt=""></div>
-      </div>
-            <div class="custom-color-board">
-                <form method="POST" action="/shoe/store-custom">
-                    <input class="color-list" name="swoothColor" id="color-swooth" type="color">
-                    <input class="color-list" name="midsoleColor" id="color-midsole" type="color">
-                    <input class="color-list" name="middleColor" id="color-middle" type="color">
-                    <input class="color-list" name="headColor" id="color-head" type="color">
-                    <input class="color-list" name="backColor" id="color-back" type="color">
-                    <input class="color-list" name="backwardColor" id="color-backward" type="color">
-                    <button>Save</button>
-                    <button class="cancle-reload" type="button">Cancle reload</button>
-                    <button class="cancle-realtime" type="button">Cancle realtime</button>
-                </form>
-            </div>
-    </div>
+        <div class="diversion-shoe card-carousel">
+            <div id="swooth" class="my-card"><img src="/images/smooth.png" alt=""></div>
+            <div id="midsole" class="my-card"><img src="/images/midsole.png" alt=""></div>
+            <div id="middle" class="my-card"><img src="/images/middle.png" alt=""></div>
+            <div id="head" class="my-card"><img src="/images/head.png" alt=""></div>
+            <div id="back" class="my-card"><img src="/images/back.png" alt=""></div>
+            <div id="backward" class="my-card"><img src="/images/backward.png" alt=""></div>
+        </div>
+        <div class="custom-color-board">
+            <form method="POST" action="/shoe/store-custom">
+                <input class="color-list" name="swoothColor" id="color-swooth" type="color">
+                <input class="color-list" name="midsoleColor" id="color-midsole" type="color">
+                <input class="color-list" name="middleColor" id="color-middle" type="color">
+                <input class="color-list" name="headColor" id="color-head" type="color">
+                <input class="color-list" name="backColor" id="color-back" type="color">
+                <input class="color-list" name="backwardColor" id="color-backward" type="color">
+                <div class="btn-of-custom mt-4">
+                <button class="cancle-realtime btn btn-danger">Cancle</button>
+                <button class="cancle-reload btn btn-secondary">Undo</button>
+                <button class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
     </section>
    </div>
 </div>
@@ -51,7 +52,7 @@
     })
 
     $('.diversion-shoe div').on('click', function(){
-     var shoePart = $(this).attr('class')
+     var shoePart = $(this).attr('id')
      $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
      $('input[name ="' + shoePart + 'Color"]').trigger('click')
      $('#color-' + shoePart).on('input', function(){     
@@ -60,7 +61,7 @@
     })
 
     $('.diversion-shoe div').mouseover( function() {
-        var shoePart = $(this).attr('class')
+        var shoePart = $(this).attr('id')
         var isEditable = $('.main-' + shoePart + '-custom').attr('active')
         console.log(isEditable)
         $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
@@ -70,6 +71,49 @@
             else ele.hide()
         })
     })
+
+
     
+    // CARD CARSOUSEL 
+ 
+    $num = $('.my-card').length;
+    $even = $num / 2;
+    $odd = ($num + 1) / 2;
+
+    {{!-- if ($num % 2 == 0) {
+    $('.my-card:nth-child(' + $even + ')').addClass('active');
+    $('.my-card:nth-child(' + $even + ')').prevAll().addClass('prev');
+    $('.my-card:nth-child(' + $even + ')').nextAll().addClass('next');
+    } else {
+    $('.my-card:nth-child(' + $odd + ')').addClass('active');
+    $('.my-card:nth-child(' + $odd + ')').prevAll().addClass('prev');
+    $('.my-card:nth-child(' + $odd + ')').nextAll().addClass('next');
+    } --}}
+
+    $('.my-card:nth-child(1)').addClass('active');
+    $('.my-card:nth-child(1)').prevAll().addClass('prev');
+    $('.my-card:nth-child(1)').nextAll().addClass('next');
+
+
+    $('.my-card').mouseover(function() {
+      $(this).addClass('active');
+      $(this).removeClass('prev next');
+      $(this).siblings().removeClass('active prev next')
+      $(this).prevAll().addClass('prev')
+      $(this).nextAll().addClass('next')
+
+    });
+
+
+    // Keyboard nav
+    {{!-- $('html body').keydown(function(e) {
+    if (e.keyCode == 37) { // left
+        $('.active').prev().trigger('click');
+    }
+    else if (e.keyCode == 39) { // right
+        $('.active').next().trigger('click');
+    }
+    }); --}}
 </script>
+
 

@@ -164,10 +164,25 @@
     height: 25px;
     background-color: violet;
   }
-  .diversion-shoe{
+  
+  .carousel-item.active {
+    display: block;
     display: flex;
-    justify-content:center;
-  }
+    justify-content: center;
+}
+
+.carousel-item-next,
+.carousel-item-prev{
+  display: flex;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 3rem;
+  height: 7rem;
+}
+.diversion-shoe{
+  display: flex;
+  justify-content: center;
+}
   .diversion-shoe img{
     width: 200px;
     height: 100px;
@@ -203,3 +218,122 @@
     }
   
   }
+
+
+  //
+  .card-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .card-carousel .my-card {
+    height: 7rem;
+    width: 13rem;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+    -webkit-transform: scale(0.6) translateY(-2rem);
+    transform: scale(0.6) translateY(-2rem);
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: none;
+    background-color: #fce043;
+    background-image: linear-gradient(315deg, #fce043 0%, #fb7ba2 74%);
+    transition: 1s;
+  }
+  
+  .card-carousel .my-card:after {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    border-radius: 100%;
+    background-color: rgba(0,0,0,0.3);
+    bottom: -5rem;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+  }
+  
+  .card-carousel .my-card:nth-child(0):before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .card-carousel .my-card:nth-child(1):before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .card-carousel .my-card:nth-child(2):before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .card-carousel .my-card:nth-child(3):before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .card-carousel .my-card:nth-child(4):before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .card-carousel .my-card:nth-child(5):before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  
+  .card-carousel .my-card.active {
+    z-index: 3;
+    -webkit-transform: scale(1) translateY(0) translateX(0);
+    transform: scale(1) translateY(0) translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    transition: 1s;
+  }
+  
+  .card-carousel .my-card.prev, .card-carousel .my-card.next {
+    z-index: 2;
+    -webkit-transform: scale(0.8) translateY(-1rem) translateX(0);
+    transform: scale(0.8) translateY(-1rem) translateX(0);
+    opacity: 0.6;
+    pointer-events: auto;
+    transition: 1s;}
