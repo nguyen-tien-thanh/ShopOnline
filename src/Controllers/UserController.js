@@ -14,6 +14,9 @@ var secret = 'secretpasstoken'
 const stripe = require('stripe');
 const paypal = require('paypal-rest-sdk');
 
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../secrets/.env') })
+
 class UserController {
 
     // [POST] /user/unban/:id
@@ -257,8 +260,8 @@ class UserController {
             var amount = req.body.money;
 
             var partnerCode = "MOMO";
-            var accessKey = "F8BBA842ECF85";
-            var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
+            var accessKey = process.env.ACCESS_KEY_MOMO;
+            var secretkey = process.env.SECRET_KEY_MOMO;
             var requestId = partnerCode + new Date().getTime();
             var orderId = requestId;
             var orderInfo = "Transfer | DUSTIN";
@@ -380,8 +383,8 @@ class UserController {
 
     //[POST] /transfer-by-wallet
     transferByPaypal (req,res,next){
-        const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
-        const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
+        const CILENT_ID_PP = process.env.CILENT_ID_PP
+        const CILENT_SECRET_PP = process.env.CILENT_SECRET_PP
         paypal.configure({
             'mode': 'sandbox',
             'client_id': CILENT_ID_PP,
@@ -433,8 +436,8 @@ class UserController {
 
         //GET /check-out-by-paypal-success
         transferByPaypalSuccess(req,res){
-            const CILENT_ID_PP = 'AXyT6UqL_3Qgy3UamDrOBwJRj-DNuATs5zK0qwixZ-3AFgS-vrgHernqtpRe7yXhJqCEomWULKdSHeaN'
-            const CILENT_SECRET_PP = 'EOoJIOTVFLgdF5-oiz79IMLM6kAqdtoTjnIW5rDMlI6W6rZBaLasMmjP3pDtVI9lv_ldDVh2jX3zTXu0'
+            const CILENT_ID_PP =  process.env.CILENT_ID_PP
+            const CILENT_SECRET_PP =  process.env.CILENT_SECRET_PP
             paypal.configure({
                 'mode': 'sandbox',
                 'client_id': CILENT_ID_PP,
