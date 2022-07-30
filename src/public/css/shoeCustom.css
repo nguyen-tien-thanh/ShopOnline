@@ -176,19 +176,75 @@
 .color-list {
   display: none; }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
+  .diversion-shoe img {
+    width: 100px;
+    height: 50px; }
+  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+    height: 4rem;
+    width: 7rem; } }
+
+@media screen and (max-width: 600px) {
   .img-custom-1 img {
-    width: 300px; } }
+    width: 300px; }
+  .main-middle-custom {
+    width: 77px;
+    height: 76px;
+    position: absolute;
+    bottom: 108px;
+    left: 122px; }
+  .main-swooth-custom {
+    width: 102px;
+    height: 83px;
+    position: absolute;
+    bottom: 109px;
+    left: 79px; }
+  .main-back-custom {
+    width: 252px;
+    height: 60px;
+    position: absolute;
+    bottom: 121px;
+    left: -11px; }
+  .main-midsole-custom {
+    width: 220px;
+    height: 83px;
+    position: absolute;
+    bottom: 71px;
+    left: 70px; }
+  .main-head-custom {
+    width: 125px;
+    height: 167px;
+    position: absolute;
+    bottom: 50px;
+    left: 165px; }
+  .main-backward-custom {
+    width: 26px;
+    height: 161px;
+    position: absolute;
+    bottom: 86px;
+    left: 71px; } }
 
 @media only screen and (min-width: 350px) and (max-width: 599px) {
   .img-custom-1 img {
-    width: 300px; } }
+    width: 300px; }
+  .diversion-shoe img {
+    width: 54px;
+    height: 27px; }
+  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+    height: 3rem;
+    width: 4rem; } }
 
 @media only screen and (min-width: 320px) and (max-width: 350px) {
   .img-custom-1 img {
     width: 300px; }
   .img-custom-1 img {
-    width: 300px; } }
+    width: 300px; }
+  .diversion-shoe img {
+    width: 54px;
+    height: 27px; }
+  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+    height: 3rem;
+    width: 4rem; } }
 
 .card-carousel {
   display: flex;
