@@ -1,4 +1,19 @@
-.btn-custom-list{
-    border-color: red;
-    background-color:red;
-}
+
+.btn-custom-list {
+    position: relative;
+    padding-bottom: 20px;
+  }
+  .btn-custom-list button{
+    position: absolute;
+    left: 0;
+    right: 0;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .btn-custom-list button:first-of-type{
+    bottom: 50px;
+  }
+  .btn-custom-list button:last-of-type{
+    bottom: 10px;
+  }

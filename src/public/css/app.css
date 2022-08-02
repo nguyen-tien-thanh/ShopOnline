@@ -1823,41 +1823,6 @@ tbody tr:hover {
   margin-bottom: 10px;
   justify-content: center; }
 
-#red {
-  width: 70px;
-  height: 25px;
-  background-color: red; }
-
-#orange {
-  width: 70px;
-  height: 25px;
-  background-color: orange; }
-
-#yellow {
-  width: 70px;
-  height: 25px;
-  background-color: yellow; }
-
-#green {
-  width: 70px;
-  height: 25px;
-  background-color: green; }
-
-#blue {
-  width: 70px;
-  height: 25px;
-  background-color: blue; }
-
-#indigo {
-  width: 70px;
-  height: 25px;
-  background-color: indigo; }
-
-#violet {
-  width: 70px;
-  height: 25px;
-  background-color: violet; }
-
 .carousel-item.active {
   display: block;
   display: flex;
@@ -2060,7 +2025,21 @@ tbody tr:hover {
   transition: 1s; }
 
 .btn-custom-list {
-  border-color: red; }
+  position: relative;
+  padding-bottom: 20px; }
+
+.btn-custom-list button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: none;
+  border-radius: 10px; }
+
+.btn-custom-list button:first-of-type {
+  bottom: 50px; }
+
+.btn-custom-list button:last-of-type {
+  bottom: 10px; }
 
 @font-face {
   font-family: 'FuturaLight';

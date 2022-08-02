@@ -63,7 +63,6 @@
     $('.diversion-shoe div').mouseover( function() {
         var shoePart = $(this).attr('id')
         var isEditable = $('.main-' + shoePart + '-custom').attr('active')
-        console.log(isEditable)
         $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
         $(this).mouseout(()=>{
             var ele = $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom')
@@ -76,19 +75,6 @@
     
     // CARD CARSOUSEL 
  
-    $num = $('.my-card').length;
-    $even = $num / 2;
-    $odd = ($num + 1) / 2;
-
-    {{!-- if ($num % 2 == 0) {
-    $('.my-card:nth-child(' + $even + ')').addClass('active');
-    $('.my-card:nth-child(' + $even + ')').prevAll().addClass('prev');
-    $('.my-card:nth-child(' + $even + ')').nextAll().addClass('next');
-    } else {
-    $('.my-card:nth-child(' + $odd + ')').addClass('active');
-    $('.my-card:nth-child(' + $odd + ')').prevAll().addClass('prev');
-    $('.my-card:nth-child(' + $odd + ')').nextAll().addClass('next');
-    } --}}
 
     $('.my-card:nth-child(1)').addClass('active');
     $('.my-card:nth-child(1)').prevAll().addClass('prev');
