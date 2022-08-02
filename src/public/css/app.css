@@ -2059,6 +2059,9 @@ tbody tr:hover {
   pointer-events: auto;
   transition: 1s; }
 
+.btn-custom-list {
+  border-color: red; }
+
 @font-face {
   font-family: 'FuturaLight';
   src: url("/fonts/futurasmalllight/Futura-SC-T-OT-Light_19038.ttf") format("truetype"); }
