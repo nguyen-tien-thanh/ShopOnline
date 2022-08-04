@@ -70,7 +70,7 @@
   });
 
   // ================= read notification =================
-  $('.noti-list button').click(function() {
+  $('.noti-list div').click(function() {
     var notiId = $(this).data('id')
     
     $.ajax({
