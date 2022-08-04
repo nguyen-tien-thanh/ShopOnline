@@ -281,10 +281,8 @@ class ShoeController {
             })
     }
 
-     //[POST] /store shoe
-     storeCustom(req,res,next) {
-        // console.log(req.body)
-        
+    //[POST] /store-custom shoe
+    storeCustom(req,res,next) {
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, 'secretpasstoken')
         User.findOne({_id: decodeToken})
@@ -300,6 +298,34 @@ class ShoeController {
             })
             shoe.save()
 
+            res.redirect('back')
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
+    }
+    //[POST] /store-custom-to-cart/:id
+    storeCustomToCart(req,res,next){
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+        var customId = req.params.id
+        var shoeSize = req.query.size
+
+        Custom.findById(customId, function(err, custom){
+            if(err){
+                return res.redirect('back');
+            }
+            cart.add(custom, custom._id, shoeSize);
+            req.session.cart = cart;
+            res.redirect('back');
+        })
+        // cart.add(shoe, customId, shoeSize);
+
+        console.log('Store')
+    }
+    //[POST] /delete-custom/:id shoe
+    deleteCustom(req,res,next) {
+        Custom.findByIdAndDelete(req.params.id)
+        .then(()=>{
             res.redirect('back')
         })
         .catch((err)=> {

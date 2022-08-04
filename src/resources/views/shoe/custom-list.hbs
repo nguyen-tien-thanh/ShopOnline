@@ -15,12 +15,29 @@
                 <div class="main-backward-custom" style="background-color: {{this.backward}};" ></div>
         </div>
       </div>
-      <div class="btn-custom-list">
-        <button class="btn btn-danger">Remove</button>
-        <button class="btn btn-success">Add to cart</button>
-      </div>
-
+      {{!-- <div class="btn-custom-list"> --}}
+        <form method="POST" action="/shoe/delete-custom/{{this._id}}">
+          <button class="btn btn-danger button-delete">Remove</button>
+          <input type="text" name="size" placeholder="Input size">
+          <button type="button" class="btn btn-success store-custom-to-cart" data-id="{{this._id}}">Add to cart</button>
+        </form>
+      {{!-- </div> --}}
     {{/each}}
   </section>
 </div>
 </div>
+
+
+<script>
+  $('.store-custom-to-cart').on('click', function (e) {
+    e.preventDefault()
+    var customId = $(this).data('id')
+    var size = $('input[name="size"]').val()
+    console.log(size)
+
+    $.ajax({
+      method: 'POST',
+      url: '/shoe/store-custom-to-cart/' + customId + '?size=' + size
+    })
+  })
+</script>

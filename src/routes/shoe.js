@@ -7,8 +7,14 @@ const {isLoggined} = require('../ulti/login')
 var cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
+// [POST] /shoe/store-custom-to-cart
+router.post('/store-custom-to-cart/:id', isLoggined, shoeController.storeCustomToCart)
+
 // [POST] /shoe/store-custom
 router.post('/store-custom', isLoggined, shoeController.storeCustom)
+
+// [POST] /shoe/delete-custom
+router.post('/delete-custom/:id', isLoggined, shoeController.deleteCustom)
 
 // [POST] /shoe/store-custom
 router.get('/custom/list', isLoggined, shoeController.customList)

@@ -13,7 +13,10 @@ const Custom = new Schema({
     head: {type: String},
     back: {type: String},
     backward: {type: String},
-    slug: {type: String, slug:'_id', unique: true}
+    price: {type: Number, default: 2100000},
+    name: {type: String, default: 'Air Force 1 Custom'},
+    image: {type : String, default: 'shoetype1.png'},
+    slug: {type: String, slug:'user', unique: true}
     // createdAt: {type: Date, default : Date.Now},
     // updateAt: {type: Date, default : Date.Now}
 }, {

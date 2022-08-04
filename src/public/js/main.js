@@ -1,7 +1,5 @@
 
-
  $(document).ready(function($) {
-
   // ====================== Add input field in /admin/shoe-table ============================
   var i = 1;
   $(".add-size-btn").click(function() {
