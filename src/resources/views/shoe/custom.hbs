@@ -31,9 +31,9 @@
                 <input class="color-list" name="backColor" id="color-back" type="color">
                 <input class="color-list" name="backwardColor" id="color-backward" type="color">
                 <div class="btn-of-custom mt-4">
-                    <button class="cancle-realtime btn btn-danger">Cancle</button>
-                    <button class="cancle-reload btn btn-secondary">Undo</button>
-                    <button class="btn btn-success">Save</button>
+                <button class="cancle-realtime btn btn-danger">Cancle</button>
+                <button class="cancle-reload btn btn-secondary">Undo</button>
+                <button class="btn btn-success">Save</button>
                 </div>
             </form>
         </div>
@@ -48,15 +48,14 @@
   
     $('.cancle-realtime').click(()=>{
        $('.img-custom-1 div').removeAttr('style').hide()
-       
     })
 
     $('.diversion-shoe div').on('click', function(){
      var shoePart = $(this).attr('id')
      $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
      $('input[name ="' + shoePart + 'Color"]').trigger('click')
-     $('#color-' + shoePart).on('input', function(){     
-        $('.main-' + shoePart + '-custom').attr('active','true').attr('style', 'background-color:' + $(this).val())
+     $('#color-' + shoePart).on('input', function(){
+        $('.main-' + shoePart + '-custom').attr('style', 'background-color:' + $(this).val())
      })
     })
 
