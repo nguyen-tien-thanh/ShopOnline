@@ -384,6 +384,18 @@ i.fa-shake:hover {
   justify-content: center;
   margin-right: 10px; }
 
+@media only screen and (max-width: 501px) {
+  .navbar-dropdown-items {
+    width: 45%;
+    right: -47px;
+    top: 138px; }
+  header nav ul li {
+    font-size: 16px;
+    padding: 2px;
+    margin: 7px; }
+  ol, ul {
+    padding-left: 1rem; } }
+
 #logo-header {
   font-family: 'Playlist';
   font-size: 40px; }
