@@ -38,14 +38,14 @@
                             <span {{#ifeq this.isRead false}} class="font-weight-bold text-primary" {{/ifeq}}>{{this.desc}}</span>
                         </div>
                     </div>
-                    <hr>
                   {{/each}}
-                  <div class="subnav-dropdown-items">
-                    <a><i class="fa fa-ellipsis-h see-more-icon"></i></a>
+                  <hr>
+                  <div class="subnav-dropdown-items see-more-icon text-center">
+                    <a>See more</a>
                   </div>
                   <hr>
-                  <div class="subnav-dropdown-items">
-                    <a href="/user/notification"><i class="fa fa-tasks"></i>Read All</a>
+                  <div class="subnav-dropdown-items text-center">
+                    <a href="/user/notification" class="">Show all</a>
                   </div>
                 </div>
               </li>
@@ -132,12 +132,17 @@
   </nav>
 </header>
 <script>
-  $('.number-of-noti:nth-of-type(1n+6)').hide()
-  $('.see-more-icon').on('click', ()=> {
-    $('.number-of-noti:nth-of-type(1n+6)').show()
-    $('.number-of-noti:nth-of-type(1n+11)').hide()
+  var notiCount = $('.number-of-noti').length
+  if(notiCount < 5){
     $('.see-more-icon').hide();
-  })
+  } else{
+    $('.number-of-noti:nth-of-type(1n+6)').hide()
+    $('.see-more-icon').on('click', ()=> {
+      $('.number-of-noti:nth-of-type(1n+6)').show()
+      $('.number-of-noti:nth-of-type(1n+11)').hide()
+      $('.see-more-icon').hide();
+    })
+  }
 </script>
 
 

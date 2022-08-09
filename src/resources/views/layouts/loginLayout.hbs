@@ -26,7 +26,7 @@
     <title>DusTin - {{title}}</title>
 </head>
 <body>
-    <header class="main-header" id="main-header">
+    <header class="main-header" id="main-header">   
         <div class="row">
             <div class="col-lg-11 col-md-9 col-sm-6 col-9">
             <a href="/" class="logo-icon-header">
@@ -36,16 +36,20 @@
 
             <div class="col-lg-1 col-md-3 col-sm-6 col-3">
             <a class="icon logo-icon-header icon-responsive">
-            <i class="fa fa-bars"></i>
+            <i id="icon-nav-responsive" class="fa fa-bars"></i>
             </a>
             </div>
         </div>
         
         <nav class="navbar-dropdown-items" id="navbar-dropdown-items">
             <ul>
-            {{!-- more than 6 is not beautiful --}}
-            <li><a href="/shoe">Shoes</a></li>
-            <li><a href="">Cart</a></li>
+            {{!-- more than 4 is not beautiful --}}
+            {{!-- <a href="/product"><li>Products</li></a>
+            <a href="/product/manage"><li>Manage</li></a>
+            <a href="/admin"><li>Admin</li></a> --}}
+            <a href="/shoe"><li>Shoes</li></a>
+            <a href="/cart"><li>Cart</li>
+            </a>
             <a href="javascript:;" class="btn-info-scroll"><li>About Store</li></a>
             </ul>
         </nav>

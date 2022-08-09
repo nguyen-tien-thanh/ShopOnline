@@ -38,17 +38,15 @@ $maincolor: rgb(208,1,9);
   font-family: 'Sofia';
   src: url('/fonts/sofia/Sofia Pro Regular.ttf')  format('truetype'),
 }
-
-.zalo-icon{
-  height:20px;
-  margin-bottom:5px;
-  background-color:white;
-  border-radius:20%
-}
-.zalo-icon:hover{
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+  
+tr:nth-child(even) {
+  background: rgb(235, 235, 235);
 }
 
+tbody tr:hover{
+  color: $maincolor;
+  cursor: default;
+}
 
 // accoundLayout.scss
 // .account-profile{

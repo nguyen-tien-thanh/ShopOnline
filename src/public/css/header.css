@@ -389,4 +389,5 @@ i.fa-shake:hover {
     padding-left: 1rem; } }
 
 .number-of-noti {
-  display: flex; }
+  display: flex;
+  cursor: pointer; }

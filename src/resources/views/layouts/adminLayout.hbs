@@ -48,7 +48,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Homepage</span></a>
+                    <span>Shoe Store</span></a>
             </li>
 
             <!-- Divider -->
@@ -71,7 +71,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Management</h6>
                         <a class="collapse-item" href="/admin/user-table">User</a>
-                        <a class="collapse-item" href="/admin/product-table">Product</a>
                         <a class="collapse-item" href="/admin/brand-table">Brand</a>
                         <a class="collapse-item" href="/admin/shoetype-table">Shoe Type</a>
                         <a class="collapse-item" href="/admin/shoe-table">Shoe</a>
@@ -336,7 +335,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.name}}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{#if user.password}}../uploads/{{/if}}{{user.avatar}}">
+                                    src="{{#ifCond user.avatar '!=' 'http://.*'}}/uploads/{{/ifCond}}{{user.avatar}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
