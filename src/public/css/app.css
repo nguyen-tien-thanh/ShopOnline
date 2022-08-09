@@ -2039,6 +2039,15 @@ tbody tr:hover {
   pointer-events: auto;
   transition: 1s; }
 
+.input-color-shoe {
+  display: flex;
+  justify-content: center; }
+
+.input-color-shoe input {
+  width: 170px;
+  height: 100px;
+  margin-right: 30px; }
+
 .btn-custom-list {
   position: relative;
   padding-bottom: 20px; }

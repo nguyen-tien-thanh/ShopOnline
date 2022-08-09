@@ -317,3 +317,12 @@
   opacity: 0.6;
   pointer-events: auto;
   transition: 1s; }
+
+.input-color-shoe {
+  display: flex;
+  justify-content: center; }
+
+.input-color-shoe input {
+  width: 170px;
+  height: 100px;
+  margin-right: 30px; }
