@@ -396,6 +396,9 @@ i.fa-shake:hover {
   ol, ul {
     padding-left: 1rem; } }
 
+.number-of-noti {
+  display: flex; }
+
 #logo-header {
   font-family: 'Playlist';
   font-size: 40px; }
@@ -2052,6 +2055,9 @@ tbody tr:hover {
 
 .btn-custom-list button:last-of-type {
   bottom: 10px; }
+
+.account-profile {
+  width: 50%; }
 
 @font-face {
   font-family: 'FuturaLight';

@@ -387,3 +387,6 @@ i.fa-shake:hover {
     margin: 7px; }
   ol, ul {
     padding-left: 1rem; } }
+
+.number-of-noti {
+  display: flex; }
