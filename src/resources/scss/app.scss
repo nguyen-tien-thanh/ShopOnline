@@ -21,6 +21,7 @@ $maincolor: rgb(208,1,9);
 @import "userProfile.scss";
 @import "shoeCustom.scss";
 @import "shoeCustomList.scss";
+@import "accountLayout.scss";
 
 
 @font-face {
@@ -49,4 +50,7 @@ $maincolor: rgb(208,1,9);
 }
 
 
-
+// accoundLayout.scss
+// .account-profile{
+//   width: 50%;
+// }

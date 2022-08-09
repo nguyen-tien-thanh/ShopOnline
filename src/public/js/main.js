@@ -710,6 +710,11 @@ if(document.getElementById('payment-form')){
       //enable pre-order button
       $('#noti-pre-order').hide();
       $('#add-to-cart-btn').addClass('active')
+      $('#add-to-cart-btn').click(() => {
+        $('#add-to-cart-btn').html('Added succesful');
+        $('#add-to-cart-btn').removeClass('btn-outline-dark').addClass('btn-outline-success')
+      })
+      
     });
 
       //Display noti when not choosing size
@@ -849,4 +854,5 @@ $('input[id="money"]').keyup(function(event) {
 $('#change-avatar-btn').click(function(){
   $('#file-avatar').trigger('click');
 })
+
 
