@@ -6,12 +6,12 @@
     <div class="main-img-custom">
         <div class="img-custom-1 open-img-custom-1">
                 <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
-                <div class="part-of-shoe main-swooth-custom d-none"></div>
-                <div class="part-of-shoe main-midsole-custom d-none"></div>
-                <div class="part-of-shoe main-middle-custom d-none"></div>
-                <div class="part-of-shoe main-head-custom d-none"></div>
-                <div class="part-of-shoe main-back-custom d-none"></div>
-                <div class="part-of-shoe main-backward-custom d-none"></div>
+                <div class="main-swooth-custom d-none"></div>
+                <div class="main-midsole-custom d-none"></div>
+                <div class="main-middle-custom d-none"></div>
+                <div class="main-head-custom d-none"></div>
+                <div class="main-back-custom d-none"></div>
+                <div class="main-backward-custom d-none"></div>
         </div>
       </div>
         <div class="diversion-shoe card-carousel">
@@ -24,7 +24,8 @@
         </div>
         <div class="custom-color-board">
             <form method="POST" action="/shoe/store-custom">
-                <input class="color-list swooth-custom d-block" name="swoothColor" id="color-swooth" type="color">
+            {{!-- Opacity --}}
+                <input class="color-list swooth-custom d-block" style="opacity: 1, height:50px" name="swoothColor" id="color-swooth" type="color">
                 <input class="color-list midsole-custom d-block" name="midsoleColor" id="color-midsole" type="color">
                 <input class="color-list middle-custom d-block" name="middleColor" id="color-middle" type="color">
                 <input class="color-list head-custom d-block" name="headColor" id="color-head" type="color">
@@ -32,7 +33,7 @@
                 <input class="color-list backward-custom d-block" name="backwardColor" id="color-backward" type="color">
                 <div class="btn-of-custom mt-4">
                 <button class="cancle-realtime btn btn-danger">Cancle</button>
-                <button type="button" class="undo-btn btn btn-secondary">Undo</button>
+                <button class="cancle-reload btn btn-secondary">Undo</button>
                 <button class="btn btn-success btn-save">Save</button>
                 </div>
             </form>
@@ -42,11 +43,15 @@
 </div>
 
 <script>
+
+
+    $('.cancle-reload').click(()=>{
+        location.reload();
+    })
   
     $('.cancle-realtime').click(()=>{
        $('.img-custom-1 div').removeAttr('style').hide()
     })
-
 
     $('.btn-save').click(() => {
         if($('.main-swooth-custom').hasClass('d-none')){
@@ -68,23 +73,13 @@
         $('.backward-custom').remove();
     }
     })
-        var arrayFunc = []
-        console.log(arrayFunc)
-     
-      $('.color-list').blur(() => {
-            console.log(123);
-        })
     
     $('.diversion-shoe div').on('click', function(){
      var shoePart = $(this).attr('id')
      $('.main-' + shoePart + '-custom').attr('class', 'main-' + shoePart + '-custom').show()
      $('input[name ="' + shoePart + 'Color"]').trigger('click')
-     $('#color-' + shoePart).on('input', function() {
+     $('#color-' + shoePart).on('input', function(){
         $('.main-' + shoePart + '-custom').attr('active','true').attr('style', 'background-color:' + $(this).val()).removeClass('d-none')
-
-         {{!-- var undoFunc = [$('.main-' + shoePart + '-custom').attr('class')]
-         arrayFunc.push($('.main-' + shoePart + '-custom'))
-         console.log(arrayFunc) --}}
      })
     })
 
@@ -117,6 +112,17 @@
       $(this).nextAll().addClass('next')
 
     });
+
+
+    // Keyboard nav
+    {{!-- $('html body').keydown(function(e) {
+    if (e.keyCode == 37) { // left
+        $('.active').prev().trigger('click');
+    }
+    else if (e.keyCode == 39) { // right
+        $('.active').next().trigger('click');
+    }
+    }); --}}
 </script>
 
 
