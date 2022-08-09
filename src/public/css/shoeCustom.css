@@ -138,78 +138,34 @@
   width: 200px;
   height: 100px; }
 
+.diversion-shoe-custom .color-list {
+  width: 126px;
+  height: 63px;
+  position: absolute;
+  bottom: 45px;
+  z-index: 3;
+  opacity: 0; }
+
+.diversion-shoe-custom .color-list:nth-child(1) {
+  right: 263%; }
+
+.diversion-shoe-custom .color-list:nth-child(2) {
+  right: 167%; }
+
+.diversion-shoe-custom .color-list:nth-child(3) {
+  right: 69%; }
+
+.diversion-shoe-custom .color-list:nth-child(4) {
+  right: -28%; }
+
+.diversion-shoe-custom .color-list:nth-child(5) {
+  right: -124%; }
+
+.diversion-shoe-custom .color-list:nth-child(6) {
+  right: -220%; }
+
 .color-list {
   display: none; }
-
-@media only screen and (max-width: 1024px) {
-  .diversion-shoe img {
-    width: 100px;
-    height: 50px; }
-  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
-    height: 4rem;
-    width: 7rem; } }
-
-@media screen and (max-width: 600px) {
-  .img-custom-1 img {
-    width: 300px; }
-  .main-middle-custom {
-    width: 77px;
-    height: 76px;
-    position: absolute;
-    bottom: 108px;
-    left: 122px; }
-  .main-swooth-custom {
-    width: 102px;
-    height: 83px;
-    position: absolute;
-    bottom: 109px;
-    left: 79px; }
-  .main-back-custom {
-    width: 252px;
-    height: 60px;
-    position: absolute;
-    bottom: 121px;
-    left: -11px; }
-  .main-midsole-custom {
-    width: 220px;
-    height: 83px;
-    position: absolute;
-    bottom: 71px;
-    left: 70px; }
-  .main-head-custom {
-    width: 125px;
-    height: 167px;
-    position: absolute;
-    bottom: 50px;
-    left: 165px; }
-  .main-backward-custom {
-    width: 26px;
-    height: 161px;
-    position: absolute;
-    bottom: 86px;
-    left: 71px; } }
-
-@media only screen and (min-width: 350px) and (max-width: 599px) {
-  .img-custom-1 img {
-    width: 300px; }
-  .diversion-shoe img {
-    width: 54px;
-    height: 27px; }
-  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
-    height: 3rem;
-    width: 4rem; } }
-
-@media only screen and (min-width: 320px) and (max-width: 350px) {
-  .img-custom-1 img {
-    width: 300px; }
-  .img-custom-1 img {
-    width: 300px; }
-  .diversion-shoe img {
-    width: 54px;
-    height: 27px; }
-  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
-    height: 3rem;
-    width: 4rem; } }
 
 .card-carousel {
   display: flex;
@@ -304,25 +260,151 @@
 
 .card-carousel .my-card.active {
   z-index: 3;
-  -webkit-transform: scale(1) translateY(0) translateX(0);
-  transform: scale(1) translateY(0) translateX(0);
   opacity: 1;
   pointer-events: auto;
   transition: 1s; }
 
 .card-carousel .my-card.prev, .card-carousel .my-card.next {
   z-index: 2;
-  -webkit-transform: scale(0.8) translateY(-1rem) translateX(0);
-  transform: scale(0.8) translateY(-1rem) translateX(0);
   opacity: 0.6;
   pointer-events: auto;
   transition: 1s; }
 
-.input-color-shoe {
-  display: flex;
-  justify-content: center; }
+@media only screen and (max-width: 1024px) {
+  .diversion-shoe img {
+    width: 100px;
+    height: 50px; }
+  .card-carousel .my-card {
+    height: 4rem;
+    width: 7rem; }
+  .diversion-shoe-custom .color-list {
+    width: 66px;
+    height: 40px;
+    bottom: 30px; }
+  .diversion-shoe-custom .color-list:nth-child(1) {
+    right: 165%; }
+  .diversion-shoe-custom .color-list:nth-child(2) {
+    right: 113%; }
+  .diversion-shoe-custom .color-list:nth-child(3) {
+    right: 61%; }
+  .diversion-shoe-custom .color-list:nth-child(4) {
+    right: 9%; }
+  .diversion-shoe-custom .color-list:nth-child(5) {
+    right: -43%; }
+  .diversion-shoe-custom .color-list:nth-child(6) {
+    right: -95%; } }
 
-.input-color-shoe input {
-  width: 170px;
-  height: 100px;
-  margin-right: 30px; }
+@media screen and (max-width: 600px) {
+  .card-carousel .my-card {
+    height: 3.6rem;
+    width: 7rem; }
+  .img-custom-1 img {
+    width: 300px; }
+  .main-middle-custom {
+    width: 77px;
+    height: 76px;
+    position: absolute;
+    bottom: 108px;
+    left: 122px; }
+  .main-swooth-custom {
+    width: 102px;
+    height: 83px;
+    position: absolute;
+    bottom: 109px;
+    left: 79px; }
+  .main-back-custom {
+    width: 252px;
+    height: 60px;
+    position: absolute;
+    bottom: 121px;
+    left: -11px; }
+  .main-midsole-custom {
+    width: 220px;
+    height: 83px;
+    position: absolute;
+    bottom: 71px;
+    left: 70px; }
+  .main-head-custom {
+    width: 125px;
+    height: 167px;
+    position: absolute;
+    bottom: 50px;
+    left: 165px; }
+  .main-backward-custom {
+    width: 26px;
+    height: 161px;
+    position: absolute;
+    bottom: 86px;
+    left: 71px; }
+  .diversion-shoe-custom .color-list {
+    width: 4rem;
+    height: 2rem;
+    bottom: 29px; }
+  .diversion-shoe-custom .color-list:nth-child(1) {
+    right: 153%; }
+  .diversion-shoe-custom .color-list:nth-child(2) {
+    right: 106%; }
+  .diversion-shoe-custom .color-list:nth-child(3) {
+    right: 60%; }
+  .diversion-shoe-custom .color-list:nth-child(4) {
+    right: 13%; }
+  .diversion-shoe-custom .color-list:nth-child(5) {
+    right: -33%; }
+  .diversion-shoe-custom .color-list:nth-child(6) {
+    right: -80%; } }
+
+@media only screen and (min-width: 351px) and (max-width: 599px) {
+  .img-custom-1 img {
+    width: 300px; }
+  .diversion-shoe img {
+    width: 54px;
+    height: 27px; }
+  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+    height: 3rem;
+    width: 4rem; } }
+
+@media only screen and (min-width: 375px) and (max-width: 414px) {
+  .diversion-shoe-custom .color-list {
+    width: 3rem;
+    height: 2rem;
+    bottom: 29px; }
+  .diversion-shoe-custom .color-list:nth-child(1) {
+    right: 116%; }
+  .diversion-shoe-custom .color-list:nth-child(2) {
+    right: 85%; }
+  .diversion-shoe-custom .color-list:nth-child(3) {
+    right: 55%; }
+  .diversion-shoe-custom .color-list:nth-child(4) {
+    right: 24%; }
+  .diversion-shoe-custom .color-list:nth-child(5) {
+    right: -8%; }
+  .diversion-shoe-custom .color-list:nth-child(6) {
+    right: -38%; } }
+
+@media only screen and (min-width: 320px) and (max-width: 350px) {
+  .img-custom-1 img {
+    width: 300px; }
+  .img-custom-1 img {
+    width: 300px; }
+  .diversion-shoe img {
+    width: 54px;
+    height: 27px; }
+  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+    height: 3rem;
+    width: 4rem; }
+  .diversion-shoe-custom .color-list {
+    width: 2rem;
+    height: 2rem;
+    bottom: 29px; }
+  .diversion-shoe-custom .color-list:nth-child(1) {
+    right: 106%; }
+  .diversion-shoe-custom .color-list:nth-child(2) {
+    right: 80%; }
+  .diversion-shoe-custom .color-list:nth-child(3) {
+    right: 55%; }
+  .diversion-shoe-custom .color-list:nth-child(4) {
+    right: 30%; }
+  .diversion-shoe-custom .color-list:nth-child(5) {
+    right: 5%; }
+  .diversion-shoe-custom .color-list:nth-child(6) {
+    right: -20%; } }
