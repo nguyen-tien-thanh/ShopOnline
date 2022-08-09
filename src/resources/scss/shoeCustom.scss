@@ -154,28 +154,28 @@
   .diversion-shoe-custom .color-list{
     width: 126px;
     height: 63px;
-    position: absolute;
-    bottom: 45px;
+    position: relative;
+    bottom: 107px;
     z-index: 3;
-    opacity: 0;
+    opacity: 1;
   }
   .diversion-shoe-custom .color-list:nth-child(1){
-    right: 263%;
+    right: 27%;
   }
   .diversion-shoe-custom .color-list:nth-child(2){
-    right: 167%;
+    right: 16%;
   }
   .diversion-shoe-custom .color-list:nth-child(3){
-    right: 69%;
+    right: 5%;
   }
   .diversion-shoe-custom .color-list:nth-child(4){
-    right: -28%;
+    right: -5%;
   }
   .diversion-shoe-custom .color-list:nth-child(5){
-    right: -124%;
+    right: -16%;
   }
   .diversion-shoe-custom .color-list:nth-child(6){
-    right: -220%;
+    right: -27%;
   }
   
   .color-list{
@@ -312,27 +312,27 @@
       width: 7rem;
   }
   .diversion-shoe-custom .color-list{
-    width: 66px;
-    height: 40px;
-    bottom: 30px;
+    width: 6rem;
+    height: 3rem;
+    bottom: 73px;
   }
   .diversion-shoe-custom .color-list:nth-child(1){
-    right: 165%;
+    right: 5%;
   }
   .diversion-shoe-custom .color-list:nth-child(2){
-    right: 113%;
+    right: 2%;
   }
   .diversion-shoe-custom .color-list:nth-child(3){
-    right: 61%;
+    right: 0%;
   }
   .diversion-shoe-custom .color-list:nth-child(4){
-    right: 9%;
+    right: -2%;
   }
   .diversion-shoe-custom .color-list:nth-child(5){
-    right: -43%;
+    right: -4%;
   }
   .diversion-shoe-custom .color-list:nth-child(6){
-    right: -95%;
+    right: -5%;
   }
 }
 
@@ -381,70 +381,102 @@
                 bottom: 86px;
                 left: 71px;}
     
-  .diversion-shoe-custom .color-list{
-    width: 4rem;
-    height: 2rem;
-    bottom: 29px;
-  }
-  .diversion-shoe-custom .color-list:nth-child(1){
-    right: 153%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(2){
-    right: 106%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(3){
-    right: 60%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(4){
-    right: 13%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(5){
-    right: -33%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(6){
-    right: -80%;
-  }
+                .diversion-shoe img{
+                  width: 100px;
+                  height: 50px;
+                }
+                .card-carousel .my-card{
+                  height: 4rem;
+                  width: 7rem;
+              }
+              .diversion-shoe-custom .color-list{
+                width: 4rem;
+                height: 3rem;
+                bottom: 72px;
+              }
+              .diversion-shoe-custom .color-list:nth-child(1){
+                right: 23%;
+              }
+              .diversion-shoe-custom .color-list:nth-child(2){
+                right: 14%;
+              }
+              .diversion-shoe-custom .color-list:nth-child(3){
+                right: 5%;
+              }
+              .diversion-shoe-custom .color-list:nth-child(4){
+                right: -4%;
+              }
+              .diversion-shoe-custom .color-list:nth-child(5){
+                right: -14%;
+              }
+              .diversion-shoe-custom .color-list:nth-child(6){
+                right: -23%;
+              }
 }
-  @media only screen and (min-width:351px) and(max-width:599px)  {
+// @media only screen and (min-width:415px) and(max-width:599px) {
+//   .diversion-shoe-custom .color-list{
+//     width: 4rem;
+//     height: 2rem;
+//     bottom: 29px;
+//     position: relative;
+//   }
+//   .diversion-shoe-custom .color-list:nth-child(1){
+//     right: 153%;
+//   }
+//   .diversion-shoe-custom .color-list:nth-child(2){
+//     right: 106%;
+//   }
+//   .diversion-shoe-custom .color-list:nth-child(3){
+//     right: 60%;
+//   }
+//   .diversion-shoe-custom .color-list:nth-child(4){
+//     right: 13%;
+//   }
+//   .diversion-shoe-custom .color-list:nth-child(5){
+//     right: -33%;
+//   }
+//   .diversion-shoe-custom .color-list:nth-child(6){
+//     right: -80%;
+//   }
+// }
+  @media only screen and (min-width:375px) and(max-width:599px)  {
     .img-custom-1 img{
       width: 300px;
     }
     .diversion-shoe img {
       width: 54px;
       height: 27px;
-  }
-  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
-    height: 3rem;
-    width: 4rem;
-}
-}
-@media only screen and (min-width:375px) and(max-width:414px) {
-  .diversion-shoe-custom .color-list{
-    width: 3rem;
-    height: 2rem;
-    bottom: 29px;
-  }
-  .diversion-shoe-custom .color-list:nth-child(1){
-    right: 116%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(2){
-    right: 85%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(3){
-    right: 55%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(4){
-    right: 24%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(5){
-    right: -8%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(6){
-    right: -38%;
-  }
+    }
+    .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+      height: 3rem;
+      width: 4rem;
+    }
+    .diversion-shoe-custom .color-list{
+      width: 48px;
+      height: 3rem;
+      bottom: 74px;
+    }
+    .diversion-shoe-custom .color-list:nth-child(1){
+      right: 16%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(2){
+      right: 9%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(3){
+      right: 3%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(4){
+      right: -4%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(5){
+      right: -9%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(6){
+      right: -16%;
+    }
   }
    
-  @media only screen and (min-width:320px) and(max-width:350px) {
+  @media only screen and (min-width:320px) and(max-width:374px) {
     .img-custom-1 img{
       width: 300px;
     }
@@ -454,36 +486,35 @@
     .diversion-shoe img {
       width: 54px;
       height: 27px;
-  }
-  .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
-    height: 3rem;
-    width: 4rem;
-  }
-  .diversion-shoe-custom .color-list{
-    width: 2rem;
-    height: 2rem;
-    bottom: 29px;
-  }
-  .diversion-shoe-custom .color-list:nth-child(1){
-    right: 106%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(2){
-    right: 80%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(3){
-    right: 55%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(4){
-    right: 30%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(5){
-    right: 5%;
-  }
-  .diversion-shoe-custom .color-list:nth-child(6){
-    right: -20%;
-  }
-  
-  }
+    }
+    .card-carousel .my-card.next, .card-carousel .my-card.prev, .card-carousel .my-card.active {
+      height: 3rem;
+      width: 4rem;
+    }
+    .diversion-shoe-custom .color-list{
+      width: 2rem;
+      height: 3rem;
+      bottom: 76px;
+    }
+    .diversion-shoe-custom .color-list:nth-child(1){
+      right: 26%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(2){
+      right: 15%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(3){
+      right: 5%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(4){
+      right: -5%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(5){
+      right: -15%;
+    }
+    .diversion-shoe-custom .color-list:nth-child(6){
+      right: -26%;
+    }
+}
 
 
   //
