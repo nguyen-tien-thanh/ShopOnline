@@ -45,8 +45,6 @@
 </div>
 
 <script>
-
-
     $('.cancle-reload').click(()=>{
         location.reload();
     })
@@ -84,17 +82,21 @@
      })
     })
 
-    {{!-- $('.diversion-shoe-custom input').mouseover( function() {
-        var shoePart = $(this).attr('id')
-        console.log(shoePart)
-        var isEditable = $('.main-' + shoePart + '-custom').attr('active')
-        $('.main-' + shoePart + '-custom').removeClass('d-none')
-        $(this).mouseout(()=>{
-            $('.main-' + shoePart + '-custom').addClass('d-none')
-            if(isEditable == 'true') $('.main-' + shoePart + '-custom').removeClass('d-none')
-            else $('.main-' + shoePart + '-custom').addClass('d-none')
+    //Check responsive by width
+    var minWidth = window.matchMedia("(min-width: 1024px)")
+    if(minWidth.matches){ // If > 1024 px
+        $('.diversion-shoe-custom input').mouseover( function() {
+            var shoePart = $(this).attr('id')
+            console.log(shoePart)
+            var isEditable = $('.main-' + shoePart + '-custom').attr('active')
+            $('.main-' + shoePart + '-custom').removeClass('d-none')
+            $(this).mouseout(()=>{
+                $('.main-' + shoePart + '-custom').addClass('d-none')
+                if(isEditable == 'true') $('.main-' + shoePart + '-custom').removeClass('d-none')
+                else $('.main-' + shoePart + '-custom').addClass('d-none')
+            })
         })
-    }) --}}
+    }
     // CARD CARSOUSEL 
  
 
