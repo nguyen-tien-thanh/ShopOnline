@@ -35,7 +35,7 @@
                 </div>
                 <div class="btn-of-custom mt-4">
                     <button class="cancle-realtime btn btn-danger">Cancle</button>
-                    <button class="cancle-reload btn btn-secondary">Undo</button>
+                    <button class="btn-undo btn btn-secondary">Undo</button>
                     <button class="btn btn-success btn-save">Save</button>
                 </div>
             </form>
@@ -45,10 +45,6 @@
 </div>
 
 <script>
-    $('.cancle-reload').click(()=>{
-        location.reload();
-    })
-  
     $('.cancle-realtime').click(()=>{
        $('.img-custom-1 div').removeAttr('style').hide()
     })
@@ -74,12 +70,36 @@
     }
     })
     
+    var arrUndo = [] // Undo button
     $('.diversion-shoe-custom input').on('click', function(){
-     var shoePart = $(this).attr('id')
-     $('.main-' + shoePart + '-custom').show()
-     $('.' + shoePart + '-custom').on('input', function(){
-        $('.main-' + shoePart + '-custom').attr('active','true').attr('style', 'background-color:' + $(this).val()).removeClass('d-none')
-     })
+        var shoePart = $(this).attr('id')
+        var coloValue;
+        var colorPicker = $('.' + shoePart + '-custom')
+        var shoePartImage = $('.main-' + shoePart + '-custom')
+
+        shoePartImage.show()
+        colorPicker.on('input', function(){
+            colorValue = $(this).val()
+            shoePartImage.attr('active','true').attr('style', 'background-color:' + colorValue).removeClass('d-none')
+        })
+        $(this).on('blur', () => {
+            arrUndo.push({shoePart: shoePart, colorValue: colorValue})
+        })
+    })
+
+    $('.btn-undo').click((e)=>{
+        e.preventDefault()
+        var lastItemArr = arrUndo[arrUndo.length - 1]
+        var shoePart = lastItemArr.shoePart
+        var colorPicker = $('.' + shoePart + '-custom')
+        var shoePartImage = $('.main-' + shoePart + '-custom')
+
+        // Remove color on image
+        colorPicker.removeAttr('value')
+        shoePartImage.addClass('d-none')
+
+        // Pop prev action in arr
+        arrUndo.pop()
     })
 
     //Check responsive by width
@@ -87,7 +107,6 @@
     if(minWidth.matches){ // If > 1024 px
         $('.diversion-shoe-custom input').mouseover( function() {
             var shoePart = $(this).attr('id')
-            console.log(shoePart)
             var isEditable = $('.main-' + shoePart + '-custom').attr('active')
             $('.main-' + shoePart + '-custom').removeClass('d-none')
             $(this).mouseout(()=>{
@@ -97,22 +116,8 @@
             })
         })
     }
-    // CARD CARSOUSEL 
- 
 
-    {{!-- $('.my-card:nth-child(1)').addClass('active');
-    $('.my-card:nth-child(1)').prevAll().addClass('prev');
-    $('.my-card:nth-child(1)').nextAll().addClass('next');
- --}}
 
-    {{!-- $('.my-card').mouseover(function() {
-      $(this).addClass('active');
-      $(this).removeClass('prev next');
-      $(this).siblings().removeClass('active prev next')
-      $(this).prevAll().addClass('prev')
-      $(this).nextAll().addClass('next')
-
-    }); --}}
 </script>
 
 
