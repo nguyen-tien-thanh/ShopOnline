@@ -2206,6 +2206,37 @@ tbody tr:hover {
 .btn-custom-list button:last-of-type {
   bottom: 10px; }
 
+.profile-setting .col-9 {
+  width: 90%; }
+
+.profile-setting .col-3 {
+  width: 0; }
+
+.profile-setting img {
+  border-radius: 8%; }
+
+.nav-profile-left ul:nth-child(1) {
+  padding-left: 0; }
+
+.profile-setting h4 {
+  position: absolute;
+  top: 45px;
+  left: 240px;
+  display: none; }
+
+@media screen and (max-width: 1024px) {
+  .profile-setting {
+    z-index: 1;
+    position: fixed;
+    background-color: #d6caca; }
+  .profile-setting h4 {
+    display: block; }
+  .profile-from {
+    width: 100vw; }
+  .edit-user-image img {
+    height: 440px;
+    width: auto; } }
+
 @font-face {
   font-family: 'FuturaLight';
   src: url("/fonts/futurasmalllight/Futura-SC-T-OT-Light_19038.ttf") format("truetype"); }
