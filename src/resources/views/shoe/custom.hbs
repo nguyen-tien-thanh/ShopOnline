@@ -87,7 +87,9 @@
      })
     })
 
-     var arryUndo = []
+     var arryUndo = ['ledinhdong','dongdinhle','vuthihongnhung']
+     var lastEl = arryUndo.slice(-2)[0]
+     console.log(lastEl)
 
     $('.btn-undo').click(() => {
         arryUndo[arryUndo.length-1].addClass('d-none').removeAttr('active', 'true').attr('style', 'background-color:black')

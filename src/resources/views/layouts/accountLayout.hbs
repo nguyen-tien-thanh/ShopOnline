@@ -38,7 +38,7 @@
                         <div class="card-body p-0">
                             <div class="row g-0">
                                 <div class="profile-setting col-lg-3">
-                                    <h4>X</h4>
+                                    <h4 class="close-btn-x">X</h4>
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5 row">
                                             <div class="col-3">
@@ -112,5 +112,14 @@
         crossorigin="anonymous"
         ></script>
     <script src="/js/main.js"></script>
+    <script>
+        $('.icon-right').click(()=> {
+            $('.profile-setting').css({"transform": "translateX(0%)", "opacity": "1"})
+
+            $('.close-btn-x').click(() => {
+                $('.profile-setting').css({"transform": "translateX(-123%)", "opacity": "0"})
+            })
+        })
+    </script>
 </body>
 </html>

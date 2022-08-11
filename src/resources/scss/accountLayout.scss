@@ -1,5 +1,5 @@
 .profile-setting .col-9{
-    width: 90%;
+    width: 88%;
 }
 .profile-setting .col-3{
     width:0;
@@ -10,12 +10,18 @@
 .nav-profile-left ul:nth-child(1){
     padding-left:0;
 }
-.profile-setting h4{
+.close-btn-x{
     position: absolute;
     top: 45px;
-    left: 240px;
+    right:0;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+}
+.icon-right{
     display: none;
 }
+
 
 @media screen and(max-width:1024px) {
     .profile-setting{
@@ -23,6 +29,12 @@
         z-index: 1;
         position: fixed;
         background-color: rgb(214, 202, 202);
+        // transform: translateY(30%);
+        opacity: 0;
+        transform:translateX(-123%);
+        transition: transform linear 0.2s, opacity linear 0.2s;
+        bottom: 0;
+        top: 121px;
     }
     .profile-setting h4{
         display: block;
@@ -34,4 +46,58 @@
         height: 440px;
         width:auto;
     }
+    .profile-setting .col-9{
+        width: 80%;
+    }
+    .icon-right{
+        display: block;
+    }
 }
+@media screen and (min-width:768px) and (max-width:1023px){
+    .profile-setting{
+        flex: 0 0 auto;
+        width: 35%;
+    }
+}
+@media screen and (max-width:677px) {   
+    .my-profile-form button{
+        font-size: 1rem;
+    }
+    .edit-user-image img {
+        height: 400px;
+        width: auto;
+    }
+    .my-profile-form .col-7{
+        width: 100%;
+    }
+    .my-profile-form .col-5{
+        width: 100%;
+    }
+    #change-avatar-btn{
+        width: 100%;
+    }
+    .my-profile-form .col-5 button{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:767px){
+    .profile-setting{
+        flex: 0 0 auto;
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:599px){
+    .profile-setting{
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+@media screen and (max-width:575px){
+    .profile-container .my-profile-form label {
+        text-align: left;
+    }
+}
+
+
