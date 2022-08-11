@@ -2229,7 +2229,12 @@ tbody tr:hover {
 .icon-right {
   display: none; }
 
+.table-history {
+  overflow-x: auto; }
+
 @media screen and (max-width: 1024px) {
+  .profile-reponsive.col-lg-9 {
+    width: 100%; }
   .profile-setting {
     z-index: 1;
     position: fixed;
