@@ -77,13 +77,19 @@
         var colorPicker = $('.' + shoePart + '-custom')
         var shoePartImage = $('.main-' + shoePart + '-custom')
 
+        console.log('Clicked')
+
         shoePartImage.show()
         colorPicker.on('input', function(){
             colorValue = $(this).val()
-            shoePartImage.attr('active','true').attr('style', 'background-color:' + colorValue).removeClass('d-none')
+            shoePartImage.attr('active','true')
+                        .attr('style', 'background-color:' + colorValue)
+                        .removeClass('d-none')
+            console.log(123)
         })
         $(this).on('blur', () => {
             arrUndo.push({shoePart: shoePart, colorValue: colorValue})
+            console.log(arrUndo)
         })
     })
 
