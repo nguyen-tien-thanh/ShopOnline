@@ -15,13 +15,13 @@
                 <div class="main-backward-custom {{#if this.backward}}{{else}}d-none{{/if}}" style="background-color: {{this.backward}};" ></div>
         </div>
       </div>
-      {{!-- <div class="btn-custom-list"> --}}
         <form method="POST" action="/shoe/delete-custom/{{this._id}}">
-          <button class="btn btn-danger button-delete">Remove</button>
-          <input type="text" name="size" placeholder="Input size">
-          <button type="button" class="btn btn-success store-custom-to-cart" data-id="{{this._id}}">Add to cart</button>
+        <div class="ledinhdong">
+            <button class="btn btn-danger button-delete">Remove</button>
+            <input class="input-shoe-size" type="text" name="size" placeholder="Input size">
+            <button type="button" class="btn btn-success store-custom-to-cart" data-id="{{this._id}}">Add to cart</button>
+        </div>
         </form>
-      {{!-- </div> --}}
     {{/each}}
   </section>
 </div>

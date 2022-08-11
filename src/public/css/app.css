@@ -2189,22 +2189,22 @@ tbody tr:hover {
   .diversion-shoe-custom .color-list:nth-child(6) {
     right: -26%; } }
 
-.btn-custom-list {
-  position: relative;
-  padding-bottom: 20px; }
+.button-delete,
+.input-shoe-size,
+.store-custom-to-cart {
+  width: 100%; }
 
-.btn-custom-list button {
-  position: absolute;
-  left: 0;
-  right: 0;
+.input-shoe-size {
   border: none;
-  border-radius: 10px; }
+  text-align: center;
+  font-size: 14px; }
 
-.btn-custom-list button:first-of-type {
-  bottom: 50px; }
+.input-shoe-size:focus {
+  text-align: unset; }
 
-.btn-custom-list button:last-of-type {
-  bottom: 10px; }
+.ledinhdong {
+  padding-left: 1rem;
+  padding-right: 1rem; }
 
 .profile-setting .col-9 {
   width: 88%; }
