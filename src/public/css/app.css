@@ -2274,7 +2274,11 @@ tbody tr:hover {
   #change-avatar-btn {
     width: 100%; }
   .my-profile-form .col-5 button {
-    width: 100%; } }
+    width: 100%; }
+  .profile-container .my-profile-form label {
+    font-size: 12px; }
+  .form-control {
+    font-size: 12px; } }
 
 @media screen and (min-width: 600px) and (max-width: 767px) {
   .profile-setting {
