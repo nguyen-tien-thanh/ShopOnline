@@ -2189,22 +2189,113 @@ tbody tr:hover {
   .diversion-shoe-custom .color-list:nth-child(6) {
     right: -26%; } }
 
-.btn-custom-list {
-  position: relative;
-  padding-bottom: 20px; }
+.button-delete,
+.input-shoe-size,
+.store-custom-to-cart {
+  width: 100%; }
 
-.btn-custom-list button {
-  position: absolute;
-  left: 0;
-  right: 0;
+.input-shoe-size {
   border: none;
-  border-radius: 10px; }
+  text-align: center;
+  font-size: 14px; }
 
-.btn-custom-list button:first-of-type {
-  bottom: 50px; }
+.input-shoe-size:focus {
+  text-align: unset; }
 
-.btn-custom-list button:last-of-type {
-  bottom: 10px; }
+.ledinhdong {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+.profile-setting .col-9 {
+  width: 88%; }
+
+.profile-setting .col-3 {
+  width: 0; }
+
+.profile-setting img {
+  border-radius: 8%; }
+
+.nav-profile-left ul:nth-child(1) {
+  padding-left: 0; }
+
+.close-btn-x {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  display: none;
+  cursor: pointer;
+  width: 20px; }
+
+.icon-right {
+  display: none; }
+
+.table-history {
+  overflow-x: auto; }
+
+.table-notification {
+  overflow-x: auto; }
+
+@media screen and (max-width: 1024px) {
+  .profile-reponsive.col-lg-9 {
+    width: 100%; }
+  .profile-setting {
+    z-index: 1;
+    position: fixed;
+    background-color: #d6caca;
+    opacity: 0;
+    transform: translateX(-123%);
+    transition: transform linear 0.2s, opacity linear 0.2s;
+    bottom: 0;
+    top: 121px; }
+  .profile-setting h4 {
+    display: block; }
+  .profile-from {
+    width: 100vw; }
+  .edit-user-image img {
+    height: 440px;
+    width: auto; }
+  .profile-setting .col-9 {
+    width: 80%; }
+  .icon-right {
+    display: block; } }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .profile-setting {
+    flex: 0 0 auto;
+    width: 35%; } }
+
+@media screen and (max-width: 677px) {
+  .my-profile-form button {
+    font-size: 1rem; }
+  .edit-user-image img {
+    height: 400px;
+    width: auto; }
+  .my-profile-form .col-7 {
+    width: 100%; }
+  .my-profile-form .col-5 {
+    width: 100%; }
+  #change-avatar-btn {
+    width: 100%; }
+  .my-profile-form .col-5 button {
+    width: 100%; }
+  .profile-container .my-profile-form label {
+    font-size: 12px; }
+  .form-control {
+    font-size: 12px; } }
+
+@media screen and (min-width: 600px) and (max-width: 767px) {
+  .profile-setting {
+    flex: 0 0 auto;
+    width: 45%; } }
+
+@media screen and (max-width: 599px) {
+  .profile-setting {
+    flex: 0 0 auto;
+    width: 100%; } }
+
+@media screen and (max-width: 575px) {
+  .profile-container .my-profile-form label {
+    text-align: left; } }
 
 @font-face {
   font-family: 'FuturaLight';

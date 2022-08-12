@@ -26,16 +26,16 @@
             <form method="POST" action="/shoe/store-custom">
             {{!-- Opacity cho input, position giống cái div, Height for Mobile--}}
                 <div class="diversion-shoe-custom card-carousel">
-                    <input class="color-list swooth-custom d-block" name="swoothColor" id="swooth" type="color">
-                    <input class="color-list midsole-custom d-block" name="midsoleColor" id="midsole" type="color">
-                    <input class="color-list middle-custom d-block" name="middleColor" id="middle" type="color">
-                    <input class="color-list head-custom d-block" name="headColor" id="head" type="color">
-                    <input class="color-list back-custom d-block" name="backColor" id="back" type="color">
-                    <input class="color-list backward-custom d-block" name="backwardColor" id="backward" type="color">
+                    <input class="color-list swooth-custom d-block" name="swoothColor" id="swooth" type="color" onchange="addToArr(this.id)">
+                    <input class="color-list midsole-custom d-block" name="midsoleColor" id="midsole" type="color" onchange="addToArr(this.id)">
+                    <input class="color-list middle-custom d-block" name="middleColor" id="middle" type="color" onchange="addToArr(this.id)">
+                    <input class="color-list head-custom d-block" name="headColor" id="head" type="color" onchange="addToArr(this.id)">
+                    <input class="color-list back-custom d-block" name="backColor" id="back" type="color" onchange="addToArr(this.id)">
+                    <input class="color-list backward-custom d-block" name="backwardColor" id="backward" type="color" onchange="addToArr(this.id)">
                 </div>
                 <div class="btn-of-custom mt-4">
                     <button class="cancle-realtime btn btn-danger">Cancle</button>
-                    <button class="btn-undo btn btn-secondary">Undo</button>
+                    <button type="button" class="btn-undo btn btn-secondary">Undo</button>
                     <button class="btn btn-success btn-save">Save</button>
                 </div>
             </form>
@@ -45,6 +45,8 @@
 </div>
 
 <script>
+
+  
     $('.cancle-realtime').click(()=>{
        $('.img-custom-1 div').removeAttr('style').hide()
     })
@@ -70,42 +72,27 @@
     }
     })
     
-    var arrUndo = [] // Undo button
     $('.diversion-shoe-custom input').on('click', function(){
         var shoePart = $(this).attr('id')
-        var coloValue;
-        var colorPicker = $('.' + shoePart + '-custom')
-        var shoePartImage = $('.main-' + shoePart + '-custom')
-
-        console.log('Clicked')
-
-        shoePartImage.show()
-        colorPicker.on('input', function(){
-            colorValue = $(this).val()
-            shoePartImage.attr('active','true')
-                        .attr('style', 'background-color:' + colorValue)
-                        .removeClass('d-none')
-            console.log(123)
-        })
-        $(this).on('blur', () => {
-            arrUndo.push({shoePart: shoePart, colorValue: colorValue})
-            console.log(arrUndo)
+        $('.main-' + shoePart + '-custom').show()
+        $('.' + shoePart + '-custom').on('input', function(){
+            $('.main-' + shoePart + '-custom')
+                .attr('active','true')
+                .attr('style', 'background-color:' + 
+                    $(this).val()).removeClass('d-none')
         })
     })
 
-    $('.btn-undo').click((e)=>{
-        e.preventDefault()
-        var lastItemArr = arrUndo[arrUndo.length - 1]
-        var shoePart = lastItemArr.shoePart
-        var colorPicker = $('.' + shoePart + '-custom')
-        var shoePartImage = $('.main-' + shoePart + '-custom')
-
-        // Remove color on image
-        colorPicker.removeAttr('value')
-        shoePartImage.addClass('d-none')
-
-        // Pop prev action in arr
-        arrUndo.pop()
+    var arryUndo = []
+    function addToArr(shoePart) {
+        arryUndo.push($('.main-' + shoePart + '-custom'))
+    }
+    $('.btn-undo').click(() => {
+        arryUndo[arryUndo.length-1]
+            .addClass('d-none')
+            .removeAttr('active', 'true')
+            .attr('style', 'background-color:black')
+        arryUndo.pop();
     })
 
     //Check responsive by width
@@ -122,8 +109,5 @@
             })
         })
     }
-
-
 </script>
-
 

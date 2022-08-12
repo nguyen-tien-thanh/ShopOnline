@@ -37,7 +37,8 @@
                     <div class="card card-registration card-registration-2" style="border-radius: 15px;">
                         <div class="card-body p-0">
                             <div class="row g-0">
-                                <div class="col-lg-3">
+                                <div class="profile-setting col-lg-3">
+                                    <h4 class="close-btn-x">X</h4>
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5 row">
                                             <div class="col-3">
@@ -49,7 +50,7 @@
                                                 <h6 class="mb-0 text-muted">Edit profile <a class="element-a-href" href="/user/profile">
                                                 <i class="fa fa-edit"></i></a></h6>
                                             </div>
-                                        </div>
+                                    </div>
                                         <hr class="my-3">
                                         <div class="row mb-4 d-flex justify-content-between align-items-center">
                                             {{!-- <div class="col-md-2 col-lg-2 col-xl-2">
@@ -84,7 +85,7 @@
                                         </div>
                                     </div>
                                 </div>
-<div class="account-myprofile col-lg-9">
+<div class="profile-reponsive col-lg-9">
                                 {{{body}}}
 </div>
     
@@ -111,5 +112,14 @@
         crossorigin="anonymous"
         ></script>
     <script src="/js/main.js"></script>
+    <script>
+        $('.icon-right').click(()=> {
+            $('.profile-setting').css({"transform": "translateX(0%)", "opacity": "1"})
+
+            $('.close-btn-x').click(() => {
+                $('.profile-setting').css({"transform": "translateX(-123%)", "opacity": "0"})
+            })
+        })
+    </script>
 </body>
 </html>
