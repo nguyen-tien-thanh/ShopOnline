@@ -47,7 +47,7 @@
     "multer": "^1.4.4",
     "node-sass": "^7.0.1",
     "nodemailer": "^6.7.5",
-    "nodemon": "^2.0.18",
+    "nodemon": "^2.0.19",
     "nodesass": "^0.0.2-security",
     "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
