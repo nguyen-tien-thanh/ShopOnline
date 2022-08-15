@@ -24,3 +24,21 @@
   // border: 2px solid red;
   border-radius: 10px;
 }
+.custom-list-container{
+  flex: 0, 0 auto;
+  width: 33.333%;
+}
+@media screen and (max-width:1500px){
+  .custom-list-container{
+    width: 100%;
+  }
+}
+@media screen and (max-width:599px){
+  .custom-list-btn button{
+    font-size: 8px;
+  }
+  .custom-list-btn input{
+    width: 120%;
+    font-size: 7px;
+  }
+}

@@ -2224,6 +2224,21 @@ section {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px; }
 
+.custom-list-container {
+  flex: 0, 0 auto;
+  width: 33.333%; }
+
+@media screen and (max-width: 1500px) {
+  .custom-list-container {
+    width: 100%; } }
+
+@media screen and (max-width: 599px) {
+  .custom-list-btn button {
+    font-size: 8px; }
+  .custom-list-btn input {
+    width: 120%;
+    font-size: 7px; } }
+
 .profile-setting .col-9 {
   width: 88%; }
 
@@ -2344,3 +2359,13 @@ tbody tr:hover {
   mask: url("/images/smooth2.png") center/contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat; }
+
+@media screen and (max-width: 767px) {
+  .choose-quantity {
+    width: 54%; }
+  .price-of-shoe {
+    width: 35%; }
+  .cancle-order {
+    width: 5%; }
+  .price-of-shoe h6 {
+    font-size: 8px; } }

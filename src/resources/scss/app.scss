@@ -61,4 +61,19 @@ tbody tr:hover{
   mask-repeat: no-repeat;
 }
 
-// accoundLayout.scss
+// cart page reponsive
+@media screen and (max-width:767px) {
+  .choose-quantity{
+    width: 54%;
+  }
+  .price-of-shoe{
+    width: 35%;
+  }
+  .cancle-order{
+    width: 5%;
+  }
+  .price-of-shoe h6{
+    font-size: 8px;
+  }
+
+}
