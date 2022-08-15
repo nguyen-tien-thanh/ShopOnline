@@ -103,12 +103,14 @@
     if(minWidth.matches){ // If > 1024 px
         $('.diversion-shoe-custom input').mouseover( function() {
             var shoePart = $(this).attr('id')
-            var isEditable = $('.main-' + shoePart + '-custom').attr('active')
-            $('.main-' + shoePart + '-custom').removeClass('d-none')
+            var shoePartImage = $('.main-' + shoePart + '-custom')
+            shoePartImage.removeClass('d-none')
             $(this).mouseout(()=>{
-                $('.main-' + shoePart + '-custom').addClass('d-none')
-                if(isEditable == 'true') $('.main-' + shoePart + '-custom').removeClass('d-none')
-                else $('.main-' + shoePart + '-custom').addClass('d-none')
+                shoePartImage.addClass('d-none')
+                var isEditable = shoePartImage.attr('active')
+                if(isEditable == 'true') {
+                    shoePartImage.removeClass('d-none')
+                } else shoePartImage.addClass('d-none')
             })
         })
     }
