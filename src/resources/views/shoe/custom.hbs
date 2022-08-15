@@ -23,7 +23,7 @@
             <div class="my-card"><img src="/images/backward.png" alt=""></div>
         </div>
         <div class="custom-color-board">
-            <form method="POST" action="/shoe/store-custom">
+            <form method="POST" action="/shoe/store-custom" id="store-custom-form">
             {{!-- Opacity cho input, position giống cái div, Height for Mobile--}}
                 <div class="diversion-shoe-custom card-carousel">
                     <input class="color-list swooth-custom d-block" name="swoothColor" id="swooth" type="color" onchange="addToArr(this.id)">
@@ -36,7 +36,7 @@
                 <div class="btn-of-custom mt-4">
                     <button class="cancle-realtime btn btn-danger">Cancle</button>
                     <button type="button" class="btn-undo btn btn-secondary">Undo</button>
-                    <button class="btn btn-success btn-save">Save</button>
+                    <button type="button" class="btn btn-success btn-save">Save</button>
                 </div>
             </form>
         </div>
@@ -45,13 +45,16 @@
 </div>
 
 <script>
-
-  
     $('.cancle-realtime').click(()=>{
        $('.img-custom-1 div').removeAttr('style').hide()
     })
 
     $('.btn-save').click(() => {
+        setTimeout(()=>{
+                 $('#store-custom-form').submit();
+        }, 2000);
+        toastr.success('Save your new custom successful !')
+        
         if($('.main-swooth-custom').hasClass('d-none')){
         $('.swooth-custom').remove();
     } 

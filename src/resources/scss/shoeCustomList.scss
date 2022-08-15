@@ -11,7 +11,16 @@
 .input-shoe-size:focus{
   text-align: unset;
 }
-.ledinhdong{
-  padding-left:1rem;
-  padding-right:1rem;
+.custom-list-btn{
+  padding-left:1.5rem;
+}
+
+.custom-item-container{
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  
+  // border: 2px solid red;
+  border-radius: 10px;
 }

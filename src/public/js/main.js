@@ -719,12 +719,13 @@ if(document.getElementById('payment-form')){
 
       //Display noti when not choosing size
       $('#add-to-cart-btn').on('click', function(e) {
-        // e.preventDefault();
+        e.preventDefault();
+        var sizeValue, shoeId;
         if($('#add-to-cart-btn').hasClass('active')){
           $('#noti-pre-order').hide();
 
-          var sizeValue = $('input[name=size]:checked', '#size-options').val();
-          var shoeId = $(this).data('id');
+          sizeValue = $('input[name=size]:checked', '#size-options').val();
+          shoeId = $(this).data('id');
           $.ajax({
             url:'/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue,
           })
@@ -739,7 +740,6 @@ if(document.getElementById('payment-form')){
             $(".zoom").remove();
             $('.badge-counter').html(parseInt($('.badge-counter').html(), 10)+1);
           }, 1000);
-
         }
         else{
           $('#noti-pre-order').show();

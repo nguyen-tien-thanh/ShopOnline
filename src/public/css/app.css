@@ -22,11 +22,12 @@
   background-color: transparent; }
 
 #subnav-right li {
-  float: right; }
+  float: right;
+  padding: 0px 5px; }
 
 #subnav-right li a {
   color: white;
-  padding: 0 10px 16px 14px;
+  padding: 0 6px 16px 1px;
   text-decoration: none;
   font-size: 18px; }
 
@@ -184,6 +185,13 @@ header nav ul li:hover,
   transform: scale(0.9);
   transform-origin: top right;
   right: 0rem;
+  margin-top: -.25rem; }
+
+.sub-header nav ul li .badge-noti {
+  position: absolute;
+  transform: scale(0.9);
+  transform-origin: top right;
+  right: 2.2rem;
   margin-top: -.25rem; }
 
 .main-header .icon {
@@ -2206,9 +2214,15 @@ section {
 .input-shoe-size:focus {
   text-align: unset; }
 
-.ledinhdong {
-  padding-left: 1rem;
-  padding-right: 1rem; }
+.custom-list-btn {
+  padding-left: 1.5rem; }
+
+.custom-item-container {
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px; }
 
 .profile-setting .col-9 {
   width: 88%; }
@@ -2319,3 +2333,14 @@ tr:nth-child(even) {
 tbody tr:hover {
   color: #d00109;
   cursor: default; }
+
+.z-index-top {
+  z-index: 100;
+  width: 316px;
+  height: 83px;
+  bottom: 285px;
+  left: 60px;
+  -webkit-mask: url("/images/smooth2.png") center/contain;
+  mask: url("/images/smooth2.png") center/contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat; }

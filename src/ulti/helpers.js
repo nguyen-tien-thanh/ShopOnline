@@ -1,4 +1,8 @@
 module.exports = {
+    counterUnRead: function(arr) {
+        var result = arr.filter(arr => arr.isRead == false).length
+        return result
+    } ,
     counter: (a) => a.length,
     sum: (a,b) => a+b,
     each_upto: function(ary, max, options) {

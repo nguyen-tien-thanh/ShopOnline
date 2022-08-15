@@ -1,43 +1,88 @@
 
-<div class="wrapper cart-container container-custom">
+<div class="wrapper cart-container container-custom mt-5">
 <div class="wrap wrap-shoe-custom">
 
   <section class="transparent">
-    {{#each custom}}
-    <div class="main-img-custom">
-        <div class="img-custom-1 open-img-custom-1">
-                <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
-                <div class="main-swooth-custom {{#if this.swooth}}{{else}}d-none{{/if}}" style="background-color: {{this.swooth}};" ></div>
-                <div class="main-midsole-custom {{#if this.midsole}}{{else}}d-none{{/if}}" style="background-color: {{this.midsole}};" ></div>
-                <div class="main-middle-custom {{#if this.middle}}{{else}}d-none{{/if}}" style="background-color: {{this.middle}};" ></div>
-                <div class="main-head-custom {{#if this.head}}{{else}}d-none{{/if}}" style="background-color: {{this.head}};" ></div>
-                <div class="main-back-custom {{#if this.back}}{{else}}d-none{{/if}}" style="background-color: {{this.back}};" ></div>
-                <div class="main-backward-custom {{#if this.backward}}{{else}}d-none{{/if}}" style="background-color: {{this.backward}};" ></div>
+    <div class="row">
+      {{#each custom}}
+        <div class="col-xl-4 col-lg-4 col-12">
+          <div class="custom-item-container">
+            <div class="main-img-custom">
+              <div class="img-custom-1 open-img-custom-1">
+                      <img class="af1-custom-images" src="/images/shoetype1.png" alt="">
+                      <div class="main-swooth-custom {{#if this.swooth}}{{else}}d-none{{/if}}" style="background-color: {{this.swooth}};" ></div>
+                      <div class="main-midsole-custom {{#if this.midsole}}{{else}}d-none{{/if}}" style="background-color: {{this.midsole}};" ></div>
+                      <div class="main-middle-custom {{#if this.middle}}{{else}}d-none{{/if}}" style="background-color: {{this.middle}};" ></div>
+                      <div class="main-head-custom {{#if this.head}}{{else}}d-none{{/if}}" style="background-color: {{this.head}};" ></div>
+                      <div class="main-back-custom {{#if this.back}}{{else}}d-none{{/if}}" style="background-color: {{this.back}};" ></div>
+                      <div class="main-backward-custom {{#if this.backward}}{{else}}d-none{{/if}}" style="background-color: {{this.backward}};" ></div>
+              </div>
+            </div>
+            {{!-- <form method="POST" action="/shoe/delete-custom/{{this._id}}"> --}}
+            <div class="custom-list-btn row">
+              <div class="row">
+                <div class="col-4">
+                  <button type="button" class="btn btn-danger button-delete" data-id="{{this._id}}" onClick="delete()">Remove</button>
+                </div>
+                <div class="col-4">
+                  <input 
+                    class="input-shoe-size form-control" 
+                    type="number"
+                    placeholder="Choose size" 
+                    list="sizes" 
+                    onChange="getSize(this)">
+                    <datalist id="sizes">
+                      <option>36</option>
+                      <option>37</option>
+                      <option>38</option>
+                      <option>39</option>
+                      <option>40</option>
+                      <option>41</option>
+                      <option>42</option>
+                      <option>43</option>
+                      <option>44</option>
+                    </datalist>
+                </div>
+                <div class="col-4">
+                  <button type="button" class="btn btn-success store-custom-to-cart" data-id="{{this._id}}">Add to cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-        <form method="POST" action="/shoe/delete-custom/{{this._id}}">
-        <div class="ledinhdong">
-            <button class="btn btn-danger button-delete">Remove</button>
-            <input class="input-shoe-size" type="text" name="size" placeholder="Input size">
-            <button type="button" class="btn btn-success store-custom-to-cart" data-id="{{this._id}}">Add to cart</button>
-        </div>
-        </form>
-    {{/each}}
+      {{/each}}
+    </div>
   </section>
 </div>
 </div>
 
 
 <script>
-  $('.store-custom-to-cart').on('click', function (e) {
+  $('.button-delete').on('click', function (e) {
     e.preventDefault()
     var customId = $(this).data('id')
-    var size = $('input[name="size"]').val()
-    console.log(size)
+    $.ajax({
+      method: 'POST',
+      url: '/shoe/delete-custom/' + customId
+    })
+    $(this).parent().parent().parent().parent().parent().remove()
+
+    toastr.warning('Remove custom successful !')
+  })
+
+  var customSize;
+  function getSize(e){
+    return customSize = e.value
+  }
+
+  $('.store-custom-to-cart').on('click', function () {
+    var customId = $(this).data('id')
 
     $.ajax({
       method: 'POST',
-      url: '/shoe/store-custom-to-cart/' + customId + '?size=' + size
+      url: '/shoe/store-custom-to-cart/' + customId + '?size=' + customSize
     })
+    
+    toastr.success('Add custom successful !')
   })
 </script>

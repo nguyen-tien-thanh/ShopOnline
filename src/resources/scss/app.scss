@@ -48,4 +48,17 @@ tbody tr:hover{
   cursor: default;
 }
 
+.z-index-top{
+  z-index: 100;
+  width: 316px;
+  height: 83px;
+  // position: absolute;
+  bottom: 285px;
+  left: 60px;
+  -webkit-mask:url("/images/smooth2.png") center/contain;
+          mask:url("/images/smooth2.png") center/contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
 // accoundLayout.scss

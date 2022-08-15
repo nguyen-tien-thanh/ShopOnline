@@ -18,11 +18,12 @@ $maincolor: rgb(208,1,9);
   
   #subnav-right li {
       float: right;
+      padding: 0px 5px;
   }
   
   #subnav-right li a {
       color: white;
-      padding: 0 10px 16px 14px;
+      padding: 0 6px 16px 1px;
       text-decoration: none;
       font-size: 18px;
   }
@@ -200,6 +201,13 @@ $maincolor: rgb(208,1,9);
         transform: scale(0.9);
         transform-origin: top right;
         right: 0rem;
+        margin-top: -.25rem;
+      }
+      .sub-header nav ul li .badge-noti{
+        position: absolute;
+        transform: scale(0.9);
+        transform-origin: top right;
+        right: 2.2rem;
         margin-top: -.25rem;
       }
 

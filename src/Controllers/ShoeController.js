@@ -8,12 +8,9 @@ const Cart = require('../models/Cart')
 const Custom = require('../models/Custom')
 const Notification = require('../models/Notification')
 
-const { multipleMongooseToObject } = require('../ulti/mongoose')
-const { mongooseToObject } = require('../ulti/mongoose')
-const { checkUserExist, makePassword } = require('../ulti/register')
+const { mongooseToObject, multipleMongooseToObject } = require('../ulti/mongoose')
 
 const bcrypt = require('bcrypt');
-// const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
 class ShoeController {
@@ -22,10 +19,15 @@ class ShoeController {
     custom(req,res,next){
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, 'secretpasstoken')
-        User.findOne({_id: decodeToken})
-        .then((user) =>{
+        Promise.all([
+            User.findOne({_id: decodeToken}),
+            Notification.find({user: decodeToken})
+                .sort({createdAt: -1}),
+        ])
+        .then(([user, noti]) =>{
             res.render('shoe/custom', {
                 user: mongooseToObject(user),
+                noti: multipleMongooseToObject(noti),
                 title: 'Custom'
             })
         })
@@ -295,6 +297,7 @@ class ShoeController {
                 head: req.body.headColor,
                 back: req.body.backColor,
                 backward: req.body.backwardColor,
+                success: true
             })
             shoe.save()
 
@@ -751,7 +754,6 @@ class ShoeController {
                     .populate('brand')
                     .populate('type'),
                 Notification.find({user: decodeToken})
-                    // .limit(4)
                     .sort({createdAt: -1}),
             ])
             .then(([
@@ -779,21 +781,25 @@ class ShoeController {
     }
 
     customList(req, res, next){
-
         var token = req.cookies.token;
         var decodeToken = jwt.verify(token, 'secretpasstoken')
         Promise.all([
             User.findOne({_id: decodeToken}),
             Custom.find({user: decodeToken})
-            .populate('user')
+                .populate('user')
+                .sort({createdAt: -1}),
+            Notification.find({user: decodeToken})
+                .sort({createdAt: -1}),
         ])
         .then(([
             user,
-            custom
+            custom,
+            noti
         ]) => {
             res.render('shoe/custom-list', {
                 user: mongooseToObject(user),
                 custom: multipleMongooseToObject(custom),
+                noti: multipleMongooseToObject(noti),
                 title: 'List of custom'
             })
         })

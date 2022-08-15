@@ -38,22 +38,9 @@
                                                 </a>
                                                 <input min="0" value="{{this.qty}}" type="text" disabled class="form-control form-control-sm">
                                                 <input type="hidden" name="quantity" value="{{this.qty}}">
-                                                {{!-- <a href="/shoe/add-to-cart/{{this.item._id}}"> --}}
                                                 <a href="/shoe/{{this.item._id}}">
                                                     <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
                                                 </a>
-                                            {{!-- <button class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-
-                                            <input min="0" name="quantity" value="{{this.qty}}" type="number"
-                                                class="form-control form-control-sm" />
-
-                                            <button class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                <i class="fas fa-plus"></i>
-                                            </button> --}}
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                             <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>

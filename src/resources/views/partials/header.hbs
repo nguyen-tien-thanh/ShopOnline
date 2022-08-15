@@ -16,9 +16,16 @@
               </li>
               <li>
                 <i class="fa fa-bell fa-shake"></i>
+                  {{#if noti}}
+                    <span class="badge badge-danger badge-noti">
+                      {{counterUnRead noti}}
+                    </span>
+                  {{else}}
+                    <span class="badge badge-danger badge-noti">0</span>
+                  {{/if}}
                   
                 <div class="subnav-dropdown noti-list">
-                  {{!-- <br> --}}
+                  {{#if noti}}
                   {{#each noti}}
                     <div class="number-of-noti dropdown-item align-items-center" data-id="{{this._id}}">
                         <div class="mr-3">
@@ -47,6 +54,11 @@
                   <div class="subnav-dropdown-items text-center">
                     <a href="/user/notification" class="">Show all</a>
                   </div>
+                  {{else}}
+                    <div class="subnav-dropdown-items text-center">
+                      <span href="/user/notification" class="">There is no notifications !</span>
+                    </div>
+                  {{/if}}
                 </div>
               </li>
               <li>
@@ -125,9 +137,9 @@
       <a href="/product/manage"><li>Manage</li></a>
       <a href="/admin"><li>Admin</li></a> --}}
       <a href="/shoe"><li>Shoes</li></a>
-      <a href="/cart"><li>Cart</li>
-      </a>
-      <a href="/shoe/custom" class="btn-info-scroll"><li>Custom Sneaker</li></a>
+      <a href="/cart"><li>Cart</li></a>
+      <a href="/shoe/custom" class="btn-info-scroll"><li>Customize</li></a>
+      <a href="/shoe/custom/list" class="btn-info-scroll"><li>Custom List</li></a>
     </ul>
   </nav>
 </header>
