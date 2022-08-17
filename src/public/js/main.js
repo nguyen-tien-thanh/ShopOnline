@@ -856,3 +856,77 @@ $('#change-avatar-btn').click(function(){
 })
 
 
+
+//==================== delete in shopping cart ===============
+
+function deleteShoeCart(elementCart, idShoe, priceShoe, qtyShoe) {
+  
+  var totalQtyEle = document.querySelector('.total-items')
+  var totalQtySumary = totalQtyEle.innerText;
+  var totalQty = totalQtySumary.replace(/[^0-9]+/g,"");
+  var qty =  totalQty - qtyShoe;
+  // totalQtyEle.innerHTML ="Item:" + qty;
+
+  var totalQtyEles = document.querySelectorAll('.total-items')
+  for( var i = 0;i < totalQtyEles.length; i++) {
+    totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
+    totalQtyEles[1].innerHTML = "ITEMS: " + qty
+  }
+
+  var element = document.querySelector('.shoe-total-price')
+  var totalPriceSumary = element.innerText;
+  var totalPrice = totalPriceSumary.replace(/[^0-9]+/g,"");
+  var price = totalPrice - priceShoe;
+  var priceFormat = currentFormat(price);
+
+
+  var elements = document.querySelectorAll('.shoe-total-price')
+  for( var i = 0;i < elements.length; i++) {
+    elements[i].innerText = priceFormat
+  }
+
+ elementCart.parentElement.parentElement.remove();
+
+
+ if(qty <= 0){
+  var cardItems = document.querySelector('.noti-no-shoe')
+  cardItems.classList.remove('d-none')
+}
+
+  document.getElementById('money-input').value = price;
+
+  $.ajax({
+    method:'Get',
+    url:'/shoe/remove-item/' + idShoe,
+  })
+}
+function removeAllCart() {
+    document.querySelectorAll('.cart-items').forEach(e => e.remove())
+    var elements = document.querySelectorAll('.shoe-total-price')
+    for( var i = 0;i < elements.length; i++) {
+      elements[i].innerText = 0 + ' VND'
+    }
+    var totalQtyEles = document.querySelectorAll('.total-items')
+    for( var i = 0;i < totalQtyEles.length; i++) {
+      totalQtyEles[0].innerHTML = 0 + " items "
+      totalQtyEles[1].innerHTML = "ITEMS: " + 0;
+    }
+    var cardItems = document.querySelector('.noti-no-shoe')
+    cardItems.classList.remove('d-none')
+    
+    document.getElementById('money-input').value = price;
+    $.ajax({
+      method:'GET',
+      url: '/shoe/delete-cart'
+    })
+}
+
+
+
+
+
+
+function currentFormat(value) {
+  if(value == 0) return value;
+  return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND';
+}

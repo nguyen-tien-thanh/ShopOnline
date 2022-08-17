@@ -11,7 +11,9 @@
                                 <div class="d-flex justify-content-between align-items-center mb-5">
                                     <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                                     {{#if session.cart}}
-                                    <h6 class="mb-0 text-muted">{{session.cart.totalQty}} items <a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a></h6>
+                                    <h6 class="total-items mb-0 text-muted">{{session.cart.totalQty}} items 
+                                        <a onclick="removeAllCart()" class="element-a-href">
+                                            <i class="fa fa-trash"></i></a></h6>
                                     {{else}}
                                     <h6 class="mb-0 text-muted">0 items</h6>
                                     {{/if}}
@@ -19,7 +21,7 @@
                                 <hr class="my-4">
                                 {{#if shoe}}
                                     {{#each shoe}}
-                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="cart-items row mb-4 d-flex justify-content-between align-items-center">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
                                             <img
                                                 src="./uploads/{{this.item.image}}"
@@ -46,16 +48,22 @@
                                             <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>
                                             </div>
                                             <div class="cancle-order col-md-1 col-lg-1 col-xl-1 text-end">
-                                            <a href="/shoe/remove-item/{{this.item._id}}" class="text-muted"><i class="fas fa-times"></i></a>
+                                                <i onclick="deleteShoeCart(this, '{{this.item._id}}', '{{this.price}}', '{{this.qty}}', 'removeItems')" class="fas fa-times"></i>
                                             </div>
+                                            <hr class="my-4">
                                         </div>
 
-                                        <hr class="my-4">
+                                        
                                     {{/each}}
                                 {{else}}
                                 <h3>There is no shoe in your cart</h3>
                                 <a class="element-a-href" href="/shoe">Add one?</a>
                                 {{/if}}
+                                <div class="noti-no-shoe d-none">
+                                    <h3>There is no shoe in your cart</h3>
+                                    <a class="element-a-href" href="/shoe">Add one?</a>
+                                </div>
+
                                 <div class="pt-5">
                                     <h6 class="mb-0"><a href="/shoe" class="text-body"><i
                                         class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
@@ -69,8 +77,8 @@
 
                                         <div class="d-flex justify-content-between mb-4">
                                             {{#if session.cart}}
-                                            <h5 class="text-uppercase">items:   {{session.cart.totalQty}}</h5>
-                                            <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
+                                            <h5 class="total-items text-uppercase">items:   {{session.cart.totalQty}}</h5>
+                                            <h5 class="shoe-total-price">{{formatCurrency session.cart.totalPrice}} VND</h5>
                                             {{/if}}
                                         </div>
 
@@ -88,7 +96,7 @@
 
                                         <div class="mb-2 pb-2">
                                             <select class="form-control" name="payment" id="payment-method-select" required>
-                                                <option value="" selected="true" disabled="disabled">Choose payment method</option>
+                                                {{!-- <option value="" selected="true" disabled="disabled">Choose payment method</option> --}}
                                                 <option value="wallet">DusTin Wallet {{#if user.money}}({{formatCurrency user.money}} VND){{/if}} </option>
                                                 <option value="momo">Momo</option>
                                                 <option value="paypal">Paypal</option>
@@ -131,7 +139,7 @@
                                             </div>
                                         </div>
 
-                                        <input type="hidden" name="money" value="{{session.cart.totalPrice}}">
+                                        <input id="money-input" type="hidden" name="money" value="{{session.cart.totalPrice}}">
                                         <input type="hidden" name="shipping" value="">
                                         <input type="hidden" name="userId" value="{{user._id}}">
 
@@ -140,7 +148,7 @@
                                         {{#if session.cart}}
                                             <div class="d-flex justify-content-between mb-2">
                                                 <h5 class="text-uppercase">Total price</h5>
-                                                <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
+                                                <h5 class="shoe-total-price">{{formatCurrency session.cart.totalPrice}} VND</h5>
                                             </div>
                                         {{/if}}
 
@@ -199,7 +207,7 @@
                                         {{#if session.cart}}
                                             <div class="d-flex justify-content-between mb-2">
                                                 <h5 class="text-uppercase">Total price</h5>
-                                                <h5>{{formatCurrency session.cart.totalPrice}} VND</h5>
+                                                <h5 class="shoe-total-price">{{formatCurrency session.cart.totalPrice}} VND</h5>
                                             </div>
                                         {{/if}}
 
