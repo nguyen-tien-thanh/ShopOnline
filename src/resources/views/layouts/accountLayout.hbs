@@ -40,12 +40,12 @@
                                 <div class="profile-setting col-lg-3">
                                     <h4 class="close-btn-x">X</h4>
                                     <div class="p-5">
-                                        <div class="d-flex justify-content-between align-items-center mb-5 row">
-                                            <div class="col-3">
+                                        <div class="d-flex align-items-center mb-5">
+                                            <div>
                                                 <img src="{{#ifCond user.avatar '!=' 'http://.*'}}/uploads/{{/ifCond}}{{user.avatar}}" 
                                                 class="img-responsive img-rounded" alt="img-user" style="max-height: 50px; max-width: 50px;">
                                             </div>
-                                            <div class="col-9">
+                                            <div class="px-2">
                                                 <h6 class="fw-bold mb-0 text-black">{{user.name}}</h6>
                                                 <h6 class="mb-0 text-muted">Edit profile <a class="element-a-href" href="/user/profile">
                                                 <i class="fa fa-edit"></i></a></h6>
