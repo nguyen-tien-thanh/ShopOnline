@@ -869,7 +869,11 @@ function deleteShoeCart(elementCart, idShoe, priceShoe, qtyShoe) {
 
   var totalQtyEles = document.querySelectorAll('.total-items')
   for( var i = 0;i < totalQtyEles.length; i++) {
-    totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
+    if(qty == 0){
+      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"></a>';
+    }else{
+      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
+    }
     totalQtyEles[1].innerHTML = "ITEMS: " + qty
   }
 
@@ -889,8 +893,17 @@ function deleteShoeCart(elementCart, idShoe, priceShoe, qtyShoe) {
 
 
  if(qty <= 0){
+
   var cardItems = document.querySelector('.noti-no-shoe')
   cardItems.classList.remove('d-none')
+
+  var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
+    for( var i = 0;i < checkOutBtn.length; i++) {
+      checkOutBtn[i].classList.remove('btn-outline-dark')
+      checkOutBtn[i].classList.add('btn-dark')
+      checkOutBtn[i].innerText = 'No item to check out'
+      checkOutBtn[i].setAttribute('disabled','disabled')
+    }
 }
 
   document.getElementById('money-input').value = price;
@@ -913,8 +926,16 @@ function removeAllCart() {
     }
     var cardItems = document.querySelector('.noti-no-shoe')
     cardItems.classList.remove('d-none')
+
+    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
+    for( var i = 0;i < checkOutBtn.length; i++) {
+      checkOutBtn[i].classList.remove('btn-outline-dark')
+      checkOutBtn[i].classList.add('btn-dark')
+      checkOutBtn[i].innerText = 'No item to check out'
+      checkOutBtn[i].setAttribute('disabled','disabled')
+    }
     
-    document.getElementById('money-input').value = price;
+    document.getElementById('money-input').value = 0;
     $.ajax({
       method:'GET',
       url: '/shoe/delete-cart'
@@ -924,7 +945,10 @@ function removeAllCart() {
 
 
 
-
+function deleteCookie(name){
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  console.log('deleted')
+}
 
 function currentFormat(value) {
   if(value == 0) return value;
