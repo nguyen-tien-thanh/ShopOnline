@@ -72,7 +72,8 @@ class ShoeController {
             if(err){
                 return res.redirect('back');
             }
-            cart.add(shoe, shoe._id, shoeSize);
+            var id = shoe._id + shoeSize
+            cart.add(shoe, id, shoeSize);
             req.session.cart = cart;
             res.redirect('back');
         })

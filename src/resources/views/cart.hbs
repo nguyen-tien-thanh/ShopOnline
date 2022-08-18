@@ -47,10 +47,18 @@
                                                 </div>
                                                 <div class="d-flex">
                                                 {{!-- <a href="/shoe/reduce-cart/{{this.item._id}}"> --}}
-                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-minus"></i></button>
+                                                    <button 
+                                                        type="button" 
+                                                        class="btn btn-link px-2" 
+                                                        onclick="removeItemCart(this, 
+                                                                                '{{this.item._id}}',
+                                                                                '{{#with size}}{{this}}{{/with}}',
+                                                                                '{{this.price}}', 
+                                                                                '{{this.qty}}')">
+                                                            <i class="fas fa-minus"></i>
+                                                    </button>
                                                 {{!-- </a> --}}
                                                 <input min="0" value="{{this.qty}}" type="text" disabled class="form-control form-control-sm">
-                                                <input type="hidden" name="quantity" value="{{this.qty}}">
                                                 {{!-- <a href="/shoe/{{this.item._id}}"> --}}
                                                     <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
                                                 {{!-- </a> --}}
@@ -60,7 +68,7 @@
                                             <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>
                                             </div>
                                             <div class="cancle-order col-md-1 col-lg-1 col-xl-1 text-end">
-                                                <i onclick="deleteShoeCart(this, '{{this.item._id}}', '{{this.price}}', '{{this.qty}}', 'removeItems')" class="fas fa-times"></i>
+                                                <i onclick="deleteShoeCart(this, '{{this.item._id}}','{{#with size}}{{this}}{{/with}}', '{{this.price}}', '{{this.qty}}')" class="fas fa-times"></i>
                                             </div>
                                             <hr class="my-4">
                                         </div>
@@ -154,6 +162,7 @@
                                         <input id="money-input" type="hidden" name="money" value="{{session.cart.totalPrice}}">
                                         <input type="hidden" name="shipping" value="">
                                         <input type="hidden" name="userId" value="{{user._id}}">
+                                        <input type="hidden" name="quantity" value="{{this.qty}}">
 
                                         <hr class="my-4">
 

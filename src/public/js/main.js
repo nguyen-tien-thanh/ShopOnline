@@ -859,13 +859,12 @@ $('#change-avatar-btn').click(function(){
 
 //==================== delete in shopping cart ===============
 
-function deleteShoeCart(elementCart, idShoe, priceShoe, qtyShoe) {
+function deleteShoeCart(elementCart, idShoe, sizeShoe , priceShoe, qtyShoe) {
   
   var totalQtyEle = document.querySelector('.total-items')
   var totalQtySumary = totalQtyEle.innerText;
   var totalQty = totalQtySumary.replace(/[^0-9]+/g,"");
   var qty =  totalQty - qtyShoe;
-  // totalQtyEle.innerHTML ="Item:" + qty;
 
   var totalQtyEles = document.querySelectorAll('.total-items')
   for( var i = 0;i < totalQtyEles.length; i++) {
@@ -889,28 +888,28 @@ function deleteShoeCart(elementCart, idShoe, priceShoe, qtyShoe) {
     elements[i].innerText = priceFormat
   }
 
- elementCart.parentElement.parentElement.remove();
+  elementCart.parentElement.parentElement.remove();
 
 
- if(qty <= 0){
+  if(qty <= 0){
+    var cardItems = document.querySelector('.noti-no-shoe')
+    cardItems.classList.remove('d-none')
 
-  var cardItems = document.querySelector('.noti-no-shoe')
-  cardItems.classList.remove('d-none')
-
-  var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
-    for( var i = 0;i < checkOutBtn.length; i++) {
-      checkOutBtn[i].classList.remove('btn-outline-dark')
-      checkOutBtn[i].classList.add('btn-dark')
-      checkOutBtn[i].innerText = 'No item to check out'
-      checkOutBtn[i].setAttribute('disabled','disabled')
-    }
-}
+    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
+      for( var i = 0;i < checkOutBtn.length; i++) {
+        checkOutBtn[i].classList.remove('btn-outline-dark')
+        checkOutBtn[i].classList.add('btn-dark')
+        checkOutBtn[i].innerText = 'No item to check out'
+        checkOutBtn[i].setAttribute('disabled','disabled')
+      }
+  }
 
   document.getElementById('money-input').value = price;
 
+  var id = idShoe + sizeShoe
   $.ajax({
     method:'Get',
-    url:'/shoe/remove-item/' + idShoe,
+    url:'/shoe/remove-item/' + id,
   })
 }
 function removeAllCart() {
@@ -942,20 +941,70 @@ function removeAllCart() {
     })
 }
 
-
-
-
-function deleteCookie(name){
-  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  console.log('deleted')
-}
-
 function currentFormat(value) {
   if(value == 0) return value;
   return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND';
 }
 
-// $('.choose-quantity').click(()=>{
-//   $(this).closest('.size-container').show()
-//   console.log('clicked')
-// })
+function removeItemCart(elementCart, idShoe, sizeShoe , priceShoe, qtyShoe){
+  var totalQtyEle = document.querySelector('.total-items')
+  var totalQtySumary = totalQtyEle.innerText;
+  var totalQty = totalQtySumary.replace(/[^0-9]+/g,"");
+  var qty =  totalQty - 1;
+
+  var totalQtyEles = document.querySelectorAll('.total-items')
+  for( var i = 0;i < totalQtyEles.length; i++) {
+    if(qty == 0){
+      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"></a>';
+    }else{
+      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
+    }
+    totalQtyEles[1].innerHTML = "ITEMS: " + qty
+  }
+
+  var element = document.querySelector('.shoe-total-price')
+  var totalPriceSumary = element.innerText;
+  var totalPrice = totalPriceSumary.replace(/[^0-9]+/g,"");
+  var newPrice = priceShoe / qtyShoe
+  var price = totalPrice - newPrice;
+  var priceFormat = currentFormat(price);
+  var newPriceItem = priceShoe - newPrice
+  var newPriceItemFormat = currentFormat(newPriceItem)
+
+  var elements = document.querySelectorAll('.shoe-total-price')
+  for( var i = 0;i < elements.length; i++) {
+    elements[i].innerText = priceFormat
+  }
+
+  document.getElementById('money-input').value = newPrice;
+
+  if(qty <= 0){
+    var cardItems = document.querySelector('.noti-no-shoe')
+    cardItems.classList.remove('d-none')
+
+    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
+      for( var i = 0;i < checkOutBtn.length; i++) {
+        checkOutBtn[i].classList.remove('btn-outline-dark')
+        checkOutBtn[i].classList.add('btn-dark')
+        checkOutBtn[i].innerText = 'No item to check out'
+        checkOutBtn[i].setAttribute('disabled','disabled')
+      }
+  }
+
+  var eleInput = elementCart.parentElement.children[1]
+  eleInput.value -= 1;
+
+  var elePrice = elementCart.parentElement.parentElement.parentElement.children[3].children[0]
+  elePrice.innerText = newPriceItemFormat
+
+
+  if(eleInput.value <= 0){
+    elementCart.parentElement.parentElement.parentElement.remove();
+  }
+
+  var id = idShoe + sizeShoe
+  $.ajax({
+    method:'Get',
+    url:'/shoe/reduce-cart/' + id,
+  })
+}
