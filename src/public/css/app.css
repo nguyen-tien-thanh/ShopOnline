@@ -1318,21 +1318,21 @@ section {
   font-weight: 100;
   line-height: 23px; }
 
-#size-options {
+.size-options {
   cursor: default; }
 
-.detail-shoe-container #shoe-detail #size-options label {
+.size-options label {
   font-size: 15px;
   cursor: pointer;
   display: inline-block; }
 
-#size-options span {
+.size-options span {
   cursor: not-allowed; }
 
-.detail-shoe-container #shoe-detail #size-options input[type=radio] {
+.size-options input[type=radio] {
   display: none; }
 
-.detail-shoe-container #shoe-detail #size-options input[type=radio]:checked + .radio-checked {
+.size-options input[type=radio]:checked + .radio-checked {
   color: #d00109;
   text-decoration: underline; }
 
@@ -1482,6 +1482,13 @@ section {
     object-fit: scale-down; }
   .detail-shoe-container #another-shoe-detail h1 {
     font-size: 28px; } }
+
+.size-choose-container {
+  background-color: aliceblue;
+  width: fit-content;
+  border-radius: 0.2rem;
+  padding: 0 5px;
+  margin-bottom: 10px; }
 
 .img-user-table {
   max-width: 3.5rem; }
@@ -2329,6 +2336,24 @@ section {
 @media screen and (max-width: 575px) {
   .profile-container .my-profile-form label {
     text-align: left; } }
+
+.size-options-items {
+  cursor: default; }
+
+.size-options-items label {
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-block; }
+
+.size-options-items span {
+  cursor: not-allowed; }
+
+.size-options-items input[type=radio] {
+  display: none; }
+
+.size-options-items input[type=radio]:checked + .radio-checked {
+  color: #d00109;
+  text-decoration: underline; }
 
 @font-face {
   font-family: 'FuturaLight';

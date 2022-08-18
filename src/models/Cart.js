@@ -6,14 +6,21 @@ module.exports = function Cart(oldCart) {
 
     this.add = function(item, id, size){
         var storedItem = this.items[id];
+        console.log(storedItem);
 
         if(!storedItem){
-            storedItem = this.items[id] = {item: item, qty:0, price: 0, size: []};
+            storedItem = this.items[id] = {item: item, qty:0, price: 0, size: size};
+        } else {
+            if(storedItem.size != size){
+                console.log('newsize'+ storedItem.size)
+                storedItem = this.items[id] = {item: item, qty:0, price: 0, size: size};
+            }
         }
 
-        if(storedItem.size.indexOf(parseInt(size)) == -1){
-            storedItem.size.push(parseInt(size));
-        }
+        // if(storedItem.size.indexOf(parseInt(size)) == -1){
+        //     storedItem.size.push(parseInt(size));
+        // }
+
         storedItem.qty++;
         storedItem.price = storedItem.item.price * storedItem.qty;
         

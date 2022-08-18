@@ -706,7 +706,7 @@ if(document.getElementById('payment-form')){
  
 // ================= /shoe/:id =============================
   // GET SIZE WHEN ORDER, ADD TO CART
-    $('#size-options input').on('change', function() {
+    $('.size-options input').on('change', function() {
       //enable pre-order button
       $('#noti-pre-order').hide();
       $('#add-to-cart-btn').addClass('active')
@@ -724,7 +724,7 @@ if(document.getElementById('payment-form')){
         if($('#add-to-cart-btn').hasClass('active')){
           $('#noti-pre-order').hide();
 
-          sizeValue = $('input[name=size]:checked', '#size-options').val();
+          sizeValue = $('input[name=size]:checked', '.size-options').val();
           shoeId = $(this).data('id');
           $.ajax({
             url:'/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue,
@@ -954,3 +954,8 @@ function currentFormat(value) {
   if(value == 0) return value;
   return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND';
 }
+
+// $('.choose-quantity').click(()=>{
+//   $(this).closest('.size-container').show()
+//   console.log('clicked')
+// })

@@ -14,22 +14,22 @@
     <div class="row my-profile-form">
         <form action="/user/update/{{user._id}}" method="post" 
             class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <div class="form-group row mb-4">
+            <div class="form-group row mb-4">
                 <label for="name" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
+                    <input type="text" class="form-control" id="name" name="name" value="{{user.name}}">
                 </div>
             </div>
             <div class="form-group row mb-4"{{#if user.email}}{{else}}hidden{{/if}}>
                 <label for="email" class="col-sm-3 col-form-label" >Email</label>
                 <div class="col-sm-9">
-                <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
+                    <input type="text" readonly class="form-control" id="email" name="email" value="{{user.email}}">
                 </div>
             </div>
             <div class="form-group row mb-4"{{#if user.phone}}{{else}} hidden {{/if}}>
                 <label for="phone" class="col-sm-3 col-form-label" >Phone number</label>
                 <div class="col-sm-9">
-                <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>
+                    <input type="text" readonly class="form-control" id="phone" name="phone" value="{{user.phone}}" required/>
                 </div>
             </div>
             <div class="form-group row mb-4">

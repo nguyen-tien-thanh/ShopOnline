@@ -1,0 +1,17 @@
+.size-options-items {
+  cursor: default; }
+
+.size-options-items label {
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-block; }
+
+.size-options-items span {
+  cursor: not-allowed; }
+
+.size-options-items input[type=radio] {
+  display: none; }
+
+.size-options-items input[type=radio]:checked + .radio-checked {
+  color: #d00109;
+  text-decoration: underline; }

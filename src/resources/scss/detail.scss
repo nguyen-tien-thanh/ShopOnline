@@ -74,22 +74,22 @@
     line-height: 23px;
     // text-transform: uppercase;
   }
-  #size-options{
+  .size-options{
     cursor: default;
   }
-  .detail-shoe-container #shoe-detail #size-options label{
+  .size-options label{
     font-size: 15px;
     cursor: pointer;
     display: inline-block;
   }
-  #size-options span {
+  .size-options span {
     cursor: not-allowed;
   }
-  .detail-shoe-container #shoe-detail #size-options input[type=radio]{
+  .size-options input[type=radio]{
     display: none;
     
   }
-    .detail-shoe-container #shoe-detail #size-options input[type=radio]:checked + .radio-checked {
+    .size-options input[type=radio]:checked + .radio-checked {
       color: $maincolor;
       text-decoration: underline;
     }
@@ -232,5 +232,13 @@
       height: fit-content;
       object-fit: scale-down; }
     .detail-shoe-container #another-shoe-detail h1{ font-size:28px;}
+  }
+
+  .size-choose-container{
+    background-color: aliceblue;
+    width: fit-content;
+    border-radius: 0.2rem;
+    padding: 0 5px;
+    margin-bottom: 10px;
   }
 

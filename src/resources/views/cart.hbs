@@ -34,15 +34,27 @@
                                             {{/with}}
                                             <h6 class="text-black mb-0">{{this.item.name}}</h6>
                                             </div>
-                                            <div class="choose-quantity col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <a href="/shoe/reduce-cart/{{this.item._id}}">
+                                            <div class="choose-quantity col-md-3 col-lg-3 col-xl-2">
+                                                <div class="d-flex justify-content-center" class="size-container">
+                                                    <div class="size-choose-container">
+                                                        <div class="size-options-items">
+                                                            {{#each this.size}}
+                                                                <input type="radio" class="checked" id="{{this}}" name="size" value="{{this}}">
+                                                                <label for="{{this}}" class="radio-checked">{{this}}</label>
+                                                            {{/each}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                {{!-- <a href="/shoe/reduce-cart/{{this.item._id}}"> --}}
                                                     <button type="button" class="btn btn-link px-2"><i class="fas fa-minus"></i></button>
-                                                </a>
+                                                {{!-- </a> --}}
                                                 <input min="0" value="{{this.qty}}" type="text" disabled class="form-control form-control-sm">
                                                 <input type="hidden" name="quantity" value="{{this.qty}}">
-                                                <a href="/shoe/{{this.item._id}}">
+                                                {{!-- <a href="/shoe/{{this.item._id}}"> --}}
                                                     <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
-                                                </a>
+                                                {{!-- </a> --}}
+                                                </div>
                                             </div>
                                             <div class="price-of-shoe col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                             <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>
