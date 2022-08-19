@@ -20,7 +20,6 @@ module.exports = function Cart(oldCart) {
         
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
-        // console.log(storedItem)
     }
 
     this.addByOne = function(id){

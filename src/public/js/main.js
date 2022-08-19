@@ -710,11 +710,6 @@ if(document.getElementById('payment-form')){
       //enable pre-order button
       $('#noti-pre-order').hide();
       $('#add-to-cart-btn').addClass('active')
-      $('#add-to-cart-btn').click(() => {
-        $('#add-to-cart-btn').html('Added succesful');
-        $('#add-to-cart-btn').removeClass('btn-outline-dark').addClass('btn-outline-success')
-      })
-      
     });
 
       //Display noti when not choosing size
@@ -730,6 +725,7 @@ if(document.getElementById('payment-form')){
             url:'/shoe/add-to-cart/'+ shoeId + '?size=' + sizeValue,
           })
 
+
           $(this).closest('section')
           .find('#img-shoedetail')
           .clone()
@@ -739,6 +735,7 @@ if(document.getElementById('payment-form')){
           setTimeout(function(){
             $(".zoom").remove();
             $('.badge-counter').html(parseInt($('.badge-counter').html(), 10)+1);
+            toastr.success('Add to cart successful !')
           }, 1000);
         }
         else{
@@ -867,6 +864,7 @@ function removeItemCart(elementCart, idShoe, sizeShoe , priceShoe) {
   var qtyItem = qtyItemElement.value
   
   changeItemPriceElement('removeitem', priceShoe, qtyItem)
+  toastr.success('Remove item successful !')
 
   elementCart.parentElement.parentElement.remove();
 
@@ -885,6 +883,8 @@ function removeAllCart() {
       method:'GET',
       url: '/shoe/delete-cart'
     })
+    
+  toastr.success('Remove all items successful !')
 }
 
 
@@ -905,6 +905,7 @@ function descItemCart(elementCart, idShoe, sizeShoe){
     console.log('da xoa het')
     elementCart.parentElement.parentElement.parentElement.remove()
   }
+  toastr.success('Remove successful !')
 
   var id = idShoe + sizeShoe
   $.ajax({
@@ -925,6 +926,8 @@ function addItemCart (elementCart, idShoe, sizeShoe){
   priceItemElement.innerText = currencyFormat(parseInt(priceItems) + parseInt(priceItem)); //Change price after click
 
   changeItemPriceElement('add', priceItem)
+  
+  toastr.success('Add successful !')
 
   var id = idShoe + sizeShoe
   $.ajax({

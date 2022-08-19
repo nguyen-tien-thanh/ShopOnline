@@ -466,7 +466,7 @@ body *, body :after, body :before {
   opacity: 0;
   color: white;
   font-size: 20px;
-  padding: 20px;
+  padding: 0 0 20px 30px;
   text-align: center; }
 
 .img-container:hover img {
