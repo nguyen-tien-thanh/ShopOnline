@@ -857,54 +857,18 @@ $('#change-avatar-btn').click(function(){
 
 
 
+function currencyFormat(value) {
+  if(value == 0) return value;
+  return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND';
+}
 //==================== delete in shopping cart ===============
-
-function deleteShoeCart(elementCart, idShoe, sizeShoe , priceShoe, qtyShoe) {
+function removeItemCart(elementCart, idShoe, sizeShoe , priceShoe) {
+  var qtyItemElement = elementCart.parentElement.parentElement.children[2].children[1].children[1] // Input field
+  var qtyItem = qtyItemElement.value
   
-  var totalQtyEle = document.querySelector('.total-items')
-  var totalQtySumary = totalQtyEle.innerText;
-  var totalQty = totalQtySumary.replace(/[^0-9]+/g,"");
-  var qty =  totalQty - qtyShoe;
-
-  var totalQtyEles = document.querySelectorAll('.total-items')
-  for( var i = 0;i < totalQtyEles.length; i++) {
-    if(qty == 0){
-      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"></a>';
-    }else{
-      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
-    }
-    totalQtyEles[1].innerHTML = "ITEMS: " + qty
-  }
-
-  var element = document.querySelector('.shoe-total-price')
-  var totalPriceSumary = element.innerText;
-  var totalPrice = totalPriceSumary.replace(/[^0-9]+/g,"");
-  var price = totalPrice - priceShoe;
-  var priceFormat = currentFormat(price);
-
-
-  var elements = document.querySelectorAll('.shoe-total-price')
-  for( var i = 0;i < elements.length; i++) {
-    elements[i].innerText = priceFormat
-  }
+  changeItemPriceElement('removeitem', priceShoe, qtyItem)
 
   elementCart.parentElement.parentElement.remove();
-
-
-  if(qty <= 0){
-    var cardItems = document.querySelector('.noti-no-shoe')
-    cardItems.classList.remove('d-none')
-
-    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
-      for( var i = 0;i < checkOutBtn.length; i++) {
-        checkOutBtn[i].classList.remove('btn-outline-dark')
-        checkOutBtn[i].classList.add('btn-dark')
-        checkOutBtn[i].innerText = 'No item to check out'
-        checkOutBtn[i].setAttribute('disabled','disabled')
-      }
-  }
-
-  document.getElementById('money-input').value = price;
 
   var id = idShoe + sizeShoe
   $.ajax({
@@ -912,94 +876,34 @@ function deleteShoeCart(elementCart, idShoe, sizeShoe , priceShoe, qtyShoe) {
     url:'/shoe/remove-item/' + id,
   })
 }
+
+
 function removeAllCart() {
     document.querySelectorAll('.cart-items').forEach(e => e.remove())
-    var elements = document.querySelectorAll('.shoe-total-price')
-    for( var i = 0;i < elements.length; i++) {
-      elements[i].innerText = 0 + ' VND'
-    }
-    var totalQtyEles = document.querySelectorAll('.total-items')
-    for( var i = 0;i < totalQtyEles.length; i++) {
-      totalQtyEles[0].innerHTML = 0 + " items "
-      totalQtyEles[1].innerHTML = "ITEMS: " + 0;
-    }
-    var cardItems = document.querySelector('.noti-no-shoe')
-    cardItems.classList.remove('d-none')
-
-    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
-    for( var i = 0;i < checkOutBtn.length; i++) {
-      checkOutBtn[i].classList.remove('btn-outline-dark')
-      checkOutBtn[i].classList.add('btn-dark')
-      checkOutBtn[i].innerText = 'No item to check out'
-      checkOutBtn[i].setAttribute('disabled','disabled')
-    }
-    
-    document.getElementById('money-input').value = 0;
+    changeItemPriceElement('removeall', '')
     $.ajax({
       method:'GET',
       url: '/shoe/delete-cart'
     })
 }
 
-function currentFormat(value) {
-  if(value == 0) return value;
-  return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND';
-}
 
-function removeItemCart(elementCart, idShoe, sizeShoe , priceShoe, qtyShoe){
-  var totalQtyEle = document.querySelector('.total-items')
-  var totalQtySumary = totalQtyEle.innerText;
-  var totalQty = totalQtySumary.replace(/[^0-9]+/g,"");
-  var qty =  totalQty - 1;
+function descItemCart(elementCart, idShoe, sizeShoe){
+  var qtyItemElement = elementCart.parentElement.children[1] // Input field
+  var priceItemElement = elementCart.parentElement.parentElement.parentElement.children[3].children[0] //Price field
 
-  var totalQtyEles = document.querySelectorAll('.total-items')
-  for( var i = 0;i < totalQtyEles.length; i++) {
-    if(qty == 0){
-      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"></a>';
-    }else{
-      totalQtyEles[0].innerHTML = qty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
-    }
-    totalQtyEles[1].innerHTML = "ITEMS: " + qty
-  }
+  var qtyItem = qtyItemElement.value
+  var priceItems = priceItemElement.innerText.replace(/[^0-9]+/g,""); //Price of multi items
+  var priceItem = priceItems / qtyItem //Price of 1 item
 
-  var element = document.querySelector('.shoe-total-price')
-  var totalPriceSumary = element.innerText;
-  var totalPrice = totalPriceSumary.replace(/[^0-9]+/g,"");
-  var newPrice = priceShoe / qtyShoe
-  var price = totalPrice - newPrice;
-  var priceFormat = currentFormat(price);
-  var newPriceItem = priceShoe - newPrice
-  var newPriceItemFormat = currentFormat(newPriceItem)
+  qtyItemElement.value = parseInt(qtyItem) - 1; //Change value after click
+  priceItemElement.innerText = currencyFormat(parseInt(priceItems) - parseInt(priceItem)); //Change price after click
 
-  var elements = document.querySelectorAll('.shoe-total-price')
-  for( var i = 0;i < elements.length; i++) {
-    elements[i].innerText = priceFormat
-  }
+  changeItemPriceElement('remove', priceItem)
 
-  document.getElementById('money-input').value = newPrice;
-
-  if(qty <= 0){
-    var cardItems = document.querySelector('.noti-no-shoe')
-    cardItems.classList.remove('d-none')
-
-    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
-      for( var i = 0;i < checkOutBtn.length; i++) {
-        checkOutBtn[i].classList.remove('btn-outline-dark')
-        checkOutBtn[i].classList.add('btn-dark')
-        checkOutBtn[i].innerText = 'No item to check out'
-        checkOutBtn[i].setAttribute('disabled','disabled')
-      }
-  }
-
-  var eleInput = elementCart.parentElement.children[1]
-  eleInput.value -= 1;
-
-  var elePrice = elementCart.parentElement.parentElement.parentElement.children[3].children[0]
-  elePrice.innerText = newPriceItemFormat
-
-
-  if(eleInput.value <= 0){
-    elementCart.parentElement.parentElement.parentElement.remove();
+  if(qtyItem <= 1) {
+    console.log('da xoa het')
+    elementCart.parentElement.parentElement.parentElement.remove()
   }
 
   var id = idShoe + sizeShoe
@@ -1007,4 +911,91 @@ function removeItemCart(elementCart, idShoe, sizeShoe , priceShoe, qtyShoe){
     method:'Get',
     url:'/shoe/reduce-cart/' + id,
   })
+}
+
+function addItemCart (elementCart, idShoe, sizeShoe){
+  var qtyItemElement = elementCart.parentElement.children[1] // Input field
+  var priceItemElement = elementCart.parentElement.parentElement.parentElement.children[3].children[0] //Price field
+
+  var qtyItem = qtyItemElement.value
+  var priceItems = priceItemElement.innerText.replace(/[^0-9]+/g,""); //Price of multi items
+  var priceItem = priceItems / qtyItem //Price of 1 item
+
+  qtyItemElement.value = parseInt(qtyItem) + 1; //Change value after click
+  priceItemElement.innerText = currencyFormat(parseInt(priceItems) + parseInt(priceItem)); //Change price after click
+
+  changeItemPriceElement('add', priceItem)
+
+  var id = idShoe + sizeShoe
+  $.ajax({
+    method:'Get',
+    url:'/shoe/add-by-one-cart/' + id,
+  })
+}
+
+function changeItemPriceElement (type, priceItem, qtyItem){
+  //Change item quantity
+  var currentQtyEle = document.querySelector('.total-items').innerText;
+  var currentQty = currentQtyEle.replace(/[^0-9]+/g,"");
+  var currentQtyEles = document.querySelectorAll('.total-items');
+  var newQty;
+
+  if(type == 'add'){
+    newQty = parseInt(currentQty) + 1
+  } else if(type == 'remove') {
+    newQty = parseInt(currentQty) - 1
+  } else if(type == 'removeall'){
+    newQty = 0
+  } else if(type == 'removeitem'){
+    newQty = parseInt(currentQty) - parseInt(qtyItem)
+  }
+
+  for(var i = 0; i < currentQtyEles.length; i++) {
+    if(newQty <= 0){
+      currentQtyEles[0].innerHTML = newQty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"></a>';
+    }else{
+      currentQtyEles[0].innerHTML = newQty + " items " + '<a class="element-a-href" href="/shoe/delete-cart"><i class="fa fa-trash"></i></a>';
+    }
+    currentQtyEles[1].innerHTML = "ITEMS: " + newQty
+  }
+
+  // Show noti and disabled btn checkout
+  if(currentQty <= 1 || type == 'removeall'){
+    var cardItems = document.querySelector('.noti-no-shoe')
+    cardItems.classList.remove('d-none')
+
+    var checkOutBtn = document.querySelectorAll('.btn-outline-dark')
+      for( var j = 0;j < checkOutBtn.length; j++) {
+        checkOutBtn[j].classList.remove('btn-outline-dark')
+        checkOutBtn[j].classList.add('btn-dark')
+        checkOutBtn[j].innerText = 'No item to check out'
+        checkOutBtn[j].setAttribute('disabled','disabled')
+      }
+  }
+
+  //Change price items
+  var element = document.querySelector('.shoe-total-price');
+  var totalPrice = element.innerText.replace(/[^0-9]+/g,"");
+  var newPrice;
+  if(type == 'add'){
+    newPrice = parseInt(totalPrice) + priceItem;
+  } else if(type == 'remove'){
+    newPrice = parseInt(totalPrice) - priceItem;
+  } else if(type == 'removeall'){
+    newPrice = 0
+  } else if(type == 'removeitem'){
+    newPrice = parseInt(totalPrice) - priceItem;
+  }
+
+  var elements = document.querySelectorAll('.shoe-total-price');
+  for( var i = 0;i < elements.length; i++) {
+    elements[i].innerText = currencyFormat(newPrice);
+  }
+
+  var formMoney = document.querySelectorAll('[name="money"]')
+  var formQty = document.querySelectorAll('[name="quantity"]')
+  for(var i = 0; i < formMoney.length; i++){
+    formMoney[i].value = newPrice
+    formQty[i].value = newQty
+  }
 }

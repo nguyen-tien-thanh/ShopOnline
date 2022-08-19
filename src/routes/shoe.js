@@ -28,6 +28,9 @@ router.get('/delete-cart', shoeController.deleteCart)
 // [GET] /shoe/remove-item:id shoe
 router.get('/remove-item/:id', shoeController.removeItem)
 
+// [GET] /shoe/add-by-one-cart:id shoe
+router.get('/add-by-one-cart/:id', shoeController.addByOneCart)
+
 // [GET] /shoe/reduce-cart:id shoe
 router.get('/reduce-cart/:id', shoeController.reduceCart)
 

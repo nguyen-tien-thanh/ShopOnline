@@ -28,11 +28,11 @@
                                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                            {{!-- <h6 class="text-muted">{{this.item.brand}}</h6> --}}
-                                            {{#with size}}
-                                            <h6 class="text-muted mb-0">Size: {{this}}</h6>
-                                            {{/with}}
-                                            <h6 class="text-black mb-0">{{this.item.name}}</h6>
+                                                {{!-- <h6 class="text-muted">{{this.item.brand}}</h6> --}}
+                                                {{#with size}}
+                                                <h6 class="text-muted mb-0">Size: {{this}}</h6>
+                                                {{/with}}
+                                                <h6 class="text-black mb-0">{{this.item.name}}</h6>
                                             </div>
                                             <div class="choose-quantity col-md-3 col-lg-3 col-xl-2">
                                                 <div class="d-flex justify-content-center" class="size-container">
@@ -50,25 +50,30 @@
                                                     <button 
                                                         type="button" 
                                                         class="btn btn-link px-2" 
-                                                        onclick="removeItemCart(this, 
+                                                        onclick="descItemCart(this, 
                                                                                 '{{this.item._id}}',
-                                                                                '{{#with size}}{{this}}{{/with}}',
-                                                                                '{{this.price}}', 
-                                                                                '{{this.qty}}')">
+                                                                                '{{#with size}}{{this}}{{/with}}')">
                                                             <i class="fas fa-minus"></i>
                                                     </button>
                                                 {{!-- </a> --}}
-                                                <input min="0" value="{{this.qty}}" type="text" disabled class="form-control form-control-sm">
+                                                    <input min="0" value="{{this.qty}}" type="text" disabled class="form-control form-control-sm">
                                                 {{!-- <a href="/shoe/{{this.item._id}}"> --}}
-                                                    <button type="button" class="btn btn-link px-2"><i class="fas fa-plus"></i></button>
+                                                    <button 
+                                                        type="button" 
+                                                        class="btn btn-link px-2" 
+                                                        onclick="addItemCart(this, 
+                                                                                '{{this.item._id}}',
+                                                                                '{{#with size}}{{this}}{{/with}}')">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
                                                 {{!-- </a> --}}
                                                 </div>
                                             </div>
                                             <div class="price-of-shoe col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>
+                                                <h6 class="mb-0">{{formatCurrency this.price}} VND</h6>
                                             </div>
                                             <div class="cancle-order col-md-1 col-lg-1 col-xl-1 text-end">
-                                                <i onclick="deleteShoeCart(this, '{{this.item._id}}','{{#with size}}{{this}}{{/with}}', '{{this.price}}', '{{this.qty}}')" class="fas fa-times"></i>
+                                                <i onclick="removeItemCart(this, '{{this.item._id}}','{{#with size}}{{this}}{{/with}}', '{{this.price}}', '{{this.qty}}')" class="fas fa-times"></i>
                                             </div>
                                             <hr class="my-4">
                                         </div>
@@ -162,7 +167,7 @@
                                         <input id="money-input" type="hidden" name="money" value="{{session.cart.totalPrice}}">
                                         <input type="hidden" name="shipping" value="">
                                         <input type="hidden" name="userId" value="{{user._id}}">
-                                        <input type="hidden" name="quantity" value="{{this.qty}}">
+                                        <input type="hidden" name="quantity" value="{{session.cart.totalQty}}">
 
                                         <hr class="my-4">
 
@@ -219,9 +224,10 @@
                                             </div>
                                         </div>
                                         
-                                        <input type="hidden" name="money" value="{{session.cart.totalPrice}}">
+                                        <input id="money-input" type="hidden" name="money" value="{{session.cart.totalPrice}}">
                                         <input type="hidden" name="shipping" value="">
                                         <input type="hidden" name="userId" value="{{user._id}}">
+                                        <input type="hidden" name="quantity" value="{{session.cart.totalQty}}">
 
                                         <hr class="my-4">
 

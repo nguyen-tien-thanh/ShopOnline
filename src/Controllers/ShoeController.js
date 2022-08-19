@@ -62,6 +62,16 @@ class ShoeController {
         res.redirect('/cart')
     }
 
+    //[POST] /shoe/add-by-one/:id
+    addByOneCart(req, res, next){
+        var shoeId = req.params.id;
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+        cart.addByOne(shoeId);
+        req.session.cart = cart;
+        res.redirect('/cart')
+    }
+
     // [POST] /shoe/add-to-cart/:id
     addToCart(req, res, next){
         var shoeId = req.params.id;
