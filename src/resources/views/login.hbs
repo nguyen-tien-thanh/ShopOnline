@@ -1,54 +1,74 @@
-<div class="login-for-pc-tablet ">
-    <a class="login-sidenav-pc-tablet" href="/register">
-        <div class="login-sidenav">
-            <div class="login-main-text">
-            <h2> Login Page</h2>
-            <p class="text-muted">Click here to <span>REGISTER</span> if you don't have an account</p>
-            </div>
-        </div>
-    </a>
-
-
-    <div class="login-main">
-        <div class="col-md-6 col-sm-12">
-        <div class="login-form">
-            <form action="/validation" method="POST">
-                <a href="/auth/facebook" class="btn btn-block btn-info btn-facebook">
-                    <span class="fab fa-facebook"></span> Sign in with facebook
-                </a>
-                <a href="/auth/google" class="btn btn-block btn-danger btn-google">
-                    <span class="fab fa-google"></span> Sign in with google
-                </a>
-                <div class="form-group">
-                    <label>User Name</label>
-                    <input type="text" id="username" name="username" class="form-control mt-2" placeholder="Enter email or password" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" name="password" class="form-control mt-2" placeholder="Enter password" required>
-                </div>
-                <div class="mt-1 row">
-                    <div class="col-md-4 col-xs-6 col-lg-8 col-6">
-                    </div>
-
-                    <div class="col-md-8 col-xs-6 col-lg-4 col-6">
-                    <!-- Simple link -->
-                        <a href="/forgotps"><i>Forgot password?</i></a>
-                    </div>
-                </div>
-
-                {{#if msgLog}}
-                    <div class="p-2 alert alert-danger mt-1" role="alert">
-                        <span>{{msgLog}}</span>
-                    </div>
-                {{/if}}
-
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-black">Login</button>
-                </div>
-            </form>
-        </div>
-        </div>
+<div class="login-for-pc-tablet">
+  <a class="login-sidenav-pc-tablet" href="/register">
+    <div class="login-sidenav">
+      <div class="login-main-text">
+        <h2> Login Page</h2>
+        <p class="text-muted">Click here to
+          <span>REGISTER</span>
+          if you don't have an account</p>
+      </div>
     </div>
-</div>
+  </a>
 
+  <div class="login-main">
+    <div class="col-md-6 col-sm-12">
+      <div class="login-form">
+        <form action="/validation" method="POST">
+          <a href="/auth/facebook" class="btn btn-block btn-info btn-facebook">
+            <span class="fab fa-facebook"></span>
+            Sign in with facebook
+          </a>
+          <a href="/auth/google" class="btn btn-block btn-danger btn-google">
+            <span class="fab fa-google"></span>
+            Sign in with google
+          </a>
+          <div class="form-group">
+            <label>User Name</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control mt-2"
+              placeholder="Enter email or password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control mt-2"
+              placeholder="Enter password"
+              required
+            />
+          </div>
+          <div class="mt-1 row">
+            <div class="col-md-4 col-xs-6 col-lg-8 col-6">
+            </div>
+
+            <div class="col-md-8 col-xs-6 col-lg-4 col-6">
+              <!-- Simple link -->
+              <a href="/forgotps"><i>Forgot password?</i></a>
+            </div>
+          </div>
+
+          {{#if msgLog}}
+            <div class="p-2 alert alert-danger mt-1" role="alert">
+              <span>{{msgLog}}</span>
+            </div>
+          {{/if}}
+
+          <span class="text-white" t>Admin: admin@gmail.com | admin</span>
+          <br />
+          <span class="text-white">Customer: customer@gmail.com | customer</span>
+
+          <div class="mt-4">
+            <button type="submit" class="btn btn-black">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

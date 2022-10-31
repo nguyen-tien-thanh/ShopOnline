@@ -200,7 +200,6 @@ class SiteController {
     validation(req,res,next) {
         let username = req.body.username
         let password = req.body.password
-        // console.log(username + ' ' + password)
 
         User.findOne({
             $or: [
@@ -212,11 +211,6 @@ class SiteController {
                 return console.log(err)
             }
             if (!user) {
-                // return res.render('login', {
-                //     success: false,
-                //     layout: 'loginLayout',
-                //     msgLog: `Sai tài khoản hoặc mật khẩu`
-                // })
                 return res.render('login', {
                     success: false,
                     layout: 'loginLayout',
@@ -251,12 +245,6 @@ class SiteController {
                         }
                     })
                     res.cookie('token',token, { maxAge: 2147483647, httpOnly: true });
-                    // return res.render('index',{
-                    //     msg: 'Login success',
-                    //     title:'Home',
-                    //     success: true,
-                    //     user: mongooseToObject(user)
-                    // })
                     return res.redirect('/')
                 }
                 const failed = user.countFailed

@@ -2,7 +2,14 @@
     <section>
         <div class="row">
             <div class="col-3 left-list">
-                <h2>Categories</h2>
+                <h2>Gender</h2>
+                <ul class="list-group">
+                    <a href="/shoe/finding?gender=male"><li class="list-group-item">Male</li></a>
+                    <a href="/shoe/finding?gender=female"><li class="list-group-item">Female</li></a>
+                    <a href="/shoe/finding?gender=unisex"><li class="list-group-item">Unisex</li></a>
+                </ul>
+
+                <h2 class="mt-5">Categories</h2>
                 <ul class="list-group">
                     {{#each shoeType}}
                         <a href="/shoe/finding?type={{this._id}}"><li class="list-group-item">{{this.name}}</li></a>
@@ -169,7 +176,12 @@
                                 <a href="/shoe/{{this._id}}?shoeDetailTitle=Best%20Seller&brandid={{this.brand._id}}">
                                     <h1>{{this.name}}</h1>
                                 </a>
+                                {{#ifCond this.sale '>' 0}}
+                                <h2 class="price-before-sale">{{formatCurrency this.price}} VND</h2>
+                                <h2>{{sale this.price this.sale}} VND (sale {{this.sale}}%)</h2>
+                                {{else}}
                                 <h2>{{formatCurrency this.price}} VND</h2>
+                                {{/ifCond}} 
 
                                 {{#ifeq this.available false}}
                                     <h3>Out of stock</h3>

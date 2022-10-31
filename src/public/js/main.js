@@ -474,6 +474,7 @@ function getTotalStockOfSize(){
           shoeTypeName = $('#' + shoeId + '-type-name').text(),
           shoeName = $('#' + shoeId + '-name').text(),
           shoeColor = $('#' + shoeId + '-color').text(),
+          shoeGender = $('#' + shoeId + '-gender').text(),
           shoePrice = $('#' + shoeId + '-price').text(),
           shoeSale = $('#' + shoeId + '-sale').text(),
           shoeQuantity = $('#' + shoeId + '-quantity').text(),
@@ -488,6 +489,15 @@ function getTotalStockOfSize(){
       for(var i=0; i<editBrandOptions.length; i++){
         if(editBrandOptions[i].innerHTML == shoeBrandName){
           var selectedOptions = editBrandOptions[i]
+          selectedOptions.setAttribute('selected', 'selected')
+          break;
+        }
+      }
+
+      var editGenderOptions = document.getElementsByClassName('edit-gender-options');
+      for(var i=0; i<editGenderOptions.length; i++){
+        if(editGenderOptions[i].value == shoeGender){
+          var selectedOptions = editGenderOptions[i]
           selectedOptions.setAttribute('selected', 'selected')
           break;
         }

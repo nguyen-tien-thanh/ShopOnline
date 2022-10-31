@@ -1500,7 +1500,7 @@ section {
 
 .wrapper.shoe-index {
   margin-top: 10px;
-  font-family: 'Sofia';
+  font-family: "Sofia";
   background: white; }
 
 .wrapper.shoe-index section {
@@ -1519,8 +1519,7 @@ section {
 
 .shoe-index .left-list ul li:hover {
   text-decoration: underline;
-  cursor: pointer;
-  color: #d00109; }
+  cursor: pointer; }
 
 .shoe-index .left-list h2 {
   font-size: 1rem;
@@ -1565,7 +1564,7 @@ section {
 .responsive-left-list {
   display: none;
   padding-right: 2rem;
-  font-family: 'Sofia';
+  font-family: "Sofia";
   text-transform: uppercase; }
 
 .responsive-left-list ul {
@@ -1633,6 +1632,10 @@ section {
     padding-left: 1rem; }
   .shoe-list {
     text-align: center; } }
+
+.price-before-sale {
+  text-decoration: line-through;
+  color: lightgrey; }
 
 .profile-container .nav-profile-left ul {
   list-style-type: none;

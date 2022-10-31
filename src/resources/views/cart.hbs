@@ -124,7 +124,7 @@
                                         <div class="mb-2 pb-2">
                                             <select class="form-control" name="payment" id="payment-method-select" required>
                                                 {{!-- <option value="" selected="true" disabled="disabled">Choose payment method</option> --}}
-                                                <option value="wallet">DusTin Wallet {{#if user.money}}({{formatCurrency user.money}} VND){{/if}} </option>
+                                                {{#if user}}<option value="wallet">DusTin Wallet {{#if user.money}}({{formatCurrency user.money}} VND){{/if}} </option>{{/if}}
                                                 <option value="momo">Momo</option>
                                                 <option value="paypal">Paypal</option>
                                                 <option value="card">Credit Card</option>
@@ -140,6 +140,12 @@
                                         </div>
                                         
                                         <h5 class="text-uppercase mb-3">Information</h5>
+
+                                        <div class="mb-2">
+                                            <div class="form-outline">
+                                            <input type="text" placeholder="Enter voucher (if have)" name="voucher" class="form-control"/>
+                                            </div>
+                                        </div>
 
                                         <div class="mb-2">
                                             <div class="form-outline">
@@ -200,6 +206,12 @@
                                     <form action="/checkout-by-wallet" method="post" id="online-payment-form">
                                         
                                         <h5 class="text-uppercase mb-3">Information</h5>
+
+                                        <div class="mb-2">
+                                            <div class="form-outline">
+                                            <input type="text" placeholder="Enter voucher (if have)" name="voucher" class="form-control"/>
+                                            </div>
+                                        </div>
 
                                         <div class="mb-2">
                                             <div class="form-outline">
